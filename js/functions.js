@@ -64,8 +64,6 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
     }
     else if(eixo === 3){
 
-        alert(percent)
-
         var mundo = 0;
         var mundoRegex = $(window.parent.document).find("#view_box").attr("src").match(/mundo=[0-9]*/);
         if(mundoRegex != null){
@@ -77,7 +75,6 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
             setPercentValueData({percentual: d.data.size / root.value}, eixo, vrv);
         }
         else if(mundo == 0){
-            console.log(d.data)
             setPercentValueData({percentual: percent}, eixo, vrv);
         }
     }

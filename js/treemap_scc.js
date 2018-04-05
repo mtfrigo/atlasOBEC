@@ -208,10 +208,9 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         enableDesag(eixo, vrv, d.data.colorId, true, slc);
                         destacaSetor(d.data.colorId);
 
-                        cad_valor = $('svg').find('rect[data-legend="'+url['cad']+'"]').attr("data-value");
-                        cad_percent = $('svg').find('rect[data-legend="'+url['cad']+'"]').attr("data-percent");
+                        cad_valor = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-value");
+                        cad_percent = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent");
 
-                        alert(url['cad'])
 
                         configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, cad_valor, cad_percent);
                         if(deg  == 0) $(window.parent.document).find(".cad-title").first().html(d.data.name);
