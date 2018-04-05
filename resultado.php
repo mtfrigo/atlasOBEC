@@ -244,6 +244,10 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
 
                     <?php if($eixo == "comercio") { ?>
                         <div class="state-title">
+                            BRASIl
+                        </div>
+
+                        <div class="prc-title">
                             MUNDO
                         </div>
                     <?php } else { ?>

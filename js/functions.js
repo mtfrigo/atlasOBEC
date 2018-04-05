@@ -5,7 +5,7 @@ function ajustaAnos(keys) {
 	return keys;
 }
 
-function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg) {
+function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percent) {
     if(eixo == 0) {
         if(vrv == 2 && url['uf'] == 0){
             setIntegerValueData({valor: d.data.size*100}, eixo, vrv);
@@ -64,6 +64,8 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg) {
     }
     else if(eixo === 3){
 
+        alert(percent)
+
         var mundo = 0;
         var mundoRegex = $(window.parent.document).find("#view_box").attr("src").match(/mundo=[0-9]*/);
         if(mundoRegex != null){
@@ -71,8 +73,12 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg) {
         }
 
 
-        if(mundo == 0 || (mundo == 1 && url['uf'] == 0)){
+        if((mundo == 1 && url['uf'] == 0)){
             setPercentValueData({percentual: d.data.size / root.value}, eixo, vrv);
+        }
+        else if(mundo == 0){
+            console.log(d.data)
+            setPercentValueData({percentual: percent}, eixo, vrv);
         }
     }
 }
@@ -131,9 +137,11 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, cad_data, ocp_data, url, deg_cad
         if(url['cad'] != 0 && mundo == 1 && url['uf'] == 0){
             setPercentValueData({percentual: cad_data, taxa: 0}, eixo, vrv);
         }
-        else if(url['cad'] != 0 && mundo == 0){
-            setPercentValueData({percentual: cad_data, taxa: 0}, eixo, vrv);
+        else if(mundo == 0 && url['uf'] != 0 && url['cad'] != 0){
+            setPercentValueData({percentual: ocp_data, taxa: 0}, eixo, vrv);
         }
+
+
 
     }
 
@@ -370,15 +378,17 @@ function configInfoDataBoxBarras(eixo, vrv, dados) {
             mundo = mundoRegex[0].match(/[0-9]/)[0];
 
 
-        if((mundo == 1 && url['uf'] == 0 && url['cad'] == 0) || (mundo == 0 && url['prc'] == 0 && url['cad'] == 0)){
+        if((mundo == 1 && url['uf'] == 0 && url['cad'] == 0)){
             setPercentValueData({percentual: 1, taxa: dados.taxa[indexAno]}, eixo, vrv);
         }
         else if(mundo == 1 && url['uf'] == 0 && url['cad'] == 0){
             setPercentValueData({percentual: 1}, eixo, vrv);
         }
-        else if(mundo == 0 && url['cad'] == 0){
-            setPercentValueData({percentual: 1, taxa: dados.taxa[indexAno]}, eixo, vrv);
+        else if(url['uf'] == 0 && url['prc'] == 0 && url['cad'] == 0){
+            setPercentValueData({percentual: 1}, eixo, vrv);
+
         }
+
 
         dados.valor = dados.value[indexAno];
 
@@ -826,6 +836,11 @@ function setStateTitle(stateTitle){
     setMaxFontSize(docState)
 }
 
+function setPrcTitle(prcTitle){
+    docState = $(window.parent.document).find(".prc-title").html(prcTitle);
+    setMaxFontSize(docState)
+}
+
 /*
 * Função para atribuir o valor certo para o dado percentual da variavel em questão
 *
@@ -900,9 +915,10 @@ function setPercentValueData(value, eixo, vrv) {
 
         if(vrv == 1){
             $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.percentual*100, 2)+"%");
+            var doc =  $(window.parent.document).find(".percent-value").first().find(".number").first();
+            setMaxFontSize(doc);
         }
-        var doc =  $(window.parent.document).find(".percent-value").first().find(".number").first();
-        setMaxFontSize(doc);
+
     }
 
 }

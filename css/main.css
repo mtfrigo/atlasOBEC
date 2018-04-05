@@ -255,7 +255,7 @@ button.opt:hover, button.opt.active{
 	padding-top: 50px;
 }
 
-.state-title{
+.state-title, .prc-title{
 	color: #ccc;
 	font-size: 30px;
 	letter-spacing: 3px;
