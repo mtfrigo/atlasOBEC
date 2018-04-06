@@ -755,7 +755,7 @@ function setIntegerValueData(value, eixo, vrv) {
         }
         var literal = formatDecimalLimit(valor, 2);
         if(eixo == 3)
-        literal = formatDecimalLimit(valor, 10);    
+            literal = formatDecimalLimit(valor, 10);    
         
 
 
@@ -1241,7 +1241,7 @@ var formatNumber = function(value, decimalLimit){
 	var fracFormat = function(d){
 
 		var tempFormat = d3.format(",."+decimalLimit+"f");
-		if((tempFormat(d) < 0.0001) && tempFormat(d) !=  0){
+		if((tempFormat(d) > -0.0001 && tempFormat(d) < 0.0001) && tempFormat(d) !=  0){
 		    return parseFloat(tempFormat(d)).toExponential(3)
 		}
 		else{
