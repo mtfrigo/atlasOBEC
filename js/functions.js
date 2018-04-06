@@ -71,10 +71,10 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
         }
 
 
-        if((mundo == 1 && url['uf'] == 0)){
-            setPercentValueData({percentual: d.data.size / root.value}, eixo, vrv);
+        if(url['uf'] == 0){
+            setPercentValueData({percentual: valor}, eixo, vrv);
         }
-        else if(mundo == 0){
+        else{
             setPercentValueData({percentual: percent}, eixo, vrv);
         }
     }
@@ -131,15 +131,17 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, cad_data, ocp_data, url, deg_cad
         if(mundoRegex != null)
             mundo = mundoRegex[0].match(/[0-9]/)[0];
 
-        if(url['cad'] != 0 && mundo == 1 && url['uf'] == 0){
-            setPercentValueData({percentual: cad_data, taxa: 0}, eixo, vrv);
+        if(url['cad'] != 0){
+            if(url['uf'] == 0){
+                setPercentValueData({percentual: cad_data, taxa: 0}, eixo, vrv);
+            }
+            else{
+                setPercentValueData({percentual: ocp_data, taxa: 0}, eixo, vrv);
+            }
         }
-        else if(mundo == 0 && url['uf'] != 0 && url['cad'] != 0){
-            setPercentValueData({percentual: ocp_data, taxa: 0}, eixo, vrv);
+        else{
+            setPercentValueData({percentual: 1, taxa: 0}, eixo, vrv);
         }
-
-
-
     }
 
 }
@@ -152,7 +154,7 @@ function configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root) {
     }
 }
 
-function configInfoDataBoxBarrasClick(eixo, vrv, dados, i) {
+function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
     if(eixo == 0) {
         if (vrv == 3) {
             dados.valor = dados.value[i] / 100;
@@ -240,8 +242,8 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i) {
     }
     else if(eixo == 3){
 
-        if(vrv === 1){
-            dados.valor = dados.value[i];
+        if(vrv === 1 || vrv === 2){
+            dados.valor = valor;
             setIntegerValueData(dados, eixo, vrv);
         }
         else if(vrv === 99){
@@ -256,7 +258,7 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i) {
     }
 }
 
-function configInfoDataBoxBarras(eixo, vrv, dados) {
+function configInfoDataBoxBarras(eixo, vrv, dados, valor) {
     if(eixo == 0){
         if(url['uf'] == 0) {
             if(vrv == 1 && cad != 0) {
@@ -752,7 +754,13 @@ function setIntegerValueData(value, eixo, vrv) {
 
 		}
 
-        $(window.parent.document).find(".integer-value").first().find(".number").first().html(prefixo+formatDecimalLimit(valor, 2)+sufixo);
+		var literal = formatDecimalLimit(valor, 10);
+
+
+
+        //alert(literal)
+
+        $(window.parent.document).find(".integer-value").first().find(".number").first().html(prefixo+literal+sufixo);
         var doc =  $(window.parent.document).find(".integer-value").first().find(".number").first();
 
         setMaxFontSize(doc);
@@ -955,8 +963,7 @@ function setPercentValueData(value, eixo, vrv) {
     }
     else if(eixo == 3){
 
-
-        if(vrv == 1){
+        if(vrv == 1 || vrv == 2){
             $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.percentual*100, 2)+"%");
             var doc =  $(window.parent.document).find(".percent-value").first().find(".number").first();
             setMaxFontSize(doc);
@@ -1222,7 +1229,7 @@ function formatGreatNumbers(value, prefix){
 		{string} ex.: "200.300,12"
 -----------------------------------------------------------------------------*/
 var formatNumber = function(value, decimalLimit){
-	var decimalLimit = decimalLimit || 8;
+	var decimalLimit = decimalLimit || 10;
 	var minimumIntDigitsNumberToCapDecValues = 3;
 
 	var intFormat = function(d){
@@ -1231,8 +1238,14 @@ var formatNumber = function(value, decimalLimit){
 	}
 
 	var fracFormat = function(d){
+
 		var tempFormat = d3.format("."+decimalLimit+"f");
-		return tempFormat(d);
+		if((tempFormat(d) < 0.01) && tempFormat(d) !=  0){
+		    return parseFloat(tempFormat(d)).toExponential(3)
+		}
+		else{
+            return tempFormat(d);
+        }
 	}
 
 /*-----------------------------------------------------------------------------

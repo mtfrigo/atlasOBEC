@@ -348,6 +348,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
             .enter().append("rect")
             .attr("class", "bar")
             .attr("data-legend", function(d, i, obj) { return dados.key[i]; })
+            .attr("data-value", function(d) {   return d; })
             .attr("x", function (d, i) {
                 return x(i);
             })
@@ -480,8 +481,13 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
 
                 $(window.parent.document).find("#view_box").attr("src", newMapaSrc);
                 $(window.parent.document).find("select[data-id='ano']").val(dados.key[i]);
+
+
                 destacaBarra(dados.key[i]);
-                configInfoDataBoxBarrasClick(eixo, vrv, dados, i);
+                var valor = $('svg').find('rect[data-legend="'+dados.key[i]+'"]').attr("data-value");
+
+                configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor);
+
             })
             .style("cursor", "pointer");
         // cria título do gráfico
@@ -636,7 +642,8 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
 
         destacaBarra(url['ano']);
 
-        configInfoDataBoxBarras(eixo, vrv, dados);
+        var valor = $('svg').find('rect[data-legend="'+url['ano']+'"]').attr("data-value");
+        configInfoDataBoxBarras(eixo, vrv, dados, valor);
 
         
 
@@ -727,7 +734,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                 }
             }
             else if(eixo === 3){
-                if(vrv === 1){
+                if(vrv === 1 || vrv === 2){
                     tooltipInstance.showTooltip(d, [
                         ["title", dados.key[i]],
                         ["", formatTextVrv(dados.value[i], eixo, vrv)],

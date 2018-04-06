@@ -1259,3 +1259,16 @@ body.contraste{
 	height: 100%; 
 	border-radius:4px;
 }
+
+.contexto{
+	width: 100%;
+	height: 100px;
+	background-color: #2D7F89;
+}
+
+
+.download{
+	width: 100%;
+	height: 100%;
+	background-color: #2D7F89;
+}
