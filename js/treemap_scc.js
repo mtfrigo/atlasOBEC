@@ -278,13 +278,42 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
         }
 
 
-        else if(eixo === 3){
-            if (vrv === 1){
-                    tooltipInstance.showTooltip(d, [
+        else if(eixo === 2){
+            if(url['uf'] == 0 || url['var'] == 3){
+                tooltipInstance.showTooltip(d, [
+                    ["title", d.data.name],
+                    ["", formatTextVrv(d.data.size, eixo, vrv)],
+                    ["", formatTextTaxaVrv((d.data.size/root.value), eixo, vrv)],
+
+                ]);
+            }
+            else{
+                tooltipInstance.showTooltip(d, [
                     ["title", d.data.name],
                     ["", formatTextVrv(d.data.size, eixo, vrv)],
                     ["", formatTextTaxaVrv((d.data.size/root.value), eixo, vrv)],
                     ["", formatTextTaxaVrv(d.data.percentual, eixo, vrv)],
+
+                ]);
+            }
+
+        }
+
+        else if(eixo === 3){
+            if (url['uf'] != 0 && (vrv === 1 || vrv === 2)){
+                tooltipInstance.showTooltip(d, [
+                    ["title", d.data.name],
+                    ["", formatTextVrv(d.data.size, eixo, vrv)],
+                    ["", formatTextTaxaVrv((d.data.size/root.value), eixo, vrv)],
+                    ["", formatTextTaxaVrv(d.data.percentual, eixo, vrv)],
+
+                ]);
+            }
+            else if (url['uf'] == 0 && (vrv === 1 || vrv === 2)){
+                tooltipInstance.showTooltip(d, [
+                    ["title", d.data.name],
+                    ["", formatTextVrv(d.data.size, eixo, vrv)],
+                    ["", formatTextTaxaVrv((d.data.size/root.value), eixo, vrv)],
 
                 ]);
             }

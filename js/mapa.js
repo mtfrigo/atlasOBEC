@@ -642,7 +642,7 @@ gradient = svg.append("defs")
         }
         else if(eixo == 3){
             //tooltips com os 3 valores na interface (valor, percentual e taxa)
-            if(vrv === 1){
+            if(vrv === 1 || vrv === 2){
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
                     ["", formatTextVrv(dict[d.id].valor, eixo, vrv)],
