@@ -551,8 +551,12 @@ gradient = svg.append("defs")
 	}
 
     if(url['uf'] == 0) $(window.parent.document).find(".state-title").first().html("Brasil");
-    $(window.parent.document).find(".integer-value").first().find(".description-number").html(textJSON.var[eixo][vrv-1].desc_int);
-    $(window.parent.document).find(".percent-value").first().find(".description-number").html(textJSON.var[eixo][vrv-1].desc_percent);
+    if(dict[url['uf']])
+        estadoAtual = dict[url['uf']].uf
+    else
+        estadoAtual = "BRASIL"
+    $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(textJSON.var[eixo][vrv-1].desc_int, estadoAtual));
+    $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(textJSON.var[eixo][vrv-1].desc_percent, estadoAtual));
 
 
     function loadTooltip(d, eixo, vrv){

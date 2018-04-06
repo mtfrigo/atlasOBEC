@@ -749,7 +749,9 @@ function setIntegerValueData(value, eixo, vrv) {
 				break;
 			case 1:
 			    if(sufixo == '%')
-			        valor *= 100;
+                    valor *= 100;
+                break;
+
 		}
 
 		var literal = formatDecimalLimit(valor, 10);
@@ -765,6 +767,50 @@ function setIntegerValueData(value, eixo, vrv) {
 	});
 }
 
+/*
+* Função para atualizar a descrição do percentual em função do estado selecionado
+*/
+function updateDescPercent(desc, nomeestado){
+    prepos = {
+        "ACRE":"DO",
+        "ALAGOAS":"DE",
+        "AMAPÁ":"DO",
+        "AMAZONAS":"DO",
+        "BAHIA":"DA",
+        "CEARÁ":"DO",
+        "DISTRITO FEDERAL":"DO",
+        "ESPÍRITO SANTO":"DO",
+        "GOIÁS":"DE",
+        "MARANHÃO":"DO",
+        "MATO GROSSO":"DE",
+        "MATO GROSSO DO SUL":"DE",
+        "MINAS GERAIS":"DE",
+        "PARÁ":"DO",
+        "PARAÍBA":"DA",
+        "PARANÁ":"DO",
+        "PERNAMBUCO":"DE",
+        "PIAUÍ":"DO",
+        "RIO DE JANEIRO":"DO",
+        "RIO GRANDE DO NORTE":"DO",
+        "RIO GRANDE DO SUL":"DO",
+        "RONDÔNIA":"DE",
+        "RORAIMA":"DE",
+        "SANTA CATARINA":"DE",
+        "SÃO PAULO":"DE",
+        "SERGIPE":"DE",
+        "TOCANTINS": "DO"
+    }
+    nomeestado = nomeestado.toUpperCase()
+    if(prepos[nomeestado]){
+        
+        nomeestado = prepos[nomeestado] + ' ' +nomeestado
+    }
+    else{
+        nomeestado = "DO BRASIL"
+    }
+    
+    return desc.replace("{}", nomeestado);
+}
 
 /*
 * Função ajusta o tamanho da fonte para a maior possível dentro de um Div.

@@ -204,7 +204,8 @@ function updateIframe(url){
             }
         }
         else if(eixoAtual == 2){
-            if (url['var'] ==  16) {
+            $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
+            if (url['var'] ==  16 || url ['var'] == 15) {
                 if(url['uos'] == 0) {
                     $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR UF");
                 }
@@ -216,6 +217,7 @@ function updateIframe(url){
                 newUrl = newUrl.replace(/mec=[0-9]/, "mec=0");
                 $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA FINANCIAMENTO TOTAL / RECEITA EXECUTIVO");
+                $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA DESPESA MINC / RECEITA EXECUTIVO");
             }
         }
 
