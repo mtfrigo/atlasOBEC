@@ -1313,7 +1313,7 @@ var formatNumber = function(value, decimalLimit){
 -----------------------------------------------------------------------------*/
 var removeDecimalZeroes = function(value){
 	var decValue = value.split(".")[1];
-	return parseInt(decValue) === 0? value.split(".")[0] : value;
+	return parseInt(decValue) === 0 && decValue.indexOf('e') == -1? value.split(".")[0] : value;
 }
 
 /*-----------------------------------------------------------------------------
