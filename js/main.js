@@ -105,7 +105,7 @@ function updateIframe(url){
     var eixoAtual = getEixo(window.location.hash.substring(1));
 
     ///BOX DO MAPA
-        if($('iframe[id="view_box"]').length != 0) {
+    if($('iframe[id="view_box"]').length != 0) {
         if(eixoAtual == 0){
             if(url['var'] > 9){
 
@@ -158,7 +158,12 @@ function updateIframe(url){
             $('#treemap_region').html("BRASIL");
             //alert(url['view'])
 
-            if(url['var'] >= 5 && url['var'] < 13 || url['var'] == 14 ){
+            if(url['var'] == 5 ){
+                $('iframe[id="view_box"]').attr('src', 'line_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                // $('iframe[id="view_box"]').attr('src', 'no-view.html');
+
+            }
+            else if(url['var'] > 5 && url['var'] < 13 || url['var'] == 14 ){
                //$('iframe[id="view_box"]').attr('src', 'line_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                $('iframe[id="view_box"]').attr('src', 'no-view.html');
                
@@ -296,6 +301,12 @@ function updateIframe(url){
                 $('iframe[id="view_box_scc"]').css('display', 'block')
                 $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");
+            }
+            else if(url['var'] == 5){
+                newUrl = newUrl.replace(/slc=[0-9]*/, "slc=1");
+                $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SERVIÇO");
+
             }
 
         }
