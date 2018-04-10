@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+#!/usr/bin/perl
 =pod
 This is a proof-of-concept demo for saving d3js graphics as PDF/PNG/SVG files.
 
@@ -34,7 +34,6 @@ In a proper application, you'll want to replace those with proper error handling
 
 # Limit the size of the POST'd data - might need to increase it for hudge d3js drawings.
 $CGI::POST_MAX = 1024 * 5000;
-
 ##
 ## Input validation
 ##
@@ -86,13 +85,12 @@ elsif ($output_format eq "pdf" || $output_format eq "png") {
 	my $pdf_data = read_file( $output_file, {binmode=>':raw'});
 
 	## All is fine, send the data back to the user
-	my $mime_type = ($output_format eq "pdf")?"application/x-pdf":"image/png";
+	my $mime_type = ($output_format eq "pdf")?"application/pdf":"image/png";
 
 	if ($name eq "mapa" ||
 		$name eq "treemap_scc" ||
 		$name eq "treemap_region" ||
 		$name eq "barras") {
-
 		my $name = $name . "Atlas";
 		print header(-type=>$mime_type,
 		     -attachment=>"$name.$output_format");

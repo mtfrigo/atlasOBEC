@@ -198,6 +198,7 @@
 			var type = '<?php echo $type; ?>';
 			var eixo = '<?php echo $eixo; ?>';
 			var pageTitle = '<?php echo "teste";?>';
+			console.log(window.document)
             switch(eixo) {
                 case "empreendimentos":
                     eixo = 0;
@@ -232,8 +233,8 @@
                 echo "<script src=\"js/mapa_mundi.js\"></script>";
             }
             else {
-                echo "<script src=\"js/".$view.".js\"></script>";
-            }
+				echo "<script src=\"js/".$view.".js\"></script>";
+			}
         ?>
 
 		<!--<div class="container" style="margin-top: 100px;">
@@ -275,7 +276,7 @@
                     }
                 ?>
 				var svg = tmp.getElementsByTagName("svg")[0];
-
+				
                 // Extract the data as SVG text string
 				var svg_xml = (new XMLSerializer).serializeToString(svg);
 
@@ -301,18 +302,18 @@
 					setTimeout(function(){
 						d3.select('.legendLinear')
 						.attr('transform', 'translate(400, 220)');
-						console.log(type)
 						submit_download_form(type);
-					}, 5000);
+					}, 400);
 				}else{
 					setTimeout(function(){
 						submit_download_form(type);
-					}, 10000);
+					}, 1000);
 				}
 				setTimeout(function(){
+					alert("asas")
 					window.close();
-					window.location = "http://localhost/Neccult/atlasOBEC/";
-				}, 80000);
+					window.location = "http://localhost/atlasOBEC/";
+				}, 5000);
 
 				// $("#save_as_pdf").click(function() { submit_download_form("pdf"); });
 				// $("#save_as_png").click(function() { submit_download_form("png"); });
