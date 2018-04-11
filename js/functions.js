@@ -92,6 +92,12 @@ function configInfoDataBoxBarrasStackedClick(eixo, vrv, d, soma, deg) {
 
 function configInfoDataBoxTreemapSCC(eixo, vrv, cad_data, ocp_data, url, deg_cad, deg_ocp, chg) {
 
+    if(eixo == 0){
+        if(url['cad'] != 0){
+            setPercentValueData({percentual: cad_data}, eixo, vrv);
+
+        }
+    }
     if(eixo == 2){
         if(url['cad'] != 0) {
             if(chg == 1) {
@@ -159,21 +165,25 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
         if (vrv == 3) {
             dados.valor = dados.value[i] / 100;
             setIntegerValueData(dados, eixo, vrv);
-        } else if (vrv == 1) {
+        }
+        else if (vrv == 1) {
             dados.valor = dados.value[i];
             setIntegerValueData(dados, eixo, vrv);
 
         }
-        else if ((vrv == 2) && url['uf'] == 0) {
-            dados.valor = dados.value[i];
-            setIntegerValueData(dados, eixo, vrv);
+        else if (vrv == 2) {
+            if(url['uf'] == 0){
+                dados.valor = dados.value[i];
+                setIntegerValueData(dados, eixo, vrv);
+            }
+            else if(url['uf'] !== 0){
+                dados.valor = dados.value[i] / 100;
+                setIntegerValueData(dados, eixo, vrv);
+                setPercentValueData({percentual: dados.percentual[i], taxa: dados.taxa[i]}, eixo, vrv);
+            }
 
-        } else if ((vrv == 2) && url['uf'] !== 0) {
-            dados.valor = dados.value[i] / 100;
-            setIntegerValueData(dados, eixo, vrv);
-            setPercentValueData({percentual: dados.percentual[i], taxa: dados.taxa[i]}, eixo, vrv);
+
         }
-
         else if (vrv == 9) {
             if(url['uf'] != 0)
                 dados.valor = dados.value[i] / 100
@@ -190,7 +200,8 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
             dados.valor = dados.value[i];
             if(url["uos"] == 0){
                 setIntegerValueData(dados, eixo, vrv);
-            } else if(url["uos"] == 1){
+            }
+            else if(url["uos"] == 1){
                 setPercentValueData(dados, eixo, vrv);
             }
         }
@@ -259,49 +270,17 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
 }
 
 function configInfoDataBoxBarras(eixo, vrv, dados, valor) {
+
     if(eixo == 0){
-        if(url['uf'] == 0) {
-            if(vrv == 1 && cad != 0) {
-                dados.valor = dados.value[url['ano']-2007];
-                setIntegerValueData(dados, eixo, vrv);
-            }
-            else if(vrv == 3) {
-                dados.valor = dados.value[url['ano']-2008]/100;
-                setIntegerValueData(dados, eixo, vrv);
-                setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
-            }
-            else if((vrv == 4 || vrv == 5 || vrv == 6 || vrv == 7 || vrv == 8) && url['cad'] == 0) {
-                dados.valor = dados.value[url['ano']-2007];
-                setIntegerValueData(dados, eixo, vrv);
-                setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
-            }
-            else if((vrv == 4 || vrv == 5 || vrv == 6 || vrv == 7 || vrv == 8) && url['cad'] !== 0) {
-                dados.valor = dados.value[url['ano']-2007];
-                setIntegerValueData(dados, eixo, vrv);
-            }
-            else if(vrv > 9){
-                if(ano != null) {
-                    dados.valor = dados.value[url['ano']-2007];
-                    if(url['uos'] == 0){
-                        setIntegerValueData(dados, eixo, vrv);
-                    } else if(url['uos'] == 1){
-                        setPercentValueData(dados, eixo, vrv);
-                    }
+        first_year = Number(dados.key[0]);
 
-                }
-            }
-            else if(url['cad'] == 0){
-                dados.valor = dados.value[url['ano']-2007];
-                setIntegerValueData(dados, eixo, vrv);
-                setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
+        if(url['uf'] == 0 && url['cad'] == 0)
+            setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
 
-            }
-            else {
-                dados.valor = dados.value[url['ano']-2007];
-                setIntegerValueData(dados, eixo, vrv);
-                setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
-            }
-        }
+        dados.valor = dados.value[dados.key.indexOf(url['ano'])];
+
+        setIntegerValueData(dados, eixo, vrv);
+
     }
     else if(eixo == 1){
         first_year = Number(dados.key[0]);
@@ -753,8 +732,13 @@ function setIntegerValueData(value, eixo, vrv) {
                 break;
 
         }
+
         var literal = formatDecimalLimit(valor, 2);
-        if(eixo == 3)
+
+		if(eixo == 1 && url['var'] == 2){
+            literal = formatDecimalLimit(valor, 4);
+        }
+        else if(eixo == 3)
             literal = formatDecimalLimit(valor, 6);
         
 
@@ -771,7 +755,8 @@ function setIntegerValueData(value, eixo, vrv) {
 /*
 * Função para atualizar a descrição do percentual em função do estado selecionado
 */
-function updateDescPercent(desc, nomeestado){
+
+function descByUF(desc, nomeestado){
     prepos = {
         "ACRE":"DO",
         "ALAGOAS":"DE",
@@ -801,7 +786,9 @@ function updateDescPercent(desc, nomeestado){
         "SERGIPE":"DE",
         "TOCANTINS": "DO"
     }
+
     nomeestado = nomeestado.toUpperCase()
+
     if(prepos[nomeestado]){
         nomeestado = prepos[nomeestado] + ' ' +nomeestado
     }
@@ -810,9 +797,124 @@ function updateDescPercent(desc, nomeestado){
     }
 
     if(desc != undefined)
-        return desc.replace("{}", nomeestado);
+        return desc.replace('{}', nomeestado);
     else
         return
+}
+
+function descByMEC(desc){
+    mecs = {
+        1: "FNC",
+        2: "MECENATO",
+        3: "FUNDO CULTURAL",
+        4: "DEMAIS LINHAS DE CRÉDITO",
+    }
+
+    str = "VIA "
+
+    if(mecs[url['mec']]){
+        if(desc.includes(str))
+            nome = mecs[url['mec']];
+        else
+            nome = str + mecs[url['mec']];
+    }
+    else {
+        nome = ""
+    }
+
+
+    if(desc != undefined)
+        return desc.replace('[]', nome);
+    else
+        return
+}
+
+function descByPFJ(desc){
+    pessoas = {
+        1: "PESSOAS FÍSICAS PRIVADAS",
+        2: "PESSOAS JURÍDICAS PRIVADAS",
+    }
+
+    str = "DE "
+
+
+    if(pessoas[url['pfj']]){
+        if(desc.includes(str))
+            nome = pessoas[url['pfj']];
+        else
+            nome = str + pessoas[url['pfj']];
+    }
+    else {
+        nome = ""
+    }
+
+
+    if(desc != undefined){
+        if(url['var'] == 4){
+            if(nome == ""){
+                nome = "DA ESFERA PRIVADA";
+            }
+            return desc.replace('pfj DA ESFERA PRIVADA', nome);
+
+        }
+        else
+            return desc.replace('pfj', nome);
+    }
+
+
+    else
+        return
+}
+
+function descByMOD(desc){
+    mods = {
+        1: "MODALIDADE DIRETA",
+        2: "MODALIDADE INDIRETA",
+    }
+
+    str = "POR "
+
+
+    if(mods[url['mod']]) {
+        nome = str + mods[url['mod']];
+    }
+    else {
+        nome = ""
+    }
+
+    if(desc != undefined)
+        return desc.replace('()', nome);
+    else
+        return
+}
+
+function updateDescPercent(desc, nomeestado){
+
+    // {} - uf dinamica
+    // [] - mecacnismo dinamico
+    // () - modalidade dinamica
+    // 'pfj - pessoa
+
+    if(desc == undefined){
+        return ;
+    }
+
+    if(desc.includes('{}')){
+        desc =  descByUF(desc, nomeestado)
+    }
+    if(desc.includes('[]')){
+        desc =  descByMEC(desc)
+    }
+    if(desc.includes('()')){
+        desc =  descByMOD(desc)
+    }
+    if(desc.includes('pfj')){
+        desc =  descByPFJ(desc)
+    }
+
+
+    return desc;
+
 }
 
 /*
@@ -1036,7 +1138,11 @@ function formatTextVrv(value, eixo, vrv){
                     break;
 
             }
-            string = prefixo+formatDecimalLimit(valor, 2)+sufixo;
+            if(eixo == 1 && url['var'] == 2)
+                string = prefixo+formatDecimalLimit(valor, 4)+sufixo;
+            else
+                string = prefixo+formatDecimalLimit(valor, 2)+sufixo;
+
         });
     $.ajaxSetup({async: true});
     return string;

@@ -926,8 +926,8 @@
 				"id":"1",
 				"title":"<span>Financiamento Público Total</span>",
 				"sufixo_valor":"",
-				"desc_int":"FINANCIAMENTO À CULTURA",
-				"desc_percent": "DO TOTAL DO FINANCIAMENTO À CULTURA NO BRASIL",
+				"desc_int":"FINANCIAMENTO À CULTURA []",
+				"desc_percent": "DO TOTAL DO FINANCIAMENTO À CULTURA [] {}",
 				"desc_var_mapa": "Retrata o valor bruto total destinado ao fomento da produção artística e cultural por meio dos mecanismos do PRONAC: mecenato e Fundo Nacional de Cultura (FNC).",
 				"prefixo_valor":"R$ ",
 				"fontes": "SALICNET",
@@ -1002,8 +1002,8 @@
 				"id":"3",
 				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",
-				"desc_int":"FINANCIAMENTO À CULTURA VIA BNDES",
-				"desc_percent": "DO TOTAL DO FINANCIAMENTO À CULTURA VIA BNDES",
+				"desc_int":"FINANCIAMENTO À CULTURA VIA [] BNDES ()",
+				"desc_percent": "DO TOTAL DO FINANCIAMENTO À CULTURA VIA [] BNDES ()",
 				"desc_var_mapa": "Mostra o valor bruto total destinado ao fomento da produção artística e cultural por meio do Fundo Cultural do BNDES e por meio de demais linhas do crédito do BNDES.",
 				"fontes": "BNDES",
 				"title":"<span>Financiamento BNDES</span>",
@@ -1039,7 +1039,7 @@
 			{
 				"id":"4",
 				"title":"<span>Valor total de incentivos privados</span>",
-				"desc_int":"FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO DA ESFERA PRIVADA",
+				"desc_int":"FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO pfj DA ESFERA PRIVADA",
 				"desc_percent": "DO TOTAL DO FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO DA ESFERA PRIVADA",
 				"desc_var_mapa": "Demonstra o valor bruto total do apoio via mecenato que foi repassado pela esfera privada: empresas privadas e pessoas físicas.",
 				"sufixo_valor":"",
@@ -1823,7 +1823,7 @@
 		"eixo":[
 			{"name": "Empreendimentos Culturais", "value": "empreendimentos"},
 			{"name": "Mercado de Trabalho", "value": "mercado"},
-			{"name": "Políticas Públicas", "value": "politicas"},
+			{"name": "Fomento Público", "value": "politicas"},
 			{"name": "Comércio Internacional", "value": "comercio"}
 		],
 		"uf":[
