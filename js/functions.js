@@ -1,3 +1,9 @@
+function changeDownloadURL(url){
+    newURL = $('#select-pdf input').attr("value").replace(/download.php?.*/, "download.php?"+ url);
+    $('#select-pdf input').attr("value", newURL)
+    
+}
+
 function ajustaAnos(keys) {
 	for(var i = 0; i < keys.length; i++) {
 		keys[i] = keys[i+1];
@@ -755,7 +761,7 @@ function setIntegerValueData(value, eixo, vrv) {
         }
         var literal = formatDecimalLimit(valor, 2);
         if(eixo == 3)
-            literal = formatDecimalLimit(valor, 10);    
+            literal = formatDecimalLimit(valor, 6);
         
 
 
@@ -803,14 +809,16 @@ function updateDescPercent(desc, nomeestado){
     }
     nomeestado = nomeestado.toUpperCase()
     if(prepos[nomeestado]){
-        
         nomeestado = prepos[nomeestado] + ' ' +nomeestado
     }
     else{
         nomeestado = "DO BRASIL"
     }
-    
-    return desc.replace("{}", nomeestado);
+
+    if(desc != undefined)
+        return desc.replace("{}", nomeestado);
+    else
+        return
 }
 
 /*
@@ -1241,8 +1249,8 @@ var formatNumber = function(value, decimalLimit){
 	var fracFormat = function(d){
 
 		var tempFormat = d3.format(",."+decimalLimit+"f");
-		if((tempFormat(d) > -0.0001 && tempFormat(d) < 0.0001) && tempFormat(d) !=  0){
-		    return parseFloat(tempFormat(d)).toExponential(3)
+		if((Math.abs(tempFormat(d)) < 0.0001) && tempFormat(d) !=  0){
+		    return parseFloat(tempFormat(d)).toExponential(2)
 		}
 		else{
             return tempFormat(d);

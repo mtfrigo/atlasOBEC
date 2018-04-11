@@ -44,8 +44,9 @@ die "Invalid output_format value"
 		$output_format eq "pdf" ||
 		$output_format eq "png";
 
-my $data = param('data')
+my $data = param('data') 
 	or die "Missing 'data' parameter";
+my $data_barras = param('data_barras');
 
 my $name = param('name'); 
 # die "Invalid data value"
@@ -72,15 +73,16 @@ elsif ($output_format eq "pdf" || $output_format eq "png") {
 	# Create temporary files (will be used with 'rsvg-convert')
 	my (undef, $input_file) = tempfile("d3export.svg.XXXXXXX", OPEN=>0, TMPDIR=>1, UNLINK=>1);
 	my (undef, $output_file) = tempfile("d3export.out.XXXXXXX", OPEN=>0, TMPDIR=>1, UNLINK=>1);
-
+	my (undef, $barras_file) = tempfile("ea.svg.XXXXXXX", OPEN=>0, TMPDIR=>1, UNLINK=>1);
 	# Write  the SVG data to a temporary file
-	write_file( $input_file, $data );
-
+	write_file( $input_file, $data);
+	write_file( $barras_file, $data_barras);
+	
 	my $zoom = ($output_format eq "png")?10:1;
 
 	# Run "rsvg-convert", create the PNG/PDF file.
-	system("rsvg-convert -o '$output_file' -z '$zoom' -f '$output_format' '$input_file'");
-
+	system("rsvg-convert -o '$output_file' -z '$zoom' -f '$output_format' '$input_file' '$barras_file'");
+	
 	# Read the binary output (PDF/PNG) file.
 	my $pdf_data = read_file( $output_file, {binmode=>':raw'});
 

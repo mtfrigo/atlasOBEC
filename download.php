@@ -169,6 +169,10 @@
             }
             ?>
 		</div>
+		
+		<iframe id="view_box_barras" src="barras_box.php?view=mapa&var=1&prt=0&atc=0&cad=0&ocp=0&ano=2014&deg=0&uos=0&uf=0&mec=0&mod=0&pfj=0&eixo=politicas#politicas" style="border: none; width: 100%; height: 275px;" scrolling="no">
+		
+		</iframe>
 
 		<script type="text/javascript">
 
@@ -197,8 +201,7 @@
 			var view = '<?php echo $view; ?>';
 			var type = '<?php echo $type; ?>';
 			var eixo = '<?php echo $eixo; ?>';
-			var pageTitle = '<?php echo "teste";?>';
-			console.log(window.document)
+			var pageTitle = '<?php echo "teste;";?>';
             switch(eixo) {
                 case "empreendimentos":
                     eixo = 0;
@@ -252,6 +255,7 @@
 		<form id="svgform" method="post" action="cgi/download.pl">
 			 <input type="hidden" id="output_format" name="output_format" value="">
 			 <input type="hidden" id="data" name="data" value="">
+			 <input type="hidden" id="data_barras" name = "data_barras" value="">
 			 <input type="hidden" id="name" name="name" value="<?php echo $view?>">
 		</form>
 
@@ -276,16 +280,16 @@
                     }
                 ?>
 				var svg = tmp.getElementsByTagName("svg")[0];
-				
+				var svg_barras = $('#view_box_barras').contents().find("svg")[0]
                 // Extract the data as SVG text string
 				var svg_xml = (new XMLSerializer).serializeToString(svg);
-
+				var svg_barras_xml = (new XMLSerializer).serializeToString(svg_barras);
 				// Submit the <FORM> to the server.
 				// The result will be an attachment file to download.
 				var form = document.getElementById("svgform");
 				form['output_format'].value = output_format;
 				form['data'].value = svg_xml ;
-
+				form['data_barras'].value = svg_barras_xml;
 				form.submit();
             }
 
@@ -307,7 +311,7 @@
 				}else{
 					setTimeout(function(){
 						submit_download_form(type);
-					}, 1000);
+					}, 400);
 				}
 				setTimeout(function(){
 					alert("asas")

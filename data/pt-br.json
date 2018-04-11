@@ -659,7 +659,7 @@
 			},
 			{
 				"id":"5",
-				"title":"<span>Jornada Média de Trabalho</span>",
+				"title":"<span>Remuneração por hora trabalhada</span>",
 				"desc_int":"",
 				"desc_percent": "",
 				"sufixo_valor":"/h",
@@ -686,7 +686,7 @@
 			},
 			{
 				"id":"6",
-				"title":"<span>Jornada de trabalho média</span>",
+				"title":"<span>Jornada Média de Trabalho</span>",
 				"desc_int":"",
 				"desc_percent": "",
 				"sufixo_valor":"h",
@@ -713,7 +713,7 @@
 			},
 			{
 				"id":"7",
-				"title":"VA por trabalhador",
+				"title":"Massa salarial",
 				"desc_int":"",
 				"desc_percent": "da soma de remunerações pagas aos trabalhadores culturais e criativos.",
 				"sufixo_valor":"",
@@ -760,7 +760,7 @@
 			},
 			{
 				"id":"8",
-				"title":"<span>Valor Adicionado (VA)</span>",
+				"title":"<span>VA por trabalhador</span>",
 				"desc_int": "VALOR ADICIONADO",
 				"sufixo_valor":"",
 				"desc_percent": "",
