@@ -1,3 +1,9 @@
+function changeDownloadURL(url){
+    newURL = $('#select-pdf input').attr("value").replace(/download.php?.*/, "download.php?"+ url);
+    $('#select-pdf input').attr("value", newURL)
+    
+}
+
 function ajustaAnos(keys) {
 	for(var i = 0; i < keys.length; i++) {
 		keys[i] = keys[i+1];
