@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="intermed">
+    <serverData>
+      <paths name="intermed">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/atlasOBEC" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
