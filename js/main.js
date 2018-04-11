@@ -51,7 +51,7 @@ function defaultUrl(){
     url['deg'] = 0;
     url['pfj'] = 0;
     url['uos'] = 0;
-	url['ano'] = 2014;
+	url['ano'] = 2015;
 }
 
 /*-----------------------------------------------------------------------------
@@ -299,8 +299,9 @@ function updateIframe(url){
 
             if(url['var'] == 1){
                 $('iframe[id="view_box_scc"]').css('display', 'block')
-                $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");
+                $('iframe[id="view_box_scc"]').attr('src', 'donut.php?' + newUrl + '&eixo=' +  window.location.hash.substring(1) + window.location.hash)
+                /*$('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");*/
             }
             else if(url['var'] == 5){
                 newUrl = newUrl.replace(/slc=[0-9]*/, "slc=1");
@@ -1382,8 +1383,8 @@ $(document).ready(function(){
                 $('#ocupacao').removeClass("active");
                 $('.bread-select[data-id=uf]').val(0);
                 $('.bread-select[data-id=cad]').val(0);
-                $('.bread-select[data-id=ano]').val(2014);
-                $('.opt-select[data-id=ano]').val(2014);
+                $('.bread-select[data-id=ano]').val(url['ano']);
+                $('.opt-select[data-id=ano]').val(url['ano']);
                 $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
                 $(window.document).find(".title[data-id='var-title']").first().html($('.bread-select[data-id=var] option:selected').text());
                 updateMenuSetor(getEixo(window.location.hash.substring(1)), $(this).val());
