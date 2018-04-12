@@ -313,6 +313,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                                         ?>
                                     </select>
                                 </div>
+
                                 <div>
                                     <?php
                                         if($slc == 0) {

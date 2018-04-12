@@ -550,28 +550,43 @@ function removeMecenatoDesags(iframe){
 
 function updateMecanismo(url, vrv){
     $("select[data-id='mec'] > option").each(function() {
-            $(this).remove();
+        $(this).remove();
     });
 
-    $("select[data-id='mec']").append("<option value='0'>Todos</option>");
+    $("select[data-id='cad'] > option").each(function() {
+        $(this).remove();
+    });
 
-    $("select[data-id='mec']").parent().css('display', 'block')
+    if(url['var'] != 17){
+        $("select[data-id='mec']").append("<option value='0'>Todos</option>");
 
-    if(vrv == 1 ||  vrv == 8 || vrv == 9 || vrv == 15 || vrv == 16){
-        $("select[data-id='mec']").append("<option value='1'>FNC</option>");
-        $("select[data-id='mec']").append("<option value='2'>Mecenato</option>");
+        $("select[data-id='mec']").parent().css('display', 'block')
+
+        if(vrv == 1 ||  vrv == 8 || vrv == 9 || vrv == 15 || vrv == 16){
+            $("select[data-id='mec']").append("<option value='1'>FNC</option>");
+            $("select[data-id='mec']").append("<option value='2'>Mecenato</option>");
+        }
+
+        else if(vrv == 7 || vrv == 11 || vrv == 12 || vrv == 13 || vrv == 14){
+            $("select[data-id='mec']").append("<option value='2'>Mecenato</option>");
+        }
+        else if(vrv == 3){
+            $("select[data-id='mec']").append("<option value='3'>Fundo Cultural</option>");
+            $("select[data-id='mec']").append("<option value='4'>Outros</option>");
+        }
+        else {
+            $("select[data-id='mec']").parent().css('display', 'none')
+        }
+
     }
 
-    else if(vrv == 7 || vrv == 11 || vrv == 12 || vrv == 13 || vrv == 14){
-        $("select[data-id='mec']").append("<option value='2'>Mecenato</option>");
+    else{
+
+        $("select[data-id='mec']").append("<option value='0'>Mecenato Estadual</option>");
+        $("select[data-id='mec']").append("<option value='1'>Editais Estaduais</option>");
+        $("select[data-id='mec']").append("<option value='2'>Crédito Especial</option>");
     }
-    else if(vrv == 3){
-        $("select[data-id='mec']").append("<option value='3'>Fundo Cultural</option>");
-        $("select[data-id='mec']").append("<option value='4'>Outros</option>");
-    }
-    else {
-        $("select[data-id='mec']").parent().css('display', 'none')
-    }
+
 
     // alert(url['mec'])
     // $("select[data-id='mec']").val(url['mec'])
