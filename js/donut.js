@@ -1,19 +1,21 @@
 /*$.get("./db/json_donut.php"+config, function(data) {
 });*/
 var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo;
-
+var tooltipInstance = tooltip.getInstance();
 $.get("./db/json_donut.php"+config, ready);
 
 function ready(json){
+    $('#corpo').attr("class", $('#corpo').attr("class")+ " done")
+    $('#loading').fadeOut('fast');
     var data = JSON.parse(json);
     getPercent(data);
-    height = 254;
+    height = 220;
     width = $('#corpo').width() - 40;
 
     radius = Math.min(width, height) / 2;
     var arc = d3.arc()
         .outerRadius(radius - radius/18)   //valor raio círculo de fora
-        .innerRadius(radius - radius/3);  //valor raio círculo de dentro
+        .innerRadius(radius - radius/2.5);  //valor raio círculo de dentro
 
     var pie = d3.pie()
         .value(function(d) { return d.valor; })(data);
@@ -31,12 +33,13 @@ function ready(json){
 
     g.append("path")
         .attr("d", arc)
-        .style("fill", function(d) { return color(d.data.tipo); });
+        .style("fill", function(d) { return color(d.data.tipo); })
+        .style("stroke", "none");
 
     g.append("text")
         .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
         .attr("dy", ".40em")
-        .attr("dx", -radius/10)
+        .attr("dx", -radius/6)
         .text(function(d) { return percentFormat(d.data.percent) })
         .style("font-family", "arial")
         .style("fill", "#fff")
@@ -45,10 +48,17 @@ function ready(json){
         d3.selectAll(".arc")
         .on("mouseover", function(d){
             d3.select(this).attr("transform", "scale(1.01)")
+
+            tooltipInstance.showTooltip(d.data, [
+                ["title", d.data.tipo],
+                ["", formatTextVrv(d.data.valor, 3, vrv)],
+                ["", percentFormat(d.data.percent)]
+            ]);
             
         })
         .on("mouseout", function(d){
             d3.select(this).attr("transform", "scale(1)")
+            tooltipInstance.hideTooltip()
         })
 }
 
@@ -56,8 +66,8 @@ function ready(json){
 
 function color(tipo){
     colors = {
-        "export": "#071342",
-        "import": "rgb(109, 191, 201)"
+        "Exportação": "#071342",
+        "Importação": "rgb(109, 191, 201)"
     }
     return colors[tipo];
 }
