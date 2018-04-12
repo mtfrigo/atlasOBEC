@@ -825,7 +825,11 @@ function descByMEC(desc){
             nome = str + mecs[url['mec']];
     }
     else {
-        nome = ""
+        if(url['var'] == 8 || url['var'] == 9){
+            nome = str + "PRONAC";
+        }
+        else
+            nome = "";
     }
 
 
