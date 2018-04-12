@@ -54,8 +54,8 @@ else{
 
 function map_tipo($tipo){
     switch($tipo){
-        case 1: return "export";
-        case 2: return "import";
+        case 1: return "Exportação";
+        case 2: return "Importação";
     }
 }
 $tipos = array();

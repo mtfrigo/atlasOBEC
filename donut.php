@@ -99,7 +99,7 @@
     else
         $slc = 0;
 ?>
-
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <script src="js/d3/d3.min.js"></script>
 
 <script src="js/jquery-2.2.0.min.js"></script>
@@ -107,8 +107,14 @@
 <script src="https://d3js.org/d3-queue.v3.min.js"></script>
 <!-- Utilidades -->
 <script src="js/functions.js"></script>
-
-<div id="corpo" class="fadeIn"></div>
+<div class="container-chart">
+    <div class="content">
+        <div class="chart">
+            <div id="corpo" class="fadeIn">
+            </div>        
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
 
