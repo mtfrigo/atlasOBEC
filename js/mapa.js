@@ -496,7 +496,7 @@ function legendaBinario(){
         var sim_barra = svg.attr("width")*0.8;
         var nao_barra = svg.attr("width")*0.8;
 
-        var y_barra = 350*0.85;
+        var x_barra = 350*0.85;
         var y_barra = 350*0.85;
         var height_barra = 350*0.03;
         var width_barra = width*0.1;
@@ -529,12 +529,20 @@ function legendaBinario(){
             .attr("ry", height/150)
             .style("fill", nao_color)
             .style("stroke-width", 1)
-            .style("stroke", fontColor)
-            .append("text")
-                    .attr("id", "legenda"+i)
-                    .attr("x", nao_barra+15)
-                    .attr("y", y_barra)
-                    .attr("fill", fontColor);
+            .style("stroke", fontColor);
+
+        svg.append("text")
+            .attr("x", sim_barra+width_barra*1.2)
+            .attr("y", y_barra-height_barra/2)
+            .attr("fill", fontColor)
+            .text("Sim");
+
+
+        svg.append("text")
+            .attr("x", nao_barra+width_barra*1.2)
+            .attr("y", y_barra+height_barra/5*4)
+            .attr("fill", fontColor)
+            .text("Não");
 
 
     }

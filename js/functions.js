@@ -663,8 +663,6 @@ function updatePfj(url, vrv){
 
 }
 
-
-
 function enableDesag(eixo, vrv, setor, iframe, slc, url){
 
 	if(eixo == 0){
@@ -723,8 +721,6 @@ function enableDesag(eixo, vrv, setor, iframe, slc, url){
     }
 
 }
-
-
 
 /*
 * Função para atribuir o valor do dado inteiro para a variável em questão
@@ -913,12 +909,98 @@ function descByMOD(desc){
         return
 }
 
+function descByCAD(desc){
+    prepos = {
+        1: "DE",
+        2: "DE",
+        3: "",
+        4: "DE",
+        5: "",
+        6: "DE",
+        7: "DE",
+        8: "DE",
+        9: "DE",
+        10: "DE",
+    }
+
+
+    cads = {
+        1: "ARQUITETURA E DESIGN",
+        2: "ARTES CÊNICAS E ESPETÁCULOS",
+        3: "AUDIOVISUAL",
+        4: "CULTURA DIGITAL",
+        5: "EDITORIAL",
+        6: "EDUCAÇÃO E CRIAÇÃO EM ARTES",
+        7: "ENTRETERIMENTO",
+        8: "MÚSICA",
+        9: "PATRIMÔNIO",
+        10: "PUBLICIDADE",
+    }
+
+    str = "do setor"
+
+    if(cads[url['cad']]) {
+        nome = str + " " + prepos[url['cad']] + " " + cads[url['cad']];
+    }
+    else {
+        nome = "Culturais e Criativas"
+    }
+
+    if(desc != undefined)
+        return desc.replace('[cad]', nome);
+    else
+        return
+}
+
+function descByPRT(desc){
+    portes = {
+        1: "PORTE MICRO",
+        2: "PORTE PEQUENO",
+        3: "PORTE MÉDIO",
+        4: "PORTE GRANDE",
+    }
+
+    str = "DE"
+
+    if(portes[url['prt']]) {
+        nome = str + " " + portes[url['prt']];
+    }
+    else {
+        nome = ""
+    }
+
+    if(desc != undefined)
+        return desc.replace('[prt]', nome);
+    else
+        return
+}
+
+function descByANO(desc){
+
+    str = "do ano de "+(parseInt(url['ano'])-1)+" para "+url['ano']
+
+    if(url['ano']) {
+        nome = str;
+    }
+    else {
+        nome = ""
+    }
+
+    if(desc != undefined)
+        return desc.replace('[ano]', nome);
+    else
+        return
+}
+
 function updateDescPercent(desc, nomeestado){
 
     // {} - uf dinamica
     // [] - mecacnismo dinamico
     // () - modalidade dinamica
     // 'pfj - pessoa
+    // [cad] - cad
+    // [prt] - prt
+    // [ano] - ano
 
     if(desc == undefined){
         return ;
@@ -935,6 +1017,18 @@ function updateDescPercent(desc, nomeestado){
     }
     if(desc.includes('pfj')){
         desc =  descByPFJ(desc)
+    }
+
+    if(desc.includes('[cad]')){
+        desc =  descByCAD(desc)
+    }
+
+    if(desc.includes('[prt]')){
+        desc =  descByPRT(desc)
+    }
+
+    if(desc.includes('[ano]')){
+        desc =  descByANO(desc)
     }
 
 
