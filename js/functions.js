@@ -175,7 +175,7 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
         else if (vrv == 1) {
             dados.valor = dados.value[i];
             setIntegerValueData(dados, eixo, vrv);
-
+            setPercentValueData({percentual: dados.percentual[i], taxa: dados.taxa[i]}, eixo, vrv)
         }
         else if (vrv == 2) {
             if(url['uf'] == 0){
@@ -1145,7 +1145,6 @@ function setPercentValueData(value, eixo, vrv) {
         else if(vrv >= 10 && vrv <= 13){
             $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.valor, 2));
         }
-
         var doc =  $(window.parent.document).find(".percent-value").first().find(".number").first();
         setMaxFontSize(doc);
     }
