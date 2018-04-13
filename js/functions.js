@@ -279,9 +279,13 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor) {
 
     if(eixo == 0){
         first_year = Number(dados.key[0]);
-
-        if(url['uf'] == 0 && url['cad'] == 0)
+        index_ano = dados.key.indexOf(url['ano'])
+        if(url['uf'] == 0 && url['cad'] == 0 && vrv != 1){
             setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
+        } else {
+            setPercentValueData({percentual: dados.percentual[index_ano], taxa: dados.taxa[index_ano]}, eixo, vrv)
+        }
+            
 
         dados.valor = dados.value[dados.key.indexOf(url['ano'])];
 
@@ -311,7 +315,6 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor) {
         else{
             if(url['uf'] == 0 && url['cad'] == 0 && url['ocp'] == 0)
                 setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
-
             dados.valor = dados.value[dados.key.indexOf(url['ano'])];
 
             setIntegerValueData(dados, eixo, vrv);
