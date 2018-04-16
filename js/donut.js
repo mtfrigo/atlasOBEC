@@ -9,6 +9,7 @@ function ready(json){
     $('#loading').fadeOut('fast');
     var data = JSON.parse(json);
     getPercent(data);
+    console.log(data)
     height = 220;
     width = $('#corpo').width() - 40;
 
@@ -67,7 +68,9 @@ function ready(json){
 function color(tipo){
     colors = {
         "Exportação": "#071342",
-        "Importação": "rgb(109, 191, 201)"
+        "Importação": "rgb(109, 191, 201)",
+        "Sim": "#00ff00",
+        "Não": "#ff0000"
     }
     return colors[tipo];
 }

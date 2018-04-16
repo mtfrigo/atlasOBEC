@@ -358,10 +358,48 @@ class EixoTres {
 				$allObjects[] = $obj;
 			}
 
+
+
 		self::disconnect();
 		
 		return $allObjects;
 	}
+
+    public static function getter_donut($var, $ufs, $cad, $mec, $pf, $mod, $ano = NULL, $uos){
+        self::connect();
+        $query = "SELECT ex.Valor FROM ".self::$table." AS ex"
+            ." JOIN Cadeia AS cad ON cad.idCadeia = ex.idCadeia AND cad.idCadeia = 0"
+            ." JOIN Mecanismo AS mec ON mec.idMecanismo = ex.idMecanismo AND mec.idMecanismo = ".$mec
+            ." WHERE ex.Numero = ".$var;
+
+
+        $query .= ($ano > 0) ? " AND Ano = ".$ano : "" ;
+
+        $result = mysqli_query(self::$conn, $query);
+        $allObjects = array();
+
+        while($obj = mysqli_fetch_object($result, 'EixoTres')){
+            $allObjects[] = $obj;
+        }
+
+        $value_aux = array();
+
+        $contSim = 0;
+        $contNao = 0;
+
+        foreach ($allObjects as $data) {
+            if($data->Valor == 1){
+                $contSim++;
+            }
+            else if($data->Valor == 0){
+                $contNao++;
+            }
+        }
+
+
+        self::disconnect();
+        return $allObjects;
+    }
 
 }
 

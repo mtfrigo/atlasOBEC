@@ -11,16 +11,16 @@ Saída:
 -----------------------------------------------------------------------------*/
 function controlVar(clickVar){
 	newHash = window.location.hash;
-	$('iframe[id="resultado_view"]').attr('src', 'resultado.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2014&eixo='+newHash.substring(1)+newHash);
-    if($('iframe[id="view_box"]').length > 0) $('iframe[id="view_box"]').attr('src', url['view']+'_box.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2014&eixo='+newHash.substring(1)+newHash);
-    if($('iframe[id="view_box_barras"]').length > 0) $('iframe[id="view_box_barras"]').attr('src', 'barras_box.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2014&eixo='+newHash.substring(1)+newHash);
-    if($('iframe[id="view_box_scc"]').length > 0) $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2014&eixo='+newHash.substring(1)+newHash);
+	$('iframe[id="resultado_view"]').attr('src', 'resultado.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2015&eixo='+newHash.substring(1)+newHash);
+    if($('iframe[id="view_box"]').length > 0) $('iframe[id="view_box"]').attr('src', url['view']+'_box.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2015&eixo='+newHash.substring(1)+newHash);
+    if($('iframe[id="view_box_barras"]').length > 0) $('iframe[id="view_box_barras"]').attr('src', 'barras_box.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2015&eixo='+newHash.substring(1)+newHash);
+    if($('iframe[id="view_box_scc"]').length > 0) $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2015&eixo='+newHash.substring(1)+newHash);
     /* variáveis com valores default */
 }
 
 function controlVarPage(clickVar){
     newHash = window.location.hash;
-    window.location.href = 'page.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2014&eixo='+newHash.substring(1)+newHash;
+    window.location.href = 'page.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2015&eixo='+newHash.substring(1)+newHash;
     /* variáveis com valores default */
 }
 
@@ -281,7 +281,7 @@ function updateIframe(url){
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE ÁREA EMPILHADA");
             }
             else if(url['var'] ==  17){
-                $('iframe[id="view_box_scc"]').attr('src', 'no-view.html');
+                $('iframe[id="view_box_scc"]').attr('src', 'donut.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
             }
             // else if(url['var'] == 7){
             //     $('iframe[id="view_box_scc"]').attr('src', 'treemap_region_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
@@ -371,7 +371,7 @@ function controlFilter(selectvalue, selectid){
         var uf = SCCSrc.match(/uf=([0-9]*)/)[1];
     }
     else {
-        var ano = 2014;
+        var ano = 2015;
         var uf = 0;
     }
 	/* se for PORTE x ATUAÇÃO */
@@ -1322,10 +1322,13 @@ $(document).ready(function(){
 
 
             if($(this).attr('data-id') == 'var'){
+                console.log('change var')
                 changeDescVar();
                 cleanDesagsUrl();
                 switchToSetores();
                 enableDesag(getEixo(window.location.hash.substring(1)), $(this).val(), url['cad'], false, 0, url);
+                updateAnoDefault(2015);
+
                 $('#setor').addClass("active");
                 $('#ocupacao').removeClass("active");
                 $('#bens').addClass("active");
@@ -1342,6 +1345,7 @@ $(document).ready(function(){
                 if(eixo_atual == 2){
                     updateDefaultMec(url['var']);
                 }
+
             }
             if($(this).attr('data-id') == 'deg') {
                 $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
@@ -1360,6 +1364,8 @@ $(document).ready(function(){
                 url['mec'] = $('.opt-select[data-id=desag]').val()
             }
             updateIframe(url);
+            console.log("sera q ja carregou barra")
+
         }
         else {
 		    parent.window.location = "page.php#"+$(this).val();
@@ -1390,8 +1396,8 @@ $(document).ready(function(){
                 $('#ocupacao').removeClass("active");
                 $('.bread-select[data-id=uf]').val(0);
                 $('.bread-select[data-id=cad]').val(0);
-                $('.bread-select[data-id=ano]').val(url['ano']);
-                $('.opt-select[data-id=ano]').val(url['ano']);
+
+
                 $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
                 $(window.document).find(".title[data-id='var-title']").first().html($('.bread-select[data-id=var] option:selected').text());
                 updateMenuSetor(getEixo(window.location.hash.substring(1)), $(this).val());

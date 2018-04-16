@@ -8,6 +8,7 @@ function ajustaAnos(keys) {
 	for(var i = 0; i < keys.length; i++) {
 		keys[i] = keys[i+1];
     }
+    keys.pop();
 	return keys;
 }
 
@@ -102,6 +103,11 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, cad_data, ocp_data, url, deg_cad
         if(url['cad'] != 0){
             setPercentValueData({percentual: cad_data}, eixo, vrv);
 
+        }
+    }
+    if(eixo == 1){
+        if(url['cad'] != 0){
+            setPercentValueData({percentual: cad_data}, eixo, vrv);
         }
     }
     if(eixo == 2){
@@ -280,16 +286,15 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor) {
     if(eixo == 0){
         first_year = Number(dados.key[0]);
         index_ano = dados.key.indexOf(url['ano'])
-        if(url['uf'] == 0 && url['cad'] == 0 && vrv != 1){
+        if(url['uf'] == 0 && url['cad'] == 0){
             setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
-        } else {
-            setPercentValueData({percentual: dados.percentual[index_ano], taxa: dados.taxa[index_ano]}, eixo, vrv)
+            dados.valor = dados.value[dados.key.indexOf(url['ano'])];
+            setIntegerValueData(dados, eixo, vrv);
+
         }
             
 
-        dados.valor = dados.value[dados.key.indexOf(url['ano'])];
 
-        setIntegerValueData(dados, eixo, vrv);
 
     }
     else if(eixo == 1){
@@ -1424,6 +1429,23 @@ function updateMenuSetor(eixo, vrv){
 
 }
 
+
+
+function updateAnoDefault(ano){
+
+    url['ano'] = ano;
+    //console.log('ano' + ano)
+    // $('.bread-select[data-id=ano] > option').each(function(){
+    //     console.log('valor:' + this.value)
+    // })
+    $('.opt-select[data-id=ano]').val(url['ano']);
+    $('.opt-select[data-id=ano] > option').each(function(){
+        // console.log('valor:' + this.value)
+    })
+
+    updateIframe(url);
+
+}
 /*
 * Função para retornar um valor na casa dos milhões ou bilhões num formato encurtado
 * PARÂMETROS:
@@ -1581,6 +1603,8 @@ var countValidDecimalDigits = function(value, acum) {
 		{string} ex.: "200.300,00026"
 -----------------------------------------------------------------------------*/
 var formatDecimalLimit = function(value, limit){
+    if(value == undefined)
+        return;
 	var limit = limit || 3;
 	var intValue = parseInt(value.toString().split(".")[0]);
 	var validDecimal = countValidDecimalDigits(value);

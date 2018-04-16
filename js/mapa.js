@@ -247,7 +247,7 @@ d3.json('data/pt-br.json', function(error, data) {
 var config = "?var="+vrv+"&atc="+atc+"&cad="+cad+"&prt="+prt+"&ocp="+ocp+"&mec="+mec+"&typ="+typ+"&prc="+prc+"&pfj="+pfj+"&mod="+mod+"&ano="+ano+"&eixo="+eixo+"&mundo="+mundo+"&slc="+slc;
 
 $.get("./db/json_mapa.php"+config, function(data) {
-    console.log(data);
+    // console.log(data);
 });
 //pre-load arquivos
 d3.queue()
@@ -329,8 +329,8 @@ function ready(error, br_states, mapa){
 
 
 
-   console.log(colorJSON)
-    console.log(colorJSON.binario['0'].color)
+   // console.log(colorJSON)
+   //  console.log(colorJSON.binario['0'].color)
 
     var tooltipInstance = tooltip.getInstance();
     //retira tag <span> do title
@@ -348,7 +348,7 @@ function ready(error, br_states, mapa){
 		.append("path")
 		.attr("data-legend",function(d) { return d.id; })
 		// .style('fill', function(d){return color(d.properties.name.replace(/\s+/g, '').length);})
-		.style('fill', function(d){ if(url['var'] == 17) {console.log("dict[d.id].valor: "+dict[d.id].valor.toString()); return colorJSON.binario[dict[d.id].valor.toString()].color; } else return color(dict[d.id].valor);})
+		.style('fill', function(d){ if(url['var'] == 17) {return colorJSON.binario[dict[d.id].valor.toString()].color; } else return color(dict[d.id].valor);})
 		.attr("d", path)
 
 		//mouseover
