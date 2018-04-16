@@ -109,7 +109,7 @@ function updateIframe(url){
         if(eixoAtual == 0){
             if(url['var'] > 9){
 
-                $('iframe[id="view_box"]').attr('src', 'line_scc_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
+                $('iframe[id="view_box"]').attr('src', 'linhas_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
                 $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "none")
                 $('iframe[id="view_box"]').parent().find(".view-title").html("GRÁFICO DE ÁREA EMPILHADA");
             } else{
@@ -1327,7 +1327,7 @@ $(document).ready(function(){
                 cleanDesagsUrl();
                 switchToSetores();
                 enableDesag(getEixo(window.location.hash.substring(1)), $(this).val(), url['cad'], false, 0, url);
-                updateAnoDefault(2015);
+                updateAnoDefault(2016);
 
                 $('#setor').addClass("active");
                 $('#ocupacao').removeClass("active");
