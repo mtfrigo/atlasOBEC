@@ -34,11 +34,15 @@ d3.json('data/colors.json', function (error, data) {
 });
 
 
+
 $.get("./db/json_linhas.php"+config, function(data) {
     // console.log(data);
 });
 
 function analyze(error, data) {
+
+    //console.log(colorJSON)
+
     $('#loading').fadeOut('fast');
 
     if (error) {
@@ -51,9 +55,22 @@ function analyze(error, data) {
         dados.push(data[key]);
     });
 
+    var keys = [];
+
+    Object.keys(dados[0]).forEach(function (key) {
+        if(key != "ano"){
+            keys.push(key)
+        }
+    });
+
+
+
+
+
+
     //tamanho do grafico
     // AQUI automatizar map center
-    var margin = {top: 20, right: 20, bottom: 30, left: 25},
+    var margin = {top: 20, right: 20, bottom: 40, left: 25},
         width = chartWidth - margin.left - margin.right,
         height = chartHeight - margin.top - margin.bottom;
 
@@ -64,15 +81,11 @@ function analyze(error, data) {
     var x = d3.scaleTime().range([0, width]);
     var y = d3.scaleLinear().range([height, 0]);
 
-// define the 1st line
     var valueline = d3.line()
         .x(function(d) { return x(d.ano); })
-        .y(function(d) { return y(d.UF); });
+        .y(function(d) { return y(d.valor); });
 
-// define the 2nd line
-    var valueline2 = d3.line()
-        .x(function(d) { return x(d.ano); })
-        .y(function(d) { return y(d.Setor); });
+
 
     // append the svg obgect to the body of the page
     // appends a 'group' element to 'svg'
@@ -85,41 +98,77 @@ function analyze(error, data) {
             "translate(" + margin.left + "," + margin.top + ")");
 
 
-    // Get the data
+        // Get the data
 
-        //console.log(dados)
 
         // format the data
         dados.forEach(function(d) {
-            d.ano = parseTime(d.ano);
-            d.UF = +d.UF;
-            d.Setor = +d.Setor;
+
+            $.each( d, function( i, deg ) {
+
+                if(i == "ano"){
+                    d[i] = parseTime(d[i]);
+                }
+                else{
+                    d[i] = +d[i]
+                }
+
+            })
+
         });
+
+
+        var data = [];
+        var valoresBrutos = [];
+
+        $.each( keys, function( i, deg ) {
+
+            var valores = [];
+            var obj = {};
+
+            Object.keys(dados).forEach(function (key) {
+
+                obj['ano'] = dados[key]['ano'];
+                obj['deg'] = deg;
+                obj['valor'] = dados[key][deg];
+                valoresBrutos.push(dados[key][deg]);
+                valores.push({'ano': dados[key]['ano'], 'deg': deg, 'valor': dados[key][deg]})
+            });
+
+
+            data.push(valores)
+
+        });
+
+
 
         // Scale the range of the data
         x.domain(d3.extent(dados, function(d) { return d.ano; }));
 
-        var min = d3.min(dados, function(d) {
-            return Math.min(d.UF, d.Setor); });
 
-        var max = d3.max(dados, function(d) {
-            return Math.max(d.UF, d.Setor); })
+
+        var min = d3.min(valoresBrutos, function(d) {
+           return Math.min(d); });
+
+        var max = d3.max(valoresBrutos, function(d) {
+            return Math.max(d); });
 
         y.domain([min, max]);
 
-        // Add the valueline path.
-        svg.append("path")
-            .data([dados])
-            .attr("class", "line")
-            .style("stroke", "#071342")
-            .attr("d", valueline);
 
-        // Add the valueline2 path.
-        svg.append("path")
-            .data([dados])
-            .attr("class", "line")
-            .style("stroke", "rgb(109, 191, 201)")
-            .attr("d", valueline2);
+        Object.keys(data).forEach(function (i) {
+
+            scc = data[i][0].deg;
+
+            svg.append("path")
+                .data([data[i]])
+                .attr("class", "line")
+                .attr("scc", scc)
+                .style("stroke", color(scc))
+                .attr("d", valueline);
+
+        });
+
 
         // Add the X Axis
         svg.append("g")
@@ -130,6 +179,19 @@ function analyze(error, data) {
         svg.append("g")
             .call(d3.axisLeft(y));
 
+        svg.selectAll(".line")
+            .on("mousemove", function (dados) {
+                mousemove(dados, (this));
+            })
+
+
+        function mousemove(d, path) {
+
+            var scc = ($(path).attr("scc"));
+
+            console.log("oi")
+        }
+
 
 
         ///LEGENDA
@@ -137,39 +199,59 @@ function analyze(error, data) {
 
         var fontColor = "#000"
 
+        $.each( keys, function( i, deg ) {
 
-        svg.append("g")
-            .append("rect")
-            .attr("x", chartWidth*0.5)
-            .attr("y", chartHeight*0.90)
-            .attr("height", 10)
-            .attr("width", 30)
-            .style("fill", "rgb(109, 191, 201)")
-            .style("stroke-width", 1)
-            .style("stroke", fontColor);
+            tamanhoVetor = keys.length;
 
-        svg.append("text")
-            .attr("x", chartWidth*0.5 + 30 + 5)
-            .attr("y", chartHeight*0.90+ 8)
-            .attr("fill", fontColor)
-            .text("Setor");
+            var height = 10;
+            var width = 10;
 
-        svg.append("g")
-            .append("rect")
-            .attr("x", chartWidth*0.3)
-            .attr("y", chartHeight*0.90)
-            .attr("height", 10)
-            .attr("width", 30)
-            .style("fill", "#rgb(109, 191, 201)")
-            .style("stroke-width", 1)
-            .style("stroke", fontColor);
+            var widthTexto = 20;
 
-        svg.append("text")
-            .attr("x", chartWidth*0.3 + 30 + 5)
-            .attr("y", chartHeight*0.90+ 8)
-            .attr("fill", fontColor)
-            .text("UF");
+            var OffsetX = 90;
 
+            var tamanhoX = width + widthTexto;
+
+            var posX = chartWidth - OffsetX - tamanhoX*i;
+            var posY =  chartHeight*0.88;
+
+            svg.append("g")
+                .append("rect")
+                .attr("x", posX)
+                .attr("y", posY)
+                .attr("height", height)
+                .attr("width", width)
+                .style("fill", color(deg))
+                .style("stroke-width", 1)
+                .style("stroke", color(deg));
+
+            svg.append("text")
+                .attr("x", posX + widthTexto)
+                .attr("y", posY + 8)
+                .attr("fill", fontColor)
+                //.text(deg);
+
+        });
+
+
+
+    function color(deg){
+        colors = {
+            "Setor": "#071342",
+            "UF": "rgb(109, 191, 201)",
+            "Despesa Minc / Receita executivo": "#071342",
+            "Financiamento Estatal / Receita executivo": "rgb(109, 191, 201)",
+        }
+
+        console.log(deg)
+
+        Object.keys(colorJSON.cadeias).forEach(function (i, key) {
+            colors[colorJSON.cadeias[i].name] = colorJSON.cadeias[i].color;
+        });
+
+        return colors[deg];
+
+    }
 
 
 
