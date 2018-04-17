@@ -1432,12 +1432,10 @@ function updateMenuSetor(eixo, vrv){
 
 
 function updateAnoDefault(eixo, vrv, slc){
-    console.log("./db/json_ano_default.php?eixo="+eixo)
+  
     $.get("./db/json_ano_default.php?eixo="+eixo, function(data) {
-        
         json = JSON.parse(data);
-        console.log(json);
-        alert("oi")
+        console.log(json)
         ano = json[vrv][slc];
         url['ano'] = ano;
         //console.log('ano' + ano)

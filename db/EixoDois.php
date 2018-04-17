@@ -105,9 +105,8 @@ class EixoDois {
 		self::connect();
 
 		$query = "SELECT MAX(Ano) AS Ano, Numero, idOcupacao FROM `Eixo_2` WHERE `idUF` = 0 AND `idPorte` = 0 AND `idEscolaridade` = 0 AND `idEtinia` = 0 AND `idIdade` = 0 AND `Formalidade` = 0 AND `Previdencia` = 0 AND `Sindical` = 0 AND `Sexo` is NULL GROUP BY Numero, idOcupacao";
-		$result = mysqli_query(self::$conn, $query);
-		$ano = mysqli_fetch_object($result, 'EixoDois');
-		
+        $result = mysqli_query(self::$conn, $query);
+        		
 		self::disconnect();
 
         $allObjects = array();
