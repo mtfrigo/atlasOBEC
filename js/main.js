@@ -1,6 +1,5 @@
 var windowWidth = $(window).width();
 var cont = 0;
-
 /*-----------------------------------------------------------------------------
 Função: controlVar
     redireciona a página para o resultado da variável escolhida.
@@ -1283,7 +1282,8 @@ $(document).ready(function(){
 
                     updateDataDescUoS();
                 });
-		        switchToOcupations();
+                switchToOcupations();
+                updateAnoDefault(getEixo(window.location.hash.substring(1)),url['var'], 1)
 		        url['slc'] = 1;
                 url['deg'] = 0;
                 url['cad'] = 0;

@@ -1435,8 +1435,8 @@ function updateAnoDefault(eixo, vrv, slc){
   
     $.get("./db/json_ano_default.php?eixo="+eixo, function(data) {
         json = JSON.parse(data);
-        console.log(json)
         ano = json[vrv][slc];
+
         url['ano'] = ano;
         //console.log('ano' + ano)
         // $('.bread-select[data-id=ano] > option').each(function(){
