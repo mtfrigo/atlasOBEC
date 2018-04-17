@@ -145,6 +145,7 @@ function analyze(error, data) {
         // Scale the range of the data
         x.domain(d3.extent(dados, function(d) { return d.ano; }));
 
+        var tooltipInstance = tooltip.getInstance();
 
 
         var min = d3.min(valoresBrutos, function(d) {
@@ -179,9 +180,12 @@ function analyze(error, data) {
         svg.append("g")
             .call(d3.axisLeft(y));
 
-        svg.selectAll(".line")
+        svg.selectAll("path")
             .on("mousemove", function (dados) {
                 mousemove(dados, (this));
+            })
+            .on("mouseout", function () {
+                tooltipInstance.hideTooltip();
             })
 
 
@@ -189,7 +193,9 @@ function analyze(error, data) {
 
             var scc = ($(path).attr("scc"));
 
-            console.log("oi")
+            tooltipInstance.showTooltip(d, [
+                ["title", scc]
+            ])
         }
 
 
@@ -223,7 +229,20 @@ function analyze(error, data) {
                 .attr("width", width)
                 .style("fill", color(deg))
                 .style("stroke-width", 1)
-                .style("stroke", color(deg));
+                .style("stroke", color(deg))
+                .attr("scc", deg);
+
+            svg.selectAll("rect")
+                .on("mousemove", function (dados) {
+                    tooltipInstance.showTooltip(dados, [
+                        ["title", $(this).attr("scc")]
+                    ])
+                })
+                .on("mouseout", function () {
+                    tooltipInstance.hideTooltip();
+                    d3.selectAll(".indicador").remove();
+                })
+
 
             svg.append("text")
                 .attr("x", posX + widthTexto)
@@ -239,11 +258,18 @@ function analyze(error, data) {
         colors = {
             "Setor": "#071342",
             "UF": "rgb(109, 191, 201)",
+            "Relacionadas": "#071342",
+            "Culturais": "rgb(109, 191, 201)",
             "Despesa Minc / Receita executivo": "#071342",
             "Financiamento Estatal / Receita executivo": "rgb(109, 191, 201)",
+
+            "ValorTransacionado": "#077DDD",
+            "Importação": "#8178AF",
+            "Exportação": "#EC8A91",
+            "SaldoComercial": "#E96B00",
+
         }
 
-        console.log(deg)
 
         Object.keys(colorJSON.cadeias).forEach(function (i, key) {
             colors[colorJSON.cadeias[i].name] = colorJSON.cadeias[i].color;
