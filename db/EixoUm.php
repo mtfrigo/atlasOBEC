@@ -79,7 +79,25 @@ class EixoUm {
 	public static function disconnect(){
 		mysqli_close(self::$conn);
 	}
+	/*-----------------------------------------------------------------------------
+	Função: getter_most_recent_year
+	    função para buscar o ano mais recente no banco de dados da variável para os valores default
+	Entrada: 
+	    $var = número da váriavel
+	Saída:
+	    Um conjunto de instâncias da Classe EixoUm com seus devidos atributos
+	-----------------------------------------------------------------------------*/
+	public static function getter_most_recent_year($var){
+		self::connect();
 
+		$query = "SELECT Ano FROM `Eixo_1` WHERE `Numero` = ".$var." AND `idUF` = 0 AND `idCadeia` = 0 AND `idPorte` = 0 ORDER BY `Ano` DESC";
+		$result = mysqli_query(self::$conn, $query);
+		$ano = mysqli_fetch_object($result, 'EixoUm');
+		
+		self::disconnect();
+
+		return $ano->Ano;
+	}
 	/*-----------------------------------------------------------------------------
 	Função: Find
 	    função para buscar um conjunto de tupla no banco de dados
