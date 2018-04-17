@@ -11,16 +11,16 @@ Saída:
 -----------------------------------------------------------------------------*/
 function controlVar(clickVar){
 	newHash = window.location.hash;
-	$('iframe[id="resultado_view"]').attr('src', 'resultado.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2015&eixo='+newHash.substring(1)+newHash);
-    if($('iframe[id="view_box"]').length > 0) $('iframe[id="view_box"]').attr('src', url['view']+'_box.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2015&eixo='+newHash.substring(1)+newHash);
-    if($('iframe[id="view_box_barras"]').length > 0) $('iframe[id="view_box_barras"]').attr('src', 'barras_box.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2015&eixo='+newHash.substring(1)+newHash);
-    if($('iframe[id="view_box_scc"]').length > 0) $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2015&eixo='+newHash.substring(1)+newHash);
+	$('iframe[id="resultado_view"]').attr('src', 'resultado.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&eixo='+newHash.substring(1)+newHash);
+    if($('iframe[id="view_box"]').length > 0) $('iframe[id="view_box"]').attr('src', url['view']+'_box.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2012&eixo='+newHash.substring(1)+newHash);
+    if($('iframe[id="view_box_barras"]').length > 0) $('iframe[id="view_box_barras"]').attr('src', 'barras_box.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2012&eixo='+newHash.substring(1)+newHash);
+    if($('iframe[id="view_box_scc"]').length > 0) $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2012&eixo='+newHash.substring(1)+newHash);
     /* variáveis com valores default */
 }
 
 function controlVarPage(clickVar){
     newHash = window.location.hash;
-    window.location.href = 'page.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2015&eixo='+newHash.substring(1)+newHash;
+    window.location.href = 'page.php?var='+clickVar+'&view=mapa&uf=0&prt=0&atc=0&cad=0&ocp=0&ano=2012&eixo='+newHash.substring(1)+newHash;
     /* variáveis com valores default */
 }
 
@@ -51,7 +51,6 @@ function defaultUrl(){
     url['deg'] = 0;
     url['pfj'] = 0;
     url['uos'] = 0;
-	url['ano'] = 2015;
 }
 
 /*-----------------------------------------------------------------------------
@@ -1327,7 +1326,7 @@ $(document).ready(function(){
                 cleanDesagsUrl();
                 switchToSetores();
                 enableDesag(getEixo(window.location.hash.substring(1)), $(this).val(), url['cad'], false, 0, url);
-                updateAnoDefault(2016);
+                updateAnoDefault(getEixo(window.location.hash.substring(1)), url['var'], url['ocp']);
 
                 $('#setor').addClass("active");
                 $('#ocupacao').removeClass("active");

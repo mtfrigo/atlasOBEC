@@ -1431,20 +1431,27 @@ function updateMenuSetor(eixo, vrv){
 
 
 
-function updateAnoDefault(ano){
+function updateAnoDefault(eixo, vrv, slc){
+    console.log("./db/json_ano_default.php?eixo="+eixo)
+    $.get("./db/json_ano_default.php?eixo="+eixo, function(data) {
+        
+        json = JSON.parse(data);
+        console.log(json);
+        alert("oi")
+        ano = json[vrv][slc];
+        url['ano'] = ano;
+        //console.log('ano' + ano)
+        // $('.bread-select[data-id=ano] > option').each(function(){
+        //     console.log('valor:' + this.value)
+        // })
+        $('.opt-select[data-id=ano]').val(url['ano']);
+        $('.opt-select[data-id=ano] > option').each(function(){
+            // console.log('valor:' + this.value)
+        })
 
-    url['ano'] = ano;
-    //console.log('ano' + ano)
-    // $('.bread-select[data-id=ano] > option').each(function(){
-    //     console.log('valor:' + this.value)
-    // })
-    $('.opt-select[data-id=ano]').val(url['ano']);
-    $('.opt-select[data-id=ano] > option').each(function(){
-        // console.log('valor:' + this.value)
-    })
-
-    updateIframe(url);
-
+        updateIframe(url);
+    });
+    
 }
 /*
 * Função para retornar um valor na casa dos milhões ou bilhões num formato encurtado

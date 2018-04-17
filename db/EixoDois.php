@@ -93,7 +93,31 @@ class EixoDois {
 	public static function disconnect(){
 		mysqli_close(self::$conn);
 	}
+    /*-----------------------------------------------------------------------------
+	Função: getter_most_recent_year
+	    função para buscar o ano mais recente no banco de dados da variável para os valores default
+	Entrada: 
+	    $var = número da váriavel
+	Saída:
+	    Um conjunto de instâncias da Classe EixoUm com seus devidos atributos
+	-----------------------------------------------------------------------------*/
+	public static function getter_most_recent_year(){
+		self::connect();
 
+		$query = "SELECT MAX(Ano) AS Ano, Numero, idOcupacao FROM `Eixo_2` WHERE `idUF` = 0 AND `idPorte` = 0 AND `idEscolaridade` = 0 AND `idEtinia` = 0 AND `idIdade` = 0 AND `Formalidade` = 0 AND `Previdencia` = 0 AND `Sindical` = 0 AND `Sexo` is NULL GROUP BY Numero, idOcupacao";
+		$result = mysqli_query(self::$conn, $query);
+		$ano = mysqli_fetch_object($result, 'EixoDois');
+		
+		self::disconnect();
+
+        $allObjects = array();
+
+        while($obj = mysqli_fetch_object($result, 'EixoDois')){
+            $allObjects[] = $obj;
+        }
+
+		return $allObjects;
+	}
 	/*-----------------------------------------------------------------------------
 	Função: Find
 	    função para buscar um conjunto de tupla no banco de dados
