@@ -240,7 +240,6 @@ d3.json('data/colors.json', function(error, data) {
 var textJSON;
 d3.json('data/pt-br.json', function(error, data) {
   if(error) throw error;
-
   textJSON = data;
 });
 

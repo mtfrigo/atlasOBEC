@@ -61,6 +61,17 @@ function ready(json){
             d3.select(this).attr("transform", "scale(1)")
             tooltipInstance.hideTooltip()
         })
+        .on("click", function(d){
+            tipo = d.data.tipo
+            $(parent.document).find(".opt-select[data-id=typ]").first().val(indexTipos(tipo))
+           
+            srcMapa = $(parent.document).find("iframe#view_box").first().attr("src");
+            srcMapa = srcMapa.replace(/typ=[0-9]/, "typ="+indexTipos(tipo));
+            srcBarras = $(parent.document).find("iframe#view_box_barras").first().attr("src");
+            srcBarras = srcBarras.replace(/typ=[0-9]/, "typ="+indexTipos(tipo));
+            $(parent.document).find("iframe#view_box").first().attr("src", srcMapa)
+            $(parent.document).find("iframe#view_box_barras").first().attr("src", srcBarras)
+        })
 }
 
 
@@ -86,4 +97,11 @@ function getPercent(data){
 }
 function percentFormat(number){
     return (number*100).toFixed(2) + "%";
+}
+
+function indexTipos(tipo){
+    switch(tipo){
+        case "Exportação": return 1;
+        case "Importação": return 2;
+    }
 }

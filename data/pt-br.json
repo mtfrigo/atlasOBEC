@@ -2013,7 +2013,7 @@
 			{"name":"Oceania","value":"6"}
 		],
 		"deg":[
-			{"name":"Sem desagregação","value":"0"},
+			{"name":"Escolher","value":"0"},
 			{"name":"Por porte","value":"1"},
 			{"name":"Por sexo","value":"2"},
 			{"name":"Por idade","value":"3"},

@@ -317,18 +317,18 @@ function updateIframe(url){
                 $('iframe[id="view_box_scc"]').attr('src', "no-view.html");
             }
 
-            if(url['var'] == 1){
+            if(url['var'] >= 1 && url['var'] <= 10 ){
                 $('iframe[id="view_box_scc"]').css('display', 'block')
                 $('iframe[id="view_box_scc"]').attr('src', 'donut.php?' + newUrl + '&eixo=' +  window.location.hash.substring(1) + window.location.hash)
                 /*$('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");*/
             }
-            else if(url['var'] == 5){
-                newUrl = newUrl.replace(/slc=[0-9]*/, "slc=1");
-                $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SERVIÇO");
+            //else if(url['var'] == 5){
+            //    newUrl = newUrl.replace(/slc=[0-9]*/, "slc=1");
+            //    $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+            //    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SERVIÇO");
 
-            }
+            //}
 
         }
         changeDownloadURL(newUrl + "&eixo=" +window.location.hash.substring(1) + window.location.hash);
@@ -793,7 +793,7 @@ function loadResult(){
         if(selectId=='atc') controlAtc(this,0);
         if(selectId=='mec') controlMec(this);
         if(selectId=='ano') controlAno(this)
-
+        
     });
 
 
@@ -1037,6 +1037,7 @@ function switchToSetores() {
     })
 
     updateBreadcrumbSetores(cads);
+    
 }
 
 function switchToOcupations() {
@@ -1084,6 +1085,7 @@ $(document).ready(function(){
             var newSCCSrc = $("#view_box_scc").attr("src");
             var change = newSCCSrc.match(/uf=([0-9]*)/);
             url['cad'] = setor;
+            console.log(setor);
             url['uf'] = change[1];
             if(setor == 0) {
                 url['prt'] = 0;
@@ -1338,10 +1340,10 @@ $(document).ready(function(){
 
 
             if($(this).attr('data-id') == 'var'){
-                console.log('change var')
                 changeDescVar();
                 cleanDesagsUrl();
-                switchToSetores();
+
+                switchToSetores(); 
                 enableDesag(getEixo(window.location.hash.substring(1)), $(this).val(), url['cad'], false, 0, url);
                 
 
@@ -1354,7 +1356,7 @@ $(document).ready(function(){
                 if(url['slc'] == 0) $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
                 else $(window.document).find(".cad-title").first().html($('.bread-select[data-id=ocp] option:selected').text());
                 $(window.document).find(".title[data-id='var-title']").first().html($('.bread-select[data-id=var] option:selected').text());
-                
+                updateBreadUF(eixo_atual, url['var']);
                 switch(eixo_atual){
                     case 0: url['ano'] = anos_default[url['var']][url['ocp']]; break;
                     case 1: url['ano'] = anos_default[url['var']][0]; break;
@@ -1392,8 +1394,6 @@ $(document).ready(function(){
                 url['mec'] = $('.opt-select[data-id=desag]').val()
             }
             updateIframe(url);
-            console.log("sera q ja carregou barra")
-
         }
         else {
 		    parent.window.location = "page.php#"+$(this).val();
@@ -1429,6 +1429,7 @@ $(document).ready(function(){
                 $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
                 $(window.document).find(".title[data-id='var-title']").first().html($('.bread-select[data-id=var] option:selected').text());
                 updateMenuSetor(getEixo(window.location.hash.substring(1)), $(this).val());
+                updateBreadUF(eixo_atual, url['var']);
                 switch(eixo_atual){
                     case 0: url['ano'] = anos_default[url['var']][url['ocp']]; break;
                     case 1: url['ano'] = anos_default[url['var']][0]; break;

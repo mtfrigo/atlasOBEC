@@ -86,7 +86,7 @@ class EixoTres {
 	public static function getter_most_recent_year(){
 		self::connect();
 
-		$query = "SELECT MAX(Ano) AS Ano, Numero FROM `Eixo_3` WHERE `idUF` = 0  GROUP BY Numero";
+		$query = "SELECT MAX(Ano) AS Ano, Numero FROM `Eixo_3` WHERE `idUF` = 0 AND idCadeia = 0 AND PessoaFisica is NULL  GROUP BY Numero";
 		$result = mysqli_query(self::$conn, $query);
 		
 		self::disconnect();

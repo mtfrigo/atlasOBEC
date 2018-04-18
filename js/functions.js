@@ -33,8 +33,10 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
         }
     }
     else if(eixo == 1) {
-
-        if(vrv == 2 && url['uf'] == 0){
+        if(vrv == 1){
+            setIntegerValueData({valor: d.data.size}, eixo, vrv);
+        }
+        else if(vrv == 2 && url['uf'] == 0){
             //talvez tenha que mudar aqui pra ficar * 100 ou * 10
             setIntegerValueData({valor: d.data.size}, eixo, vrv);
         }
@@ -54,8 +56,11 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
         }
 
         if(url['uf'] == 0){
-            setPercentValueData({percentual: d.data.size / root.value}, eixo, vrv);
-        }
+            if(d.parent.value == d.data.size)
+                setPercentValueData({percentual: d.data.size / root.value}, eixo, vrv);
+            else
+                setPercentValueData({percentual: d.data.size / d.parent.value}, eixo, vrv);
+        } 
 
         /*if(deg == 0 && url['uf'] == 0) {
         }
@@ -102,7 +107,6 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, cad_data, ocp_data, url, deg_cad
     if(eixo == 0){
         if(url['cad'] != 0){
             setPercentValueData({percentual: cad_data}, eixo, vrv);
-
         }
     }
     if(eixo == 1){
@@ -286,16 +290,27 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor) {
     if(eixo == 0){
         first_year = Number(dados.key[0]);
         index_ano = dados.key.indexOf(url['ano'])
-        if(url['uf'] == 0 && url['cad'] == 0){
+        if(url['uf'] == 0 && url['cad'] == 0 && vrv < 10){
             setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
             dados.valor = dados.value[dados.key.indexOf(url['ano'])];
             setIntegerValueData(dados, eixo, vrv);
 
         }
-            
+        else if(vrv > 9){
+            if(ano != null) {
+                dados.valor = dados.value[dados.key.indexOf(url['ano'])];
 
+                if(url['uos'] == 0){
+                    setIntegerValueData(dados, eixo, vrv);
+                } else if(url['uos'] == 1){
+                    setPercentValueData(dados, eixo, vrv);
+                }
 
-
+            }
+        } else{
+            dados.valor = dados.value[dados.key.indexOf(url['ano'])];
+            setIntegerValueData(dados, eixo, vrv);
+        }
     }
     else if(eixo == 1){
         first_year = Number(dados.key[0]);
@@ -556,14 +571,49 @@ function removeMecenatoDesags(iframe){
     }
 }
 
+function updateBreadUF(eixo, vrv){
+    switch(eixo){
+        case 0: 
+            if(vrv > 9){
+                $('.bread-select[data-id=uf]').prop("disabled", true);
+            } else{
+                $('.bread-select[data-id=uf]').prop("disabled", false);
+            }
+            break;
+        case 1:
+            if(vrv > 12){
+                $('.bread-select[data-id=uf]').prop("disabled", true);
+            } else{
+                $('.bread-select[data-id=uf]').prop("disabled", false);
+            }
+            break;
+        case 2:
+            if(vrv == 15 || vrv == 16 || vrv == 10){
+                $('.bread-select[data-id=uf]').prop("disabled", true);
+            } else{
+                $('.bread-select[data-id=uf]').prop("disabled", false);
+            }
+            break;
+        case 3:
+            if(vrv >= 5 && vrv <= 10){
+                $('.bread-select[data-id=uf]').prop("disabled", true);
+                $('.bread-select[data-id=prc]').prop("disabled", true);
+            } else{
+                $('.bread-select[data-id=uf]').prop("disabled", false);
+                $('.bread-select[data-id=prc]').prop("disabled", false);
+            }
+            break;
+    }
+}
+
 function updateMecanismo(url, vrv){
     $("select[data-id='mec'] > option").each(function() {
         $(this).remove();
     });
-
+/*
     $("select[data-id='cad'] > option").each(function() {
         $(this).remove();
-    });
+    });*/
 
     if(url['var'] != 17){
         $("select[data-id='mec']").append("<option value='0'>Todos</option>");
@@ -601,7 +651,6 @@ function updateMecanismo(url, vrv){
 }
 
 function updateBreadcrumbSetores(cads){
-
     $(".bread-select[data-id='cad'] > option").each(function() {
         $(this).remove();
     });
@@ -610,6 +659,7 @@ function updateBreadcrumbSetores(cads){
         $(".bread-select[data-id='cad']").append("<option value="+cads[i].id+">"+cads[i].nome+"</option>");
     }
 
+    console.log($(".bread-select[data-id='cad'] > option"))
 }
 
 function updateDefaultMec(vrv){
@@ -765,9 +815,6 @@ function setIntegerValueData(value, eixo, vrv) {
         else if(eixo == 3)
             literal = formatDecimalLimit(valor, 6);
         
-
-
-        //alert(literal)
 
         $(window.parent.document).find(".integer-value").first().find(".number").first().html(prefixo+literal+sufixo);
         var doc =  $(window.parent.document).find(".integer-value").first().find(".number").first();
