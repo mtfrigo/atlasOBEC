@@ -1346,6 +1346,17 @@ function updateOcupacoes(vrv){
 	}
 }
 
+function updateServicos(vrv){
+    console.log($('#servicos'))
+    switch(vrv){
+		case '11':
+		case '12':
+		case '13':
+		case '14': $('#servicos').css('display', 'none'); break;
+		default: $('#servicos').css('display', 'inline');
+	}
+}
+
 
 function updateDataDesc(vrv, uos, valor){
 
@@ -1431,26 +1442,6 @@ function updateMenuSetor(eixo, vrv){
 
 
 
-function updateAnoDefault(eixo, vrv, slc){
-  
-    $.get("./db/json_ano_default.php?eixo="+eixo, function(data) {
-        json = JSON.parse(data);
-        ano = json[vrv][slc];
-
-        url['ano'] = ano;
-        //console.log('ano' + ano)
-        // $('.bread-select[data-id=ano] > option').each(function(){
-        //     console.log('valor:' + this.value)
-        // })
-        $('.opt-select[data-id=ano]').val(url['ano']);
-        $('.opt-select[data-id=ano] > option').each(function(){
-            // console.log('valor:' + this.value)
-        })
-
-        updateIframe(url);
-    });
-    
-}
 /*
 * Função para retornar um valor na casa dos milhões ou bilhões num formato encurtado
 * PARÂMETROS:

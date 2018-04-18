@@ -1,5 +1,13 @@
 var windowWidth = $(window).width();
 var cont = 0;
+var anos_default;
+
+//$.ajaxSetup({async: false});
+$.get("./db/json_ano_default.php?eixo="+getEixo(window.location.hash.substring(1)), function(data) {
+    anos_default = JSON.parse(data); 
+});
+
+//$.ajaxSetup({async: true});
 /*-----------------------------------------------------------------------------
 Função: controlVar
     redireciona a página para o resultado da variável escolhida.
@@ -1249,6 +1257,8 @@ $(document).ready(function(){
                 url['slc'] = 0;
                 $(this).addClass("active");
                 $('#servicos').removeClass("active");
+                url['ano'] = anos_default[url['var']][1]
+                
             }
             else {
                 if(url['ano'] < 2014)
@@ -1256,6 +1266,7 @@ $(document).ready(function(){
                 url['slc'] = 1;
                 $(this).addClass("active");
                 $('#bens').removeClass("active");
+                url['ano'] = anos_default[url['var']][0]
             }
             updateIframe(url); /* altera gráfico */
         }
@@ -1264,6 +1275,7 @@ $(document).ready(function(){
 		    if($(this).attr("id") === "setor") {
 		        enableDesag(getEixo(window.location.hash.substring(1)), url['var'], url['cad'], false, 0, url);
                 switchToSetores();
+
 		        url['slc'] = 0;
                 url['deg'] = 0;
                 url['ocp'] = 0;
@@ -1271,6 +1283,8 @@ $(document).ready(function(){
                 url['ocp'] = 0;
                 $(this).addClass("active");
                 $('#ocupacao').removeClass("active");
+
+                url['ano'] = anos_default[url['var']][0];
             }
 		    else {
                 enableDesag(getEixo(window.location.hash.substring(1)), url['var'], url['cad'], false, 1, url);
@@ -1283,7 +1297,6 @@ $(document).ready(function(){
                     updateDataDescUoS();
                 });
                 switchToOcupations();
-                updateAnoDefault(getEixo(window.location.hash.substring(1)),url['var'], 1)
 		        url['slc'] = 1;
                 url['deg'] = 0;
                 url['cad'] = 0;
@@ -1293,6 +1306,8 @@ $(document).ready(function(){
                 url['ocp'] = 1;
                 $(this).addClass("active");
                 $('#setor').removeClass("active");
+
+                url['ano'] = anos_default[url['var']][1];
             }
             updateIframe(url); /* altera gráfico */
         }
@@ -1326,7 +1341,7 @@ $(document).ready(function(){
                 cleanDesagsUrl();
                 switchToSetores();
                 enableDesag(getEixo(window.location.hash.substring(1)), $(this).val(), url['cad'], false, 0, url);
-                updateAnoDefault(getEixo(window.location.hash.substring(1)), url['var'], url['ocp']);
+                
 
                 $('#setor').addClass("active");
                 $('#ocupacao').removeClass("active");
@@ -1337,12 +1352,24 @@ $(document).ready(function(){
                 if(url['slc'] == 0) $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
                 else $(window.document).find(".cad-title").first().html($('.bread-select[data-id=ocp] option:selected').text());
                 $(window.document).find(".title[data-id='var-title']").first().html($('.bread-select[data-id=var] option:selected').text());
-
+                
+                switch(eixo_atual){
+                    case 0: url['ano'] = anos_default[url['var']][url['ocp']]; break;
+                    case 1: url['ano'] = anos_default[url['var']][0]; break;
+                    case 2: url['ano'] = anos_default[url['var']][0]; break;
+                    case 3:
+                     index = url['slc'] == 0 ? 1 : 0
+                     url['ano'] = anos_default[url['var']][index]; break;
+                }
                 if(eixo_atual == 1){
                     updateOcupacoes($(this).val());
                 }
                 if(eixo_atual == 2){
                     updateDefaultMec(url['var']);
+                }
+
+                if(eixo_atual == 3){
+                    updateServicos(url['var']);
                 }
 
             }
@@ -1400,7 +1427,14 @@ $(document).ready(function(){
                 $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
                 $(window.document).find(".title[data-id='var-title']").first().html($('.bread-select[data-id=var] option:selected').text());
                 updateMenuSetor(getEixo(window.location.hash.substring(1)), $(this).val());
-
+                switch(eixo_atual){
+                    case 0: url['ano'] = anos_default[url['var']][url['ocp']]; break;
+                    case 1: url['ano'] = anos_default[url['var']][0]; break;
+                    case 2: url['ano'] = anos_default[url['var']][0]; break;
+                    case 3:
+                     index = url['slc'] == 0 ? 1 : 0
+                     url['ano'] = anos_default[url['var']][index]; break;
+                }
                 if(eixo_atual == 1){
                     updateOcupacoes($(this).val());
                 }
@@ -1408,6 +1442,11 @@ $(document).ready(function(){
                 if(eixo_atual == 2){
                     updateDefaultMec(url['var']);
                 }
+
+                if(eixo_atual == 3){
+                    updateServicos(url['var']);
+                }
+                
             }
             if($(this).attr("data-id") == "uf"){
                 document.getElementById('view_box').contentWindow.location.reload(true);

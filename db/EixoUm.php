@@ -81,23 +81,43 @@ class EixoUm {
 	}
 	/*-----------------------------------------------------------------------------
 	Função: getter_most_recent_year
-	    função para buscar o ano mais recente no banco de dados da variável para os valores default
-	Entrada: 
-	    $var = número da váriavel
+	    função para buscar o ano mais recente no banco de dados para todas as variáveis
 	Saída:
-	    Um conjunto de instâncias da Classe EixoUm com seus devidos atributos
+	    Array com os resultados da busca
 	-----------------------------------------------------------------------------*/
-	public static function getter_most_recent_year($var){
+	public static function getter_most_recent_year(){
 		self::connect();
 
-		$query = "SELECT Ano FROM `Eixo_1` WHERE `Numero` = ".$var." AND `idUF` = 0 AND `idCadeia` = 0 AND `idPorte` = 0 ORDER BY `Ano` DESC";
+		$query = "SELECT MAX(Ano) AS Ano, Numero FROM `Eixo_1` WHERE `idUF` = 0  GROUP BY Numero";
 		$result = mysqli_query(self::$conn, $query);
-		$ano = mysqli_fetch_object($result, 'EixoUm');
 		
 		self::disconnect();
 
-		return $ano->Ano;
+		$allObjects = array();
+
+        while($obj = mysqli_fetch_object($result, 'EixoUm')){
+            $allObjects[] = $obj;
+        }
+
+		return $allObjects;
+
 	}
+
+	public static function getAnoDefault($var){
+		self::connect();
+
+		$query = "SELECT MAX(Ano) AS Ano FROM `Eixo_1` WHERE `idUF` = 0 AND Numero = ".$var." GROUP BY Numero";
+		$result = mysqli_query(self::$conn, $query);
+		
+		self::disconnect();
+
+		$obj = mysqli_fetch_object($result, 'EixoUm');
+		
+		$ano = $obj->Ano;
+
+		return $ano;
+	}
+
 	/*-----------------------------------------------------------------------------
 	Função: Find
 	    função para buscar um conjunto de tupla no banco de dados
