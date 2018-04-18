@@ -12,6 +12,39 @@ function ajustaAnos(keys) {
 	return keys;
 }
 
+function getNomeUF(idUF){
+    switch(idUF){
+        case 0: return "Brasil";
+        case 11: return "Rondônia";
+        case 12: return "Acre";
+        case 13: return "Amazonas";
+        case 14: return "Roraima";
+        case 15: return "Pará";
+        case 16: return "Amapá";
+        case 17: return "Tocantins";
+        case 21: return "Maranhão";
+        case 22: return "Piauí";
+        case 23: return "Ceará";
+        case 24: return "Rio Grande do Norte";
+        case 25: return "Paraíba";
+        case 26: return "Pernambuco";
+        case 27: return "Alagoas";
+        case 28: return "Sergipe";
+        case 29: return "Bahia";
+        case 31: return "Minas Gerais";
+        case 32: return "Espírito Santo";
+        case 33: return "Rio de Janeiro";
+        case 35: return "São Paulo";
+        case 41: return "Paraná";
+        case 42: return "Santa Catarina";
+        case 43: return "Rio Grande do Sul";
+        case 51: return "Mato Grosso do Sul"; 
+        case 52: return "Mato Grosso";
+        case 53: return "Goiás";
+        case 54: return "Distrito Federal";
+    }
+}
+
 function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percent) {
     if(eixo == 0) {
         if(vrv == 2 && url['uf'] == 0){
@@ -614,7 +647,7 @@ function updateMecanismo(url, vrv){
     $("select[data-id='cad'] > option").each(function() {
         $(this).remove();
     });*/
-
+    console.log(url)
     if(url['var'] != 17){
         $("select[data-id='mec']").append("<option value='0'>Todos</option>");
 
@@ -636,8 +669,7 @@ function updateMecanismo(url, vrv){
             $("select[data-id='mec']").parent().css('display', 'none')
         }
 
-    }
-
+    } 
     else{
 
         $("select[data-id='mec']").append("<option value='0'>Mecenato Estadual</option>");

@@ -109,6 +109,7 @@ function updateIframe(url){
     });
 
     var eixoAtual = getEixo(window.location.hash.substring(1));
+   
 
     ///BOX DO MAPA
     if($('iframe[id="view_box"]').length != 0) {
