@@ -1,7 +1,52 @@
 function changeDownloadURL(url){
     newURL = $('#select-pdf input').attr("value").replace(/download.php?.*/, "download.php?"+ url);
     $('#select-pdf input').attr("value", newURL)
-    
+    vrv = parseInt(url.match(/var=[0-9]+/)[0].replace("var=", ''))
+    switch(vrv) {
+        case 1:
+            name_url = "total_empresas";
+            break;
+        case 2:
+            name_url = "peso_empresas";
+            break;
+        case 3:
+            name_url = "natalidade_e_mortalidade";
+            break;
+        case 4:
+            name_url = "receita_total";
+            break;
+        case 5:
+            name_url = "receita_liquida";
+            break;
+        case 6:
+            name_url = "custo";
+            break;
+        case 7:
+            name_url = "lucro";
+            break;
+        case 8:
+            name_url = "valor_adicionado";
+            break;
+        case 9:
+            name_url = "va_pib";
+            break;
+        case 10:
+            name_url = "ihh_empresas";
+            break;
+        case 11:
+            name_url = "ihh_valor_adicionado";
+            break;
+        case 12:
+            name_url = "C4_empresas";
+            break;
+        case 13:
+            name_url = "C4_valor_adicionado";
+            break;
+        default:
+            name_url = "total_empresas";
+    }
+    newURL = $('#select-csv input').attr("value").replace(/csv\/.*/, "csv/"+name_url)
+    $('#select-csv input').attr("value", newURL)
 }
 
 function ajustaAnos(keys) {
@@ -647,7 +692,6 @@ function updateMecanismo(url, vrv){
     $("select[data-id='cad'] > option").each(function() {
         $(this).remove();
     });*/
-    console.log(url)
     if(url['var'] != 17){
         $("select[data-id='mec']").append("<option value='0'>Todos</option>");
 
