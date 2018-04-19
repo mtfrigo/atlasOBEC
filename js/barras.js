@@ -119,7 +119,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
             if ((vrv === 2 || vrv === 3 ) && eixo ==0) dados.value.push(100 * data[key].valor);
             else dados.value.push(data[key].valor);
 
-            if ( vrv === 2 || vrv === 4 || vrv === 5 || vrv === 7 || vrv === 9 || vrv === 8) dados.percentual.push(0);
+            if ( vrv === 2  || vrv === 9) dados.percentual.push(0);
             else dados.percentual.push(data[key].percentual);
 
             if (vrv === 2) dados.taxa.push(0);

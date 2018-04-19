@@ -297,7 +297,7 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
         else if (vrv >= 4 && vrv <= 8) {
             dados.valor = dados.value[i];
             setIntegerValueData(dados, eixo, vrv);
-            if(url['cad'] == 0 && vrv == 6)
+            if(url['cad'] == 0)
                 setPercentValueData({percentual: dados.percentual[i]}, eixo, vrv);
         }
         else if (vrv > 9) {
