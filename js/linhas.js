@@ -165,7 +165,7 @@ function analyze(error, data) {
                 .data([data[i]])
                 .attr("class", "line")
                 .attr("scc", scc)
-                .style("stroke-width", function(){return 3;})
+                .style("stroke-width", function(){return 2;})
                 .style("stroke", color(scc))
                 .attr("d", valueline);
 
