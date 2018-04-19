@@ -378,11 +378,18 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor) {
         first_year = Number(dados.key[0]);
         index_ano = dados.key.indexOf(url['ano'])
         if(url['uf'] == 0 && url['cad'] == 0 && vrv < 10){
-            setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
-            dados.valor = dados.value[dados.key.indexOf(url['ano'])];
-            setIntegerValueData(dados, eixo, vrv);
-
+            if(vrv !== 3){
+                setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
+                dados.valor = dados.value[dados.key.indexOf(url['ano'])];
+                setIntegerValueData(dados, eixo, vrv);
+            }
+            else{
+                setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
+                dados.valor = dados.value[dados.key.indexOf(url['ano'])]/100;
+                setIntegerValueData(dados, eixo, vrv);
+            }
         }
+
         else if(vrv > 9){
             if(ano != null) {
                 dados.valor = dados.value[dados.key.indexOf(url['ano'])];
@@ -394,10 +401,16 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor) {
                 }
 
             }
-        } else{
+        }
+        else if(vrv == 3){
+            dados.valor = dados.value[dados.key.indexOf(url['ano'])]/100;
+            setIntegerValueData(dados, eixo, vrv);
+        }
+        else{
             dados.valor = dados.value[dados.key.indexOf(url['ano'])];
             setIntegerValueData(dados, eixo, vrv);
         }
+
     }
     else if(eixo == 1){
         first_year = Number(dados.key[0]);
@@ -894,6 +907,9 @@ function setIntegerValueData(value, eixo, vrv) {
 
         var literal = formatDecimalLimit(valor, 2);
 
+        if(eixo == 0 && url['var'] == 3){
+            literal = formatDecimalLimit(valor, 2);
+        }
 		if(eixo == 1 && url['var'] == 2){
             literal = formatDecimalLimit(valor, 4);
         }
