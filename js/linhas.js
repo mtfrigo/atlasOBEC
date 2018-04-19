@@ -27,19 +27,19 @@ d3.json('data/colors.json', function (error, data) {
         var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo;
 
         d3.queue()
-            .defer(d3.json, "./db/json_lines.php" + config)
+            .defer(d3.json, "./db/json_linhas.php" + config)
             .await(analyze);
     });
 
 });
 
-
-
 $.get("./db/json_linhas.php"+config, function(data) {
-    //console.log(data);
+    // console.log(data);
 });
 
 function analyze(error, data) {
+
+    // console.log(data)
 
     //console.log(colorJSON)
 
@@ -195,6 +195,10 @@ function analyze(error, data) {
 
         function mousemove(d, path) {
 
+            if($(path).hasClass("domain") ){
+                alert("oioioi")
+            }
+
             var scc = ($(path).attr("scc"));
 
             tooltipInstance.showTooltip(d, [
@@ -244,7 +248,6 @@ function analyze(error, data) {
                 })
                 .on("mouseout", function () {
                     tooltipInstance.hideTooltip();
-                    d3.selectAll(".indicador").remove();
                 })
 
 
