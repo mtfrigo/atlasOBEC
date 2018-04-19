@@ -36,7 +36,7 @@ d3.json('data/colors.json', function (error, data) {
 
 
 $.get("./db/json_linhas.php"+config, function(data) {
-    // console.log(data);
+    //console.log(data);
 });
 
 function analyze(error, data) {
@@ -165,6 +165,7 @@ function analyze(error, data) {
                 .data([data[i]])
                 .attr("class", "line")
                 .attr("scc", scc)
+                .style("stroke-width", function(){return 3;})
                 .style("stroke", color(scc))
                 .attr("d", valueline);
 
@@ -181,11 +182,14 @@ function analyze(error, data) {
             .call(d3.axisLeft(y));
 
         svg.selectAll("path")
-            .on("mousemove", function (dados) {
+            .on("mouseover", function (dados) {
                 mousemove(dados, (this));
+                d3.selectAll("path").style("opacity", 0.3)
+                d3.select(this).style("opacity", 1)
             })
             .on("mouseout", function () {
                 tooltipInstance.hideTooltip();
+                d3.selectAll("path").style("opacity", 1)
             })
 
 
@@ -233,7 +237,7 @@ function analyze(error, data) {
                 .attr("scc", deg);
 
             svg.selectAll("rect")
-                .on("mousemove", function (dados) {
+                .on("mouseover", function (dados) {
                     tooltipInstance.showTooltip(dados, [
                         ["title", $(this).attr("scc")]
                     ])

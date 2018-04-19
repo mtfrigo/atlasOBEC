@@ -258,6 +258,10 @@ function updateIframe(url){
                     newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
                     $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
+                } else if (url['var'] == 9 && url['uf'] != 0){
+                    console.log(url['uf'])
+                    $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
+                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS")
                 } else {
                     $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");

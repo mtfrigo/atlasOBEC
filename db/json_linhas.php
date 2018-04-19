@@ -177,7 +177,7 @@ function getNameSLC($slc) {
 }
 
 $linhas = array();
- if($eixo == 0 && $var > 9) {
+ if($eixo == 0) {
     require_once("EixoUm.php");
     for ($uos = 0; $uos <= 1; $uos++) {
 

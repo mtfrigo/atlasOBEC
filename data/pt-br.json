@@ -378,7 +378,7 @@
 			{
 				"id":"9",
 				"title":"Valor Adicionado pelo PIB",
-				"desc_int": "de valor adicionado/PIB pelas empresas [cad]",
+				"desc_int": "de valor adicionado/PIB do estado {} pelas empresas [cad]",
 				"desc_percent": "",
 				"sufixo_valor":"%",
 				"prefixo_valor":"",
@@ -785,10 +785,10 @@
 			},
 			{
 				"id":"9",
-				"title":"Razão entre variação na ocupação e variação do VA",
+				"title":"Razão entre massa salarial e valor adicionado dos setores culturais e criativos",
 				"desc_int":"",
 				"desc_percent": "",
-				"sufixo_valor":"%",
+				"sufixo_valor":"",
 				"prefixo_valor":"",
 				"desc_var_mapa": "A variável razão entre a massa salarial e o valor adicionado pelos Setores Culturais e Criativos permite a avaliação do quanto o total de salários mantém relação com o valor adicionado nos Setores Culturais e Criativos no país.",
 				"desc":"Esse indicador demonstra a razão entre o Valor Adicionado e o PIB, elucidando e contabilizando a contribuição da cultura na geração de riqueza. Um aumento desta razão indica que a cultura está contribuindo mais para  a geração de renda e produto na economia.",
