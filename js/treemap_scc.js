@@ -236,9 +236,11 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
 
                         configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, cad_valor, cad_percent);
                         if(deg  == 0) $(window.parent.document).find(".cad-title").first().html(d.data.name);
-                        else $(window.parent.document).find(".cad-title").first().html(d.parent.data.name+" - "+d.data.name);
+                        // else $(window.parent.document).find(".cad-title").first().html(d.parent.data.name+" - "+d.data.name);
+                        else $(window.parent.document).find(".cad-title").first().html(d.parent.data.name);
 				    }
                     else {
+
                         var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ocp=[0-9]*/, "ocp=" + d.data.colorId);
                         newMapaSrc = newMapaSrc.replace(/uf=[0-9]*/, "uf=" + url['uf']);
                         var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ocp=[0-9]*/, "ocp=" + d.data.colorId);
@@ -251,8 +253,8 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         
                         configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg);
                         //console.log(d);
-                        if(d.parent.data.name.match("Atividades")) $(window.parent.document).find(".cad-title").first().html("Atividades Relacioandas - "+d.data.name);
-                        else if(d.parent.data.name.match("Cultura")) $(window.parent.document).find(".cad-title").first().html("Cultura - "+d.data.name);
+                        // if(d.parent.data.name.match("Atividades")) $(window.parent.document).find(".cad-title").first().html("Atividades Relacioandas - "+d.data.name);
+                        // else if(d.parent.data.name.match("Cultura")) $(window.parent.document).find(".cad-title").first().html("Cultura - "+d.data.name);
                     }
 				})
 		        .style("cursor", "pointer");
