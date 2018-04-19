@@ -106,9 +106,10 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
             setIntegerValueData({valor: d.data.size}, eixo, vrv);
         }
 
-        if ((vrv == 1 || vrv == 4 || vrv == 5 || vrv == 6 || vrv == 7 || vrv == 8) && url['uf'] == 0) {
-            setPercentValueData({percentual: d.data.size / root.value}, eixo, vrv);
+        if (vrv == 1 || vrv == 3 || vrv == 4 || vrv == 5 || vrv == 6 || vrv == 7 || vrv == 8 ||vrv == 9) {
+            setPercentValueData({percentual: percent}, eixo, vrv);
         }
+
     }
     else if(eixo == 1) {
         if(vrv == 1){
@@ -183,8 +184,14 @@ function configInfoDataBoxBarrasStackedClick(eixo, vrv, d, soma, deg) {
 function configInfoDataBoxTreemapSCC(eixo, vrv, cad_data, ocp_data, url, deg_cad, deg_ocp, chg) {
 
     if(eixo == 0){
+
         if(url['cad'] != 0){
-            setPercentValueData({percentual: cad_data}, eixo, vrv);
+            if (vrv == 1 || vrv == 3 || vrv == 4 || vrv == 5 || vrv == 6 || vrv == 7 || vrv == 8 ||vrv == 9) {
+                setPercentValueData({percentual: ocp_data}, eixo, vrv);
+            }
+            else{
+                setPercentValueData({percentual: cad_data}, eixo, vrv);
+            }
         }
     }
     if(eixo == 1){
@@ -263,7 +270,7 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
         else if (vrv == 1) {
             dados.valor = dados.value[i];
             setIntegerValueData(dados, eixo, vrv);
-            setPercentValueData({percentual: dados.percentual[i], taxa: dados.taxa[i]}, eixo, vrv)
+            //setPercentValueData({percentual: dados.percentual[i], taxa: dados.taxa[i]}, eixo, vrv)
         }
         else if (vrv == 2) {
             if(url['uf'] == 0){
@@ -273,7 +280,7 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
             else if(url['uf'] !== 0){
                 dados.valor = dados.value[i] / 100;
                 setIntegerValueData(dados, eixo, vrv);
-                setPercentValueData({percentual: dados.percentual[i], taxa: dados.taxa[i]}, eixo, vrv);
+                //setPercentValueData({percentual: dados.percentual[i], taxa: dados.taxa[i]}, eixo, vrv);
             }
 
 
@@ -299,6 +306,8 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
                 setPercentValueData(dados, eixo, vrv);
             }
         }
+
+
     }
     else if(eixo == 1){
         if(vrv == 10){

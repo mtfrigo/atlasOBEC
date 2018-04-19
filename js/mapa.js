@@ -13,6 +13,7 @@ var fonteTransform = "translate("+(width-120)+","+(height-10)+")";
 var valoresTransform = "translate(10,"+(height-10)+")";
 
 function destacaPais(ufId) {
+
 	$("path").each(function() {
         if($(this).attr("data-legend") == ufId) {
             if($(this).attr("class") !== "destacado") {
@@ -366,8 +367,8 @@ function ready(error, br_states, mapa){
             $(window.parent.document).find("select[data-id='uf']").val(d.id);
             destacaPais(d.id);
 
-            setIntegerValueData(dict[d.id], eixo, vrv);
-            setPercentValueData(dict[d.id], eixo, vrv);
+            //setIntegerValueData(dict[d.id], eixo, vrv);
+            //setPercentValueData(dict[d.id], eixo, vrv);
 
             setStateTitle(d['properties']['name']);
 
@@ -609,24 +610,35 @@ function legendaBinario(){
 		});
 	}*/
 
+    if(url['uf'] != 0){
+        destacaPais(url['uf']);
 
-    if(url['uf'] != 0) {
-    	destacaPais(url['uf']);
-        setPercentValueData(dict[url['uf']], eixo, vrv);
-        setIntegerValueData(dict[url['uf']], eixo, vrv);
-	}
+    }
+
+    if(eixo == 0){
+
+    }
+    else{
+        if(url['uf'] != 0) {
+            setPercentValueData(dict[url['uf']], eixo, vrv);
+            setIntegerValueData(dict[url['uf']], eixo, vrv);
+        }
 
 
-	if(url['cad'] != 0 && url['uf'] != 0) {
-        setIntegerValueData(dict[url['uf']], eixo, vrv);
-        setPercentValueData(dict[url['uf']], eixo, vrv);
-	}
+        if(url['cad'] != 0 && url['uf'] != 0) {
+            setIntegerValueData(dict[url['uf']], eixo, vrv);
+            setPercentValueData(dict[url['uf']], eixo, vrv);
+        }
+    }
+
 
     if(url['uf'] == 0) $(window.parent.document).find(".state-title").first().html("Brasil");
+
     if(dict[url['uf']])
         estadoAtual = dict[url['uf']].uf
     else
         estadoAtual = "BRASIL"
+
     $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(textJSON.var[eixo][vrv-1].desc_int, estadoAtual));
     $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(textJSON.var[eixo][vrv-1].desc_percent, estadoAtual));
 

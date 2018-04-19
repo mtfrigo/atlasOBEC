@@ -195,15 +195,15 @@ function analyze(error, data) {
 
         function mousemove(d, path) {
 
-            if($(path).hasClass("domain") ){
-                alert("oioioi")
+            if(!($(path).hasClass("domain")) ){
+                var scc = ($(path).attr("scc"));
+
+                tooltipInstance.showTooltip(d, [
+                    ["title", scc]
+                ])
             }
 
-            var scc = ($(path).attr("scc"));
 
-            tooltipInstance.showTooltip(d, [
-                ["title", scc]
-            ])
         }
 
 
