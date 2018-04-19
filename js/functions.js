@@ -413,6 +413,9 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
             
             dados.valor = dados.value[dados.key.indexOf(url['ano'])];
             setIntegerValueData(dados, eixo, vrv);
+            console.log(dados)
+            if(url['cad'] == 0)
+                setPercentValueData({percentual: dados.percentual[index_ano]}, eixo, vrv)
         }
 
     }
