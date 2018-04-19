@@ -92,6 +92,7 @@ function getNomeUF(idUF){
 
 function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percent) {
     if(eixo == 0) {
+        console.log(d)
         if(vrv == 2 && url['uf'] == 0){
             setIntegerValueData({valor: d.data.size*100}, eixo, vrv);
         }
@@ -262,6 +263,7 @@ function configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root) {
 }
 
 function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
+
     if(eixo == 0) {
         if (vrv == 3) {
             dados.valor = dados.value[i] / 100;
@@ -270,7 +272,8 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
         else if (vrv == 1) {
             dados.valor = dados.value[i];
             setIntegerValueData(dados, eixo, vrv);
-            //setPercentValueData({percentual: dados.percentual[i], taxa: dados.taxa[i]}, eixo, vrv)
+            if(url['cad'] == 0)
+                setPercentValueData({percentual: dados.percentual[i], taxa: dados.taxa[i]}, eixo, vrv)
         }
         else if (vrv == 2) {
             if(url['uf'] == 0){
@@ -372,7 +375,7 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
     }
 }
 
-function configInfoDataBoxBarras(eixo, vrv, dados, valor) {
+function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
 
     if(eixo == 0){
         first_year = Number(dados.key[0]);
@@ -407,6 +410,7 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor) {
             setIntegerValueData(dados, eixo, vrv);
         }
         else{
+            
             dados.valor = dados.value[dados.key.indexOf(url['ano'])];
             setIntegerValueData(dados, eixo, vrv);
         }
@@ -1372,9 +1376,6 @@ function formatBarTextMap(value, eixo, vrv, obj){
 			    if(vrv == 2){
 			        valor *= 100;
                 }
-				else if(vrv == 9){
-					valor *= 100;
-				}
 				break;
 
 		}
@@ -1403,9 +1404,6 @@ function formatTextVrv(value, eixo, vrv){
                     break;
                 case 1:
                     if(vrv === 2){
-                        valor *= 100;
-                    }
-                    else if(vrv === 9){
                         valor *= 100;
                     }
                     break;

@@ -3,10 +3,8 @@ var chartHeight = $('.chart').height();
 var chartWidth = $('.chart').width()+25;
 
 /*==== Linhas JS ====*/
-var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo;
-jQuery.get("./db/json_linhas.php"+config, function(data) {
-    // console.log(data);
-});
+var config = "?var=" + vrv + "&deg=" + deg + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo;
+
 // var info = [];
 var dados = {key: [], value: []};
 
@@ -24,7 +22,7 @@ d3.json('data/colors.json', function (error, data) {
 
         textJSON = data;
 
-        var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo;
+        var config = "?var=" + vrv + "&deg=" + deg + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo;
 
         d3.queue()
             .defer(d3.json, "./db/json_linhas.php" + config)
@@ -34,7 +32,7 @@ d3.json('data/colors.json', function (error, data) {
 });
 
 $.get("./db/json_linhas.php"+config, function(data) {
-    // console.log(data);
+     console.log(data);
 });
 
 function analyze(error, data) {
@@ -274,6 +272,15 @@ function analyze(error, data) {
             "Importação": "#8178AF",
             "Exportação": "#EC8A91",
             "SaldoComercial": "#E96B00",
+
+            "1": "#071342",
+            "2": "rgb(109, 191, 201)",
+            "3": "#071342",
+            "4": "rgb(109, 191, 201)",
+            "5": "#071342",
+            "6": "rgb(109, 191, 201)",
+            "7": "#8178AF",
+            "8": "#EC8A91",
 
         }
 

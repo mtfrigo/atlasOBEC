@@ -372,7 +372,8 @@ function ready(error, br_states, mapa){
             destacaPais(d.id);
 
             //setIntegerValueData(dict[d.id], eixo, vrv);
-            //setPercentValueData(dict[d.id], eixo, vrv);
+            if(url['cad'] == 0)
+                setPercentValueData(dict[d.id], eixo, vrv);
 
             setStateTitle(d['properties']['name']);
 
@@ -673,7 +674,7 @@ function legendaBinario(){
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
                     ["", formatTextVrv(dict[d.id].valor, eixo, vrv)],
-                    ["", formatDecimalLimit(dict[d.id].percentual*100, 2) + "%"],
+                 //   ["", formatDecimalLimit(dict[d.id].percentual*100, 2) + "%"],
                 ]);
 
             }
@@ -682,7 +683,7 @@ function legendaBinario(){
                     ["title", d['properties']['name']],
                     ["", formatTextVrv(dict[d.id].valor, eixo, vrv)],
                     ["", formatDecimalLimit(dict[d.id].percentual*100, 2) + "%"],
-                    ["", formatDecimalLimit(dict[d.id].taxa, 2)],
+                //    ["", formatDecimalLimit(dict[d.id].taxa, 2)],
                 ]);
             }
         }
@@ -693,7 +694,7 @@ function legendaBinario(){
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
                     ["", formatTextVrv(dict[d.id].valor, eixo, vrv)],
-                    ["", formatTextTaxaVrv(dict[d.id].percentual, eixo, vrv)],
+                 ["", formatTextTaxaVrv(dict[d.id].percentual, eixo, vrv)],
 
                 ]);
             }
@@ -701,14 +702,14 @@ function legendaBinario(){
             else if(vrv === 2 || vrv === 9 || vrv === 6 || vrv === 4){
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
-                    ["", formatTextVrv(dict[d.id].valor, eixo, vrv)]
+                   ["", formatTextVrv(dict[d.id].valor, eixo, vrv)]
                 ]);
             }
             else if(vrv === 10 || vrv === 11) {
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
                     ["", formatTextVrv(dict[d.id].valor, eixo, vrv)],
-                    ["", formatTextTaxaVrv(dict[d.id].taxa, eixo, vrv)],
+                //    ["", formatTextTaxaVrv(dict[d.id].taxa, eixo, vrv)],
                 ]);
             }
         }
@@ -720,7 +721,7 @@ function legendaBinario(){
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
                     ["", formatTextVrv(dict[d.id].valor, eixo, vrv)],
-                    ["", formatTextTaxaVrv(dict[d.id].percentual, eixo, vrv)],
+                //    ["", formatTextTaxaVrv(dict[d.id].percentual, eixo, vrv)],
                 ]);
             }
             else if(vrv === 14){
@@ -738,7 +739,7 @@ function legendaBinario(){
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
                     ["", formatTextVrv(dict[d.id].valor, eixo, vrv)],
-                    ["", formatTextTaxaVrv(dict[d.id].percentual, eixo, vrv)],
+                //    ["", formatTextTaxaVrv(dict[d.id].percentual, eixo, vrv)],
                 ]);
             }
             else if(vrv === 99){

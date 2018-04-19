@@ -63,6 +63,7 @@ if (!empty($_GET["var"])) {
     $typ    =   isset($_GET["typ"])   ?   $_GET["typ"]  :   0;	   /*== Tipo de atividade ==*/
     $ano    =   isset($_GET["ano"])   ?   $_GET["ano"]  :NULL;	   /*== Ano ==*/
 
+    $desag    =   isset($_GET["deg"])   ?   $_GET["deg"]  :   0;	   /*== Tipo de atividade ==*/
     $eixo = $_GET['eixo'];
 }
 else{
@@ -88,6 +89,7 @@ else{
     $prc = 0;
     $ano = NULL;
     $snd = 0;
+    $desag = 0;
     $eixo = 0;
 }
 
@@ -262,6 +264,44 @@ else if($eixo == 1 && $var > 11) {
     }
 
 }
+else if($eixo == 1 && $var == 4 && $desag > 0) {
+    require_once("EixoDois.php");
+    $valor = 0;
+    foreach(EixoDois::getter_linhas($var, $uf, $cad, $ocp, $desag) as $tupla){
+        switch($desag){
+            case 1:
+                $valor = $tupla->idPorte; 
+                break;
+            case 2: 
+                $valor = $tupla->Sexo;
+                break;
+            case 3: 
+                $valor = $tupla->idIdade;
+                break;
+            case 4: 
+                $valor = $tupla->idEscolaridade;
+                break;
+            case 5:
+                $valor = $tupla->idEtinia; 
+                break;
+            case 6:
+                $valor = $tupla->Formalidade;
+                break;
+            case 7:
+                $valor = $tupla->Previdencia; 
+                break;
+            case 8: 
+                $valor = $tupla->Sindical;
+                break;
+        }
+
+        $id = $tupla->Ano;
+            // $linhas[$tupla->Ano] = $tupla->Valor;
+        $linhas[$id]['ano'] = (int)$tupla->Ano;
+        $linhas[$id][$valor] = (double)$tupla->Valor;
+
+    }
+}
 else if($eixo == 1 && $var == 5) {
     require_once("EixoDois.php");
     for ($cad = 1; $cad <= 10; $cad++) {
@@ -279,7 +319,7 @@ else if($eixo == 1 && $var == 5) {
         }
     }
 }
-else if($eixo == 1 && ($var == 11 || $var == 10 || $var == 9 || $var == 8) ) {
+else if($eixo == 1 && ($var == 11 || $var == 10 || $var == 9 || $var == 8 || $var == 4) ) {
     require_once("EixoDois.php");
     for ($cad = 1; $cad <= 10; $cad++) {
 

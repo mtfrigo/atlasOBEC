@@ -633,6 +633,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
         }
 	}
     else if(eixo === 0){
+        
         configInfoDataBoxTreemapSCC(eixo,
             vrv,
             $('svg').find('rect[data-legend="'+url['cad']+'"]').attr("data-value"),
