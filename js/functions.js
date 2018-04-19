@@ -405,7 +405,7 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
 
             }
         }
-        else if(vrv == 3 || vrv == 6){
+        else if(vrv == 3 ){
             dados.valor = dados.value[dados.key.indexOf(url['ano'])]/100;
             setIntegerValueData(dados, eixo, vrv);
         }
