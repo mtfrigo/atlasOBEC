@@ -515,6 +515,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
 
                 destacaBarra(dados.key[i]);
                 var valor = $('svg').find('rect[data-legend="'+dados.key[i]+'"]').attr("data-value");
+
                 configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor);
 
             })
