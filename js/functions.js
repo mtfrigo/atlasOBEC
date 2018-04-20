@@ -1585,7 +1585,7 @@ function updateOcupacoes(vrv){
 }
 
 function updateServicos(vrv){
-    console.log($('#servicos'))
+    
     switch(vrv){
 		case '11':
 		case '12':
