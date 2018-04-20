@@ -157,9 +157,29 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, valor,  percent, percent_uf, url
         }
     }
     if(eixo == 1){
-        if(url['cad'] != 0){
-            setPercentValueData({percentual: percent_uf}, eixo, vrv);
+
+        if(url['ocp'] == 0){
+            if(url['cad'] != 0) {
+                destacaSetor(url['cad']);
+
+                if(url['deg'] == 0){
+                    setPercentValueData({percentual: percent, taxa: 0}, eixo, vrv);
+                }
+                else{
+                    setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
+                    setPercentValueData({percentual: parseFloat(valor/percent_uf) , taxa: 0}, eixo, vrv);
+                }
+                // setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
+            }
         }
+        else{
+            if(url['deg'] == 0 || url['deg'] == undefined){
+                setPercentValueData({percentual: percent, taxa: 0}, eixo, vrv);
+
+            }
+        }
+
+
     }
     if(eixo == 2){
         // if(url['cad'] != 0) {
@@ -256,41 +276,20 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
 
     }
     else if(eixo == 1) {
-        if(vrv == 1){
-            setIntegerValueData({valor: d.data.size}, eixo, vrv);
+
+        if(url['deg'] == 0){
+            setIntegerValueData({valor: d.value}, eixo, vrv);
+            setPercentValueData({percentual: d.data.size / root.value}, eixo, vrv);
         }
-        else if(vrv == 2 && url['uf'] == 0){
-            //talvez tenha que mudar aqui pra ficar * 100 ou * 10
-            setIntegerValueData({valor: d.data.size}, eixo, vrv);
-        }
-        else if(vrv == 2 && url['uf'] != 0){
-            setIntegerValueData({valor: d.data.size}, eixo, vrv);
-        }
-        else if(vrv == 4 && url['uf'] == 0){
-            setIntegerValueData({valor: d.data.size}, eixo, vrv);
+        else{
+            setIntegerValueData({valor: d.value}, eixo, vrv);
+            setPercentValueData({percentual: parseFloat(d.value/percent)}, eixo, vrv);
+
+
         }
 
-        else if(vrv == 9 && url['uf'] == 0){
-            setIntegerValueData({valor: d.data.size}, eixo, vrv);
-        }
 
-        else if (vrv == 7 && url['uf'] !=0){
-            return
-        }
 
-        if(url['uf'] == 0){
-            if(d.parent.value == d.data.size)
-                setPercentValueData({percentual: d.data.size / root.value}, eixo, vrv);
-            else
-                setPercentValueData({percentual: d.data.size / d.parent.value}, eixo, vrv);
-        }
-
-        /*if(deg == 0 && url['uf'] == 0) {
-        }
-        else {
-            setIntegerValueData({valor: d.data.size}, eixo, vrv);
-            setPercentValueData({percentual: d.data.size / d.parent.value}, eixo, vrv);
-        }*/
     }
     else if(eixo === 2){
         setIntegerValueData({valor: d.value}, eixo, vrv);
@@ -314,11 +313,22 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
     }
 }
 
-function configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root) {
+function configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg, valor, percent, percent_uf) {
     if(eixo == 1) {
-        if(url['uf'] == 0){
-            setPercentValueData({percentual: d.data.size / root.value}, eixo, vrv);
+
+        destacaSetor(parseInt(url['cad'])+1);
+
+        console.log(valor)
+
+        if(url['deg'] == 0 || deg == 0){
+            setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
+            setPercentValueData({percentual: percent, taxa: 0}, eixo, vrv);
         }
+        else{
+            setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
+            setPercentValueData({percentual:  valor , taxa: 0}, eixo, vrv);
+        }
+        // setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
     }
 }
 
@@ -371,9 +381,15 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
 
     }
     else if(eixo == 1){
-        first_year = Number(dados.key[0]);
+        // first_year = Number(dados.key[0]);
+        index_ano = dados.key.indexOf(url['ano'])
+        if(url['uf'] == 0 && url['cad'] == 0 && url['ocp'] == 0){
 
-        if(vrv > 11){
+            setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
+            dados.valor = dados.value[dados.key.indexOf(url['ano'])];
+            setIntegerValueData(dados, eixo, vrv);
+        }
+        else if(vrv > 11){
             if(ano != null) {
                 dados.valor = dados.value[dados.key.indexOf(url['ano'])];
 
@@ -385,16 +401,8 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
 
             }
         }
-        else if(vrv == 5 || vrv == 10) {
-            dados.valor = dados.value[url['ano'] - first_year]
-            setIntegerValueData(dados, eixo, vrv);
-            setPercentValueData(dados, eixo, vrv);
-        }
-        else{
-            if(url['uf'] == 0 && url['cad'] == 0 && url['ocp'] == 0)
-                setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
+        else {
             dados.valor = dados.value[dados.key.indexOf(url['ano'])];
-
             setIntegerValueData(dados, eixo, vrv);
         }
     }
@@ -532,21 +540,16 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
 
     }
     else if(eixo == 1){
-        if(vrv == 10){
-            dados.valor = dados.value[i]
-            setIntegerValueData(dados, eixo, vrv);
-            setPercentValueData(dados, eixo, vrv);
 
-        }
-        else if (vrv > 11) {
+        if(vrv >= 12){
             dados.valor = dados.value[i];
             if(url["uos"] == 0){
                 setIntegerValueData(dados, eixo, vrv);
             } else if(url["uos"] == 1){
-                setPercentValueData(dados, eixo, vrv);
+                setPercentValueData({percentual: dados.value[i]}, eixo, vrv);
             }
         }
-        else {
+        else{
             dados.valor = dados.value[i];
             setIntegerValueData(dados, eixo, vrv);
         }

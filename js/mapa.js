@@ -625,7 +625,7 @@ function legendaBinario(){
     configInfoDataBoxMapa(eixo, vrv, dict[url['uf']]);
 
 
-    if(eixo == 0 || eixo == 2){
+    if(eixo == 0 || eixo == 1|| eixo == 2){
 
     }
     else{
@@ -699,7 +699,7 @@ function legendaBinario(){
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
                     ["", formatTextVrv(dict[d.id].valor, eixo, vrv)],
-                 ["", formatTextTaxaVrv(dict[d.id].percentual, eixo, vrv)],
+                    // ["", formatTextTaxaVrv(dict[d.id].percentual, eixo, vrv)],
 
                 ]);
             }
@@ -707,7 +707,7 @@ function legendaBinario(){
             else if(vrv === 2 || vrv === 9 || vrv === 6 || vrv === 4){
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
-                   ["", formatTextVrv(dict[d.id].valor, eixo, vrv)]
+                    ["", formatTextVrv(dict[d.id].valor, eixo, vrv)]
                 ]);
             }
             else if(vrv === 10 || vrv === 11) {
