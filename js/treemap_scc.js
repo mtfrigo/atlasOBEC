@@ -251,7 +251,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                             cad_percent_uf = getSoma(d.data.colorId);
                         }
 
-                        configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, cad_percent, cad_percent_uf);
+                        configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, cad_valor, cad_percent, cad_percent_uf);
                         if(deg  == 0) $(window.parent.document).find(".cad-title").first().html(d.data.name);
                         // else $(window.parent.document).find(".cad-title").first().html(d.parent.data.name+" - "+d.data.name);
                         else $(window.parent.document).find(".cad-title").first().html(d.parent.data.name);
@@ -295,7 +295,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                     tooltipInstance.showTooltip(d, [
                         ["title", d.data.name],
                         ["", formatTextVrv(d.data.size, eixo, vrv)],
-                        ["", formatTextTaxaVrv((d.data.size / root.value), eixo, vrv)],
+                        //["", formatTextTaxaVrv((d.data.size / root.value), eixo, vrv)],
 
                     ]);
                 }
@@ -303,7 +303,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                     tooltipInstance.showTooltip(d, [
                         ["title", d.data.name],
                         ["", formatTextVrv(d.data.size*100, eixo, vrv)],
-                        ["", formatTextTaxaVrv((d.data.size / root.value), eixo, vrv)],
+                        //["", formatTextTaxaVrv((d.data.size / root.value), eixo, vrv)],
 
                     ]);
                 }
@@ -316,7 +316,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         ["title", d.data.name],
                         ["", formatTextVrv(d.data.size, eixo, vrv)],
                         ["", formatTextTaxaVrv((d.data.size / root.value), eixo, vrv)],
-                        ["", formatTextTaxaVrv(d.data.percentual, eixo, vrv)],
+                        //["", formatTextTaxaVrv(d.data.percentual, eixo, vrv)],
                     ]);
                 }
                 else if (url['uf'] == 0) {
@@ -324,7 +324,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                     tooltipInstance.showTooltip(d, [
                         ["title", d.data.name],
                         ["", formatTextVrv(d.data.size, eixo, vrv)],
-                        ["", formatTextTaxaVrv((d.data.size / root.value), eixo, vrv)],
+                        //["", formatTextTaxaVrv((d.data.size / root.value), eixo, vrv)],
                     ]);
                 }
             }

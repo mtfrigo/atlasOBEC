@@ -306,11 +306,13 @@ d3.json("./db/json_treemap_region.php"+config, function(error, data) {
 						$(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
 						$(window.parent.document).find("#view_box").attr("src", newMAPASrc);
 						destacaPais(ufId(d.data.name));
-						setIntegerValueData({valor: integerValue}, eixo, vrv);
-						if(url['cad'] == 0)
-							setPercentValueData({percentual: percentValue}, eixo, vrv);
+						//setIntegerValueData({valor: integerValue}, eixo, vrv);
+						// if(url['cad'] == 0)
+						// 	setPercentValueData({percentual: percentValue}, eixo, vrv);
 						setStateTitle(d.data.estado);
-					})
+
+
+                    })
 					.style("cursor", "pointer");
 
 	cell.append("rect")
@@ -503,21 +505,26 @@ d3.json("./db/json_treemap_region.php"+config, function(error, data) {
 	}
 
 
-    if(url['uf'] != 0 && url['cad'] == 0) {
-        destacaPais(url['uf']);
-        setPercentValueData({percentual: $('svg').find('rect[data-legend="'+url['uf']+'"]').attr("data-percent")}, eixo, vrv);
-        setIntegerValueData({valor: $('svg').find('rect[data-legend="'+url['uf']+'"]').attr("data-integer")}, eixo, vrv);
-    }
-
-    if(url['cad'] != 0 && url['uf'] != 0) {
-		destacaPais(url['uf']);
-        //setPercentValueData({percentual: $('svg').find('rect[data-legend="'+url['uf']+'"]').attr("data-percent")}, eixo, vrv);
-        setIntegerValueData({valor: $('svg').find('rect[data-legend="'+url['uf']+'"]').attr("data-integer")}, eixo, vrv);
-    }
+    // if(url['uf'] != 0 && url['cad'] == 0) {
+    //     destacaPais(url['uf']);
+    //     setPercentValueData({percentual: $('svg').find('rect[data-legend="'+url['uf']+'"]').attr("data-percent")}, eixo, vrv);
+    //     setIntegerValueData({valor: $('svg').find('rect[data-legend="'+url['uf']+'"]').attr("data-integer")}, eixo, vrv);
+    // }
+    //
+    // if(url['cad'] != 0 && url['uf'] != 0) {
+		// destacaPais(url['uf']);
+    //     //setPercentValueData({percentual: $('svg').find('rect[data-legend="'+url['uf']+'"]').attr("data-percent")}, eixo, vrv);
+    //     setIntegerValueData({valor: $('svg').find('rect[data-legend="'+url['uf']+'"]').attr("data-integer")}, eixo, vrv);
+    // }
 
     if(url['uf'] == 0) $(window.parent.document).find(".state-title").first().html("Brasil");
-    $(window.parent.document).find(".integer-value").first().find(".description-number").html(textJSON.var[eixo][vrv-1].desc_int);
-    $(window.parent.document).find(".percent-value").first().find(".description-number").html(textJSON.var[eixo][vrv-1].desc_percent);
+
+	console.log(data)
+
+    // $(window.parent.document).find(".integer-value").first().find(".description-number").html("integer", updateDescPercent(textJSON.var[eixo][vrv-1].desc_int, data[dados.key[0]].uf));
+    // $(window.parent.document).find(".percent-value").first().find(".description-number").html("percent", updateDescPercent(textJSON.var[eixo][vrv-1].desc_percent, data[dados.key[0]].uf));
+
+
 
 });
 
