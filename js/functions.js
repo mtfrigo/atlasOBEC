@@ -1130,7 +1130,15 @@ function descByUF(eixo, tipo, desc, nomeestado){
                 nomeestado = "DO BRASIL"
             }
         }
-        else if(url['var'] == 4){
+        if(url['var'] == 99 ) {
+            if(prepos[nomeestado]){
+                nomeestado = prepos[nomeestado] + ' ' +nomeestado
+            }
+            else{
+                nomeestado = "DO BRASIL"
+            }
+        }
+        else if(url['var'] == 3 || url['var'] == 2){
             if(tipo == "integer"){
                 if(prepos[nomeestado]){
                     nomeestado = prepos[nomeestado] + ' ' +nomeestado
@@ -1150,7 +1158,7 @@ function descByUF(eixo, tipo, desc, nomeestado){
 
         }
         else{
-            if(prepos[nomeestado] && url['cad'] != 0){
+            if(prepos[nomeestado]){
                 nomeestado = prepos[nomeestado] + ' ' +nomeestado
             }
             else{
@@ -1201,8 +1209,8 @@ function descByMEC(eixo, desc){
 
 function descByPFJ(eixo, desc){
     pessoas = {
-        1: "PESSOAS FÍSICAS PRIVADAS",
-        2: "PESSOAS JURÍDICAS PRIVADAS",
+        1: "PESSOAS FÍSICAS",
+        2: "PESSOAS JURÍDICAS",
     }
 
     str = "DE "
@@ -1210,7 +1218,7 @@ function descByPFJ(eixo, desc){
 
     if(pessoas[url['pfj']]){
         if(desc.includes(str))
-            nome = pessoas[url['pfj']];
+            nome = str + pessoas[url['pfj']];
         else
             nome = str + pessoas[url['pfj']];
     }
@@ -1292,7 +1300,10 @@ function descByCAD(eixo, desc){
         nome = str + " " + prepos[url['cad']] + " " + cads[url['cad']];
     }
     else {
-        nome = "Culturais e Criativas"
+        if(eixo == 2 && (url['var'] == 9 || url['var'] == 11 || url['var'] == 12 || url['var'] == 13 || url['var'] == 14))
+            nome = "";
+        else
+            nome = "Culturais e Criativas";
     }
 
     if(desc != undefined)
