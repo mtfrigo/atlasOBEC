@@ -504,27 +504,9 @@ d3.json("./db/json_treemap_region.php"+config, function(error, data) {
 			.attr("text-anchor", "middle");
 	}
 
-
-    // if(url['uf'] != 0 && url['cad'] == 0) {
-    //     destacaPais(url['uf']);
-    //     setPercentValueData({percentual: $('svg').find('rect[data-legend="'+url['uf']+'"]').attr("data-percent")}, eixo, vrv);
-    //     setIntegerValueData({valor: $('svg').find('rect[data-legend="'+url['uf']+'"]').attr("data-integer")}, eixo, vrv);
-    // }
-    //
-    // if(url['cad'] != 0 && url['uf'] != 0) {
-		// destacaPais(url['uf']);
-    //     //setPercentValueData({percentual: $('svg').find('rect[data-legend="'+url['uf']+'"]').attr("data-percent")}, eixo, vrv);
-    //     setIntegerValueData({valor: $('svg').find('rect[data-legend="'+url['uf']+'"]').attr("data-integer")}, eixo, vrv);
-    // }
-
     if(url['uf'] == 0) $(window.parent.document).find(".state-title").first().html("Brasil");
 
 	console.log(data)
-
-    // $(window.parent.document).find(".integer-value").first().find(".description-number").html("integer", updateDescPercent(textJSON.var[eixo][vrv-1].desc_int, data[dados.key[0]].uf));
-    // $(window.parent.document).find(".percent-value").first().find(".description-number").html("percent", updateDescPercent(textJSON.var[eixo][vrv-1].desc_percent, data[dados.key[0]].uf));
-
-
 
 });
 
