@@ -4,7 +4,8 @@ var anos_default;
 
 //$.ajaxSetup({async: false});
 $.get("./db/json_ano_default.php?eixo="+getEixo(window.location.hash.substring(1)), function(data) {
-    anos_default = JSON.parse(data); 
+    anos_default = JSON.parse(data);
+    console.log(anos_default); 
 });
 
 //$.ajaxSetup({async: true});
@@ -1385,7 +1386,10 @@ $(document).ready(function(){
                     case 1: url['ano'] = anos_default[url['var']][url['ocp']]; break;
                     case 2: url['ano'] = anos_default[url['var']][0]; break;
                     case 3:
-                     index = url['slc'] == 0 ? 1 : 0
+                    if(url['var'] >= 11)
+                        url['slc'] = 0
+                    index = url['slc'] == 0 ? 1 : 0
+                     
                      url['ano'] = anos_default[url['var']][index]; break;
                 }
 
