@@ -125,6 +125,9 @@ function configInfoDataBoxMapaClick(eixo, vrv, dados) {
     }
     else if(eixo == 1){
 
+        if(url['cad'] == 0){
+            setPercentValueData(dados, eixo, vrv);
+        }
 
     }
     else if(eixo == 2){
@@ -132,7 +135,6 @@ function configInfoDataBoxMapaClick(eixo, vrv, dados) {
         setIntegerValueData(dados, eixo, vrv);
         if(url['cad'] == 0){
             setPercentValueData(dados, eixo, vrv);
-
         }
 
     }
@@ -159,10 +161,11 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, valor,  percent, percent_uf, url
     if(eixo == 1){
 
         if(url['ocp'] == 0){
+
             if(url['cad'] != 0) {
                 destacaSetor(url['cad']);
 
-                if(url['deg'] == 0){
+                if(deg == 0){
                     setPercentValueData({percentual: percent, taxa: 0}, eixo, vrv);
                 }
                 else{
@@ -277,15 +280,13 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
     }
     else if(eixo == 1) {
 
-        if(url['deg'] == 0){
+        if(deg == 0){
             setIntegerValueData({valor: d.value}, eixo, vrv);
             setPercentValueData({percentual: d.data.size / root.value}, eixo, vrv);
         }
         else{
             setIntegerValueData({valor: d.value}, eixo, vrv);
             setPercentValueData({percentual: parseFloat(d.value/percent)}, eixo, vrv);
-
-
         }
 
 
@@ -326,7 +327,7 @@ function configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg, valor, pe
         }
         else{
             setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
-            setPercentValueData({percentual:  valor , taxa: 0}, eixo, vrv);
+            setPercentValueData({percentual:  percent , taxa: 0}, eixo, vrv);
         }
         // setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
     }

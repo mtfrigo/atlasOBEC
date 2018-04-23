@@ -348,7 +348,15 @@ function ready(error, br_states, mapa){
 		.append("path")
 		.attr("data-legend",function(d) { return d.id; })
 		// .style('fill', function(d){return color(d.properties.name.replace(/\s+/g, '').length);})
-		.style('fill', function(d){ if(url['var'] == 17) {return colorJSON.binario[dict[d.id].valor.toString()].color; } else return color(dict[d.id].valor);})
+		.style('fill', function(d){
+		    if(url['var'] == 17) {
+		        return colorJSON.binario[dict[d.id].valor.toString()].color;
+		    }
+		    else {
+		        if(color(dict[d.id]) == undefined)
+		            return color(dict);
+		        else
+		            return color(dict[d.id].valor)}})
 		.attr("d", path)
 
 		//mouseover

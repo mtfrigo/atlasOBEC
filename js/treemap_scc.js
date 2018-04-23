@@ -229,7 +229,6 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
 				.on("mouseout", tooltipInstance.hideTooltip)
 				.on("click", function(d) {
 
-
 				    if(url['ocp'] == 0) {
                         var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/cad=[0-9]*/, "cad=" + d.data.colorId);
                         newMapaSrc = newMapaSrc.replace(/uf=[0-9]*/, "uf=" + url['uf']);
@@ -269,20 +268,21 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         enableDesag(eixo, vrv, d.data.colorId, true, slc, url);
                         destacaSetor(d.data.colorId);
 
-                        cad_percent = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent");
-                        cad_valor = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-value");
 
-                        if(url['deg'] == 0){
+                        cad_valor = d.data.size;
+
+                        if(deg == 0){
                             cad_percent_uf = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent-uf");
+                            cad_percent = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent")
                         }
                         else{
+                            cad_percent = d.data.percentual;
                             cad_percent_uf = getSoma(d.data.colorId);
                         }
 
-
-                        configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg);
-                        // if(d.parent.data.name.match("Atividades")) $(window.parent.document).find(".cad-title").first().html("Atividades Relacioandas - "+d.data.name);
-                        // else if(d.parent.data.name.match("Cultura")) $(window.parent.document).find(".cad-title").first().html("Cultura - "+d.data.name);
+                        configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg, cad_valor, cad_percent, cad_percent_uf );
+                         if(d.parent.data.name.match("Atividades")) $(window.parent.document).find(".cad-title").first().html("Atividades Relacionadas - "+d.data.name);
+                         else if(d.parent.data.name.match("Cultura")) $(window.parent.document).find(".cad-title").first().html("Cultura - "+d.data.name);
                     }
 				})
 		        .style("cursor", "pointer");
