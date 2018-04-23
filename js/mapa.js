@@ -657,8 +657,8 @@ function legendaBinario(){
     else
         estadoAtual = "BRASIL"
 
-    $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent("integer", textJSON.var[eixo][vrv-1].desc_int, estadoAtual));
-    $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent("percent", textJSON.var[eixo][vrv-1].desc_percent, estadoAtual));
+    $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(eixo, "integer", textJSON.var[eixo][vrv-1].desc_int, estadoAtual));
+    $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", textJSON.var[eixo][vrv-1].desc_percent, estadoAtual));
 
     function loadTooltip(d, eixo, vrv){
 

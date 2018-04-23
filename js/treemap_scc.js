@@ -336,7 +336,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                 tooltipInstance.showTooltip(d, [
                     ["title", d.data.name],
                     ["", formatTextVrv(d.data.size, eixo, vrv)],
-                    ["", formatTextTaxaVrv((d.data.size/root.value), eixo, vrv)],
+                    //["", formatTextTaxaVrv((d.data.size/root.value), eixo, vrv)],
 
                 ]);
             }
@@ -345,7 +345,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                     ["title", d.data.name],
                     ["", formatTextVrv(d.data.size, eixo, vrv)],
                     ["", formatTextTaxaVrv((d.data.size/root.value), eixo, vrv)],
-                    ["", formatTextTaxaVrv(d.data.percentual, eixo, vrv)],
+                    //["", formatTextTaxaVrv(d.data.percentual, eixo, vrv)],
 
                 ]);
             }

@@ -1051,7 +1051,7 @@ function setIntegerValueData(value, eixo, vrv) {
 * Função para atualizar a descrição do percentual em função do estado selecionado
 */
 
-function descByUF(tipo, desc, nomeestado){
+function descByUF(eixo, tipo, desc, nomeestado){
     prepos = {
         "ACRE":"DO",
         "ALAGOAS":"DE",
@@ -1084,16 +1084,8 @@ function descByUF(tipo, desc, nomeestado){
 
     nomeestado = nomeestado.toUpperCase()
 
-    if(url['var'] == 3){
-        if(prepos[nomeestado]){
-            nomeestado = prepos[nomeestado] + ' ' +nomeestado
-        }
-        else{
-            nomeestado = "DO BRASIL"
-        }
-    }
-    else if(url['var'] == 4){
-        if(tipo == "integer"){
+    if(eixo == 0){
+        if(url['var'] == 3){
             if(prepos[nomeestado]){
                 nomeestado = prepos[nomeestado] + ' ' +nomeestado
             }
@@ -1101,7 +1093,26 @@ function descByUF(tipo, desc, nomeestado){
                 nomeestado = "DO BRASIL"
             }
         }
-        else if(tipo == "percent" ){
+        else if(url['var'] == 4){
+            if(tipo == "integer"){
+                if(prepos[nomeestado]){
+                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                }
+                else{
+                    nomeestado = "DO BRASIL"
+                }
+            }
+            else if(tipo == "percent" ){
+                if(prepos[nomeestado] && url['cad'] != 0){
+                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                }
+                else{
+                    nomeestado = "DO BRASIL"
+                }
+            }
+
+        }
+        else{
             if(prepos[nomeestado] && url['cad'] != 0){
                 nomeestado = prepos[nomeestado] + ' ' +nomeestado
             }
@@ -1109,16 +1120,45 @@ function descByUF(tipo, desc, nomeestado){
                 nomeestado = "DO BRASIL"
             }
         }
-
     }
-    else{
-        if(prepos[nomeestado] && url['cad'] != 0){
-            nomeestado = prepos[nomeestado] + ' ' +nomeestado
+    if(eixo == 2){
+        if(url['var'] == 1) {
+            if(prepos[nomeestado] && url['cad'] != 0){
+                nomeestado = prepos[nomeestado] + ' ' +nomeestado
+            }
+            else{
+                nomeestado = "DO BRASIL"
+            }
+        }
+        else if(url['var'] == 4){
+            if(tipo == "integer"){
+                if(prepos[nomeestado]){
+                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                }
+                else{
+                    nomeestado = "DO BRASIL"
+                }
+            }
+            else if(tipo == "percent" ){
+                if(prepos[nomeestado] && url['cad'] != 0){
+                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                }
+                else{
+                    nomeestado = "DO BRASIL"
+                }
+            }
+
         }
         else{
-            nomeestado = "DO BRASIL"
+            if(prepos[nomeestado] && url['cad'] != 0){
+                nomeestado = prepos[nomeestado] + ' ' +nomeestado
+            }
+            else{
+                nomeestado = "DO BRASIL"
+            }
         }
     }
+
 
 
 
@@ -1128,7 +1168,7 @@ function descByUF(tipo, desc, nomeestado){
         return
 }
 
-function descByMEC(desc){
+function descByMEC(eixo, desc){
     mecs = {
         1: "FNC",
         2: "MECENATO",
@@ -1159,7 +1199,7 @@ function descByMEC(desc){
         return
 }
 
-function descByPFJ(desc){
+function descByPFJ(eixo, desc){
     pessoas = {
         1: "PESSOAS FÍSICAS PRIVADAS",
         2: "PESSOAS JURÍDICAS PRIVADAS",
@@ -1196,7 +1236,7 @@ function descByPFJ(desc){
         return
 }
 
-function descByMOD(desc){
+function descByMOD(eixo, desc){
     mods = {
         1: "MODALIDADE DIRETA",
         2: "MODALIDADE INDIRETA",
@@ -1218,7 +1258,7 @@ function descByMOD(desc){
         return
 }
 
-function descByCAD(desc){
+function descByCAD(eixo, desc){
     prepos = {
         1: "DE",
         2: "DE",
@@ -1261,7 +1301,7 @@ function descByCAD(desc){
         return
 }
 
-function descByPRT(desc){
+function descByPRT(eixo, desc){
     portes = {
         1: "PORTE MICRO",
         2: "PORTE PEQUENO",
@@ -1284,7 +1324,7 @@ function descByPRT(desc){
         return
 }
 
-function descByANO(desc){
+function descByANO(eixo, desc){
 
     str = "do ano de "+(parseInt(url['ano'])-1)+" para "+url['ano']
 
@@ -1301,7 +1341,7 @@ function descByANO(desc){
         return
 }
 
-function updateDescPercent(tipo, desc, nomeestado){
+function updateDescPercent(eixo, tipo, desc, nomeestado){
 
     // {} - uf dinamica
     // [] - mecacnismo dinamico
@@ -1316,28 +1356,28 @@ function updateDescPercent(tipo, desc, nomeestado){
     }
 
     if(desc.includes('{}')){
-        desc =  descByUF(tipo, desc, nomeestado)
+        desc =  descByUF(eixo, tipo, desc, nomeestado)
     }
     if(desc.includes('[]')){
-        desc =  descByMEC(desc)
+        desc =  descByMEC(eixo, desc)
     }
     if(desc.includes('()')){
-        desc =  descByMOD(desc)
+        desc =  descByMOD(eixo, desc)
     }
     if(desc.includes('pfj')){
-        desc =  descByPFJ(desc)
+        desc =  descByPFJ(eixo, desc)
     }
 
     if(desc.includes('[cad]')){
-        desc =  descByCAD(desc)
+        desc =  descByCAD(eixo, desc)
     }
 
     if(desc.includes('[prt]')){
-        desc =  descByPRT(desc)
+        desc =  descByPRT(eixo, desc)
     }
 
     if(desc.includes('[ano]')){
-        desc =  descByANO(desc)
+        desc =  descByANO(eixo, desc)
     }
 
 
@@ -1431,6 +1471,10 @@ function setPrcTitle(prcTitle){
 * Parâmetros: valores, eixo e variável
  */
 function setPercentValueData(value, eixo, vrv) {
+
+    if(value.percentual == "NaN"){
+        value.percentual = 0;
+    }
 
     if(eixo == 0){
         if(vrv == 2) {
