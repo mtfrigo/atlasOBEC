@@ -1630,86 +1630,6 @@
 				}
 			},
 			{
-				"id":"6",
-				"title":"<span>C4 Valor Absoluto Setores</span>",
-				"desc":"Demonstra a relação do comércio exterior nacional cultural com a massa salarial da cultura por estratificação proposta.",
-				"desc_var_mapa": "A variável evidencia o grau de concentração do comércio exterior dos quatro maiores Setores Culturais e Criativos, em relação à participação de todos os Setores Culturais e Criativos na corrente de comércio, em cada ano.",
-				"desc_int": "",
-				"desc_percent":"",
-				"sufixo_valor":"",
-				"fontes":"MDIC.",
-				"prefixo_valor":"",
-				"type":[
-					{"name":"Mapa", "id":"mapa"},
-					{"name":"Treemap", "id":"treemap_region"},
-					{"name":"Treemap SCC", "id":"treemap_scc"},
-					{"name":"Barras", "id":"barras"}
-				],
-				"mapa":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo", "id": "typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_region":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_scc":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"barras":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"}
-				],
-				"inativos":{
-					"mapa":["prt","uf","atc"],"treemap_region":["uf","prt"], "treemap_scc":["cad","prt"],"barras":["ano","prt"]
-				}
-			},
-			{
-				"id":"7",
-				"title":"<spna>C4 Valor Absoluto UFs</span>",
-				"desc":"Demonstra a participação do comércio exterior nacional cultural na despesa total com Fomento por parte do governo federal",
-				"desc_var_mapa": "A variável mostra o grau de concentração do comércio internacional para os quatro maiores, em termos de participação relativa, estados brasileiros, em relação à participação de todos os estados na corrente de comércio de cada período.",
-				"fontes": "Elaboração do NECCULT/UFRGS com base no MDIC.",
-				"desc_int": "",
-				"desc_percent":"",
-				"sufixo_valor":"",
-				"prefixo_valor":"",
-				"type":[
-					{"name":"Mapa", "id":"mapa"},
-					{"name":"Treemap", "id":"treemap_region"},
-					{"name":"Treemap SCC", "id":"treemap_scc"},
-					{"name":"Barras", "id":"barras"}
-				],
-				"mapa":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo", "id": "typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_region":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_scc":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"barras":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"}
-				],
-				"inativos":{
-					"mapa":["prt","uf","atc"],"barras":["ano","prt"]
-				}
-			},
-			{
 				"id":"8",
 				"title":"<span>IHH VALOR ABSOLUTO PARCEIROS</span>",
 				"desc":"Demonstra a relação do comércio exterior nacional cultural com o produto interno bruto por estratificação proposta.",
@@ -1748,38 +1668,6 @@
 				"inativos":{
 					"mapa":["prt","uf","atc"],"treemap_region":["uf","prt"], "treemap_scc":["cad","prt"],"barras":["ano","prt"]
 				}
-			},
-			{
-				"id":"9",
-				"title":"<span>IHH VALOR ABSOLUTO SETORES</span>",
-				"desc_int": "",
-				"desc_percent":"",
-				"desc":"Demonstra o quão concentrado é o comércio exterior nacional cultural por estratificação proposta.",
-				"desc_var_mapa": "A variável mede o grau de concentração da corrente de comércio dos Setores Culturais e Criativos em relação à contribuição de cada segmento dos Setores Culturais e Criativos.",
-				"fontes":"Elaboração do NECCULT/UFRGS com base no MDIC.",
-				"sufixo_valor":"",
-				"prefixo_valor":"",
-				"type":[
-					{"name":"Barras", "id":"barras"}
-				],
-				"barras":[
-					{"name":"Tipo","id":"typ"}
-				]
-			},
-			{
-				"id":"10",
-				"title":"<span>IHH VALOR ABSOLUTO UFs</span>",
-				"desc":"Demonsta o quão concentrado é o comércio exterior nacional cultural por estratificação proposta.",
-				"desc_var_mapa": "A variável mede o grau de concentração da corrente de comércio dos Setores Culturais e Criativos em relação à contribuição de cada unidade da federação.",
-				"fontes":"Elaboração do NECCULT/UFRGS com base no MDIC.",
-				"sufixo_valor":"",
-				"prefixo_valor":"",
-				"type":[
-					{"name":"Barras", "id":"barras"}
-				],
-				"barras":[
-					{"name":"Tipo","id":"typ"}
-				]
 			},
 			{
 				"id":"11",

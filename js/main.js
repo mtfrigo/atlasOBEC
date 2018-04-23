@@ -5,7 +5,6 @@ var anos_default;
 //$.ajaxSetup({async: false});
 $.get("./db/json_ano_default.php?eixo="+getEixo(window.location.hash.substring(1)), function(data) {
     anos_default = JSON.parse(data);
-    console.log(anos_default); 
 });
 
 //$.ajaxSetup({async: true});
@@ -171,10 +170,14 @@ function updateIframe(url){
             $('#treemap_region').html("BRASIL");
             //alert(url['view'])
 
-            if(url['var'] == 5 ){
-                $('iframe[id="view_box"]').attr('src', 'linhas_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+            if(url['var'] == 5 || url['var'] == 8){
+                newUrl = newUrl.replace(/cad=[0-9]*/, "cad=1");
+                $('iframe[id="view_box"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 // $('iframe[id="view_box"]').attr('src', 'no-view.html');
-
+                if(url['var'] == 8)
+                    $('iframe[id="view_box"]').parent().find(".view-title").html("IHH VALOR ABSOLUTO POR SETORES");
+                else(url['var'] == 5)
+                    $('iframe[id="view_box"]').parent().find(".view-title").html("C4 VALOR ABSOLUTO POR PARCEIROS");
 
             }
             else if(url['var'] > 5 && url['var'] < 13 || url['var'] == 14 ){
@@ -243,6 +246,17 @@ function updateIframe(url){
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA FINANCIAMENTO TOTAL / RECEITA EXECUTIVO");
                 $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA DESPESA MINC / RECEITA EXECUTIVO");
             }
+        } else if( eixoAtual == 3){
+            $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
+            if(url['var'] == 5 || url['var'] == 8){
+                newUrl = newUrl.replace(/cad=[0-9]*/, "cad=0");
+                $('iframe[id="view_box_barras"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                if(url['var'] == 8)
+                    $('iframe[id="view_box_barras"]').parent().find(".view-title").html("IHH VALOR ABSOLUTO POR PARCEIROS");
+                else(url['var'] == 5)
+                    $('iframe[id="view_box_barras"]').parent().find(".view-title").html("C2 VALOR ABSOLUTO POR PARCEIROS");
+            }
+            
         }
 
     }
@@ -260,7 +274,6 @@ function updateIframe(url){
                     $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
                 } else if (url['var'] == 9 && url['uf'] != 0){
-                    console.log(url['uf'])
                     $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS")
                 } else {
@@ -332,13 +345,19 @@ function updateIframe(url){
 
         }
         else if(eixoAtual == 3){
-            if(url['var'] >= 5 && url['var'] <= 10){
-                $('iframe[id="view_box_scc"]').attr('src', "no-view.html");
+            if(url['var'] == 5 || url['var'] == 8){
+                newUrl = newUrl.replace(/cad=[0-9]*/, "cad=2");
+                $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                if(url['var'] == 8)
+                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("IHH VALOR ABSOLUTO POR UF");
+                else(url['var'] == 5)
+                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("C4 VALOR ABSOLUTO POR UF");
             }
 
-            if(url['var'] >= 1 && url['var'] <= 10 ){
+            if(url['var'] >= 1 && url['var'] != 5 && url['var'] != 8 && url['var'] <= 10 ){
                 $('iframe[id="view_box_scc"]').css('display', 'block')
                 $('iframe[id="view_box_scc"]').attr('src', 'donut.php?' + newUrl + '&eixo=' +  window.location.hash.substring(1) + window.location.hash)
+                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("PROPORÇÃO EXPORTAÇÃO-IMPORTAÇÃO");
                 /*$('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");*/
             }

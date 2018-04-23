@@ -304,7 +304,6 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
             mundo = mundoRegex[0];
         }
 
-
         if(url['uf'] == 0){
             setPercentValueData({percentual: valor}, eixo, vrv);
         }
@@ -319,7 +318,6 @@ function configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg, valor, pe
 
         destacaSetor(parseInt(url['cad'])+1);
 
-        console.log(valor)
 
         if(url['deg'] == 0 || deg == 0){
             setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
@@ -328,7 +326,6 @@ function configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg, valor, pe
         else{
             setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
             setPercentValueData({percentual:  percent , taxa: 0}, eixo, vrv);
-            console.log(d)
         }
         // setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
     }
@@ -1000,6 +997,11 @@ function enableDesag(eixo, vrv, setor, iframe, slc, url){
 
 }
 
+function getDataVar(json, eixo, vrv){
+    return json.var[eixo].filter(function( obj ) {
+        return obj.id == vrv;
+    })[0];
+}
 /*
 * Função para atribuir o valor do dado inteiro para a variável em questão
 * Parâmetros: valores, eixo e variável
@@ -1008,10 +1010,11 @@ function setIntegerValueData(value, eixo, vrv) {
 
 	$.get("./data/pt-br.json", function(description) {
 
-	    // console.log(value)
+        // console.log(value)
 
-	    sufixo = description.var[eixo][vrv-1].sufixo_valor;
-		prefixo = description.var[eixo][vrv-1].prefixo_valor;
+        var result = getDataVar(description, eixo, vrv);
+	    sufixo = result.sufixo_valor;
+		prefixo = result.prefixo_valor;
 		valor = value.valor;
 		switch(eixo) {
 			case 0:
@@ -1767,6 +1770,19 @@ function updateMenuSetor(eixo, vrv){
 	else if (eixo == 2){
 
 	    if(vrv == 15 || vrv == 16 || vrv == 10){
+            d3.selectAll('#menu-view').filter(function(d, i){
+                return i;
+            }).style("display", "none");
+        }
+        else{
+            d3.selectAll('#menu-view').filter(function(d, i){
+                return i;
+            }).style("display", "inline");
+        }
+    }
+    else if (eixo == 3){
+
+	    if(vrv == 5 || vrv == 8){
             d3.selectAll('#menu-view').filter(function(d, i){
                 return i;
             }).style("display", "none");
