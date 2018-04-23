@@ -1085,7 +1085,7 @@ function descByUF(eixo, tipo, desc, nomeestado){
     nomeestado = nomeestado.toUpperCase()
 
     if(eixo == 0){
-        if(url['var'] == 3){
+        if(url['var'] == 3 || url['var'] == 9){
             if(prepos[nomeestado]){
                 nomeestado = prepos[nomeestado] + ' ' +nomeestado
             }
