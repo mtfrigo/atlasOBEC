@@ -706,7 +706,6 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                     }
                 }
                 if(vrv === 3){
-                    console.log(dados)
                     tooltipInstance.showTooltip(d, [
                         ["title", dados.key[i]],
                         ["", formatTextVrv(dados.value[i], eixo, vrv)],

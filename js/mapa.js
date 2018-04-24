@@ -385,11 +385,6 @@ function ready(error, br_states, mapa){
 		// .style('fill', function(d){return color(d.properties.name.replace(/\s+/g, '').length);})
 		.style('fill', function(d){
 
-            //console.log(dict[d.id].valor)
-
-            console.log(dict[d.id])
-            console.log(vrv)
-
             if(eixo == 2 && vrv == 17){
 
                 if(dict[d.id].valor == 0){
