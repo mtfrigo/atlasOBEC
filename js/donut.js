@@ -45,7 +45,13 @@ function ready(json){
         .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
         .attr("dy", ".40em")
         .attr("dx", -radius/6)
-        .text(function(d) { if(d.data.percent != 0) return percentFormat(d.data.percent) })
+        .text(function(d) { 
+            if(vrv == 3 && eixo == 3){
+                return formatTextVrv(d.data.valor, 3, vrv);
+            }
+            if(d.data.percent != 0) 
+                return percentFormat(d.data.percent) 
+            })
         .style("font-family", "arial")
         .style("fill", "#fff")
         .style("font-size", radius/10)

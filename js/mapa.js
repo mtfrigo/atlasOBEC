@@ -620,7 +620,6 @@ function legendaBinario(){
 
 	$(window.parent.document).find('.value-info-title').html(getDataVar(textJSON, eixo, vrv).mapa_valores);
     $(window.parent.document).find('.font-title').html("Fonte(s): "+getDataVar(textJSON, eixo, vrv).fontes);
-
     /*if(legendaWidth > 768) {
         legend_svg.select(".legendLinear").call(legendLinear);
         legend_svg.select(".legendCells").call(legendLinear1);
