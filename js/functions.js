@@ -1032,6 +1032,113 @@ function getDataVar(json, eixo, vrv){
         return obj.id == vrv;
     })[0];
 }
+
+
+function updateDescComercio(desc, vrv, nomeestado){
+    prepos = {
+        "ACRE":"DO",
+        "ALAGOAS":"DE",
+        "AMAPÁ":"DO",
+        "AMAZONAS":"DO",
+        "BAHIA":"DA",
+        "CEARÁ":"DO",
+        "DISTRITO FEDERAL":"DO",
+        "ESPÍRITO SANTO":"DO",
+        "GOIÁS":"DE",
+        "MARANHÃO":"DO",
+        "MATO GROSSO":"DE",
+        "MATO GROSSO DO SUL":"DE",
+        "MINAS GERAIS":"DE",
+        "PARÁ":"DO",
+        "PARAÍBA":"DA",
+        "PARANÁ":"DO",
+        "PERNAMBUCO":"DE",
+        "PIAUÍ":"DO",
+        "RIO DE JANEIRO":"DO",
+        "RIO GRANDE DO NORTE":"DO",
+        "RIO GRANDE DO SUL":"DO",
+        "RONDÔNIA":"DE",
+        "RORAIMA":"DE",
+        "SANTA CATARINA":"DE",
+        "SÃO PAULO":"DE",
+        "SERGIPE":"DE",
+        "TOCANTINS": "DO"
+    }
+    nomeestado = nomeestado.toUpperCase()
+    
+    if(prepos[nomeestado]){
+        nomeestado = prepos[nomeestado] + ' ' +nomeestado
+    }
+    else{
+        nomeestado = "DO BRASIL"
+    }
+    
+    prc = $(window.parent.document).find(".opt-select[data-id=prc] option:selected").text();
+    typ = $(window.parent.document).find(".opt-select[data-id=typ] option:selected").text();
+    cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
+    
+    if(cad.toUpperCase() == "TODOS" || cad.toUpperCase() == " TODOS"){
+        if(vrv == 14)
+            cad = "DOS SETORES CULTURAIS E CRIATIVOS";
+        else
+            cad = "PELOS SETORES CULTURAIS E CRIATIVOS";
+    } else {
+        if(vrv != 14)
+            cad = "PELO "+ cad;
+        else
+            cad = "DE "+cad;
+    }
+    switch(typ){
+        case 'Exportação': 
+            if(vrv >= 1 && vrv <= 3)
+                typ = "VALOR EXPORTADO"
+            else if(vrv == 11 || vrv == 12 || vrv == 14){
+                typ = "DAS EXPORTAÇÕES"
+            } else if(vrv == 13){
+                typ = "EXPORTADOS"
+            }
+            $(window.parent.document).find(".state-title").first().text(nomeestado)
+            $(window.parent.document).find(".prc-title").first().text("PARA "+prc)
+            break;
+        case 'Importação': 
+            if(vrv >= 1 && vrv <= 3)
+                typ = "VALOR IMPORTADO"
+            else if(vrv == 11 || vrv == 12 || vrv == 14){
+                typ = "DAS IMPORTAÇÕES"
+            }else if(vrv == 13){
+                typ = "IMPORTADOS"
+            }
+
+            $(window.parent.document).find(".state-title").first().text("DE "+prc)
+            $(window.parent.document).find(".prc-title").first().text("PARA "+nomeestado.split(" ")[1])
+            break;
+        case 'Saldo Comercial': 
+            if(vrv >= 1 && vrv <= 3)
+                typ = "SALDO COMERCIAL"
+            else if(vrv == 13){
+                typ = "DE SALDO COMERCIAL"
+            }
+            $(window.parent.document).find(".state-title").first().text(nomeestado.split(" ")[1])
+            $(window.parent.document).find(".prc-title").first().text(prc)
+            break;
+        case 'Valor Transicionado':
+            if(vrv >= 1 && vrv <= 3)
+                typ = "VALOR TRANSACIONADO" 
+            else if(vrv == 13){
+                typ = "DE VALOR TRANSACIONADO"
+            }
+            $(window.parent.document).find(".state-title").first().text(nomeestado.split(" ")[1])
+            $(window.parent.document).find(".prc-title").first().text(prc)
+            break;
+    }
+        
+    
+    if(desc != undefined)
+        return desc.replace('{}', nomeestado).replace('<>', typ).replace('[]', prc).replace('()', cad);
+    else
+        return
+}
+
 /*
 * Função para atribuir o valor do dado inteiro para a variável em questão
 * Parâmetros: valores, eixo e variável
@@ -1058,7 +1165,6 @@ function setIntegerValueData(value, eixo, vrv) {
 			    if(sufixo == '%')
                     valor *= 100;
                 break;
-
         }
 
         var literal = formatDecimalLimit(valor, 2);
@@ -1073,7 +1179,10 @@ function setIntegerValueData(value, eixo, vrv) {
             literal = formatDecimalLimit(valor, 6);
 
         // console.log(value)
-
+        if(eixo == 3){
+            estado = $(window.parent.document).find(".state-title").first().text()
+            $(window.parent.document).find(".description-number").first().html(updateDescComercio(result.desc_int, vrv, estado))
+        }
 
         $(window.parent.document).find(".integer-value").first().find(".number").first().html(prefixo+literal+sufixo);
         var doc =  $(window.parent.document).find(".integer-value").first().find(".number").first();
@@ -1202,9 +1311,6 @@ function descByUF(eixo, tipo, desc, nomeestado){
             }
         }
     }
-
-
-
 
     if(desc != undefined)
         return desc.replace('{}', nomeestado);

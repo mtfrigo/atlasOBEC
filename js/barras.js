@@ -1090,7 +1090,7 @@ else {
         }
         if(eixo == 0) setStateTitle(function(){if(data[dados.key[0]].uf == "Todos") return "Brasil"; else return data[dados.key[0]].uf});
 
-
+        
         $(window.parent.document).find(".integer-value").first().find(".description-number").html("integer", updateDescPercent(eixo, getDataVar(textJSON, eixo, vrv).desc_int, data[dados.key[0]].uf));
         $(window.parent.document).find(".percent-value").first().find(".description-number").html("percent", updateDescPercent(eixo, getDataVar(textJSON, eixo, vrv).desc_percent, data[dados.key[0]].uf));
 
