@@ -228,11 +228,7 @@ function updateIframe(url){
         else if(eixoAtual == 2){
             $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
 
-            if(url['var'] ==  17){
-                $('iframe[id="view_box_barras"]').attr('src', 'no-view.html');
-
-            }
-            else if (url['var'] ==  16 || url ['var'] == 15) {
+            if (url['var'] ==  16 || url ['var'] == 15) {
                 if(url['uos'] == 0) {
                     $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR UF");
                 }

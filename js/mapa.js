@@ -247,7 +247,7 @@ d3.json('data/pt-br.json', function(error, data) {
 var config = "?var="+vrv+"&atc="+atc+"&cad="+cad+"&prt="+prt+"&ocp="+ocp+"&mec="+mec+"&typ="+typ+"&prc="+prc+"&pfj="+pfj+"&mod="+mod+"&ano="+ano+"&eixo="+eixo+"&mundo="+mundo+"&slc="+slc;
 
 $.get("./db/json_mapa.php"+config, function(data) {
-    // console.log(data);
+     // console.log(data);
 });
 //pre-load arquivos
 d3.queue()
@@ -259,6 +259,7 @@ d3.queue()
 function ready(error, br_states, mapa){
     $('#loading').fadeOut('fast');
 	if (error) return console.error(error);
+    console.log(mapa);
 
     //if(url['var'] != 17)
 
@@ -329,6 +330,40 @@ function ready(error, br_states, mapa){
 
 
 
+	//para funcionar var 17 eixo 3
+
+    if(eixo == 2 && url['var'] == 17){
+
+        var arrayAnos = ["2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018" ];
+
+        $(window.parent.document).find('select[data-id=ano]').each(function(){
+            selectOp = this;
+            $(this.options).each(function(){
+                $(this).remove();
+            })
+            dummy = arrayAnos.slice(0);
+            dummy.reverse().forEach(function(d){
+                $(selectOp).append($('<option>', {
+                    value: d,
+                    text: d
+                }))
+            })
+            $(this).val(url['ano']);
+        });
+
+        var soma = 0;
+
+        Object.keys(dict).forEach(function(key,index) {
+            soma += dict[key].valor
+        })
+
+        if(url['uf'] == 0)
+            setIntegerValueData({valor: soma}, eixo, vrv);
+
+
+
+    }
+
    // console.log(colorJSON)
    //  console.log(colorJSON.binario['0'].color)
 
@@ -349,14 +384,16 @@ function ready(error, br_states, mapa){
 		.attr("data-legend",function(d) { return d.id; })
 		// .style('fill', function(d){return color(d.properties.name.replace(/\s+/g, '').length);})
 		.style('fill', function(d){
-		    if(url['var'] == 17) {
-		        return colorJSON.binario[dict[d.id].valor.toString()].color;
-		    }
-		    else {
-		        if(color(dict[d.id]) == undefined)
-		            return color(dict);
-		        else
-		            return color(dict[d.id].valor)}})
+
+            //console.log(dict[d.id].valor)
+
+
+            if(color(dict[d.id]) == undefined)
+                return color(dict);
+            else
+                return color(dict[d.id].valor)})
+
+
 		.attr("d", path)
 
 		//mouseover
@@ -424,10 +461,7 @@ function ready(error, br_states, mapa){
         .orient('vertical')
         .scale(color);
 
-    if(url['var'] != 17)
         escalaMapa();
-    else
-        legendaBinario();
 
 /********* LEGENDA DO MAPA *********/
 
@@ -741,7 +775,22 @@ function legendaBinario(){
                     ["title", d['properties']['name']],
                     ["", formatTextVrv(dict[d.id].valor, eixo, vrv)],
                 ]);
+            }
+            else if(vrv === 17){
 
+                var SouN = "";
+
+                if(dict[d.id].valor == 0)
+                    SouN = "Não";
+                else
+                    SouN = "Sim";
+
+
+                tooltipInstance.showTooltip(d, [
+                    ["title", d['properties']['name']],
+                    ["", SouN],
+                    ["", formatTextVrv(dict[d.id].valor, eixo, vrv)],
+                ]);
             }
 
         }

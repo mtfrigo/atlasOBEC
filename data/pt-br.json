@@ -1419,7 +1419,7 @@
 				"desc_var_mapa": "",
 				"desc":"",
 				"sufixo_valor":"",
-				"prefixo_valor":"",
+				"prefixo_valor":"R$ ",
 				"type":[
 					{"name":"Barras", "id":"barras"}
 				],
