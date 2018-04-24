@@ -31,6 +31,20 @@ function controlVarPage(clickVar){
     /* variáveis com valores default */
 }
 
+function getAnoDefault(eixo_atual){
+    switch(eixo_atual){
+        case 0: url['ano'] = anos_default[url['var']][0]; break;
+        case 1: url['ano'] = anos_default[url['var']][url['ocp']]; break;
+        case 2: url['ano'] = anos_default[url['var']][0]; break;
+        case 3:
+        if(url['var'] >= 11)
+            url['slc'] = 0
+        index = url['slc'] == 0 ? 1 : 0
+         
+         url['ano'] = anos_default[url['var']][index]; break;
+    }
+}
+
 /*-----------------------------------------------------------------------------
 Função: defaultUrl
     atualiza url para valores default (menos a url['var'])
@@ -1400,17 +1414,7 @@ $(document).ready(function(){
                 else $(window.document).find(".cad-title").first().html($('.bread-select[data-id=ocp] option:selected').text());
                 $(window.document).find(".title[data-id='var-title']").first().html($('.bread-select[data-id=var] option:selected').text());
                 updateBreadUF(eixo_atual, url['var']);
-                switch(eixo_atual){
-                    case 0: url['ano'] = anos_default[url['var']][0]; break;
-                    case 1: url['ano'] = anos_default[url['var']][url['ocp']]; break;
-                    case 2: url['ano'] = anos_default[url['var']][0]; break;
-                    case 3:
-                    if(url['var'] >= 11)
-                        url['slc'] = 0
-                    index = url['slc'] == 0 ? 1 : 0
-                     
-                     url['ano'] = anos_default[url['var']][index]; break;
-                }
+                getAnoDefault(eixo_atual);
 
                 if(eixo_atual == 1){
                     updateOcupacoes($(this).val());
@@ -1421,7 +1425,9 @@ $(document).ready(function(){
 
                 if(eixo_atual == 3){
                     updateServicos(url['var']);
+                    updateTipo(url['var']);
                 }
+                
             }
             if($(this).attr('data-id') == 'deg') {
                 $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
@@ -1451,7 +1457,7 @@ $(document).ready(function(){
 
         if($(this).attr("data-id") !== "eixo") {
             var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
-
+            
             updateUrl();
             controlFilter($(this).val(), $(this).attr('data-id'));
 
@@ -1494,7 +1500,15 @@ $(document).ready(function(){
                 }
 
                 if(eixo_atual == 3){
+
+                    if($(this).attr("data-id") == "prc"){
+                        document.getElementById('view_box').contentWindow.location.reload(true);
+                        $(window.document).find(".prc-title").first().html(this.options[e.target.selectedIndex].text);
+                        // updateDataDesc(url['var'], $(this).attr("data-id"), this.options[e.target.selectedIndex].text)
+                    }
                     updateServicos(url['var']);
+                    updateTipo(url['var']);
+                    //$(window.document).find(".prc-title").first().html($(".opt-select[data-id='prc'] option:selected").text());
                 }
                 
             }
@@ -1508,11 +1522,10 @@ $(document).ready(function(){
 
                 updateDataDesc(url['var'], $(this).attr("data-id"), this.options[e.target.selectedIndex].text)
             }
+
             if($(this).attr("data-id") == "prc"){
                 document.getElementById('view_box').contentWindow.location.reload(true);
-
                 $(window.document).find(".prc-title").first().html(this.options[e.target.selectedIndex].text);
-
                 // updateDataDesc(url['var'], $(this).attr("data-id"), this.options[e.target.selectedIndex].text)
             }
             if($(this).attr("data-id") === "cad") {

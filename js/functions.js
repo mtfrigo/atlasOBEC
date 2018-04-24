@@ -596,19 +596,8 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
 
     }
     else if(eixo == 3){
-
-        if(vrv === 1 || vrv === 2){
-            dados.valor = valor;
-            setIntegerValueData(dados, eixo, vrv);
-        }
-        else if(vrv === 99){
-            if(url["uos"] == 0){
-                setIntegerValueData(dados, eixo, vrv);
-            } else if(url["uos"] == 1){
-                //setPercentValueData({percentual: dados.value[i]}, eixo, vrv);
-            }
-        }
-
+        dados.valor = valor;
+        setIntegerValueData(dados, eixo, vrv);
 
     }
 }
@@ -821,6 +810,21 @@ function updateBreadUF(eixo, vrv){
             } else{
                 $('.bread-select[data-id=uf]').prop("disabled", false);
                 $('.bread-select[data-id=prc]').prop("disabled", false);
+            }
+            break;
+    }
+}
+
+function updateTipo(vrv){
+    switch(vrv){
+        case '3':
+            $("select[data-id='typ']").find("option[value='3']").remove();
+            break;
+        default:
+            if($("select[data-id=typ]").find("option[value='3']").length == 0){
+                $("select[data-id='typ']").find("option[value='4']").remove()
+                $("select[data-id='typ']").append("<option value='3'>Saldo Comercial</option>");
+                $("select[data-id='typ']").append("<option value='4'>Valor Transicionado</option>");
             }
             break;
     }
@@ -1046,6 +1050,7 @@ function setIntegerValueData(value, eixo, vrv) {
         $(window.parent.document).find(".integer-value").first().find(".number").first().html(prefixo+literal+sufixo);
         var doc =  $(window.parent.document).find(".integer-value").first().find(".number").first();
 
+        $(window.parent.document).find('.font-title').html("Fonte(s): "+result.fontes);
         setMaxFontSize(doc);
 	});
 }
