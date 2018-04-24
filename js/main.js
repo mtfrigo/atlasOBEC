@@ -123,7 +123,6 @@ function updateIframe(url){
     });
 
     var eixoAtual = getEixo(window.location.hash.substring(1));
-   
 
     ///BOX DO MAPA
     if($('iframe[id="view_box"]').length != 0) {
@@ -1375,7 +1374,7 @@ $(document).ready(function(){
 	});
 
 	/* escolher novo filtro */
-	$(document).on('change', ".opt-select", function(){
+	$(document).on('change', ".opt-select", function(e){
 
         if($(this).attr("data-id") !== "eixo") {
             var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
@@ -1387,8 +1386,13 @@ $(document).ready(function(){
             
             /* muda o select do bread para o mesmo que o das opções*/
             $(".bread-select[data-id="+$(this).attr('data-id')+"]").val($(this).val());
+            
+           
 
-
+            if($(this).attr("data-id") == "prc"){
+                document.getElementById('view_box').contentWindow.location.reload(true);
+                $(window.document).find(".prc-title").first().html(this.options[e.target.selectedIndex].text);
+            }
             if($(this).attr('data-id') == 'var'){
                 changeDescVar();
 
@@ -1420,8 +1424,14 @@ $(document).ready(function(){
                 }
 
                 if(eixo_atual == 3){
+                    
                     updateServicos(url['var']);
                     updateTipo(url['var']);
+                    if((url['var'] >= 5 && url['var'] <= 12) || url['var'] == 14){
+                        $(".opt-select[data-id='prc']").val(0)
+                        url['prc'] = 0
+                    }
+                    $(window.document).find(".prc-title").first().html($(".opt-select[data-id='prc'] option:selected").text());
                 }
                 
             }
@@ -1450,7 +1460,6 @@ $(document).ready(function(){
 	});
 
     $(document).on('change', ".bread-select", function(e){
-
         if($(this).attr("data-id") !== "eixo") {
             var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
             
@@ -1496,15 +1505,13 @@ $(document).ready(function(){
                 }
 
                 if(eixo_atual == 3){
-
-                    if($(this).attr("data-id") == "prc"){
-                        document.getElementById('view_box').contentWindow.location.reload(true);
-                        $(window.document).find(".prc-title").first().html(this.options[e.target.selectedIndex].text);
-                        // updateDataDesc(url['var'], $(this).attr("data-id"), this.options[e.target.selectedIndex].text)
-                    }
                     updateServicos(url['var']);
                     updateTipo(url['var']);
-                    //$(window.document).find(".prc-title").first().html($(".opt-select[data-id='prc'] option:selected").text());
+                    if((url['var'] >= 5 && url['var'] <= 12) || url['var'] == 14){
+                        $(".opt-select[data-id='prc']").val(0)
+                        url['prc'] = 0
+                    }
+                    $(window.document).find(".prc-title").first().html($(".opt-select[data-id='prc'] option:selected").text());
                 }
                 
             }
