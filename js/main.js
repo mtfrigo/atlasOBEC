@@ -123,6 +123,7 @@ function updateIframe(url){
     });
 
     var eixoAtual = getEixo(window.location.hash.substring(1));
+   
 
     ///BOX DO MAPA
     if($('iframe[id="view_box"]').length != 0) {
@@ -331,7 +332,6 @@ function updateIframe(url){
             }
             else if(url['var'] ==  17){
                 $('iframe[id="view_box_scc"]').attr('src', 'donut.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("PROPORÇÃO SIM-NÃO");
             }
             // else if(url['var'] == 7){
             //     $('iframe[id="view_box_scc"]').attr('src', 'treemap_region_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
@@ -1471,7 +1471,11 @@ $(document).ready(function(){
             
             /* muda o select das opções para o mesmo do bread */
             $(".opt-select[data-id="+$(this).attr('data-id')+"]").val($(this).val());
-
+            if($(this).attr("data-id") == "prc"){
+                document.getElementById('view_box').contentWindow.location.reload(true);
+                $(window.document).find(".prc-title").first().html(this.options[e.target.selectedIndex].text);
+                // updateDataDesc(url['var'], $(this).attr("data-id"), this.options[e.target.selectedIndex].text)
+            }
             //quando muda a variável, é preciso trocar a UF para 'Brasil'
             if($(this).attr('data-id') =='var'){
 
@@ -1509,6 +1513,7 @@ $(document).ready(function(){
                     updateServicos(url['var']);
                     updateTipo(url['var']);
                     if((url['var'] >= 5 && url['var'] <= 12) || url['var'] == 14){
+                        $('.bread-select[data-id=prc]').val(0);
                         $(".opt-select[data-id='prc']").val(0)
                         url['prc'] = 0
                     }
@@ -1519,19 +1524,11 @@ $(document).ready(function(){
             if($(this).attr("data-id") == "uf"){
                 document.getElementById('view_box').contentWindow.location.reload(true);
 
-
                 $(window.document).find(".state-title").first().html(this.options[e.target.selectedIndex].text);
-
-
-
                 updateDataDesc(url['var'], $(this).attr("data-id"), this.options[e.target.selectedIndex].text)
             }
 
-            if($(this).attr("data-id") == "prc"){
-                document.getElementById('view_box').contentWindow.location.reload(true);
-                $(window.document).find(".prc-title").first().html(this.options[e.target.selectedIndex].text);
-                // updateDataDesc(url['var'], $(this).attr("data-id"), this.options[e.target.selectedIndex].text)
-            }
+            
             if($(this).attr("data-id") === "cad") {
                 if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
