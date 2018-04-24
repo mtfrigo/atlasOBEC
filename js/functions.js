@@ -581,9 +581,11 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
 
         if(vrv === 1 || vrv === 2 || vrv === 3 || vrv === 4 || vrv == 5 || vrv == 6 || vrv === 7 || vrv === 8 || vrv === 9 || vrv === 11 || vrv === 12 || vrv === 13 || vrv === 14){
             dados.valor = dados.value[i];
-
             setIntegerValueData(dados, eixo, vrv);
-
+        }
+        else if(vrv === 17){
+            dados.valor = dados.value[i];
+            setIntegerValueData(dados, eixo, vrv);
         }
         else if(vrv === 15 || vrv === 16){
             dados.valor = dados.value[i];
@@ -1048,7 +1050,7 @@ function setIntegerValueData(value, eixo, vrv) {
         else if(eixo == 3)
             literal = formatDecimalLimit(valor, 6);
 
-        console.log(value)
+        // console.log(value)
 
 
         $(window.parent.document).find(".integer-value").first().find(".number").first().html(prefixo+literal+sufixo);
@@ -1784,7 +1786,7 @@ function updateMenuSetor(eixo, vrv){
 	}
 	else if (eixo == 2){
 
-	    if(vrv == 15 || vrv == 16 || vrv == 10){
+	    if(vrv == 15 || vrv == 16 || vrv == 10 || vrv == 17){
             d3.selectAll('#menu-view').filter(function(d, i){
                 return i;
             }).style("display", "none");

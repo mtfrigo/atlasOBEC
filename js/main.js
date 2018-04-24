@@ -318,6 +318,7 @@ function updateIframe(url){
             }
             else if(url['var'] ==  17){
                 $('iframe[id="view_box_scc"]').attr('src', 'donut.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("PROPORÇÃO SIM-NÃO");
             }
             // else if(url['var'] == 7){
             //     $('iframe[id="view_box_scc"]').attr('src', 'treemap_region_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);

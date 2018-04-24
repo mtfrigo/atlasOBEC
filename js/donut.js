@@ -92,8 +92,10 @@ function color(tipo){
     colors = {
         "Exportação": "#071342",
         "Importação": "rgb(109, 191, 201)",
-        "Sim": "rgb(109, 191, 201)",
-        "Não": "#071342"
+        "Sim": "#071342",
+        "Não": "#aaa"
+
+
     }
     return colors[tipo];
 }
@@ -111,7 +113,7 @@ function getPercent(data){
 function getSoma(data, tipo){
     sum_values = 0;
     data.forEach(function(d){
-        console.log(d)
+        // console.log(d)
         sum_values += d.valor;
     })
     data.forEach(function(d){
