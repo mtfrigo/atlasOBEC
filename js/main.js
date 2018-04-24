@@ -1417,11 +1417,15 @@ $(document).ready(function(){
                 updateBreadUF(eixo_atual, url['var']);
                 getAnoDefault(eixo_atual);
 
+                if(eixo_atual == 0){
+                    $('.opt-select[data-id=deg]').val(0);
+                }
                 if(eixo_atual == 1){
                     updateOcupacoes($(this).val());
                 }
                 if(eixo_atual == 2){
                     updateDefaultMec(url['var']);
+
                 }
 
                 if(eixo_atual == 3){
@@ -1500,6 +1504,9 @@ $(document).ready(function(){
                     case 3:
                      index = url['slc'] == 0 ? 1 : 0
                      url['ano'] = anos_default[url['var']][index]; break;
+                }
+                if(eixo_atual == 0){
+                    $('.opt-select[data-id=deg]').val(0);
                 }
                 if(eixo_atual == 1){
                     updateOcupacoes($(this).val());
