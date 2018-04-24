@@ -759,6 +759,12 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                         // ["", formatTextTaxaVrv(dados.taxa[i], eixo, vrv)],
                     ]);
                 }
+                else if(vrv === 17){
+                    tooltipInstance.showTooltip(d, [
+                        ["title", dados.key[i]],
+                        ["", formatTextVrv(dados.value[i], eixo, vrv)],
+                    ]);
+                }
             }
             else if(eixo === 3){
                 if(vrv === 1 || vrv === 2 || vrv === 3 || vrv === 4 || vrv === 5){

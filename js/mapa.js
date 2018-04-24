@@ -259,7 +259,7 @@ d3.queue()
 function ready(error, br_states, mapa){
     $('#loading').fadeOut('fast');
 	if (error) return console.error(error);
-    console.log(mapa);
+    // console.log(mapa);
 
     //if(url['var'] != 17)
 
@@ -387,11 +387,25 @@ function ready(error, br_states, mapa){
 
             //console.log(dict[d.id].valor)
 
+            console.log(dict[d.id])
+            console.log(vrv)
 
-            if(color(dict[d.id]) == undefined)
-                return color(dict);
-            else
-                return color(dict[d.id].valor)})
+            if(eixo == 2 && vrv == 17){
+
+                if(dict[d.id].valor == 0){
+                   return  colorJSON.binario['0'].color;
+                }
+                else{
+                    return colorJSON.binario['1'].color;
+                }
+            }
+            else{
+                if(color(dict[d.id]) == undefined)
+                    return color(dict);
+                else
+                    return color(dict[d.id].valor)
+            }
+        })
 
 
 		.attr("d", path)
@@ -461,6 +475,9 @@ function ready(error, br_states, mapa){
         .orient('vertical')
         .scale(color);
 
+    if(eixo == 2 && vrv == 17)
+        legendaBinario();
+    else
         escalaMapa();
 
 /********* LEGENDA DO MAPA *********/
