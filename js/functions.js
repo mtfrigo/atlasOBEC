@@ -102,6 +102,11 @@ function configInfoDataBoxMapa(eixo, vrv, dadosUF) {
     }
     else if(eixo == 2){
 
+        if(vrv == 17){
+            setPercentValueData ({percentual: 1}, eixo, vrv);
+        }
+
+
 
         if(url['cad'] == 0){
 
@@ -422,6 +427,7 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
     }
     else if(eixo == 2){
 
+
         indexAno = dados.key.indexOf(url['ano'])
         if(vrv == 15 || vrv == 16){
             if(url['uos'] == 0){
@@ -431,6 +437,9 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
                 setPercentValueData({percentual: dados.value[indexAno], taxa: dados.taxa[indexAno]}, eixo, vrv)
             }
                 
+        }
+        else if(vrv == 17){
+
         }
         else if(vrv == 10){
             if(url['mec'] == 0){
@@ -749,14 +758,12 @@ function appendMecenatoDesags(iframe){
         if($(window.parent.document).find("select[data-id='deg']").find("option[value='15']").length == 0) {
             $(window.parent.document).find("select[data-id='deg']").append("<option value='15'>MECENATO ESTADUAL</option>");
             $(window.parent.document).find("select[data-id='deg']").append("<option value='16'>EDITAIS ESTADUAIS</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='17'>CRÉDITO ESPECIAL</option>");
         }
     }
     else{
         if($(window.parent.document).find("option[value='15']").length == 0) {
             $("select[data-id='deg']").append("<option value='15'>MECENATO ESTADUAL</option>");
             $("select[data-id='deg']").append("<option value='16'>EDITAIS ESTADUAIS</option>");
-            $("select[data-id='deg']").append("<option value='17'>CRÉDITO ESPECIAL</option>");
         }
     }
 }
@@ -864,7 +871,6 @@ function updateMecanismo(url, vrv){
 
         $("select[data-id='mec']").append("<option value='0'>Mecenato Estadual</option>");
         $("select[data-id='mec']").append("<option value='1'>Editais Estaduais</option>");
-        $("select[data-id='mec']").append("<option value='2'>Crédito Especial</option>");
     }
 
 
@@ -1045,7 +1051,9 @@ function setIntegerValueData(value, eixo, vrv) {
         }
         else if(eixo == 3)
             literal = formatDecimalLimit(valor, 6);
-        
+
+        console.log(value)
+
 
         $(window.parent.document).find(".integer-value").first().find(".number").first().html(prefixo+literal+sufixo);
         var doc =  $(window.parent.document).find(".integer-value").first().find(".number").first();
@@ -1496,10 +1504,7 @@ function setPercentValueData(value, eixo, vrv) {
     }
 
     if(eixo == 0){
-        if(vrv == 2) {
-            $(window.parent.document).find(".percent-value").first().find(".number").first().html("");
-        }
-       else if(vrv == 3) {
+        if(vrv == 2 || vrv == 3 || vrv == 9) {
             $(window.parent.document).find(".percent-value").first().find(".number").first().html("");
         }
         else if(vrv < 9) {
@@ -1509,12 +1514,10 @@ function setPercentValueData(value, eixo, vrv) {
                 $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.percentual*100, 2)+"%");
             }
         }
-        else if(vrv == 9){
-            $(window.parent.document).find(".percent-value").first().find(".number").first().html("");
-        }
         else if(vrv >= 10 && vrv <= 13){
             $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.valor, 2));
         }
+
         var doc =  $(window.parent.document).find(".percent-value").first().find(".number").first();
         setMaxFontSize(doc);
     }
@@ -1536,7 +1539,7 @@ function setPercentValueData(value, eixo, vrv) {
     else if(eixo == 2){
 
 
-        if(vrv == 6 || vrv == 7 || vrv == 8 || vrv == 9|| vrv == 13 || vrv == 14){
+        if(vrv == 6 || vrv == 7 || vrv == 8 || vrv == 9|| vrv == 13 || vrv == 14 || vrv == 17){
             $(window.parent.document).find(".percent-value").first().find(".number").first().html("");
         }
         else if(vrv == 15 || vrv == 16){
