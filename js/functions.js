@@ -478,7 +478,10 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
                 setIntegerValueData(dados, eixo, vrv);
             } else if(url['cad'] == 2){
                 setPercentValueData(dados, eixo, vrv);
-            }
+            } /*else {
+                setTerceiroValueData(valor);
+                
+            }*/
        }else{
             dados.valor = dados.value[indexAno];
 
@@ -823,11 +826,17 @@ function updateBreadUF(eixo, vrv){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
                 $('.bread-select[data-id=prc]').prop("disabled", true);
                 $('.bread-select[data-id=cad]').prop("disabled", true);
+                $('.opt-select[data-id=prc]').prop("disabled", true);
 
+            }else if(vrv == 11 || vrv == 12 || vrv == 14){
+                $('.bread-select[data-id=prc]').prop("disabled", true);
+                $('.opt-select[data-id=prc]').prop("disabled", true);
+                $('.opt-select[data-id=cad]').prop("disabled", true);
             } else{
                 $('.bread-select[data-id=uf]').prop("disabled", false);
                 $('.bread-select[data-id=prc]').prop("disabled", false);
-                $('.bread-select[data-id=cad]').prop("disabled", true);
+                $('.opt-select[data-id=prc]').prop("disabled", false);
+                $('.bread-select[data-id=cad]').prop("disabled", false);
 
             }
             break;
@@ -1254,14 +1263,16 @@ function updateDescComercio(desc, vrv, nomeestado){
             $(window.parent.document).find(".prc-title").first().text("E "+prc.split(" ")[1])
             break;
     }
-        
+    $(window.parent.document).find(".integer-value").first().find(".description-number").first().css("font-size", "0.5vw")
     
     if(desc != undefined)
         return desc.replace('{}', nomeestado).replace('<>', typ).replace('[]', prc.split(" ")[1]).replace('()', cad);
     else
         return
 }
-
+function setTerceiroValueData(value){
+    $(window.parent.document).find(".state-title").first().attr("class", "number").text(value)
+}
 /*
 * Função para atribuir o valor do dado inteiro para a variável em questão
 * Parâmetros: valores, eixo e variável
@@ -1306,6 +1317,7 @@ function setIntegerValueData(value, eixo, vrv) {
             estado = $(window.parent.document).find(".state-title").first().text()
             $(window.parent.document).find(".description-number").first().html(updateDescComercio(result.desc_int, vrv, estado))
             $(window.parent.document).find(".percent-value").first().find(".description-number").first().html(updateDescPercentComercio(result.desc_percent, vrv, estado))
+            
         }
 
         $(window.parent.document).find(".integer-value").first().find(".number").first().html(prefixo+literal+sufixo);

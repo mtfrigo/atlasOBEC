@@ -107,7 +107,6 @@ function changeChart(url){
 
 function updateIframe(url){
 
-    alert("emtroui")
     /* var json;
     $.get("./data/pt-br.json", function(data) {
         json = data;
@@ -274,8 +273,6 @@ function updateIframe(url){
 
     /// BOX DO GRAFICO SCC
 
-    alert($(window.parent.document).find('iframe[id="view_box_scc"]').first().length);
-    alert($('iframe[id="view_box_scc"]').length)
     if ($('iframe[id="view_box_scc"]').length != 0) {
         $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
 
@@ -376,12 +373,15 @@ function updateIframe(url){
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("C4 VALOR ABSOLUTO POR UF");
             }
 
-            if(url['var'] >= 1 && url['var'] != 5 && url['var'] != 8 && url['var'] <= 10 ){
+            if(url['var'] >= 1 && url['var'] != 5 && url['var'] != 8 && url['var'] <= 10 || url['var'] == 12 ){
                 $('iframe[id="view_box_scc"]').css('display', 'block')
                 $('iframe[id="view_box_scc"]').attr('src', 'donut.php?' + newUrl + '&eixo=' +  window.location.hash.substring(1) + window.location.hash)
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("PROPORÇÃO EXPORTAÇÃO-IMPORTAÇÃO");
                 /*$('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");*/
+            }
+            if(url['var'] == 14){
+                $('iframe[id="view_box_scc"]').attr('src', 'no-view.html');
             }
             //else if(url['var'] == 5){
             //    newUrl = newUrl.replace(/slc=[0-9]*/, "slc=1");
