@@ -702,16 +702,16 @@ function legendaBinario(){
     }
 
 
-    if(url['uf'] == 0) $(window.parent.document).find(".state-title").first().html("Brasil");
+    if(url['uf'] == 0 && eixo != 3) $(window.parent.document).find(".state-title").first().html("Brasil");
 
     if(dict[url['uf']])
         estadoAtual = dict[url['uf']].uf
     else
         estadoAtual = "BRASIL"
-
-    $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, estadoAtual));
-    $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, estadoAtual));
-
+    if(eixo != 3){
+        $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, estadoAtual));
+        $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, estadoAtual));
+    }
     function loadTooltip(d, eixo, vrv){
 
         if(eixo == 0) {

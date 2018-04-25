@@ -1374,9 +1374,9 @@
 				"title":"Valor Absoluto",
 				"desc":"Demonstra o valor de absoluto dos setores culturais por estratificação proposta.",
 				"desc_var_mapa": "A variável mostra o valor absoluto transacionado, caracterizando quanto, em termos monetários, os Setores Culturais e Criativos contribuíram para o comércio internacional do Brasil. É possível visualizar este valor para exportações, importações, saldo comercial e valor transacionado.",
-				"desc_int": "de <> {} para o [] ()",
+				"desc_int": "DE <> {} PARA [] ()",
 				"fontes": "MDIC. ",
-				"desc_percent":"",
+				"desc_percent":"DO VALOR <> {}",
 				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",
 				"type":[
@@ -1414,7 +1414,7 @@
 				"title":"<span>Relação com o Comércio Exterior Brasileiro</span>",
 				"desc":"Demonstra a relação do comércio exterior nacional cultural com o comércio exterior brasileiro por estratificação proposta.",
 				"desc_var_mapa": "A variável calcula a contribuição dos Setores Culturais e Criativos para o comércio internacional total do Brasil. ",
-				"desc_int": "de participação no <> {} para o [] ()",
+				"desc_int": "de participação no <> {} para [] ()",
 				"fontes": "Elaboração do NECCULT/UFRGS com base no MDIC.",
 				"desc_percent":"",
 				"sufixo_valor":"%",
@@ -1454,7 +1454,7 @@
 				"title":"<span>Relação com o VA da Cultura<span>",
 				"desc":"Demonstra a relação do comércio exterior nacional cultural com o valor adicionado pela cultura por estratificação proposta.",
 				"desc_var_mapa": "A variável mostra a relação entre o comércio exterior dos Setores Culturais e Criativos com o valor adicionado pelas empresas culturais e criativas.",
-				"desc_int": " de participação do <> {} para o [] () no valor adicionado",
+				"desc_int": " de participação do <> {} para [] () no valor adicionado",
 				"desc_percent":"",
 				"sufixo_valor":"%",
 				"prefixo_valor":"",
@@ -1606,8 +1606,8 @@
 			{
 				"id":"13",
 				"title":"QUANTIDADE FÍSICA TRANSACIONADA",
-				"desc_int": "<> {} para o [] ()",
-				"desc_percent":"",
+				"desc_int": "<> {} PARA O [] ()",
+				"desc_percent":"dos kg <> pelo {}",
 				"desc":"Demonstra se há ou não vantagem comparativa nas exportações do comércio exterior nacional cultural por estratificação proposta.",
 				"desc_var_mapa": "A variável calcula a quantidade física, em kg, transacionada pelos Setores Culturais e Criativos.",
 				"fontes":"MDIC.",
@@ -1796,7 +1796,7 @@
 			{"name":"Exportação","value":"1"},
 			{"name":"Importação","value":"2"},
 			{"name":"Saldo Comercial","value":"3"},
-			{"name":"Valor Transicionado","value":"4"}
+			{"name":"Valor Transacionado","value":"4"}
 		],
 		"prc":[
 			{"name":"Mundo","value":"0"},
