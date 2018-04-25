@@ -1499,10 +1499,12 @@ $(document).ready(function(){
 
                 changeDescVar();
                 cleanDesagsUrl();
-                switchToSetores();
+                if(url['ocp'] == 0){
+                    switchToSetores(); 
+                    $('#setor').addClass("active");
+                    $('#ocupacao').removeClass("active");
+                }
                 enableDesag(getEixo(window.location.hash.substring(1)), $(this).val(), url['cad'], false, 0, url);
-                $('#setor').addClass("active");
-                $('#ocupacao').removeClass("active");
                 $('.bread-select[data-id=uf]').val(0);
                 $('.bread-select[data-id=cad]').val(0);
 
@@ -1511,14 +1513,9 @@ $(document).ready(function(){
                 $(window.document).find(".title[data-id='var-title']").first().html($('.bread-select[data-id=var] option:selected').text());
                 updateMenuSetor(getEixo(window.location.hash.substring(1)), $(this).val());
                 updateBreadUF(eixo_atual, url['var']);
-                switch(eixo_atual){
-                    case 0: url['ano'] = anos_default[url['var']][url['ocp']]; break;
-                    case 1: url['ano'] = anos_default[url['var']][0]; break;
-                    case 2: url['ano'] = anos_default[url['var']][0]; break;
-                    case 3:
-                     index = url['slc'] == 0 ? 1 : 0
-                     url['ano'] = anos_default[url['var']][index]; break;
-                }
+
+                getAnoDefault(eixo_atual);
+                
                 if(eixo_atual == 0){
                     $('.opt-select[data-id=deg]').val(0);
                 }

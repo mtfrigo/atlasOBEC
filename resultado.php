@@ -257,8 +257,9 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     <div class="view-title" style="margin-top: 5px" >
                         DADOS
                     </div>
-
+                    
                     <?php if($eixo == "comercio") { ?>
+                        
                         <div class="state-title">
                             BRASIl
                         </div>
@@ -271,7 +272,6 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                             BRASIL
                         </div>
                     <?php  }?>
-
                     <div class="cad-title">
                         TODOS SETORES
                     </div>
@@ -281,6 +281,10 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                             <span class="description-number"></span>
                         </div>
                         <div class="percent-value">
+                            <span class="number"></span>
+                            <span class="description-number"></span>
+                        </div>
+                        <div class ="setor-value" style="display:none;">
                             <span class="number"></span>
                             <span class="description-number"></span>
                         </div>

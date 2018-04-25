@@ -498,7 +498,16 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                         $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
                     }
                 }
-                else if(eixo == 1){
+                else if(eixo == 3 && (url['var'] == 5 || url['var'] == 8)){
+                    var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                    $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
+                    newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                    $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
+                    newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                      
+                  
+                 }
+                else {//if(eixo == 1){
                     if(url['uos'] == 1) {
                         var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
                         newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
@@ -509,15 +518,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                         newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
                         $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
                     }
-                } else if(eixo == 3 && (url['var'] == 5 || url['var'] == 8)){
-                    var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
-                    $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
-                    newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
-                    $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
-                    newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
-                    
-                
-                }
+                } 
 
 
 

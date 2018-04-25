@@ -478,10 +478,7 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
                 setIntegerValueData(dados, eixo, vrv);
             } else if(url['cad'] == 2){
                 setPercentValueData(dados, eixo, vrv);
-            } /*else {
-                setTerceiroValueData(valor);
-                
-            }*/
+            } 
        }else{
             dados.valor = dados.value[indexAno];
 
@@ -490,7 +487,9 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
 
        }
 
+       setTerceiroValueData(vrv, valor, url['cad']);
         
+            
 
     }
 }
@@ -1191,6 +1190,7 @@ function updateDescComercio(desc, vrv, nomeestado){
         "ÁSIA": "DA"
         
     }
+    nomeestado = $(window.parent.document).find(".bread-select[data-id=uf] option:selected").text();
     nomeestado = nomeestado.toUpperCase()
     
     if(prepos[nomeestado]){
@@ -1263,15 +1263,34 @@ function updateDescComercio(desc, vrv, nomeestado){
             $(window.parent.document).find(".prc-title").first().text("E "+prc.split(" ")[1])
             break;
     }
-    $(window.parent.document).find(".integer-value").first().find(".description-number").first().css("font-size", "0.5vw")
-    
+    if(vrv <= 3 || vrv == 13)
+        $(window.parent.document).find(".integer-value").first().find(".description-number").first().css("font-size", "0.5vw")
+    else
+        $(window.parent.document).find(".integer-value").first().find(".description-number").first().css("font-size", "14px")
     if(desc != undefined)
         return desc.replace('{}', nomeestado).replace('<>', typ).replace('[]', prc.split(" ")[1]).replace('()', cad);
     else
         return
 }
-function setTerceiroValueData(value){
-    $(window.parent.document).find(".state-title").first().attr("class", "number").text(value)
+function setTerceiroValueData(vrv, value, cad){
+    console.log(cad)
+    if(vrv == 5 || vrv == 8){
+        if(cad == 1){
+            $(window.parent.document).find(".state-title").first().css("display", "none");
+            $(window.parent.document).find(".prc-title").first().css("display", "none");
+            $(window.parent.document).find(".prc-title").first().css("display", "none");
+            desc = $(window.parent.document).find(".percent-value").first().find(".description-number").first().text();
+            $(window.parent.document).find(".setor-value").first().find(".number").first().text(formatDecimalLimit(value, 2));
+            $(window.parent.document).find(".setor-value").first().find(".description-number").first().text(desc.replace("PARCEIROS", "SETOR"));
+            $(window.parent.document).find(".setor-value").first().css("display", "block");
+            doc = $(window.parent.document).find(".setor-value").first().find(".number").first();
+            setMaxFontSize(doc);
+        }
+    } else {
+        $(window.parent.document).find(".setor-value").first().css("display", "none");
+        $(window.parent.document).find(".state-title").first().css("display", "block");
+        $(window.parent.document).find(".prc-title").first().css("display", "block");
+    }
 }
 /*
 * Função para atribuir o valor do dado inteiro para a variável em questão
@@ -1315,9 +1334,14 @@ function setIntegerValueData(value, eixo, vrv) {
         // console.log(value)
         if(eixo == 3){
             estado = $(window.parent.document).find(".state-title").first().text()
-            $(window.parent.document).find(".description-number").first().html(updateDescComercio(result.desc_int, vrv, estado))
+            $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(updateDescComercio(result.desc_int, vrv, estado))
             $(window.parent.document).find(".percent-value").first().find(".description-number").first().html(updateDescPercentComercio(result.desc_percent, vrv, estado))
-            
+            //alert($(window).src())
+           /* cad = ($(window.document).find("iframe").first().attr("src").match(/cad=[0-9]/g)[0].replace("cad=", ''))
+            console.log(cad)
+            if(cad == '1'){
+                setTerceiroValueData(vrv, valor)
+            }*/
         }
 
         $(window.parent.document).find(".integer-value").first().find(".number").first().html(prefixo+literal+sufixo);
