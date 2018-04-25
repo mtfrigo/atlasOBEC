@@ -184,6 +184,16 @@ function updateIframe(url){
             $('#treemap_region').html("BRASIL");
             //alert(url['view'])
 
+            if(url['mundo'] == null || url['mundo'] == 0){
+                $('iframe[id="view_box"]').parent().find(".view-title").html("MAPA MUNDI");
+                //$(".state-title").html("MUNDO");
+
+            }
+            else{
+                $('iframe[id="view_box"]').parent().find(".view-title").html("MAPA DO BRASIL");
+                //$(".state-title").html("BRASIL");
+
+            }
             if(url['var'] == 5 || url['var'] == 8){
                 newUrl = newUrl.replace(/cad=[0-9]*/, "cad=1");
                 $('iframe[id="view_box"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
@@ -191,7 +201,7 @@ function updateIframe(url){
                 if(url['var'] == 8)
                     $('iframe[id="view_box"]').parent().find(".view-title").html("IHH VALOR ABSOLUTO POR SETORES");
                 else(url['var'] == 5)
-                    $('iframe[id="view_box"]').parent().find(".view-title").html("C4 VALOR ABSOLUTO POR PARCEIROS");
+                    $('iframe[id="view_box"]').parent().find(".view-title").html("C4 VALOR ABSOLUTO POR SETORES");
 
             }
             else if(url['var'] > 5 && url['var'] < 13 || url['var'] == 14 ){
@@ -201,16 +211,6 @@ function updateIframe(url){
             }
             else{
                 $('iframe[id="view_box"]').attr('src', url['view']+'_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
-
-            }
-            if(url['mundo'] == null || url['mundo'] == 0){
-                $('iframe[id="view_box"]').parent().find(".view-title").html("MAPA MUNDI");
-                //$(".state-title").html("MUNDO");
-
-            }
-            else{
-                $('iframe[id="view_box"]').parent().find(".view-title").html("MAPA DO BRASIL");
-                //$(".state-title").html("BRASIL");
 
             }
 
@@ -355,6 +355,7 @@ function updateIframe(url){
 
         }
         else if(eixoAtual == 3){
+            
             if(url['var'] == 5 || url['var'] == 8){
                 newUrl = newUrl.replace(/cad=[0-9]*/, "cad=2");
                 $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);

@@ -360,8 +360,6 @@ function ready(error, br_states, mapa){
         if(url['uf'] == 0)
             setIntegerValueData({valor: soma}, eixo, vrv);
 
-
-
     }
 
    // console.log(colorJSON)

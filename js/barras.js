@@ -465,7 +465,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
             })
             //mouseover
             .on("mouseover", function (d, i, obj) {
-                var title_content = textJSON.var[eixo][vrv - 1].title;
+                var title_content = getDataVar(textJSON, eixo, vrv).title;
                 var title = title_content.replace("<span>", "");
                 title = title.replace("<br>", "");
                 title = title.replace("</span>", "");
@@ -475,6 +475,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
 
 
                 if (eixo === 0 || eixo === 1 || eixo === 2 || eixo === 3){
+
                     loadTooltip(d, i, eixo, vrv)
                 }
 
@@ -497,7 +498,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                         $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
                     }
                 }
-                else{
+                else if(eixo == 1){
                     if(url['uos'] == 1) {
                         var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
                         newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
@@ -508,7 +509,16 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                         newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
                         $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
                     }
+                } else if(eixo == 3 && (url['var'] == 5 || url['var'] == 8)){
+                    var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                    $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
+                    newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                    $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
+                    newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                    
+                
                 }
+
 
 
                 $(window.parent.document).find("#view_box").attr("src", newMapaSrc);
@@ -766,14 +776,13 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                 }
             }
             else if(eixo === 3){
-                if(vrv === 1 || vrv === 2 || vrv === 3 || vrv === 4 || vrv === 5){
                     tooltipInstance.showTooltip(d, [
                         ["title", dados.key[i]],
                         ["", formatTextVrv(dados.value[i], eixo, vrv)],
                         // ["", formatTextTaxaVrv(dados.taxa[i], eixo, vrv)],
                     ]);
-                }
             }
+
         }
 
 

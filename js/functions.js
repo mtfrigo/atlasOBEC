@@ -468,12 +468,23 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
 
         }*/
         
-        setPercentValueData({percentual : dados.percentual[indexAno]}, eixo, vrv);
+       if(url['var'] == 5 || url['var'] == 8){
+            dados.valor = dados.value[dados.key.indexOf(url['ano'])];
 
+            if(url['cad'] == 0){
+                setIntegerValueData(dados, eixo, vrv);
+            } else if(url['cad'] == 2){
+                setPercentValueData(dados, eixo, vrv);
+            }
+       }else{
+            dados.valor = dados.value[indexAno];
 
-        dados.valor = dados.value[indexAno];
+            setIntegerValueData(dados, eixo, vrv);
+            setPercentValueData({percentual : dados.percentual[indexAno]}, eixo, vrv);
 
-        setIntegerValueData(dados, eixo, vrv);
+       }
+
+        
 
     }
 }
@@ -575,9 +586,21 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
 
     }
     else if(eixo == 3){
-        dados.valor = valor;
-        setIntegerValueData(dados, eixo, vrv);
-        setPercentValueData({percentual : dados.percentual[i]}, eixo, vrv);
+        if(url['var'] == 5 || url['var'] == 8){
+            dados.valor = dados.value[i];
+
+            if(url['cad'] == 0){
+                setIntegerValueData(dados, eixo, vrv);
+            } else if(url['cad'] == 2){
+                setPercentValueData(dados, eixo, vrv);
+            }
+       }else{
+            dados.valor = dados.value[i];
+
+            setIntegerValueData(dados, eixo, vrv);
+            setPercentValueData({percentual : dados.percentual[i]}, eixo, vrv);
+
+       }
 
     }
 }
@@ -1210,7 +1233,7 @@ function updateDescComercio(desc, vrv, nomeestado){
                 typ = "DE VALOR TRANSACIONADO"
             }
             $(window.parent.document).find(".state-title").first().text("ENTRE "+ nomeestado.split(" ")[1])
-            $(window.parent.document).find(".prc-title").first().text("ENTRE "+prc.split(" ")[1])
+            $(window.parent.document).find(".prc-title").first().text("E "+prc.split(" ")[1])
             break;
     }
         
@@ -1264,7 +1287,6 @@ function setIntegerValueData(value, eixo, vrv) {
         if(eixo == 3){
             estado = $(window.parent.document).find(".state-title").first().text()
             $(window.parent.document).find(".description-number").first().html(updateDescComercio(result.desc_int, vrv, estado))
-            console.log($(window.parent.document).find(".percent-value").first().find(".description-number").first().html())
             $(window.parent.document).find(".percent-value").first().find(".description-number").first().html(updateDescPercentComercio(result.desc_percent, vrv, estado))
         }
 
@@ -1801,8 +1823,10 @@ function setPercentValueData(value, eixo, vrv) {
     else if(eixo == 3){
         if(vrv == 1 || vrv == 13)
             $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.percentual*100, 2)+"%");
-        else{
-            $(window.parent.document).find(".percent-value").first().find(".number").first().html("");            
+        else if(vrv == 5 || vrv == 8){
+            $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.valor, 2))
+        } else{
+            $(window.parent.document).find(".percent-value").first().find(".number").first().html("");           
         }
         var doc =  $(window.parent.document).find(".percent-value").first().find(".number").first();
         
