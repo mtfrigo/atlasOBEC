@@ -1399,9 +1399,9 @@
 				"title":"Valor Absoluto",
 				"desc":"Demonstra o valor de absoluto dos setores culturais por estratificação proposta.",
 				"desc_var_mapa": "A variável mostra o valor absoluto transacionado, caracterizando quanto, em termos monetários, os Setores Culturais e Criativos contribuíram para o comércio internacional do Brasil. É possível visualizar este valor para exportações, importações, saldo comercial e valor transacionado.",
-				"desc_int": "de <> {} para [] ()",
+				"desc_int": "DE <> {} PARA [] ()",
 				"fontes": "MDIC. ",
-				"desc_percent":"",
+				"desc_percent":"DO VALOR <> {}",
 				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",
 				"type":[
@@ -1631,8 +1631,8 @@
 			{
 				"id":"13",
 				"title":"QUANTIDADE FÍSICA TRANSACIONADA",
-				"desc_int": "<> {} para o [] ()",
-				"desc_percent":"",
+				"desc_int": "<> {} PARA O [] ()",
+				"desc_percent":"dos kg <> pelo {}",
 				"desc":"Demonstra se há ou não vantagem comparativa nas exportações do comércio exterior nacional cultural por estratificação proposta.",
 				"desc_var_mapa": "A variável calcula a quantidade física, em kg, transacionada pelos Setores Culturais e Criativos.",
 				"fontes":"MDIC.",

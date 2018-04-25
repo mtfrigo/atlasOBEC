@@ -808,6 +808,9 @@ function updateSelectTipo(options){
 
 function updateTipo(vrv){
     switch(vrv){
+        case '2':
+            updateSelectTipo(["1", "2"])
+            break;
         case '3':
             updateSelectTipo(["1", "2", "4"])
             break;
@@ -1001,7 +1004,105 @@ function getDataVar(json, eixo, vrv){
     })[0];
 }
 
+function updateDescPercentComercio(desc, vrv, nomeestado){
+    prepos = {
+        "ACRE":"DO",
+        "ALAGOAS":"DE",
+        "AMAPÁ":"DO",
+        "AMAZONAS":"DO",
+        "BAHIA":"DA",
+        "CEARÁ":"DO",
+        "DISTRITO FEDERAL":"DO",
+        "ESPÍRITO SANTO":"DO",
+        "GOIÁS":"DE",
+        "MARANHÃO":"DO",
+        "MATO GROSSO":"DE",
+        "MATO GROSSO DO SUL":"DE",
+        "MINAS GERAIS":"DE",
+        "PARÁ":"DO",
+        "PARAÍBA":"DA",
+        "PARANÁ":"DO",
+        "PERNAMBUCO":"DE",
+        "PIAUÍ":"DO",
+        "RIO DE JANEIRO":"DO",
+        "RIO GRANDE DO NORTE":"DO",
+        "RIO GRANDE DO SUL":"DO",
+        "RONDÔNIA":"DE",
+        "RORAIMA":"DE",
+        "SANTA CATARINA":"DE",
+        "SÃO PAULO":"DE",
+        "SERGIPE":"DE",
+        "TOCANTINS": "DO"        
+    }
+    nomeestado = nomeestado.toUpperCase()
 
+    typ = $(window.parent.document).find(".opt-select[data-id=typ] option:selected").text();
+    
+    if(vrv == 1){
+        switch(typ){
+            case 'Exportação': 
+                typ = "EXPORTADO";
+                if(prepos[nomeestado]){
+                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                }
+                else{
+                    nomeestado = "DO BRASIL"
+                }
+                nomeestado = nomeestado.replace("DE", "POR");
+                nomeestado = nomeestado.replace("DO", "PELO");
+                nomeestado = nomeestado.replace("DA", "PELA");
+                return desc.replace('{}', nomeestado).replace('<>', typ);
+            case 'Importação': 
+                typ = "IMPORTADO";
+                nomeestado = "PARA "+nomeestado;
+                return desc.replace('{}', nomeestado).replace('<>', typ);
+            case 'Saldo Comercial': 
+                return ''
+            case 'Valor Transacionado': 
+                prc = $(window.parent.document).find(".opt-select[data-id=prc] option:selected").text();
+                cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
+                typ = "TRANSACIONADO";
+                if(cad == "TODOS" || " TODOS"){
+                    cad = "PELOS SETORES CULTURAIS E CRIATIVOS"
+                } else {
+                    cad = "PELO SETOR DE" + cad;
+                }
+                return desc.replace('{}', nomeestado).replace('<>', typ).replace('[]', prc).replace('()', cad);
+        }
+    } 
+    else if(vrv == 13){
+        switch(typ){
+            case 'Exportação': 
+                typ = "EXPORTADOS";
+                if(prepos[nomeestado]){
+                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                }
+                else{
+                    nomeestado = "DO BRASIL"
+                }
+                nomeestado = nomeestado.replace("DE", "POR");
+                nomeestado = nomeestado.replace("DO", "PELO");
+                nomeestado = nomeestado.replace("DA", "PELA");
+                return desc.replace('{}', nomeestado).replace('<>', typ);
+            case 'Importação': 
+                typ = "IMPORTADOS";
+                nomeestado = "PARA "+nomeestado;
+                return desc.replace('{}', nomeestado).replace('<>', typ);
+            case 'Saldo Comercial': 
+                return ''
+            case 'Valor Transacionado': 
+                prc = $(window.parent.document).find(".opt-select[data-id=prc] option:selected").text();
+                cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
+                typ = "TRANSACIONADO";
+                if(cad == "TODOS" || " TODOS"){
+                    cad = "PELOS SETORES CULTURAIS E CRIATIVOS"
+                } else {
+                    cad = "PELO SETOR DE" + cad;
+                }
+                return desc.replace('{}', nomeestado).replace('<>', typ).replace('[]', prc).replace('()', cad);
+        }
+    }
+}
 function updateDescComercio(desc, vrv, nomeestado){
     prepos = {
         "ACRE":"DO",
@@ -1065,9 +1166,9 @@ function updateDescComercio(desc, vrv, nomeestado){
             cad = "PELOS SETORES CULTURAIS E CRIATIVOS";
     } else {
         if(vrv != 14)
-            cad = "PELO "+ cad;
+            cad = "PELO SETOR DE "+ cad;
         else
-            cad = "DE "+cad;
+            cad = "DO SETOR DE "+cad;
     }
     switch(typ){
         case 'Exportação': 
@@ -1163,6 +1264,8 @@ function setIntegerValueData(value, eixo, vrv) {
         if(eixo == 3){
             estado = $(window.parent.document).find(".state-title").first().text()
             $(window.parent.document).find(".description-number").first().html(updateDescComercio(result.desc_int, vrv, estado))
+            console.log($(window.parent.document).find(".percent-value").first().find(".description-number").first().html())
+            $(window.parent.document).find(".percent-value").first().find(".description-number").first().html(updateDescPercentComercio(result.desc_percent, vrv, estado))
         }
 
         $(window.parent.document).find(".integer-value").first().find(".number").first().html(prefixo+literal+sufixo);
@@ -1701,6 +1804,9 @@ function setPercentValueData(value, eixo, vrv) {
         else{
             $(window.parent.document).find(".percent-value").first().find(".number").first().html("");            
         }
+        var doc =  $(window.parent.document).find(".percent-value").first().find(".number").first();
+        
+        setMaxFontSize(doc);
     }
 
 }
