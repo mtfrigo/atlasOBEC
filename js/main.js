@@ -1436,6 +1436,8 @@ $(document).ready(function(){
                         $(".opt-select[data-id='prc']").val(0)
                         url['prc'] = 0
                     }
+                    url['typ'] = 1;
+                    $(".opt-select[data-id='typ']").val(1)
                     $(window.document).find(".prc-title").first().html($(".opt-select[data-id='prc'] option:selected").text());
                 }
                 

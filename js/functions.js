@@ -240,25 +240,6 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, valor,  percent, percent_uf, url
 
 
     }
-    if(eixo == 3){
-
-        var mundo = 0;
-        var mundoRegex = $(window.parent.document).find("#view_box").attr("src").match(/mundo=[0-9]*/);
-        if(mundoRegex != null)
-            mundo = mundoRegex[0].match(/[0-9]/)[0];
-
-        if(url['cad'] != 0){
-            if(url['uf'] == 0){
-                setPercentValueData({percentual: percent_uf, taxa: 0}, eixo, vrv);
-            }
-            else{
-                setPercentValueData({percentual: percent, taxa: 0}, eixo, vrv);
-            }
-        }
-        else{
-            setPercentValueData({percentual: 1, taxa: 0}, eixo, vrv);
-        }
-    }
 
 }
 
@@ -300,21 +281,6 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
     else if(eixo === 2){
         setIntegerValueData({valor: d.value}, eixo, vrv);
         setPercentValueData({percentual: d.data.size / root.value}, eixo, vrv);
-    }
-    else if(eixo === 3){
-
-        var mundo = 0;
-        var mundoRegex = $(window.parent.document).find("#view_box").attr("src").match(/mundo=[0-9]*/);
-        if(mundoRegex != null){
-            mundo = mundoRegex[0];
-        }
-
-        if(url['uf'] == 0){
-            setPercentValueData({percentual: valor}, eixo, vrv);
-        }
-        else{
-            setPercentValueData({percentual: percent}, eixo, vrv);
-        }
     }
 }
 
@@ -490,7 +456,7 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
         if(mundoRegex != null)
             mundo = mundoRegex[0].match(/[0-9]/)[0];
 
-
+        /*
         if((mundo == 1 && url['uf'] == 0 && url['cad'] == 0)){
             setPercentValueData({percentual: 1, taxa: dados.taxa[indexAno]}, eixo, vrv);
         }
@@ -500,7 +466,9 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
         else if(url['uf'] == 0 && url['prc'] == 0 && url['cad'] == 0){
             setPercentValueData({percentual: 1}, eixo, vrv);
 
-        }
+        }*/
+        
+        setPercentValueData({percentual : dados.percentual[indexAno]}, eixo, vrv);
 
 
         dados.valor = dados.value[indexAno];
@@ -609,6 +577,7 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
     else if(eixo == 3){
         dados.valor = valor;
         setIntegerValueData(dados, eixo, vrv);
+        setPercentValueData({percentual : dados.percentual[i]}, eixo, vrv);
 
     }
 }
@@ -825,7 +794,7 @@ function updateBreadUF(eixo, vrv){
 }
 
 function updateSelectTipo(options){
-    names = {"1": "Exportação", "2": "Importação", "3": "Saldo Comercial", "4": "Valor Transicionado"};
+    names = {"1": "Exportação", "2": "Importação", "3": "Saldo Comercial", "4": "Valor Transacionado"};
     for(var key in names){
         if($("select[data-id=typ]").find("option[value='"+key+"']").length != 0)
             $("select[data-id='typ']").find("option[value='"+key+"']").remove()
@@ -855,6 +824,8 @@ function updateTipo(vrv){
             updateSelectTipo(["1", "2", "3", "4"])
             break;
     }
+
+
 }
 
 function updateMecanismo(url, vrv){
@@ -1062,7 +1033,15 @@ function updateDescComercio(desc, vrv, nomeestado){
         "SANTA CATARINA":"DE",
         "SÃO PAULO":"DE",
         "SERGIPE":"DE",
-        "TOCANTINS": "DO"
+        "TOCANTINS": "DO",
+        "EUROPA": "DA",
+        "MUNDO": "DO",
+        "ÁFRICA": "DA",
+        "AMÉRICA DO SUL": "DA",
+        "AMÉRICA DO NORTE": "DA",
+        "OCEANIA": "DA",
+        "ÁSIA": "DA"
+        
     }
     nomeestado = nomeestado.toUpperCase()
     
@@ -1077,6 +1056,11 @@ function updateDescComercio(desc, vrv, nomeestado){
     typ = $(window.parent.document).find(".opt-select[data-id=typ] option:selected").text();
     cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
     
+    prc = prc.toUpperCase()
+
+    if(prepos[prc]){
+        prc = prepos[prc] + ' ' + prc
+    }
     if(cad.toUpperCase() == "TODOS" || cad.toUpperCase() == " TODOS"){
         if(vrv == 14)
             cad = "DOS SETORES CULTURAIS E CRIATIVOS";
@@ -1098,7 +1082,7 @@ function updateDescComercio(desc, vrv, nomeestado){
                 typ = "EXPORTADOS"
             }
             $(window.parent.document).find(".state-title").first().text(nomeestado)
-            $(window.parent.document).find(".prc-title").first().text("PARA "+prc)
+            $(window.parent.document).find(".prc-title").first().text("PARA "+prc.split(" ")[1])
             break;
         case 'Importação': 
             if(vrv >= 1 && vrv <= 3)
@@ -1109,7 +1093,7 @@ function updateDescComercio(desc, vrv, nomeestado){
                 typ = "IMPORTADOS"
             }
 
-            $(window.parent.document).find(".state-title").first().text("DE "+prc)
+            $(window.parent.document).find(".state-title").first().text(prc)
             $(window.parent.document).find(".prc-title").first().text("PARA "+nomeestado.split(" ")[1])
             break;
         case 'Saldo Comercial': 
@@ -1118,23 +1102,23 @@ function updateDescComercio(desc, vrv, nomeestado){
             else if(vrv == 13){
                 typ = "DE SALDO COMERCIAL"
             }
-            $(window.parent.document).find(".state-title").first().text(nomeestado.split(" ")[1])
-            $(window.parent.document).find(".prc-title").first().text(prc)
+            $(window.parent.document).find(".state-title").first().text("ENTRE "+nomeestado.split(" ")[1])
+            $(window.parent.document).find(".prc-title").first().text("E "+prc.split(" ")[1])
             break;
-        case 'Valor Transicionado':
+        case 'Valor Transacionado':
             if(vrv >= 1 && vrv <= 3)
                 typ = "VALOR TRANSACIONADO" 
             else if(vrv == 13){
                 typ = "DE VALOR TRANSACIONADO"
             }
-            $(window.parent.document).find(".state-title").first().text(nomeestado.split(" ")[1])
-            $(window.parent.document).find(".prc-title").first().text(prc)
+            $(window.parent.document).find(".state-title").first().text("ENTRE "+ nomeestado.split(" ")[1])
+            $(window.parent.document).find(".prc-title").first().text("ENTRE "+prc.split(" ")[1])
             break;
     }
         
     
     if(desc != undefined)
-        return desc.replace('{}', nomeestado).replace('<>', typ).replace('[]', prc).replace('()', cad);
+        return desc.replace('{}', nomeestado).replace('<>', typ).replace('[]', prc.split(" ")[1]).replace('()', cad);
     else
         return
 }
@@ -1547,8 +1531,8 @@ function setMaxFontSize(doc){
     if(doc == null){
         return
     }
-
     var tamanhoMaximo = 40;
+    
     var tamanho = tamanhoMaximo;
 
     var tamanhoDiv = $(doc).width();
@@ -1686,7 +1670,11 @@ function setPercentValueData(value, eixo, vrv) {
         setMaxFontSize(doc);
     }
     else if(eixo == 3){
-        $(window.parent.document).find(".percent-value").first().find(".number").first().html("");
+        if(vrv == 1 || vrv == 13)
+            $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.percentual*100, 2)+"%");
+        else{
+            $(window.parent.document).find(".percent-value").first().find(".number").first().html("");            
+        }
     }
 
 }
