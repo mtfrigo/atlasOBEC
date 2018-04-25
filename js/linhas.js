@@ -48,17 +48,19 @@ function analyze(error, data) {
     }
 
     var dados = [];
+    var anos = [];
 
     Object.keys(data).forEach(function (key) {
         dados.push(data[key]);
+        anos.push(key);
+
     });
 
     var keys = [];
 
     Object.keys(dados[0]).forEach(function (key) {
-        if(key != "ano"){
-            keys.push(key)
-        }
+        if(key != "ano")
+            keys.push(key);
     });
 
 
@@ -133,7 +135,6 @@ function analyze(error, data) {
                 valores.push({'ano': dados[key]['ano'], 'deg': deg, 'valor': dados[key][deg]})
             });
 
-
             data.push(valores)
 
         });
@@ -173,13 +174,15 @@ function analyze(error, data) {
         // Add the X Axis
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(x))
+            .attr("class", "x");
 
         // Add the Y Axis
         svg.append("g")
-            .call(d3.axisLeft(y));
+            .call(d3.axisLeft(y))
+            .attr("class", "y");
 
-        svg.selectAll("path")
+    svg.selectAll("path")
             .on("mouseover", function (dados) {
                 mousemove(dados, (this));
                 d3.selectAll("path").style("opacity", 0.3)
@@ -190,14 +193,73 @@ function analyze(error, data) {
                 d3.selectAll("path").style("opacity", 1)
             })
 
+        var coordsAxisX = [];
+        var coordsAxisY = [];
+
+
+        d3.selectAll('.x g').each(function (d, index) {
+            transform = d3.select(this).attr('transform')
+            transform = transform.replace('translate(', '');
+
+            x = parseFloat(transform.split(',')[0]);
+            y = parseFloat(transform.split(',')[1].replace(')', ''));
+            coordsAxisX.push({'ano': anos[index], 'x': x, 'y': y})
+        })
+
+        d3.selectAll('.y g').each(function (d, index) {
+            transform = d3.select(this).attr('transform')
+            transform = transform.replace('translate(', '');
+
+            x = parseFloat(transform.split(',')[0]);
+            y = parseFloat(transform.split(',')[1].replace(')', ''));
+            coordsAxisY.push({'ano': anos[index], 'x': x, 'y': y})
+        })
 
         function mousemove(d, path) {
 
             if(!($(path).hasClass("domain")) ){
                 var scc = ($(path).attr("scc"));
 
+                position = 0;
+                var ano = 2007;
+                var variacao = 0;
+
+                var xAno = 0;
+                var y1Ano = 0;
+                var y2Ano = 0;
+
+
+                for (var i = 1; i < coordsAxisX.length; i++) {
+
+
+                     calc1 = (Number(coordsAxisX[i - 1].x) + Number(coordsAxisX[i].x)) / 2;
+                     if(i <= coordsAxisX.length - 2)
+                        calc2 = (Number(coordsAxisX[i].x) + Number(coordsAxisX[i + 1].x)) / 2;
+                     else
+                        calc2 = coordsAxisX[i].x;
+
+
+                    if (d3.mouse(d3.event.currentTarget)[0] >= calc1 && d3.mouse(d3.event.currentTarget)[0] <= calc2) {
+                        ano = anos[i];
+                        console.log("break")
+                        break;
+                    }
+
+                }
+
+                var valor = 2;
+
+
+                Object.keys(dados).forEach(function (key) {
+                    if(dados[key].ano.getFullYear() == ano)
+                        valor = dados[key][scc];
+                })
+
+                valor = valor.toString().replace(".",",");
+
                 tooltipInstance.showTooltip(d, [
-                    ["title", scc]
+                    ["title", scc],
+                    ["", valor]
                 ])
             }
 

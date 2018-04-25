@@ -1169,7 +1169,7 @@
 			{
 				"id":"8",
 				"title":"<span>FINANCIAMENTO PÚBLICO / VA</span>",
-				"desc_int":"RAZÃO ENTRE TOTAL FINANCIADO [] E VALOR ADICIONADO PELA CULTURA [cad] {}",
+				"desc_int":"RAZÃO ENTRE TOTAL FINANCIADO {} [CAD] E VALOR ADICIONADO [cad] [uf]",
 				"desc_percent": "",
 				"desc_var_mapa": "A variável mostra a razão entre o fomento por meio de mecanismos de financiamento via incentivo (mecenato, FNC e total) e o valor adicionado pelos  SCC.",
 				"sufixo_valor":"",
@@ -1208,7 +1208,7 @@
 				"id":"9",
 				"title":"<span>FINANCIAMENTO PÚBLICO / MASSA SALARIAL</span>",
 				"desc":"Retrata a razão entre a despesa total em cultura e a arrecadação total nos estratos referidos.",
-				"desc_int":"RAZÃO ENTRE TOTAL FINANCIADO [] E MASSA SALARIAL DOS TRABALHADORES CULTURAIS [cad] {}",
+				"desc_int":"RAZÃO ENTRE TOTAL FINANCIADO {} [CAD] E MASSA SALARIAL DOS TRABALHADORES CULTURAIS [cad] [uf]",
 				"desc_percent": "",
 				"fontes": "Elaborado pelo NECCULT/UFRGS com base no SALICnet. ",
 				"desc_var_mapa": "A variável calcula a razão entre o fomento por meio de mecanismos de financiamento via incentivo (mecenato, FNC e total) e a massa salarial dos trabalhadores da cultura.",

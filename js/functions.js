@@ -1069,7 +1069,7 @@ function setIntegerValueData(value, eixo, vrv) {
 * Função para atualizar a descrição do percentual em função do estado selecionado
 */
 
-function descByUF(eixo, tipo, desc, nomeestado){
+function descByUF(eixo, tipo, desc, nomeestado, tag){
     prepos = {
         "ACRE":"DO",
         "ALAGOAS":"DE",
@@ -1140,15 +1140,25 @@ function descByUF(eixo, tipo, desc, nomeestado){
         }
     }
     if(eixo == 2){
-        if(url['var'] == 1) {
-            if(prepos[nomeestado] && url['cad'] != 0){
-                nomeestado = prepos[nomeestado] + ' ' +nomeestado
+        if(url['var'] == 8 || url['var'] == 9) {
+
+            if(prepos[nomeestado] && url['uf'] != 0){
+
+                if(tag == '{}')
+                    nomeestado = ""
+                else
+                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+
+
             }
             else{
-                nomeestado = "DO BRASIL"
+                if(tag == '{}')
+                    nomeestado = "NO BRASIL"
+                else
+                    nomeestado = "DO BRASIL"
             }
         }
-        if(url['var'] == 99 ) {
+        else if(url['var'] == 99 ) {
             if(prepos[nomeestado]){
                 nomeestado = prepos[nomeestado] + ' ' +nomeestado
             }
@@ -1188,8 +1198,9 @@ function descByUF(eixo, tipo, desc, nomeestado){
 
 
 
+
     if(desc != undefined)
-        return desc.replace('{}', nomeestado);
+        return desc.replace(tag, nomeestado);
     else
         return
 }
@@ -1284,7 +1295,7 @@ function descByMOD(eixo, desc){
         return
 }
 
-function descByCAD(eixo, desc){
+function descByCAD(eixo, desc, tag){
     prepos = {
         1: "DE",
         2: "DE",
@@ -1315,17 +1326,30 @@ function descByCAD(eixo, desc){
     str = "do setor"
 
     if(cads[url['cad']]) {
-        nome = str + " " + prepos[url['cad']] + " " + cads[url['cad']];
+        if(eixo == 2 && (url['var'] == 8 || url['var'] == 9)){
+            if(tag == '[CAD]')
+                nome = "PARA O SETOR" + prepos[url['cad']] + " " + cads[url['cad']];
+            else
+                nome = "PELO SETOR " + prepos[url['cad']] + " " + cads[url['cad']];
+        }
+        else
+            nome = str + " " + prepos[url['cad']] + " " + cads[url['cad']];
+
     }
     else {
         if(eixo == 2 && (url['var'] == 9 || url['var'] == 11 || url['var'] == 12 || url['var'] == 13 || url['var'] == 14))
             nome = "";
+        else if(eixo == 2 && (url['var'] == 8 || url['var'] == 9))
+            if(tag == '[CAD]')
+                nome = ""
+            else
+                nome = "PELOS SETORES CULTURAIS E CRIATIVOS"
         else
             nome = "Culturais e Criativas";
     }
 
     if(desc != undefined)
-        return desc.replace('[cad]', nome);
+        return desc.replace(tag, nome);
     else
         return
 }
@@ -1385,7 +1409,10 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     }
 
     if(desc.includes('{}')){
-        desc =  descByUF(eixo, tipo, desc, nomeestado)
+        desc =  descByUF(eixo, tipo, desc, nomeestado, '{}')
+    }
+    if(desc.includes('[uf]')){
+        desc =  descByUF(eixo, tipo, desc, nomeestado, '[uf]')
     }
     if(desc.includes('[]')){
         desc =  descByMEC(eixo, desc)
@@ -1398,7 +1425,10 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     }
 
     if(desc.includes('[cad]')){
-        desc =  descByCAD(eixo, desc)
+        desc =  descByCAD(eixo, desc, '[cad]')
+    }
+    if(desc.includes('[CAD]')){
+        desc =  descByCAD(eixo, desc, '[CAD]')
     }
 
     if(desc.includes('[prt]')){
