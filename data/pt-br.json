@@ -1079,7 +1079,7 @@
 				"title":"<span>Valor total de incentivos via empresas públicas<span>",
 				"desc_int":"FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO DE EMPRESA ESTATAL [cad] {}",
 				"desc_percent": "DO TOTAL DO FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO DE EMPRESA ESTATAL {}",
-				"desc_var_mapa": "A variável mostra o valor bruto total do apoio via mecenato que foi apoiado por empresas estatais.",
+				"desc_var_mapa": "A variável mostra o valor bruto total do financiamento via mecenato que foi realizado por empresas estatais.",
 				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",
 				"fontes": "SALICnet. ",
@@ -1097,42 +1097,6 @@
 				],
 				"barras":[
 					{"name":"UF","id":"uf"}
-				],
-				"inativos":{
-					"mapa":["prt","uf","atc"],"treemap_region":["uf","prt"], "treemap_scc":["cad","prt"],"barras":["ano","prt"]
-				}
-			},
-			{
-				"id":"6",
-				"title":"<span>Despesa Mecenato / FNC</span>",
-				"desc":"Razão entre a despesa por meio do FNC e mecenato nos estratos referidos.",
-				"desc_int":"RAZÃO ENTRE MECENATO E FNC [cad] {}",
-				"desc_percent": "",
-				"desc_var_mapa": "A variável calcula a razão entre a despesa financiada pelo FNC e a despesa financiada pelo mecenato, nos estratos referidos.",
-				"fontes": "Elaborado pelo NECCULT com base no SALICnet. Atualizado para 2016.",
-				"sufixo_valor":"",
-				"prefixo_valor":"",
-				"type":[
-					{"name":"Mapa", "id":"mapa"},
-					{"name":"Treemap", "id":"treemap_region"},
-					{"name":"Treemap SCC", "id":"treemap_scc"},
-					{"name":"Barras", "id":"barras"}
-				],
-				"mapa":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_region":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_scc":[
-					{"name":"UF","id":"uf"},
-					{"name":"Ano","id":"ano"}
-				],
-				"barras":[
-					{"name":"UF","id":"uf"},
-					{"name":"Setor","id":"cad"}
 				],
 				"inativos":{
 					"mapa":["prt","uf","atc"],"treemap_region":["uf","prt"], "treemap_scc":["cad","prt"],"barras":["ano","prt"]
@@ -1169,7 +1133,7 @@
 			{
 				"id":"8",
 				"title":"<span>FINANCIAMENTO PÚBLICO / VA</span>",
-				"desc_int":"RAZÃO ENTRE TOTAL FINANCIADO [] E VALOR ADICIONADO PELA CULTURA [cad] {}",
+				"desc_int":"RAZÃO ENTRE TOTAL FINANCIADO {} [CAD] E VALOR ADICIONADO [cad] [uf]",
 				"desc_percent": "",
 				"desc_var_mapa": "A variável mostra a razão entre o fomento por meio de mecanismos de financiamento via incentivo (mecenato, FNC e total) e o valor adicionado pelos  SCC.",
 				"sufixo_valor":"",
@@ -1208,7 +1172,7 @@
 				"id":"9",
 				"title":"<span>FINANCIAMENTO PÚBLICO / MASSA SALARIAL</span>",
 				"desc":"Retrata a razão entre a despesa total em cultura e a arrecadação total nos estratos referidos.",
-				"desc_int":"RAZÃO ENTRE TOTAL FINANCIADO [] E MASSA SALARIAL DOS TRABALHADORES CULTURAIS [cad] {}",
+				"desc_int":"RAZÃO ENTRE TOTAL FINANCIADO {} [CAD] E MASSA SALARIAL DOS TRABALHADORES CULTURAIS [cad] [uf]",
 				"desc_percent": "",
 				"fontes": "Elaborado pelo NECCULT/UFRGS com base no SALICnet. ",
 				"desc_var_mapa": "A variável calcula a razão entre o fomento por meio de mecanismos de financiamento via incentivo (mecenato, FNC e total) e a massa salarial dos trabalhadores da cultura.",
