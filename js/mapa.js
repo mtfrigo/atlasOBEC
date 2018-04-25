@@ -414,11 +414,15 @@ function ready(error, br_states, mapa){
 		.on("click", function(d) {
 			var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/uf=[0-9]*/, "uf="+d.id);
             newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano="+url['ano']);
+
+            url['uf'] = d.id;
             if(eixo == 0 && vrv == 9)
                 var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/uf=[0-9]*/, "uf="+d.id)
                                                                                            .replace(/treemap_scc_box.php\?/, "linhas_box.php?");
             else
                 var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/uf=[0-9]*/, "uf="+d.id);
+
+
             newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad="+url['cad']);
 			$(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
             $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
@@ -432,6 +436,9 @@ function ready(error, br_states, mapa){
             configInfoDataBoxMapaClick(eixo, vrv, dict[d.id]);
 
             setStateTitle(d['properties']['name']);
+
+
+            updateIframe(url)
 
 		})
 		.style("cursor", "pointer");

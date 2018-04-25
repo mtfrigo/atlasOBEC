@@ -1260,3 +1260,7 @@ body.contraste{
 	border-radius:4px;
 }
 
+.omitir{
+	display: none;
+}
+

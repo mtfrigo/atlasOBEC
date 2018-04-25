@@ -766,31 +766,6 @@
 				}
 			},
 			{
-				"id":"8",
-				"title":"<span>VA por trabalhador</span>",
-				"desc_int": "VALOR ADICIONADO",
-				"sufixo_valor":"",
-				"desc_percent": "",
-				"prefixo_valor":"R$ ",
-				"desc":"O Valor Adicionado retrata a contribuição das Empresas Culturais na formação de riquezas no país. A análise permite medir o valor criado por estes agentes econômicos, sendo o valor adicional que adquirem os bens e serviços ao serem transformados durante o processo produtivo.",
-				"desc_var_mapa": "A variável valor adicionado por trabalhador nos Setores Culturais e Criativos retrata a razão entre o valor adicionado (valor criado pelos agentes econômicos ao longo do processo produtivo) dos Setores Culturais e Criativos o total de trabalhadores formais envolvidos nestas atividades. Avalia-se o quanto cada trabalhador adiciona, em termos de valor, para os Setores Culturais e Criativos. ",
-				"type":[
-					{"name":"Mapa", "id":"mapa"},
-					{"name":"Ano a Ano", "id":"barras"}
-				],
-				"mapa":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Ano","id":"ano"}
-				],
-				"barras":[
-					{"name":"UF","id":"uf"},
-					{"name":"Setor","id":"cad"}
-				],
-				"inativos":{
-					"mapa":["prt","uf","atc"],"treemap_region":["uf","prt"], "treemap_scc":["cad","prt"],"barras":["ano","prt"]
-				}
-			},
-			{
 				"id":"9",
 				"title":"Razão entre massa salarial e valor adicionado dos setores culturais e criativos",
 				"desc_int":"",
@@ -1077,8 +1052,8 @@
 			{
 				"id":"5",
 				"title":"<span>Valor total de incentivos via empresas públicas<span>",
-				"desc_int":"FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO DE EMPRESA ESTATAL [cad] {}",
-				"desc_percent": "DO TOTAL DO FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO DE EMPRESA ESTATAL {}",
+				"desc_int":"FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO PARA EMPRESA ESTATAL [cad] {}",
+				"desc_percent": "DO TOTAL DO FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO PARA EMPRESA ESTATAL {}",
 				"desc_var_mapa": "A variável mostra o valor bruto total do financiamento via mecenato que foi realizado por empresas estatais.",
 				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",

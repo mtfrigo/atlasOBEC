@@ -268,7 +268,7 @@ class EixoUm {
 	public static function getter_barras($var, $ufs, $atc, $cad, $prt, $uos){
 
 		self::connect();
-            if($prt == 0 || $cad != 0) {
+            if(($prt == 0 || $cad != 0) || ($var == 1 && $prt != 0 && $cad == 0 && $ufs == 0)) {
                 if($uos == 0) {
                     $query = "SELECT * FROM ".self::$table." AS ex"
                         ." JOIN UF AS uf ON uf.idUF =  ex.idUF AND uf.idUF = ".$ufs

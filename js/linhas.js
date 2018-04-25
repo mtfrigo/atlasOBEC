@@ -37,7 +37,6 @@ $.get("./db/json_linhas.php"+config, function(data) {
 
 function analyze(error, data) {
 
-    // console.log(data)
 
     //console.log(colorJSON)
 
@@ -152,6 +151,9 @@ function analyze(error, data) {
 
         var max = d3.max(valoresBrutos, function(d) {
             return Math.max(d); });
+
+        if(min >= 0)
+            min = 0;
 
         y.domain([min, max]);
 
