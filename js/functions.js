@@ -58,6 +58,9 @@ function ajustaAnos(keys) {
 }
 
 function getNomeUF(idUF){
+
+    idUF = parseInt(idUF);
+
     switch(idUF){
         case 0: return "Brasil";
         case 11: return "Rondônia";
@@ -83,7 +86,7 @@ function getNomeUF(idUF){
         case 41: return "Paraná";
         case 42: return "Santa Catarina";
         case 43: return "Rio Grande do Sul";
-        case 51: return "Mato Grosso do Sul"; 
+        case 50: return "Mato Grosso do Sul";
         case 52: return "Mato Grosso";
         case 53: return "Goiás";
         case 54: return "Distrito Federal";
@@ -786,31 +789,46 @@ function updateBreadUF(eixo, vrv){
         case 0: 
             if(vrv > 9){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
+                $('.bread-select[data-id=cad]').prop("disabled", true);
             } else{
                 $('.bread-select[data-id=uf]').prop("disabled", false);
+                $('.bread-select[data-id=cad]').prop("disabled", false);
+
             }
             break;
         case 1:
             if(vrv > 12){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
+                $('.bread-select[data-id=cad]').prop("disabled", true);
+
             } else{
                 $('.bread-select[data-id=uf]').prop("disabled", false);
+                $('.bread-select[data-id=cad]').prop("disabled", false);
+
             }
             break;
         case 2:
             if(vrv == 15 || vrv == 16 || vrv == 10){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
+                $('.bread-select[data-id=cad]').prop("disabled", true);
+
             } else{
                 $('.bread-select[data-id=uf]').prop("disabled", false);
+                $('.bread-select[data-id=cad]').prop("disabled", false);
+
             }
             break;
         case 3:
             if(vrv >= 5 && vrv <= 10){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
                 $('.bread-select[data-id=prc]').prop("disabled", true);
+                $('.bread-select[data-id=cad]').prop("disabled", true);
+
             } else{
                 $('.bread-select[data-id=uf]').prop("disabled", false);
                 $('.bread-select[data-id=prc]').prop("disabled", false);
+                $('.bread-select[data-id=cad]').prop("disabled", true);
+
             }
             break;
     }
@@ -1561,12 +1579,16 @@ function descByCAD(eixo, desc, tag){
             else
                 nome = "PELO SETOR " + prepos[url['cad']] + " " + cads[url['cad']];
         }
+        else if(eixo == 2 && (url['var'] == 4)){
+            nome = "PARA O SETOR " + prepos[url['cad']] + " " + cads[url['cad']];
+
+        }
         else
             nome = str + " " + prepos[url['cad']] + " " + cads[url['cad']];
 
     }
     else {
-        if(eixo == 2 && (url['var'] == 5 ||  url['var'] == 9 || url['var'] == 11 || url['var'] == 12 || url['var'] == 13 || url['var'] == 14))
+        if(eixo == 2 && (url['var'] == 5 ||  url['var'] == 4 ||  url['var'] == 9 || url['var'] == 11 || url['var'] == 12 || url['var'] == 13 || url['var'] == 14))
             nome = "";
         else if(eixo == 2 && (url['var'] == 8 || url['var'] == 9))
             if(tag == '[CAD]')
@@ -2127,8 +2149,12 @@ var formatNumber = function(value, decimalLimit){
 	var fracFormat = function(d){
 
 		var tempFormat = d3.format(",."+decimalLimit+"f");
+
 		if((Math.abs(tempFormat(d)) < 0.0001) && tempFormat(d) !=  0){
-		    return parseFloat(tempFormat(d)).toExponential(2)
+		    if(eixo == 3)
+		        return parseFloat(tempFormat(d)).toExponential(2)
+            else
+                return tempFormat(d);
 		}
 		else{
             return tempFormat(d);

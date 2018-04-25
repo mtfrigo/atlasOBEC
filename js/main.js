@@ -107,6 +107,7 @@ function changeChart(url){
 
 function updateIframe(url){
 
+    alert("emtroui")
     /* var json;
     $.get("./data/pt-br.json", function(data) {
         json = data;
@@ -272,13 +273,17 @@ function updateIframe(url){
     }
 
     /// BOX DO GRAFICO SCC
+
+    alert($(window.parent.document).find('iframe[id="view_box_scc"]').first().length);
+    alert($('iframe[id="view_box_scc"]').length)
     if ($('iframe[id="view_box_scc"]').length != 0) {
         $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
 
         if(eixoAtual == 0) {
+
                 if (url['var'] == 3) {
                     $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE ÁREA EMPILHADA");
+                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
                 } else if (url['var'] > 9) {
                     newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
                     $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
@@ -288,7 +293,14 @@ function updateIframe(url){
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS")
                 } else {
                     $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");
+
+
+
+                    if(url['uf'] == 0)
+                        $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");
+                    else
+                        $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS DE "+getNomeUF(url['uf']).toUpperCase());
+
                 }
         }
         else if(eixoAtual == 1) {
@@ -325,10 +337,9 @@ function updateIframe(url){
             }
         }
         else if(eixoAtual == 2){
-
-            if(url['var'] == 6 || url['var'] == 8 || url['var'] == 9 || url['var'] == 7 || url['var'] == 13){
+            if(url['var'] == 6 || url['var'] == 8 || url['var'] == 9 || url['var'] == 7 || url['var'] == 13 || url['var'] == 14){
                     $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE ÁREA EMPILHADA");
+                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
             }
             else if(url['var'] ==  17){
                 $('iframe[id="view_box_scc"]').attr('src', 'donut.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
@@ -1519,6 +1530,7 @@ $(document).ready(function(){
                     updateDefaultMec(url['var']);
                 }
 
+
                 if(eixo_atual == 3){
                     updateServicos(url['var']);
                     updateTipo(url['var']);
@@ -1585,6 +1597,7 @@ $(document).ready(function(){
     ///////////////////////////////////////////////////////////////////
 
     updateIframe(url);
+
 
 
     if(typeof(setMaxFontSize) === typeof(Function)){

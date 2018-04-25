@@ -365,7 +365,7 @@ else if($eixo == 2 && $var == 10) {
         }
     }
 }
-else if($eixo == 2 && $var < 14){
+else if($eixo == 2 && $var < 15){
     require_once("EixoTres.php");
     for ($cad = 1; $cad <= 10; $cad++) {
 

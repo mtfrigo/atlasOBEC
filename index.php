@@ -26,7 +26,7 @@
 			<div class="section " id="section1">
 				<div class="content">
 					<div class="desc-title text-center">
-						<p>O Atlas é uma ferramenta de pesquisa e visualização de dados da<br/>cultura na economia brasileira. Ela permite que você:</p>
+						<p>O Atlas é uma ferramenta de pesquisa, disponibilização e visualização de dados da <br/>cultura na economia brasileira.  Ela permite que você:</p>
 					</div>
 					<div class="separator_2"></div>
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0;">

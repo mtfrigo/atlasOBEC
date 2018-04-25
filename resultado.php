@@ -310,24 +310,28 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                                     <button data-desc="<?= $json_text['deg_ocupacao'] ?>" class="opt view <?php if($slc == 1) echo 'active';?>" id="ocupacao">Ocupação</button>
                                 </div>
                                 <br>
-                                <span data-desc="<?= $json_text['var_desc'] ?>" class="opt active">Variável:</span>
-                                <select class="opt-select" data-id="var">
-                                    <?php
-                                    foreach ($json_text['var'][$eixo_num] as $variavel) {
-                                        echo "<option value='" . $variavel['id'] . "'>" . $variavel['title'];
-                                    }
-                                    ?>
-                                </select>
-                                <br>
-                                <div id="option-title-view" <?php echo "class='select-ano'"; ?>>
-                                    <span class="opt view active">Ano:</span>
-                                    <select class="opt-select" data-id="ano">
+                                <div class="omitir">
+                                    <span data-desc="<?= $json_text['var_desc'] ?>" class="opt active">Variável:</span>
+                                    <select class="opt-select" data-id="var">
                                         <?php
-                                        foreach ($json_text['select']['ano'] as $option) {
-                                            echo "<option value='" . $option['value'] . "'>" . $option['name'] . "</option>";
+                                        foreach ($json_text['var'][$eixo_num] as $variavel) {
+                                            echo "<option value='" . $variavel['id'] . "'>" . $variavel['title'];
                                         }
                                         ?>
                                     </select>
+                                </div>
+                                <br>
+                                <div class="omitir">
+                                    <div id="option-title-view" <?php echo "class='select-ano'"; ?>>
+                                        <span class="opt view active">Ano:</span>
+                                        <select class="opt-select" data-id="ano">
+                                            <?php
+                                            foreach ($json_text['select']['ano'] as $option) {
+                                                echo "<option value='" . $option['value'] . "'>" . $option['name'] . "</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div>
@@ -367,7 +371,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                                 } else {
                             ?>
 
-                                <?php if($eixo == "comercio") { ?>
+                            <?php if($eixo == "comercio") { ?>
                                     <div style="margin-bottom: 10px;" class="col-xs-6 col-btn">
                                         <button class="opt view active" id="bens">Bens</button>
                                     </div>
@@ -376,17 +380,21 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                                     </div>
                                 <?php } ?>
 
-                            <span data-desc="<?= $json_text['var_desc'] ?>" class="opt active">Variável:</span>
-                            <select class="opt-select" data-id="var">
-                                <?php
-                                foreach ($json_text['var'][$eixo_num] as $variavel) {
-                                    echo "<option value='" . $variavel['id'] . "'>" . $variavel['title'] . "</option>";
-                                }
-                                ?>
-                            </select>
-                            <br>
-                            <div id="option-title-view" <?php echo "class='select-ano'"; ?>>
-                                <span class="opt view active">Ano:</span>
+
+                            <div class = "omitir" id="option-title-view "  <?php echo $json_text['var_desc'] ?>>
+                                <span class="opt view omitir">Variável:</span>
+                                <select class="opt-select" data-id="var">
+                                    <?php
+                                    foreach ($json_text['var'][$eixo_num] as $variavel) {
+                                        echo "<option value='" . $variavel['id'] . "'>" . $variavel['title'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
+
+                            <div class = "omitir" id="option-title-view "  <?php echo "class='select-ano'"; ?>>
+                                <span class="opt view omitir">Ano:</span>
                                 <select class="opt-select" data-id="ano">
                                     <?php
                                         foreach ($json_text['select']['ano'] as $option) {
