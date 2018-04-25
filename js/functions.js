@@ -487,9 +487,7 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
 
        }
 
-       setTerceiroValueData(vrv, valor, url['cad']);
-        
-            
+       setTerceiroValueData(vrv, valor, url['cad']);            
 
     }
 }
@@ -802,11 +800,14 @@ function updateBreadUF(eixo, vrv){
             if(vrv > 12){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
                 $('.bread-select[data-id=cad]').prop("disabled", true);
+                $('.opt-select[data-id=deg]').prop("disabled", false);
 
-            } else{
+            } else if(vrv == 2){
+                $('.opt-select[data-id=deg]').prop("disabled", true);
+            }else{
                 $('.bread-select[data-id=uf]').prop("disabled", false);
                 $('.bread-select[data-id=cad]').prop("disabled", false);
-
+                $('.opt-select[data-id=deg]').prop("disabled", false);
             }
             break;
         case 2:
@@ -1152,6 +1153,27 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
         }
     }
 }
+
+function updateDescMercado(desc, vrv, nomeestado){
+    var deg = $(window.parent.document).find(".opt-select[data-id=deg]").val()
+    if(deg != 0){
+        cad_e_deg = $(window.parent.document).find(".cad-title").first().text().split(" - ");
+        if(cad_e_deg.length == 1)
+            option_selected = "";
+        else
+            option_selected = cad_e_deg[1];
+
+        switch(deg){
+            case '1': console.log(option_selected); break;
+            case '2': console.log(option_selected); break;
+            case '3': console.log(option_selected); break;
+            case '4': console.log(option_selected); break;
+        }
+    } else {
+        option_selected = ""
+    }
+}
+
 function updateDescComercio(desc, vrv, nomeestado){
     prepos = {
         "ACRE":"DO",
@@ -1263,7 +1285,7 @@ function updateDescComercio(desc, vrv, nomeestado){
             $(window.parent.document).find(".prc-title").first().text("E "+prc.split(" ")[1])
             break;
     }
-    if(vrv <= 3 || vrv == 13)
+    if(vrv <= 3 || vrv >= 13)
         $(window.parent.document).find(".integer-value").first().find(".description-number").first().css("font-size", "0.5vw")
     else
         $(window.parent.document).find(".integer-value").first().find(".description-number").first().css("font-size", "14px")
@@ -1273,7 +1295,6 @@ function updateDescComercio(desc, vrv, nomeestado){
         return
 }
 function setTerceiroValueData(vrv, value, cad){
-    console.log(cad)
     if(vrv == 5 || vrv == 8){
         if(cad == 1){
             $(window.parent.document).find(".state-title").first().css("display", "none");
@@ -1281,7 +1302,7 @@ function setTerceiroValueData(vrv, value, cad){
             $(window.parent.document).find(".prc-title").first().css("display", "none");
             desc = $(window.parent.document).find(".percent-value").first().find(".description-number").first().text();
             $(window.parent.document).find(".setor-value").first().find(".number").first().text(formatDecimalLimit(value, 2));
-            $(window.parent.document).find(".setor-value").first().find(".description-number").first().text(desc.replace("PARCEIROS", "SETOR"));
+            $(window.parent.document).find(".setor-value").first().find(".description-number").first().text(desc.replace("UF", "SETOR"));
             $(window.parent.document).find(".setor-value").first().css("display", "block");
             doc = $(window.parent.document).find(".setor-value").first().find(".number").first();
             setMaxFontSize(doc);
@@ -1332,16 +1353,16 @@ function setIntegerValueData(value, eixo, vrv) {
             literal = formatDecimalLimit(valor, 6);
 
         // console.log(value)
+
+        estado = $(window.parent.document).find(".state-title").first().text()
+        if(eixo == 1){
+            updateDescMercado(result.desc_int, vrv, estado);
+        }
         if(eixo == 3){
-            estado = $(window.parent.document).find(".state-title").first().text()
             $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(updateDescComercio(result.desc_int, vrv, estado))
             $(window.parent.document).find(".percent-value").first().find(".description-number").first().html(updateDescPercentComercio(result.desc_percent, vrv, estado))
-            //alert($(window).src())
-           /* cad = ($(window.document).find("iframe").first().attr("src").match(/cad=[0-9]/g)[0].replace("cad=", ''))
-            console.log(cad)
-            if(cad == '1'){
-                setTerceiroValueData(vrv, valor)
-            }*/
+            desc = $(window.parent.document).find(".percent-value").first().find(".description-number").first().text()
+            $(window.parent.document).find(".setor-value").first().find(".description-number").first().text(desc.replace("VALOR ABSOLUTO POR UF", "VALOR ABSOLUTO POR SETOR"));
         }
 
         $(window.parent.document).find(".integer-value").first().find(".number").first().html(prefixo+literal+sufixo);

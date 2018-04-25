@@ -34,7 +34,21 @@ d3.json('data/colors.json', function (error, data) {
 $.get("./db/json_linhas.php"+config, function(data) {
      // console.log(data);
 });
-
+/*
+function getIdCadeia(nomecadeia){
+    switch(nomecadeia){
+        case "Editorial":
+        case "Cultura Digital":
+        case "Arquitetura e Design":
+        case "Artes Cênicas e Espetáculos":
+        case "Editorial":
+        case "Editorial":
+        case "Editorial":
+        case "Editorial":
+        case "Editorial":
+    }
+}
+*/
 function analyze(error, data) {
 
 
@@ -166,10 +180,10 @@ function analyze(error, data) {
                 .data([data[i]])
                 .attr("class", "line")
                 .attr("scc", scc)
-                .style("stroke-width", function(){return 2;})
+                .style("stroke-width", function(d){return 2;})
                 .style("stroke", color(scc))
                 .attr("d", valueline);
-
+           // d3.selectAll("path").style("opacity", function(d, i){if(deg == i+1 || deg == 0) return 1; else return 0.3})
         });
 
 
@@ -187,7 +201,9 @@ function analyze(error, data) {
     svg.selectAll("path")
             .on("mouseover", function (dados) {
                 mousemove(dados, (this));
-                d3.selectAll("path").style("opacity", 0.3)
+                
+                d3.selectAll("path").style("opacity",  0.3)
+                
                 d3.select(this).style("opacity", 1)
             })
             .on("mouseout", function () {
@@ -352,7 +368,6 @@ function analyze(error, data) {
         Object.keys(colorJSON.cadeias).forEach(function (i, key) {
             colors[colorJSON.cadeias[i].name] = colorJSON.cadeias[i].color;
         });
-
         return colors[deg];
 
     }

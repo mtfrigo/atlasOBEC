@@ -1139,15 +1139,13 @@ $(document).ready(function(){
 	/*=== selecionar variável ===*/
 
 	$(document).on('click', ".scc", function(){
-
 	    var eixoAtual = getEixo(window.location.hash.substring(1));
-
         if((eixoAtual == 0 && url['var'] < 10) || (eixoAtual == 1 && url['var'] < 12) ||  (eixoAtual == 3) ){
             var setor = $(this).attr('data-id');
             var newSCCSrc = $("#view_box_scc").attr("src");
             var change = newSCCSrc.match(/uf=([0-9]*)/);
-            url['cad'] = setor;
             
+            url['cad'] = setor;
             url['uf'] = change[1];
             if(setor == 0) {
                 url['prt'] = 0;
@@ -1160,6 +1158,7 @@ $(document).ready(function(){
                 url['esc'] = 0;
                 url['cor'] = 0;
             }
+
             updateIframe(url);
 
             enableDesag(getEixo(window.location.hash.substring(1)), url['var'], setor, false, url['slc'], url);
@@ -1535,6 +1534,8 @@ $(document).ready(function(){
                         $('.bread-select[data-id=prc]').val(0);
                         $(".opt-select[data-id='prc']").val(0)
                         url['prc'] = 0
+                        url['typ'] = 1;
+                        $(".opt-select[data-id='typ']").val(1)
                     }
                     $(window.document).find(".prc-title").first().html($(".opt-select[data-id='prc'] option:selected").text());
                 }

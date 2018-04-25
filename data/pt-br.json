@@ -1607,7 +1607,7 @@
 				"id":"13",
 				"title":"QUANTIDADE FÍSICA TRANSACIONADA",
 				"desc_int": "<> {} PARA O [] ()",
-				"desc_percent":"dos kg <> pelo {}",
+				"desc_percent":"dos kg <> {}",
 				"desc":"Demonstra se há ou não vantagem comparativa nas exportações do comércio exterior nacional cultural por estratificação proposta.",
 				"desc_var_mapa": "A variável calcula a quantidade física, em kg, transacionada pelos Setores Culturais e Criativos.",
 				"fontes":"MDIC.",
