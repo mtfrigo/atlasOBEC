@@ -875,9 +875,6 @@ function updateMecanismo(url, vrv){
             $("select[data-id='mec']").append("<option value='2'>Mecenato</option>");
         }
 
-        else if(vrv == 7 || vrv == 11 || vrv == 12 || vrv == 13 || vrv == 14){
-            $("select[data-id='mec']").append("<option value='2'>Mecenato</option>");
-        }
         else if(vrv == 3){
             $("select[data-id='mec']").append("<option value='3'>Fundo Cultural</option>");
             $("select[data-id='mec']").append("<option value='4'>Outros</option>");
@@ -1460,7 +1457,7 @@ function descByCAD(eixo, desc, tag){
 
     }
     else {
-        if(eixo == 2 && (url['var'] == 9 || url['var'] == 11 || url['var'] == 12 || url['var'] == 13 || url['var'] == 14))
+        if(eixo == 2 && (url['var'] == 5 ||  url['var'] == 9 || url['var'] == 11 || url['var'] == 12 || url['var'] == 13 || url['var'] == 14))
             nome = "";
         else if(eixo == 2 && (url['var'] == 8 || url['var'] == 9))
             if(tag == '[CAD]')
