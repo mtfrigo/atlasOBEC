@@ -180,6 +180,14 @@ function analyze(error, data) {
                 .data([data[i]])
                 .attr("class", "line")
                 .attr("scc", scc)
+                .style("opacity",  function(d){
+                    if(url['cad'] != 0 ){
+                        if(getCadId(scc) == url['cad'])
+                            return 1;
+                        else return 0.2;
+                    }
+                    else
+                        return 1;})
                 .style("stroke-width", function(d){return 2;})
                 .style("stroke", color(scc))
                 .attr("d", valueline);
@@ -201,14 +209,18 @@ function analyze(error, data) {
     svg.selectAll("path")
             .on("mouseover", function (dados) {
                 mousemove(dados, (this));
-                
-                d3.selectAll("path").style("opacity",  0.3)
-                
-                d3.select(this).style("opacity", 1)
+
+                if(url['cad'] == 0){
+                    d3.selectAll("path").style("opacity",  0.3)
+                    d3.select(this).style("opacity", 1)
+                }
             })
             .on("mouseout", function () {
                 tooltipInstance.hideTooltip();
-                d3.selectAll("path").style("opacity", 1)
+
+                if(url['cad'] == 0){
+                    d3.selectAll("path").style("opacity", 1)
+                }
             })
 
         var coordsAxisX = [];
@@ -238,14 +250,7 @@ function analyze(error, data) {
             if(!($(path).hasClass("domain")) ){
                 var scc = ($(path).attr("scc"));
 
-                position = 0;
                 var ano = 2007;
-                var variacao = 0;
-
-                var xAno = 0;
-                var y1Ano = 0;
-                var y2Ano = 0;
-
 
                 for (var i = 1; i < coordsAxisX.length; i++) {
 
@@ -259,7 +264,6 @@ function analyze(error, data) {
 
                     if (d3.mouse(d3.event.currentTarget)[0] >= calc1 && d3.mouse(d3.event.currentTarget)[0] <= calc2) {
                         ano = anos[i];
-                        console.log("break")
                         break;
                     }
 
@@ -273,7 +277,7 @@ function analyze(error, data) {
                         valor = dados[key][scc];
                 })
 
-                valor = valor.toString().replace(".",",");
+                valor =  formatNumber(valor, 2).toString().replace(".", "");
 
                 tooltipInstance.showTooltip(d, [
                     ["title", scc],
@@ -370,6 +374,21 @@ function analyze(error, data) {
         });
         return colors[deg];
 
+    }
+
+    function getCadId(cadName){
+        switch(cadName){
+            case "Arquitetura e Design": return 1;
+            case "Artes Cênicas e Espetáculos": return 2;
+            case "Audiovisual": return 3;
+            case "Cultura Digital": return 4;
+            case "Editorial": return 5;
+            case "Educação e Criação em Artes": return 6;
+            case "Entretenimento": return 7;
+            case "Música": return 8;
+            case "Patrimônio": return 9;
+            case "Publicidade":  return 10;
+        }
     }
 
 

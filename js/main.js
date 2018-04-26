@@ -34,7 +34,15 @@ function controlVarPage(clickVar){
 function getAnoDefault(eixo_atual){
     switch(eixo_atual){
         case 0: url['ano'] = anos_default[url['var']][0]; break;
-        case 1: url['ano'] = anos_default[url['var']][url['ocp']]; break;
+        case 1:
+
+            if(url['var'] == 10 || url['var'] == 9 || url['var'] == 11){
+                url['slc'] = 0
+                url['ocp'] = 0
+            }
+
+            url['ano'] = anos_default[url['var']][url['ocp']]; break;
+
         case 2: url['ano'] = anos_default[url['var']][0]; break;
         case 3:
         if(url['var'] >= 11)
@@ -1498,6 +1506,8 @@ $(document).ready(function(){
 
                 changeDescVar();
                 cleanDesagsUrl();
+                getAnoDefault(eixo_atual);
+
                 if(url['ocp'] == 0){
                     switchToSetores(); 
                     $('#setor').addClass("active");
@@ -1510,10 +1520,11 @@ $(document).ready(function(){
 
                 $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
                 $(window.document).find(".title[data-id='var-title']").first().html($('.bread-select[data-id=var] option:selected').text());
+
+
+
                 updateMenuSetor(getEixo(window.location.hash.substring(1)), $(this).val());
                 updateBreadUF(eixo_atual, url['var']);
-
-                getAnoDefault(eixo_atual);
                 
                 if(eixo_atual == 0){
                     $('.opt-select[data-id=deg]').val(0);
