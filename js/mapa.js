@@ -706,7 +706,7 @@ function legendaBinario(){
         estadoAtual = dict[url['uf']].uf
     else
         estadoAtual = "BRASIL"
-    if(eixo != 3){
+    if(eixo != 3 && eixo != 1){
         $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, estadoAtual));
         $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, estadoAtual));
     }

@@ -687,12 +687,12 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
 
         var valor = $('svg').find('rect[data-legend="'+url['ano']+'"]').attr("data-value");
         configInfoDataBoxBarras(eixo, vrv, dados, valor);
-
         
-
-        
-        $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, data[dados.key[0]].uf));
-        $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, data[dados.key[0]].uf));
+        if(eixo == 1)
+            updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, data[dados.key[0]].uf);
+        else
+            $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, data[dados.key[0]].uf));
+            $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, data[dados.key[0]].uf));
 
 
 
@@ -1100,7 +1100,9 @@ else {
         }
         if(eixo == 0) setStateTitle(function(){if(data[dados.key[0]].uf == "Todos") return "Brasil"; else return data[dados.key[0]].uf});
 
-        if(eixo != 3){
+        if(eixo == 1)
+            updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, data[dados.key[0]].uf);
+        else if(eixo != 3){        
             $(window.parent.document).find(".integer-value").first().find(".description-number").html("integer", updateDescPercent(eixo, getDataVar(textJSON, eixo, vrv).desc_int, data[dados.key[0]].uf));
             $(window.parent.document).find(".percent-value").first().find(".description-number").html("percent", updateDescPercent(eixo, getDataVar(textJSON, eixo, vrv).desc_percent, data[dados.key[0]].uf));
         }
