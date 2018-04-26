@@ -290,6 +290,9 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
 function configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg, valor, percent, percent_uf) {
     if(eixo == 1) {
 
+        alert("oi")
+
+
         destacaSetor(parseInt(url['cad'])+1);
 
 
