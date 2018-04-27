@@ -432,13 +432,26 @@ function ready(error, br_states, mapa){
                 //setPercentValueData(dict[d.id], eixo, vrv);
 
             configInfoDataBoxMapaClick(eixo, vrv, dict[d.id]);
-
+            console.log(dict[d.id])
             setStateTitle(d['properties']['name']);
-
+            
 
             updateIframe(url)
-
-		})
+            
+            //ESSE TRECHO DE CÓDIGO ATUALIZA O TÍTULO DO IFRAME DO SCC 
+            
+            src = $(window.parent.document).find('iframe[id="view_box_scc"]').attr("src").match(/treemap_scc_box/g);
+            if(src != null){
+                var title_scc = $(window.parent.document).find('iframe[id="view_box_scc"]')
+                                    .parent()
+                                    .find(".view-title").html().split(/DE | DO | DA/)[0]
+            
+                $(window.parent.document).find('iframe[id="view_box_scc"]')
+                                        .parent()
+                                        .find(".view-title")
+                                        .html(title_scc+" "+getPrepos(dict[d.id].uf.toUpperCase())+" "+dict[d.id].uf.toUpperCase());
+            }
+        })
 		.style("cursor", "pointer");
 
 	//legenda

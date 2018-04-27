@@ -718,8 +718,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                             ["", formatTextVrv(dados.value[i], eixo, vrv)],
                         ]);
                     }
-                }
-                if(vrv === 3){
+                } else if(vrv === 3){
                     tooltipInstance.showTooltip(d, [
                         ["title", dados.key[i]],
                         ["", formatTextVrv(dados.value[i], eixo, vrv)],

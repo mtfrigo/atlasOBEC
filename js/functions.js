@@ -290,11 +290,7 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
 
 function configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg, valor, percent, percent_uf) {
     if(eixo == 1) {
-
-        alert("oi")
-
-
-        destacaSetor(parseInt(url['cad'])+1);
+        destacaSetor(d.data.colorId);
 
 
         if(url['deg'] == 0 || deg == 0){
@@ -1099,7 +1095,7 @@ function getPrepos(uf){
     return prepos[uf];
 }
 
-function PercentComercio(desc, vrv, nomeestado){
+function updateDescPercentComercio(desc, vrv, nomeestado){
     prepos = {
         "ACRE":"DO",
         "ALAGOAS":"DE",
@@ -1509,7 +1505,6 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
     }
 
     nomeestado = nomeestado.toUpperCase()
-
     if(eixo == 0){
         if(url['var'] == 3 || url['var'] == 9){
             if(prepos[nomeestado]){
@@ -1539,12 +1534,13 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
 
         }
         else{
-            if(prepos[nomeestado] && url['cad'] != 0){
+            if(prepos[nomeestado]){
                 nomeestado = prepos[nomeestado] + ' ' +nomeestado
             }
             else{
                 nomeestado = "DO BRASIL"
             }
+
         }
     }else if(eixo == 1){
         if(url['var'] == 7 || url['var'] == 1){
@@ -2069,7 +2065,7 @@ function formatTextVrv(value, eixo, vrv){
             sufixo = variavel.sufixo_valor;
             prefixo = variavel.prefixo_valor;
             valor = value;
-            switch(eixo) {
+            /*switch(eixo) {
                 case 0:
                     break;
                 case 1:
@@ -2078,7 +2074,7 @@ function formatTextVrv(value, eixo, vrv){
                     }
                     break;
 
-            }
+            }*/
             if(eixo == 1 && url['var'] == 2)
                 string = prefixo+formatDecimalLimit(valor, 4)+sufixo;
             else
