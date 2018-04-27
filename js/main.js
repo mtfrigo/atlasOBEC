@@ -289,17 +289,18 @@ function updateIframe(url){
                 if (url['var'] == 3) {
                     $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
-                } else if (url['var'] > 9) {
+                }
+                else if (url['var'] > 9) {
                     newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
                     $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
-                } else if (url['var'] == 9 && url['uf'] != 0){
+                }
+                else if (url['var'] == 9 && url['uf'] != 0){
                     $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS")
-                } else {
+                }
+                else {
                     $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-
-
 
                     if(url['uf'] == 0)
                         $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");
@@ -325,7 +326,7 @@ function updateIframe(url){
                 $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS")
             }
-             else if(url['var'] == 4){
+             else if(url['var'] == 4 || url['var'] == 6){
 
                 //if(url['cad'] != 0 && url['deg'] != 0) {
                     $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);

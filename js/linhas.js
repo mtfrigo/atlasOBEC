@@ -32,7 +32,7 @@ d3.json('data/colors.json', function (error, data) {
 });
 
 $.get("./db/json_linhas.php"+config, function(data) {
-     // console.log(data);
+
 });
 /*
 function getIdCadeia(nomecadeia){
@@ -50,6 +50,8 @@ function getIdCadeia(nomecadeia){
 }
 */
 function analyze(error, data) {
+
+    console.log(data)
 
 
     //console.log(colorJSON)
@@ -211,7 +213,7 @@ function analyze(error, data) {
                 mousemove(dados, (this));
 
                 if(url['cad'] == 0){
-                    d3.selectAll("path").style("opacity",  0.3)
+                    //d3.selectAll("path").style("opacity",  0.3)
                     d3.select(this).style("opacity", 1)
                 }
             })
@@ -365,6 +367,41 @@ function analyze(error, data) {
             "6": "rgb(109, 191, 201)",
             "7": "#8178AF",
             "8": "#EC8A91",
+
+            "Sim": "#071342",
+            "Não": "rgb(109, 191, 201)",
+
+            "Branca": "#EC8A91",
+            "Parda": "rgb(109, 191, 201)",
+            "Preta": "black",
+            "Amarela": "yellow",
+            "Indígena": "green",
+
+            "Micro": "rgb(109, 191, 201)",
+            "Médio": "black",
+            "Grande": "yellow",
+            "Pequeno": "green",
+
+            "Sem instrução": "#071342",
+            "Fundamental incompleto": "#077DDD",
+            "Fundamental completo": "#8178AF",
+            "Médio completo": "#EC8A91",
+            "Superior incompleto": "#E96B00",
+            "Superior completo": "rgb(109, 191, 201)",
+            "Não determinado": "red",
+
+
+            "10 a 17": "#071342",
+            "18 a 29": "#077DDD",
+            "30 a 49": "#8178AF",
+            "50 a 64": "#EC8A91",
+            "65 ou mais": "rgb(109, 191, 201)",
+            "Não classificado": "red",
+
+            "Masculino": "#071342",
+            "Feminino": "#E96B00",
+
+
 
         }
 

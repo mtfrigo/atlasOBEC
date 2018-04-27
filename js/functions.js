@@ -612,6 +612,8 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
 }
 
 function configInfoDataBoxBarrasStackedClick(eixo, vrv, d, soma, deg) {
+
+    console.log(d)
     if(eixo == 1) {
         if(d.y == "NaN") {
             d.y = 0;

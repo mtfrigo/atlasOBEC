@@ -713,7 +713,15 @@ function legendaBinario(){
     function loadTooltip(d, eixo, vrv){
 
         if(eixo == 0) {
-            if(vrv === 2) {
+            if(vrv === 1){
+
+                tooltipInstance.showTooltip(d, [
+                    ["title", d['properties']['name']],
+                    ["", formatTextVrv(dict[d.id].valor, eixo, vrv)],
+                    //    ["", formatDecimalLimit(dict[d.id].taxa, 2)],
+                ]);
+            }
+            else if(vrv === 2) {
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
                     ["", formatTextVrv(dict[d.id].valor, eixo, vrv)]
