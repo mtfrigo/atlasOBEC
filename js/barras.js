@@ -70,6 +70,8 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
     // var info = [];
     var dados = {key: [], value: []};
 
+
+
     // import colors.json file
     var colorJSON;
     var textJSON;
@@ -105,7 +107,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
         if (error) {
             console.log(error);
         }
-        
+
         var dados = {key: [], value: [], percentual: [], taxa: []};
 
         Object.keys(data).forEach(function (key) {
@@ -932,42 +934,21 @@ else {
 
             Object.keys(data).forEach(function (key) {
 
-                // console.log(data[key])
-
                 soma = 0;
                 cont = 0;
 
                 Object.keys(data[key]).forEach(function (chave) {
-
-
                     if(chave != "year"){
                         obj = {};
-
                         obj[chave] = data[key][chave];
                         soma = soma + obj[chave];
-
                         cont++;
                     }
-
                 });
-
                 aux.push({year: data[key].year, Média: soma/cont})
-
-
             });
-
             data = aux;
         }
-
-
-
-
-
-
-
-        //console.log(somas)
-
-        // Setup svg using Bostock's margin convention
 
         setTimeout(function () {
         }, 500);
@@ -993,7 +974,6 @@ else {
             });
         });
 
-        //console.log(dados)
 
         // Transpose the data into layers
         var dataset = d3.layout.stack()(dados);
@@ -1003,7 +983,7 @@ else {
             .domain(dataset[0].map(function (d) {
                 return d.x;
             }))
-            .rangeRoundBands([10, width - 10], 0.02);
+            .rangeRoundBands([10, width - 10]);
 
         var y_eixo1 = d3.scale.linear()
             .domain([0, d3.max(dataset, function (d) {
@@ -1077,6 +1057,7 @@ else {
             })
             .on("mouseout", tooltipInstance.hideTooltip)
             .on("click", function(d, i, obj) {
+
                 if(d.x.getFullYear() != url['ano']) {
                     url['ano'] = d.x.getFullYear();
                     var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano=" + d.x.getFullYear());
@@ -1090,6 +1071,8 @@ else {
                 }
                 if (slc == 0) $(window.parent.document).find(".cad-title").first().html(textJSON.select.cad[url['cad']].name + " - " + desagregacao_names()[obj]);
                 else $(window.parent.document).find(".cad-title").first().html(textJSON.select.ocp[url['ocp'] - 1].name + " - " + desagregacao_names()[obj]);
+                console.log(d)
+
                 configInfoDataBoxBarrasStackedClick(eixo, vrv, d, getSoma(d.x), deg);
             })
             .style("cursor", "pointer");
@@ -1155,9 +1138,11 @@ else {
         }
         if(eixo == 0) setStateTitle(function(){if(data[dados.key[0]].uf == "Todos") return "Brasil"; else return data[dados.key[0]].uf});
 
-        if(eixo == 1)
+        if(eixo == 1 && dados.key != undefined){
             updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, data[dados.key[0]].uf);
-        else if(eixo != 3){        
+
+        }
+        else if(eixo != 3 && dados.key != undefined){
             $(window.parent.document).find(".integer-value").first().find(".description-number").html("integer", updateDescPercent(eixo, getDataVar(textJSON, eixo, vrv).desc_int, data[dados.key[0]].uf));
             $(window.parent.document).find(".percent-value").first().find(".description-number").html("percent", updateDescPercent(eixo, getDataVar(textJSON, eixo, vrv).desc_percent, data[dados.key[0]].uf));
         }

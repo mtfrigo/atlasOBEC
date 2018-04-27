@@ -229,22 +229,20 @@ class EixoUm {
                 while($obj = mysqli_fetch_object($result, 'EixoUm')){
                     $allObjects[] = $obj;
 				}
-				if($var != 1){
-					$result_aux = array();
-					$value_aux = array();
-					$percent_aux = array();
-					foreach ($allObjects as $data) {
-						if(!isset($value_aux[$data->idUF])) $value_aux[$data->idUF] = 0;
-						if(!isset($percent_aux[$data->idUF])) $percent_aux[$data->idUF] = 0;
-						$value_aux[$data->idUF] += $data->Valor;
-						$percent_aux[$data->idUF] += $data->Percentual;
-						$result_aux[$data->idUF] = $data;
-						$result_aux[$data->idUF]->Valor = $value_aux[$data->idUF];
-						$result_aux[$data->idUF]->Percentual = $percent_aux[$data->idUF];
-					}	
-					$allObjects = $result_aux;
-				}
-                
+                $result_aux = array();
+                $value_aux = array();
+                $percent_aux = array();
+                foreach ($allObjects as $data) {
+                    if(!isset($value_aux[$data->idUF])) $value_aux[$data->idUF] = 0;
+                    if(!isset($percent_aux[$data->idUF])) $percent_aux[$data->idUF] = 0;
+                    $value_aux[$data->idUF] += $data->Valor;
+                    $percent_aux[$data->idUF] += $data->Percentual;
+                    $result_aux[$data->idUF] = $data;
+                    $result_aux[$data->idUF]->Valor = $value_aux[$data->idUF];
+                    $result_aux[$data->idUF]->Percentual = $percent_aux[$data->idUF];
+                }
+                $allObjects = $result_aux;
+
                 
             }
 
