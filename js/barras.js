@@ -842,6 +842,14 @@ else {
     }
 
     function desagregacao_names() {
+
+        if(eixo == 1 && (vrv == 6 || vrv == 4)){
+            var array_names = [];
+
+            array_names.push('Média');
+            return array_names;
+        }
+
         if(prt != 0) {
             var array_names = [];
             textJSON.select.prt.forEach(function(d, i) {
@@ -916,6 +924,47 @@ else {
             console.log(error);
         }
 
+
+        if((vrv == 6 || vrv == 4) && eixo == 1){
+            aux = []
+
+            Object.keys(data).forEach(function (key) {
+
+                // console.log(data[key])
+
+                soma = 0;
+                cont = 0;
+
+                Object.keys(data[key]).forEach(function (chave) {
+
+
+                    if(chave != "year"){
+                        obj = {};
+
+                        obj[chave] = data[key][chave];
+                        soma = soma + obj[chave];
+
+                        cont++;
+                    }
+
+                });
+
+                aux.push({year: data[key].year, Média: soma/cont})
+
+
+            });
+
+            data = aux;
+        }
+
+
+
+
+
+
+
+        //console.log(somas)
+
         // Setup svg using Bostock's margin convention
 
         setTimeout(function () {
@@ -941,6 +990,9 @@ else {
                 return {x: parse(d.year), y: +d[fruit]};
             });
         });
+
+        //console.log(dados)
+
         // Transpose the data into layers
         var dataset = d3.layout.stack()(dados);
 
@@ -985,6 +1037,7 @@ else {
             .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis_eixo1);
+
 
 
         // Create groups for each series, rects for each segment
