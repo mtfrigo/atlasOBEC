@@ -1057,7 +1057,48 @@ function getDataVar(json, eixo, vrv){
     })[0];
 }
 
-function updateDescPercentComercio(desc, vrv, nomeestado){
+function getPrepos(uf){
+    prepos = {
+        "ACRE":"DO",
+        "ALAGOAS":"DE",
+        "AMAPÁ":"DO",
+        "AMAZONAS":"DO",
+        "BAHIA":"DA",
+        "CEARÁ":"DO",
+        "DISTRITO FEDERAL":"DO",
+        "ESPÍRITO SANTO":"DO",
+        "GOIÁS":"DE",
+        "MARANHÃO":"DO",
+        "MATO GROSSO":"DE",
+        "MATO GROSSO DO SUL":"DE",
+        "MINAS GERAIS":"DE",
+        "PARÁ":"DO",
+        "PARAÍBA":"DA",
+        "PARANÁ":"DO",
+        "PERNAMBUCO":"DE",
+        "PIAUÍ":"DO",
+        "RIO DE JANEIRO":"DO",
+        "RIO GRANDE DO NORTE":"DO",
+        "RIO GRANDE DO SUL":"DO",
+        "RONDÔNIA":"DE",
+        "RORAIMA":"DE",
+        "SANTA CATARINA":"DE",
+        "SÃO PAULO":"DE",
+        "SERGIPE":"DE",
+        "TOCANTINS": "DO",
+        "EUROPA": "DA",
+        "MUNDO": "DO",
+        "ÁFRICA": "DA",
+        "AMÉRICA DO SUL": "DA",
+        "AMÉRICA DO NORTE": "DA",
+        "OCEANIA": "DA",
+        "ÁSIA": "DA"   
+    }
+
+    return prepos[uf];
+}
+
+function PercentComercio(desc, vrv, nomeestado){
     prepos = {
         "ACRE":"DO",
         "ALAGOAS":"DE",
@@ -1158,23 +1199,78 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
 }
 
 function updateDescMercado(desc, vrv, nomeestado){
-    var deg = $(window.parent.document).find(".opt-select[data-id=deg]").val()
-    if(deg != 0){
-        cad_e_deg = $(window.parent.document).find(".cad-title").first().text().split(" - ");
-        if(cad_e_deg.length == 1)
-            option_selected = "";
-        else
-            option_selected = cad_e_deg[1];
-
-        switch(deg){
-            case '1': console.log(option_selected); break;
-            case '2': console.log(option_selected); break;
-            case '3': console.log(option_selected); break;
-            case '4': console.log(option_selected); break;
+    var deg = $(window.parent.document).find(".opt-select[data-id=deg]").val();
+    var cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
+    
+    if(cad.toUpperCase() == "TODOS" || cad.toUpperCase() == " TODOS"){
+       
+        if(vrv == 5 || vrv == 6)
+            cad = "";
+        else if(vrv == 11){
+            
+            cad = "CULTURAIS E CRIATIVOS"
+        }
+        else {
+            cad = "DOS SETORES CULTURAIS E CRIATIVOS";
         }
     } else {
-        option_selected = ""
+        if(vrv == 5 || vrv == 6)
+            cad = "NO SETOR "+cad;
+        else 
+            cad = "DO SETOR "+cad;
     }
+
+    if(getPrepos(nomeestado)){
+        uf = getPrepos(nomesestado).replace("DE", "EM").replace("DO", "NO").replace("DA", "NA")+ ' '+nomesestado
+    } else{
+        uf = "NO BRASIL";
+    }
+
+
+    option_selected = '';
+    
+    if(deg != 0){
+        cad_e_deg = $(window.parent.document).find(".cad-title").first().text().split(" - ");
+
+        if(cad_e_deg.length > 1)
+        {
+            option_selected = cad_e_deg[1];
+            switch(deg){
+                case '1':
+                    if(vrv == 5)
+                        option_selected = "EM EMPRESAS DE PORTE "+option_selected; 
+                    else if(vrv == 6)
+                        option_selected = "NAS EMPRESAS DE PORTE "+option_selected;
+                    else
+                        option_selected = "DE EMPRESAS DE PORTE "+option_selected; 
+                    break;
+                case '2':
+                    if(vrv == 5)
+                        option_selected = "PARA O SEXO "+option_selected
+                    else if(vrv == 6)
+                        option_selected = "PARA TRABALHADORES DO "+option_selected
+                    else
+                        option_selected = "DO SEXO "+option_selected; 
+                    break;
+                case '3':
+                    if(vrv == 5 || vrv == 6)
+                        option_selected = "PARA TRABALHADORES COM IDADE ENTRE "+option_selected;
+                    else 
+                        option_selected = "COM IDADE ENTRE "+option_selected; 
+                    break;
+                case '4': 
+                    if(vrv == 5|| vrv == 6)
+                        option_selected = "PARA TRABALHADORES COM ENSINO"+option_selected;
+                    else 
+                        option_selected = "COM ENSINO "+option_selected;
+            }
+        }
+        
+    } 
+    description = desc.replace("[cad]", cad).replace("[deg]", option_selected).replace("[uf]", uf);
+    $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(description)
+    //$(window.parent.document).find(".percent-value").first().find(".description-number").first().html(updateDescPercentComercio(result.desc_percent, vrv, estado))
+            
 }
 
 function updateDescComercio(desc, vrv, nomeestado){

@@ -491,9 +491,9 @@
 		[
 			{
 				"id":"1",
+				"desc_int":"Trabalhadores [cad] [deg]",
+				"desc_percent": "Do total de trabalhadores [cad] [uf]",
 				"title":"Total de Ocupados",
-				"desc_int":"Trabalhadores Culturais e Criativos",
-				"desc_percent": "Do total de trabalhadores Culturais e Criativos",
 				"sufixo_valor":"",
 				"prefixo_valor":"",
 				"fonte":"RAIS e IBGE (PNAD Anual).",
@@ -539,8 +539,8 @@
 			},
 			{
 				"id":"2",
+				"desc_int":"DE PARTICIPAÇÃO DOS TRABALHADORES [cad] NO MERCADO DE TRABALHO",
 				"title":"Participação no Emprego",
-				"desc_int":"de participação dos trabalhadores culturais e criativos no total de trabalhadores {}",
 				"desc_percent": "",
 				"sufixo_valor":"%",
 				"prefixo_valor":"",
@@ -635,8 +635,8 @@
 			},
 			{
 				"id":"4",
+				"desc_int":"DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES [cad] [deg]",
 				"title":"Remuneração Média",
-				"desc_int":"de remuneração média",
 				"desc_percent": "",
 				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",
@@ -663,10 +663,10 @@
 			},
 			{
 				"id":"5",
+				"desc_int":"POR HORA TRABALHADA [cad] [deg]",
 				"title":"Remuneração por Hora Trabalhada",
-				"desc_int":"",
 				"desc_percent": "",
-				"sufixo_valor":"/h",
+				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",
 				"fonte":"Elaboração do NECCULT/UFRGS com base na RAIS E no IBGE (PNAD Anual).",
 				"desc":"Esse indicador demonstra a receita operacional líquida das empresas culturais, isto é, as receitas brutas provenientes da exploração das atividades principais e secundárias exercidas pela empresa, com deduções dos impostos e contribuições (ICMS, PIS/Pasep, IPI, ISS, Simples Nacional, Cofins etc.), das vendas canceladas, abatimentos e descontos incondicionais. Um aumento na receita pode indicar uma elevação dos preços dos bens culturais, ou da quantidade vendida.",
@@ -691,10 +691,10 @@
 			},
 			{
 				"id":"6",
+				"desc_int":"horas semanais médias de trabalho [deg] [cad]",
 				"title":"Jornada de Trabalho Média",
-				"desc_int":"",
 				"desc_percent": "",
-				"sufixo_valor":"h",
+				"sufixo_valor":"",
 				"prefixo_valor":"",
 				"fonte":"RAIS E IBGE (PNAD Anual).",
 				"desc":"Esse indicador demonstra o custo total para o funcionamento das empresas culturais. Indica a participação dos custos na composição do total necessário para as firmas operarem. Indiretamente, retrata o quanto os custos totais das atividades culturais representam em relação aos custos totais do conjunto da indústria, do comércio e dosserviços. Um aumento no dispêndio pode indicar o aumento do preço dos insumos e fatores de produção. Uma diminuição pode indicar a redução dos preços dos insumos, ou da diminuição dos custos via inovação da base técnica e produtiva. ",
@@ -767,8 +767,8 @@
 			},
 			{
 				"id":"9",
+				"desc_int":"DE RAZÃO ENTRE MASSA SALARIAL E VALOR ADICIONADO EM SETORES CULTURAIS E CRIATIVOS",
 				"title":"Razão entre a Massa de Rendimentos do Trabalho e Valor Adicionado pelos Setores Culturais e Criativos",
-				"desc_int":"",
 				"desc_percent": "",
 				"sufixo_valor":"",
 				"prefixo_valor":"",
@@ -793,8 +793,8 @@
 			},
 			{
 				"id":"10",
+				"desc_int":"RAZÃO DE VARIAÇÃO NO NÍVEL DE OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS",
 				"title":"Razão entre variação na ocupação e variação do Valor Adicionado pelos Setores Culturais e Criativos",
-				"desc_int":"de variação no nível de ocupados em atividades culturais e criativas",
 				"desc_percent": "",
 				"sufixo_valor":"",
 				"fontes":"Elaboração do NECCULT/UFRGS com base na RAIS.",
@@ -816,8 +816,8 @@
 			},
 			{
 				"id":"11",
+				"desc_int":" DE INCIDÊNCIA DOS SALÁRIOS SOBRE OS CUSTOS DOS EMPREENDIMENTOS [cad] [uf]",
 				"title":"Razão entre Custo Total das Empresas Culturais e Criativas e Salários Pagos",
-				"desc_int":"de incidência dos salários sobre os custos dos empreendimentos",
 				"desc_percent": "",
 				"fontes":"Elaboração do NECCULT/UFRGS com base na RAIS E no IBGE (PNAD Anual).",
 				"sufixo_valor":"",
