@@ -190,6 +190,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                 .domain(d3.range(dados.value.length - 2))
                 .rangeRound([0, width])
                 .padding(0.1);
+
         }
         else {
             var x = d3.scaleBand()
@@ -209,11 +210,13 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
         $.each(dados.value, function (i, d) {
             maxDecimalAxis = countValidDecimalDigits(d) > maxDecimalAxis ? countValidDecimalDigits(d) : maxDecimalAxis;
         });
+
         if(eixo == 0 & (vrv >= 10 && vrv <= 13)) dados.value.pop();
         dados.value.pop();
 
-        if(vrv === 3) {
-            dados.value.remove(0);
+        if(vrv === 3 && eixo == 0) {
+            dados.value.splice(0,1);
+
         }
         var formatYAxis = function (d) {
             var higherZeroOcur = maxDecimalAxis;
@@ -693,7 +696,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
         else
             $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, data[dados.key[0]].uf));
             $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, data[dados.key[0]].uf));
-
+        
 
 
         if(url['slc'] == 1){

@@ -53,6 +53,7 @@ function ajustaAnos(keys) {
 	for(var i = 0; i < keys.length; i++) {
 		keys[i] = keys[i+1];
     }
+    console.log(keys);
     keys.pop();
 	return keys;
 }
@@ -1221,7 +1222,9 @@ function updateDescMercado(desc, vrv, nomeestado){
     }
 
     if(getPrepos(nomeestado)){
-        uf = getPrepos(nomesestado).replace("DE", "EM").replace("DO", "NO").replace("DA", "NA")+ ' '+nomesestado
+        if(vrv == 7)
+            uf = getPrepos(nomesestado) + ' ' + nomeestado
+        else uf = getPrepos(nomesestado).replace("DE", "EM").replace("DO", "NO").replace("DA", "NA")+ ' '+nomeestado
     } else{
         uf = "NO BRASIL";
     }
@@ -1265,11 +1268,10 @@ function updateDescMercado(desc, vrv, nomeestado){
                         option_selected = "COM ENSINO "+option_selected;
             }
         }
-        
     } 
     description = desc.replace("[cad]", cad).replace("[deg]", option_selected).replace("[uf]", uf);
     $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(description)
-    //$(window.parent.document).find(".percent-value").first().find(".description-number").first().html(updateDescPercentComercio(result.desc_percent, vrv, estado))
+    //$(window.parent.document).find(".percent-value").first().find(".description-number").first().html(description)
             
 }
 
@@ -1320,7 +1322,6 @@ function updateDescComercio(desc, vrv, nomeestado){
     else{
         nomeestado = "DO BRASIL"
     }
-    
     prc = $(window.parent.document).find(".opt-select[data-id=prc] option:selected").text();
     typ = $(window.parent.document).find(".opt-select[data-id=typ] option:selected").text();
     cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
@@ -1543,6 +1544,17 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
             }
             else{
                 nomeestado = "DO BRASIL"
+            }
+        }
+    }else if(eixo == 1){
+        if(url['var'] == 7 || url['var'] == 1){
+            if(tipo == "percent" ){
+                if(prepos[nomeestado]){
+                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                }
+                else{
+                    nomeestado = "DO BRASIL"
+                }
             }
         }
     }
