@@ -53,7 +53,6 @@ function ajustaAnos(keys) {
 	for(var i = 0; i < keys.length; i++) {
 		keys[i] = keys[i+1];
     }
-    console.log(keys);
     keys.pop();
 	return keys;
 }
@@ -371,27 +370,28 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
     else if(eixo == 1){
         // first_year = Number(dados.key[0]);
         index_ano = dados.key.indexOf(url['ano'])
-        if(url['uf'] == 0 && url['cad'] == 0 && url['ocp'] == 0){
-
-            setPercentValueData({percentual: 1, taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
-            dados.valor = dados.value[dados.key.indexOf(url['ano'])];
-            setIntegerValueData(dados, eixo, vrv);
-        }
-        else if(vrv > 11){
+        if(vrv > 11){
             if(ano != null) {
-                dados.valor = dados.value[dados.key.indexOf(url['ano'])];
-
+                dados.valor = dados.value[index_ano];
                 if(url['uos'] == 0){
                     setIntegerValueData(dados, eixo, vrv);
                 } else if(url['uos'] == 1){
+
                     setPercentValueData(dados, eixo, vrv);
                 }
 
             }
-        }
+        }else if(url['uf'] == 0 && url['cad'] == 0 && url['ocp'] == 0){ 
+            setPercentValueData({percentual:1 , taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
+            dados.valor = dados.value[dados.key.indexOf(url['ano'])];
+            setIntegerValueData(dados, eixo, vrv);
+        }       
         else {
             dados.valor = dados.value[dados.key.indexOf(url['ano'])];
             setIntegerValueData(dados, eixo, vrv);
+            if(vrv == 1 || vrv == 7)
+                setPercentValueData({percentual: dados.percentual[index_ano], taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
+            
         }
     }
     else if(eixo == 2){
@@ -551,7 +551,7 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
             if(url["uos"] == 0){
                 setIntegerValueData(dados, eixo, vrv);
             } else if(url["uos"] == 1){
-                setPercentValueData({percentual: dados.value[i]}, eixo, vrv);
+                setPercentValueData({valor: dados.value[i]}, eixo, vrv);
             }
         }
         else{
@@ -610,7 +610,6 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
 
 function configInfoDataBoxBarrasStackedClick(eixo, vrv, d, soma, deg) {
 
-    console.log(d)
     if(eixo == 1) {
         if(d.y == "NaN") {
             d.y = 0;
@@ -1221,8 +1220,8 @@ function updateDescMercado(desc, vrv, nomeestado){
 
     if(getPrepos(nomeestado)){
         if(vrv == 7)
-            uf = getPrepos(nomesestado) + ' ' + nomeestado
-        else uf = getPrepos(nomesestado).replace("DE", "EM").replace("DO", "NO").replace("DA", "NA")+ ' '+nomeestado
+            uf = getPrepos(nomeestado) + ' ' + nomeestado
+        else uf = getPrepos(nomeestado).replace("DE", "EM").replace("DO", "NO").replace("DA", "NA")+ ' '+nomeestado
     } else{
         uf = "NO BRASIL";
     }
@@ -1454,7 +1453,8 @@ function setIntegerValueData(value, eixo, vrv) {
 
         estado = $(window.parent.document).find(".state-title").first().text()
         if(eixo == 1){
-            updateDescMercado(result.desc_int, vrv, estado);
+            if(vrv <= 11)
+                updateDescMercado(result.desc_int, vrv, estado);
         }
         if(eixo == 3){
             $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(updateDescComercio(result.desc_int, vrv, estado))
@@ -1974,6 +1974,7 @@ function setPercentValueData(value, eixo, vrv) {
 
         if(vrv > 11 ){
             $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.valor, 2))
+            
         }
         else if(vrv === 2 || vrv === 11 || vrv === 10 ||  vrv === 9  || vrv === 4 || vrv === 5 || vrv === 6 || vrv === 8){
            $(window.parent.document).find(".percent-value").first().find(".number").first().html("");

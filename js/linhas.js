@@ -51,9 +51,6 @@ function getIdCadeia(nomecadeia){
 */
 function analyze(error, data) {
 
-    console.log(data)
-
-
     //console.log(colorJSON)
 
     $('#loading').fadeOut('fast');

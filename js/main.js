@@ -340,6 +340,10 @@ function updateIframe(url){
             } else {
                 $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");
+                if(url['uf'] == 0)
+                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");
+                else
+                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS DE "+getNomeUF(url['uf']).toUpperCase());
             }
         }
         else if(eixoAtual == 2){
