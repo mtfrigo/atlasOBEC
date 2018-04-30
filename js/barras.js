@@ -116,7 +116,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                 dados.key.push(data[key].ano);
             }
 
-            if ((vrv === 2 || vrv === 3 ) && eixo ==0) dados.value.push(100 * data[key].valor);
+            if (( vrv === 3 ) && eixo ==0) dados.value.push(100 * data[key].valor);
             else dados.value.push(data[key].valor);
 
             if ( vrv === 2  || vrv === 9) dados.percentual.push(0);
@@ -741,20 +741,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
 
         function loadTooltip(d, i, eixo, vrv){
             if(eixo === 0){
-                if(vrv === 2){
-                    if(url['uf'] != 0){
-                        tooltipInstance.showTooltip(d, [
-                            ["title", dados.key[i]],
-                            ["", formatTextVrv(dados.value[i]/100, eixo, vrv)],
-                        ]);
-                    }
-                    else if(url['uf'] == 0){
-                        tooltipInstance.showTooltip(d, [
-                            ["title", dados.key[i]],
-                            ["", formatTextVrv(dados.value[i], eixo, vrv)],
-                        ]);
-                    }
-                } else if(vrv === 3){
+                 if(vrv === 3){
                     tooltipInstance.showTooltip(d, [
                         ["title", dados.key[i]],
                         ["", formatTextVrv(dados.value[i], eixo, vrv)],
