@@ -1536,7 +1536,9 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
 
         }
         else{
-            if(prepos[nomeestado]){
+            if(url['var'] == 1 && url['prt'] == 0){
+                nomeestado = "DO BRASIL"
+            }else if(prepos[nomeestado]){
                 nomeestado = prepos[nomeestado] + ' ' +nomeestado
             }
             else{
