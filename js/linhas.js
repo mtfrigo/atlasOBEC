@@ -165,8 +165,11 @@ function analyze(error, data) {
         var max = d3.max(valoresBrutos, function(d) {
             return Math.max(d); });
 
-        if(min >= 0)
-            min = 0;
+        if(!(eixo == 0 && vrv > 9)){
+            if(min >= 0)
+                min = 0;
+        }
+
 
         y.domain([min, max]);
 

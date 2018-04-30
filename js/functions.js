@@ -1446,6 +1446,9 @@ function setIntegerValueData(value, eixo, vrv) {
         if(eixo == 0 && url['var'] == 9){
             literal = formatDecimalLimit(valor, 4);
         }
+        if(eixo == 0 && url['var'] > 9){
+            literal = formatDecimalLimit(valor, 5);
+        }
 		if(eixo == 1 && url['var'] == 2){
             literal = formatDecimalLimit(valor, 4);
         }
