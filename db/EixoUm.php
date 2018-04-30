@@ -196,7 +196,7 @@ class EixoUm {
 	public static function getter_mapa($var, $atc, $cad, $prt, $anos){
 
 		self::connect();
-			if($prt == 0 || $cad != 0) {
+			if($prt == 0 || $cad != 0 || $var == 1 || $var == 3) {
                 $query = "SELECT * FROM " . self::$table . " AS ex"
                     . " JOIN UF AS uf ON uf.idUF =  ex.idUF"
                     . " JOIN Atuacao AS atc ON atc.idAtuacao =  ex.idAtuacao AND atc.idAtuacao = " . $atc
@@ -266,7 +266,7 @@ class EixoUm {
 	public static function getter_barras($var, $ufs, $atc, $cad, $prt, $uos){
 
 		self::connect();
-            if(($prt == 0 || $cad != 0) || ($var == 1 && $prt != 0 && $cad == 0 && $ufs == 0)) {
+            if(($prt == 0 || $cad != 0) || $var == 1 || $var == 3) {
                 if($uos == 0) {
                     $query = "SELECT * FROM ".self::$table." AS ex"
                         ." JOIN UF AS uf ON uf.idUF =  ex.idUF AND uf.idUF = ".$ufs
@@ -342,7 +342,7 @@ class EixoUm {
 	public static function getter_region($var, $atc, $cad, $prt, $anos, $regiao){
 
 		self::connect();		
-			if($prt == 0 || $cad != 0) {
+			if($prt == 0 || $cad != 0 || $var == 1 || $var == 3) {
                 $query = "SELECT * FROM " . self::$table . " AS ex"
                     . " JOIN UF AS uf ON uf.idUF =  ex.idUF AND uf.UFRegiao LIKE '" . $regiao . "'"
                     . " JOIN Atuacao AS atc ON atc.idAtuacao =  ex.idAtuacao AND atc.idAtuacao = " . $atc
