@@ -788,6 +788,11 @@ function removeMecenatoDesags(iframe){
 function updateBreadUF(eixo, vrv){
     switch(eixo){
         case 0: 
+            if(vrv >= 4){
+                $('.opt-select[data-id=deg]').prop("disabled", true);
+            } else {
+                $('.opt-select[data-id=deg]').prop("disabled", false);
+            }
             if(vrv > 9){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
                 $('.bread-select[data-id=cad]').prop("disabled", true);
