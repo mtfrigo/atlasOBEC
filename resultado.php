@@ -198,6 +198,24 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         </select>
                     </div>
 
+                    <?php if($eixo == 'empreendimentos') {?>
+                        <div class="bread-separator">/</div>
+
+                        <div>
+                            <select class="bread-select" id="bread-select-deg   " data-id="deg">
+                                <option value="0">Escolher</option>
+
+                                <?php foreach ($select['deg'] as $option): ?>
+
+                                    <?php if($option['value'] >= 9 && $option['value'] <= 12):?>
+                                        <option value="<?php echo $option['value'] ?>"><?php echo $option['name'] ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                    <?php } ?>
+
 
 
 
