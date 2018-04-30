@@ -603,7 +603,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                                 $name_url = "peso_empresas";
                                 break;
                             case 3:
-                                $name_url = "natalidade_e_mortalidade";
+                                $name_url = "variacao_total_empresas";
                                 break;
                             case 4:
                                 $name_url = "receita_total";

@@ -10,7 +10,7 @@ function changeDownloadURL(url){
             name_url = "peso_empresas";
             break;
         case 3:
-            name_url = "natalidade_e_mortalidade";
+            name_url = "variacao_total_empresas";
             break;
         case 4:
             name_url = "receita_total";
@@ -45,7 +45,7 @@ function changeDownloadURL(url){
         default:
             name_url = "total_empresas";
     }
-    newURL = $('#select-csv input').attr("value").replace(/csv\/.*/, "csv/"+name_url)
+    newURL = $('#select-csv input').attr("value").replace(/csv\/.*/, "csv/"+name_url+".ods")
     $('#select-csv input').attr("value", newURL)
 }
 
