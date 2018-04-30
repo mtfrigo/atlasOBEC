@@ -2503,7 +2503,6 @@ var tooltip = (function(){
 				var ifVal = undoValFormat.join('.');
 				ifVal = parseFloat(ifVal.replace(/[%-\+]/g, ''));
 
-				if (ifVal !== 0){
 
 					var elType = function(val){
 						if(clss.indexOf('#') === -1) {
@@ -2553,7 +2552,6 @@ var tooltip = (function(){
                                     return clss + valSeparator + val;
                                 }
                             });
-                    }
 
 				}
 			});
@@ -2569,6 +2567,7 @@ var tooltip = (function(){
 				Renderiza elementos dentro do elemento #tooltip
 		-----------------------------------------------------------------------------*/
 		function showTooltip(d, arr) {
+
 			// remove all elements inside tooltip
 			tp.text('');
 			// create all elements passed via array: arr

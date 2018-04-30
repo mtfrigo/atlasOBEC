@@ -432,7 +432,6 @@ function ready(error, br_states, mapa){
                 //setPercentValueData(dict[d.id], eixo, vrv);
 
             configInfoDataBoxMapaClick(eixo, vrv, dict[d.id]);
-            console.log(dict[d.id])
             setStateTitle(d['properties']['name']);
             
 
@@ -728,6 +727,7 @@ function legendaBinario(){
         if(eixo == 0) {
             if(vrv === 1){
 
+
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
                     ["", formatTextVrv(dict[d.id].valor, eixo, vrv)],
@@ -741,6 +741,8 @@ function legendaBinario(){
                 ]);
             }
             else if(vrv === 3) {
+                console.log(dict[d.id].valor)
+
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
                     ["", formatTextVrv(dict[d.id].valor*100, eixo, vrv)],

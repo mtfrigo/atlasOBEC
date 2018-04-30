@@ -143,6 +143,16 @@ function updateIframe(url){
                 $('iframe[id="view_box"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
             }
             else{
+
+                if(url['view'] == 'mapa'){
+                    $('iframe[id="view_box"]').parent().find(".view-title").html("MAPA DO BRASIL");
+
+                }
+                else if(url['view'] == 'treemap_region'){
+                    $('iframe[id="view_box"]').parent().find(".view-title").html("TREEMAP UFs");
+
+                }
+
                 if( url['var'] == 3 || url['var'] == 2){
                     $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "none")
                 } else{
@@ -152,7 +162,6 @@ function updateIframe(url){
                     $('#treemap_region').removeClass("active");
                 }
                 $('iframe[id="view_box"]').attr('src', url['view']+'_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
-                $('iframe[id="view_box"]').parent().find(".view-title").html("MAPA DO BRASIL");
             }
         }
         else if(eixoAtual == 1) {

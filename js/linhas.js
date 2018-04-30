@@ -276,12 +276,23 @@ function analyze(error, data) {
                         valor = dados[key][scc];
                 })
 
-                valor =  formatNumber(valor, 2).toString().replace(".", "");
 
-                tooltipInstance.showTooltip(d, [
-                    ["title", scc],
-                    ["", valor]
-                ])
+
+                if(eixo == 0 && vrv == 3){
+                    valor =  formatNumber(valor*100, 2).toString().replace(".", "");
+                    tooltipInstance.showTooltip(d, [
+                        ["title", scc],
+                        ["", valor+"%"]
+                    ])
+                }
+                else{
+                    valor =  formatNumber(valor, 2).toString().replace(".", "");
+                    tooltipInstance.showTooltip(d, [
+                        ["title", scc],
+                        ["", valor]
+                    ])
+                }
+
             }
 
 
