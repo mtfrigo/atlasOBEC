@@ -293,10 +293,10 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
 
 
                 if(eixo == 0 && vrv == 9){
-                    if(uf == 0)
+                    if(uf == 0){
                         return formatPercent(d).replace(".", ",");
-                    else{
-                        d = d/100;
+                    }
+                    else if(cad != 0 && uf != 0){
                         return formatPercent(d).replace(".", ",");
 
                     }
@@ -748,13 +748,21 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                     ]);
                 }
                 else if(vrv === 9){
-                    if(url['uf'] != 0){
+                    if(url['uf'] != 0 && url['cad'] != 0){
+                         tooltipInstance.showTooltip(d, [
+                             ["title", dados.key[i]],
+                             ["", formatTextVrv(dados.value[i]*100, eixo, vrv)],
+                             //    ["", formatTextTaxaVrv(dados.taxa[i], eixo, vrv)],
+                         ]);
+                     }
+                    else if(url['uf'] != 0){
                         tooltipInstance.showTooltip(d, [
                             ["title", dados.key[i]],
                             ["", formatTextVrv(dados.value[i], eixo, vrv)],
                          //   ["", formatTextTaxaVrv(dados.taxa[i], eixo, vrv)],
                         ]);
                     }
+
                     else if(url['uf'] == 0){
                         tooltipInstance.showTooltip(d, [
                             ["title", dados.key[i]],
