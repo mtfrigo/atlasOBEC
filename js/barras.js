@@ -232,9 +232,16 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                 return removeDecimalZeroes(formatInit(d));
             };
             var formatThousands = function (d) {
+                if(eixo == 0 && vrv == 8)
+                    return removeDecimalZeroes(formatInit(d / 1e3)) + "M";
+
+
                 return removeDecimalZeroes(formatInit(d / 1e3)) + "K";
             };
             var formatMillions = function (d) {
+                if(eixo == 0 && vrv == 8)
+                    return removeDecimalZeroes(formatInit(d / 1e6)) + "B";
+
                 return removeDecimalZeroes(formatInit(d / 1e6)) + "M";
             };
 
