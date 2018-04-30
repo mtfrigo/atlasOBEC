@@ -305,7 +305,7 @@ function updateIframe(url){
                     $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
                 }
-                else if (url['var'] == 9 && (url['uf'] != 0 || (url['uf'] == 0 && url['cad'] == 0)) ){
+                else if (url['var'] == 9){
                     $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS")
                 }
@@ -763,11 +763,17 @@ function loadResult(){
         else {
             var setor = 0;
         }
+
         if(url['var'] > 3) {
             $(window.parent.document).find('.select-deg').find('select').find('option[value="9"]').remove();
             $(window.parent.document).find('.select-deg').find('select').find('option[value="10"]').remove();
             $(window.parent.document).find('.select-deg').find('select').find('option[value="11"]').remove();
             $(window.parent.document).find('.select-deg').find('select').find('option[value="12"]').remove();
+
+            $(window.parent.document).find('.bread-select-deg').find('select').find('option[value="9"]').remove();
+            $(window.parent.document).find('.bread-select-deg').find('select').find('option[value="10"]').remove();
+            $(window.parent.document).find('.bread-select-deg').find('select').find('option[value="11"]').remove();
+            $(window.parent.document).find('.bread-select-deg').find('select').find('option[value="12"]').remove();
         }
         else {
             if($(window.parent.document).find("select[data-id='deg']").find("option[value='9']").length == 0) $(window.parent.document).find("select[data-id='deg']").append("<option value='9'>PORTE MICRO</option>");
@@ -775,6 +781,8 @@ function loadResult(){
             if($(window.parent.document).find("select[data-id='deg']").find("option[value='11']").length == 0) $(window.parent.document).find("select[data-id='deg']").append("<option value='11'>PORTE MÉDIO</option>");
             if($(window.parent.document).find("select[data-id='deg']").find("option[value='12']").length == 0) $(window.parent.document).find("select[data-id='deg']").append("<option value='12'>PORTE GRANDE</option>");
         }
+
+
 		if(url['cad']==0 && url['view']!='treemap_scc'){
             $('.select-prt').find('select').attr('disabled','disabled'); /* desabilita select */
             $('#select-atc').find('select').attr('disabled','disabled'); /* desabilita select */
