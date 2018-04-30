@@ -142,6 +142,7 @@ function updateIframe(url){
                 $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "none")
                 $('iframe[id="view_box"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
             }
+
             else{
 
                 if(url['view'] == 'mapa'){
@@ -153,7 +154,7 @@ function updateIframe(url){
 
                 }
 
-                if( url['var'] == 3 || url['var'] == 2){
+                if( url['var'] == 3 || url['var'] == 2 || url['var'] == 9){
                     $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "none")
                 } else{
                     $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "block")
@@ -304,7 +305,7 @@ function updateIframe(url){
                     $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
                 }
-                else if (url['var'] == 9 && url['uf'] != 0){
+                else if (url['var'] == 9 && (url['uf'] != 0 || (url['uf'] == 0 && url['cad'] == 0)) ){
                     $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS")
                 }

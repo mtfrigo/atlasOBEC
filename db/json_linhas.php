@@ -282,7 +282,7 @@ function getNameSindical($id) {
 }
 
 $linhas = array();
-if($eixo == 0 && ($var == 3 || ($var == 9 && $uf != 0))) {
+if($eixo == 0 && ($var == 3 || ($var == 9 && $uf != 0) || ($var == 9 && $cad == 0 && $uf == 0 ))) {
     require_once("EixoUm.php");
     for ($cad = 1; $cad <= 10; $cad++) {
 
