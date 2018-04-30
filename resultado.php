@@ -541,7 +541,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                 </div>
                 <div id="descricao" class="col-md-4 col-xs-12" style="height: 199px; overflow: auto; top: -210px;">
                     <div class="view-title">
-                        DESCRIÇÃO
+                        DESCRIÇÃO DAS VARIÁVEIS
                     </div>
                     <div class="desc-var">
                         <?=$text['desc_var_mapa'];?>
