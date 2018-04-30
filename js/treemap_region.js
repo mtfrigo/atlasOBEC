@@ -506,7 +506,10 @@ d3.json("./db/json_treemap_region.php"+config, function(error, data) {
 
     if(url['uf'] == 0) $(window.parent.document).find(".state-title").first().html("Brasil");
 
-	console.log(data)
+	if(url['uf'] !== 0){
+        destacaPais(url['uf'])
+	}
+
 
 });
 

@@ -448,7 +448,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
 
 	
 	// new svg margin top value
-	var svgMarginTop = 35;
+	var svgMarginTop = 15;
 	// cria título
 	svg.append("text").append("tspan")
 		.data(root.leaves())
