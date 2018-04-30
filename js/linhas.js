@@ -278,12 +278,22 @@ function analyze(error, data) {
 
 
 
-                if(eixo == 0 && vrv == 3){
-                    valor =  formatNumber(valor*100, 2).toString().replace(".", "");
-                    tooltipInstance.showTooltip(d, [
-                        ["title", scc],
-                        ["", valor+"%"]
-                    ])
+                if(eixo == 0){
+                    if(vrv == 3){
+                        valor =  formatNumber(valor*100, 2).toString().replace(".", "");
+                        tooltipInstance.showTooltip(d, [
+                            ["title", scc],
+                            ["", valor+"%"]
+                        ])
+                    }
+                    else if(vrv == 9){
+                        valor =  formatNumber(valor*100, 6).toString().replace(".", "");
+                        tooltipInstance.showTooltip(d, [
+                            ["title", scc],
+                            ["", valor+"%"]
+                        ])
+                    }
+
                 }
                 else{
                     valor =  formatNumber(valor, 2).toString().replace(".", "");

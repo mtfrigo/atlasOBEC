@@ -226,6 +226,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
             var minFraction = 3;
 
             var formatInit = d3.format(".2f");
+            var format3dc = d3.format(".3f");
 
             var formatDefault = function (d) {
                 return removeDecimalZeroes(formatInit(d));
@@ -253,6 +254,20 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                 return removeDecimalZeroes(formatInit(d * 1e3)) + "m";
             };
 
+            function formatPercent(d) {
+                if (eixo == 0 && vrv == 9) {
+                    if (uf == 0)
+                        return removeDecimalZeroes(formatInit(d * 1e2)) + "%";
+                    else{
+                        return format3dc(d*1e2) + "%";
+
+                    }
+
+                }
+            return removeDecimalZeroes(formatInit(d * 1e4)) + "%";
+
+            };
+
             var formatFraction = function (d) {
                 var decimalDigitsCount = axisCountValidDecimalDigits(dados.value[dadosCounter]);
                 var decimalDigits;
@@ -270,15 +285,27 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                 dadosCounter++;
 
 
+                if(eixo == 0 && vrv == 9){
+                    if(uf == 0)
+                        return formatPercent(d).replace(".", ",");
+                    else{
+                        d = d/100;
+                        return formatPercent(d).replace(".", ",");
+
+                    }
+
+                }
+
                 if(Math.abs(d) < 1/1e7){
                     return formatNano(d).replace(".", ",");
                 }
                 else if(Math.abs(d) < 1/1e4){
                     return formatMicro(d).replace(".", ",");
                 }
-                else if(Math.abs(d) < 1/1e1){
-                    return formatMili(d).replace(".", ",");
-                }
+
+                // else if(Math.abs(d) < 1/1e1){
+                //     return formatMili(d).replace(".", ",");
+                // }
                 return (format(d)).replace(".", ",");
             };
 
