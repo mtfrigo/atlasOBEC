@@ -780,6 +780,8 @@ function loadResult(){
             if($(window.parent.document).find("select[data-id='deg']").find("option[value='10']").length == 0) $(window.parent.document).find("select[data-id='deg']").append("<option value='10'>PORTE PEQUENO</option>");
             if($(window.parent.document).find("select[data-id='deg']").find("option[value='11']").length == 0) $(window.parent.document).find("select[data-id='deg']").append("<option value='11'>PORTE MÉDIO</option>");
             if($(window.parent.document).find("select[data-id='deg']").find("option[value='12']").length == 0) $(window.parent.document).find("select[data-id='deg']").append("<option value='12'>PORTE GRANDE</option>");
+
+
         }
 
 
@@ -1461,6 +1463,7 @@ $(document).ready(function(){
 
                 if(eixo_atual == 0){
                     $('.opt-select[data-id=deg]').val(0);
+                    $('.bread-select[data-id=deg]').val(0);
                 }
                 if(eixo_atual == 1){
                     updateOcupacoes($(this).val());
@@ -1550,6 +1553,8 @@ $(document).ready(function(){
                 updateBreadUF(eixo_atual, url['var']);
                 
                 if(eixo_atual == 0){
+                    $('.bread-select[data-id=deg]').val(0);
+
                     $('.opt-select[data-id=deg]').val(0);
                 }
                 if(eixo_atual == 1){
