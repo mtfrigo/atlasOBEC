@@ -747,28 +747,12 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                     ]);
                 }
                 else if(vrv === 9){
-                    if(url['uf'] != 0 && url['cad'] != 0){
-                         tooltipInstance.showTooltip(d, [
-                             ["title", dados.key[i]],
-                             ["", formatTextVrv(dados.value[i]*100, eixo, vrv)],
-                             //    ["", formatTextTaxaVrv(dados.taxa[i], eixo, vrv)],
-                         ]);
-                     }
-                    else if(url['uf'] != 0){
-                        tooltipInstance.showTooltip(d, [
-                            ["title", dados.key[i]],
-                            ["", formatTextVrv(dados.value[i], eixo, vrv)],
-                         //   ["", formatTextTaxaVrv(dados.taxa[i], eixo, vrv)],
-                        ]);
-                    }
 
-                    else if(url['uf'] == 0){
-                        tooltipInstance.showTooltip(d, [
-                            ["title", dados.key[i]],
-                            ["", formatTextVrv(dados.value[i]*100, eixo, vrv)],
-                        //    ["", formatTextTaxaVrv(dados.taxa[i], eixo, vrv)],
-                        ]);
-                    }
+                     tooltipInstance.showTooltip(d, [
+                         ["title", dados.key[i]],
+                         ["", formatTextVrv(dados.value[i]*100, eixo, vrv)],
+                         //    ["", formatTextTaxaVrv(dados.taxa[i], eixo, vrv)],
+                     ]);
                 }
                 else{
                     tooltipInstance.showTooltip(d, [
@@ -1090,8 +1074,10 @@ else {
                     url['ano'] = d.x.getFullYear();
                     var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano=" + d.x.getFullYear());
                     newMapaSrc = newMapaSrc.replace(/uf=[0-9]*/, "uf=" + url['uf']);
+
                     var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + d.x.getFullYear());
                     newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']+"&chg=1");
+
                     $(window.parent.document).find("#view_box").attr("src", newMapaSrc);
                     $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
                     $(window.parent.document).find("select[data-id='ano']").val(d.x.getFullYear());

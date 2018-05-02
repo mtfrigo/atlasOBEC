@@ -750,20 +750,10 @@ function legendaBinario(){
             }
             else if(vrv === 9) {
 
-                if(cad != 0 && uf != 0){
-                    tooltipInstance.showTooltip(d, [
-                        ["title", d['properties']['name']],
-                        ["", formatTextVrv(dict[d.id].valor*100, eixo, vrv)]
-                    ]);
-                }
-                else{
-                    tooltipInstance.showTooltip(d, [
-                        ["title", d['properties']['name']],
-                        ["", formatTextVrv(dict[d.id].valor, eixo, vrv)]
-                    ]);
-                }
-
-
+                tooltipInstance.showTooltip(d, [
+                    ["title", d['properties']['name']],
+                    ["", formatTextVrv(dict[d.id].valor*100, eixo, vrv)]
+                ]);
 
             }
             else if(vrv === 4 || vrv === 5 || vrv === 6 || vrv === 7 || vrv === 8) {
