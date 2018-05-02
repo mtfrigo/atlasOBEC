@@ -773,62 +773,56 @@ function removeMecenatoDesags(iframe){
 function updateBreadUF(eixo, vrv){
     switch(eixo){
         case 0: 
+
+            $('.bread-select[data-id=uf]').prop("disabled", false);
+            $('.bread-select[data-id=cad]').prop("disabled", false);
+            $('.bread-select[data-id=deg]').prop("disabled", false);
+
             if(vrv >= 4){
-                $('.opt-select[data-id=deg]').prop("disabled", true);
-            } else {
-                $('.opt-select[data-id=deg]').prop("disabled", false);
+                $('.bread-select[data-id=deg]').prop("disabled", true);
             }
             if(vrv > 9){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
                 $('.bread-select[data-id=cad]').prop("disabled", true);
-            } else{
-                $('.bread-select[data-id=uf]').prop("disabled", false);
-                $('.bread-select[data-id=cad]').prop("disabled", false);
-
             }
             break;
         case 1:
+                $('.bread-select[data-id=uf]').prop("disabled", false);
+                $('.bread-select[data-id=cad]').prop("disabled", false);
+                $('.bread-select[data-id=deg]').prop("disabled", false);
             if(vrv > 12){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
                 $('.bread-select[data-id=cad]').prop("disabled", true);
-                $('.opt-select[data-id=deg]').prop("disabled", false);
 
             } else if(vrv == 2){
-                $('.opt-select[data-id=deg]').prop("disabled", true);
-            }else{
-                $('.bread-select[data-id=uf]').prop("disabled", false);
-                $('.bread-select[data-id=cad]').prop("disabled", false);
-                $('.opt-select[data-id=deg]').prop("disabled", false);
+                $('.bread-select[data-id=deg]').prop("disabled", true);
             }
             break;
         case 2:
+            $('.bread-select[data-id=uf]').prop("disabled", false);
+            $('.bread-select[data-id=cad]').prop("disabled", false);
+            
             if(vrv == 15 || vrv == 16 || vrv == 10){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
                 $('.bread-select[data-id=cad]').prop("disabled", true);
 
-            } else{
-                $('.bread-select[data-id=uf]').prop("disabled", false);
-                $('.bread-select[data-id=cad]').prop("disabled", false);
-
             }
             break;
         case 3:
+            $('.bread-select[data-id=uf]').prop("disabled", false);
+            $('.bread-select[data-id=prc]').prop("disabled", false);
+            $('.bread-select[data-id=prc]').prop("disabled", false);
+            $('.bread-select[data-id=cad]').prop("disabled", false);
             if(vrv >= 5 && vrv <= 10){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
                 $('.bread-select[data-id=prc]').prop("disabled", true);
                 $('.bread-select[data-id=cad]').prop("disabled", true);
-                $('.opt-select[data-id=prc]').prop("disabled", true);
+                $('.bread-select[data-id=prc]').prop("disabled", true);
 
             }else if(vrv == 11 || vrv == 12 || vrv == 14){
                 $('.bread-select[data-id=prc]').prop("disabled", true);
-                $('.opt-select[data-id=prc]').prop("disabled", true);
-                $('.opt-select[data-id=cad]').prop("disabled", true);
-            } else{
-                $('.bread-select[data-id=uf]').prop("disabled", false);
-                $('.bread-select[data-id=prc]').prop("disabled", false);
-                $('.opt-select[data-id=prc]').prop("disabled", false);
-                $('.bread-select[data-id=cad]').prop("disabled", false);
-
+                $('.bread-select[data-id=prc]').prop("disabled", true);
+                $('.bread-select[data-id=cad]').prop("disabled", true);
             }
             break;
     }
@@ -1766,7 +1760,7 @@ function descByCAD(eixo, desc, tag){
             else
                 nome = "PELOS SETORES CULTURAIS E CRIATIVOS"
         else
-            nome = "Culturais e Criativas";
+            nome = "Culturais e Criativos";
     }
 
     if(desc != undefined)
