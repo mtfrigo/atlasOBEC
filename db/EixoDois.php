@@ -156,9 +156,10 @@ class EixoDois {
 	public static function find($var, $uf, $ocp, $desag, $anos){
 
         self::connect();
-        $query = "SELECT * FROM ".self::$table." WHERE Numero =".$var." AND idUF = ".$uf." AND idCadeia > 0";
+        $query = "SELECT * FROM ".self::$table." WHERE Numero =".$var." AND idUF = ".$uf;
 
         if($ocp == 0){
+            $query .= " AND idCadeia > 0";
             $query .= " AND idOcupacao = 0";
         } else {
             $query .= " AND (idOcupacao = 1 OR idOcupacao = 2)";
@@ -199,7 +200,9 @@ class EixoDois {
                 break;
         }*/
         $query .= ($anos > 0) ? " AND Ano = ".$anos : "" ;
-        $query .= " ORDER BY `Eixo_2`.`idCadeia` ASC";
+        if($ocp == 0)
+            $query .= " ORDER BY `Eixo_2`.`idCadeia` ASC";
+        else $query .= " ORDER BY `Eixo_2`.`idOcupacao` ASC";
         $result = mysqli_query(self::$conn, $query);
         
         $allObjects = array();
