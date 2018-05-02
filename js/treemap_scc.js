@@ -120,7 +120,7 @@ var config = "?var="+vrv+"&uf="+uf+"&atc="+atc+"&prt="+prt+"&ocp="+ocp+"&sex="+s
 
 
 $.get("./db/json_treemap_scc.php"+config, function(data) {
-    console.log(data);
+    //console.log(data);
 });
 
 d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
