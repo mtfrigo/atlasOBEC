@@ -168,7 +168,14 @@ class EixoDois {
         } else {
             $query .= " AND Sexo IS NULL";
         }
-        switch($desag){
+        $query .= self::concatDeg($desag, 1, "idPorte");
+        $query .= self::concatDeg($desag, 3, "idIdade");
+        $query .= self::concatDeg($desag, 4, "idEscolaridade");
+        $query .= self::concatDeg($desag, 5, "idEtinia");
+        $query .= self::concatDeg($desag, 6, "Formalidade");
+        $query .= self::concatDeg($desag, 7, "Previdencia");
+        $query .= self::concatDeg($desag, 8, "Sindical");
+        /*switch($desag){
             case 1:
                 $query .= " AND idPorte > 0";
                 break;
@@ -190,7 +197,7 @@ class EixoDois {
             case 8:
                 $query .= " AND Sindical > 0"; 
                 break;
-        }
+        }*/
         $query .= ($anos > 0) ? " AND Ano = ".$anos : "" ;
         $query .= " ORDER BY `Eixo_2`.`idCadeia` ASC";
         $result = mysqli_query(self::$conn, $query);
@@ -689,6 +696,14 @@ class EixoDois {
         
         return $allObjects;
         
+    }
+
+    private static function concatDeg($deg, $idDeg, $texto){
+        if($deg == $idDeg){
+            return " AND ".$texto." > 0";
+        } else{
+            return " AND ".$texto." = 0";
+        }
     }
 
 }
