@@ -403,7 +403,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         DADOS
                     </div>
 
-                    <div class="btn-opt" style="width: 40%; margin-top: 10px; margin-bottom: 10px; float: right;">
+                    <div class="btn-opt" style="width: 48%; margin-top: 10px; margin-bottom: 10px;">
                         <?php
                         if($eixo == "mercado") {
                             ?>
@@ -424,7 +424,10 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         <?php } ?>
                     </div>
 
-                    
+
+                    <br>
+                    <br>
+
                     <?php if($eixo == "comercio") { ?>
                         
                         <div class="state-title">
@@ -435,21 +438,35 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                             MUNDO
                         </div>
                     <?php } else { ?>
-                        <div class="state-title">
+                        <div class="state-title" style="display: none">
                             BRASIL
                         </div>
                     <?php  }?>
-                    <div class="cad-title">
+                    <div class="cad-title" style="display:none">
                         TODOS SETORES
                     </div>
                     <div class="data-values">
-                        <div class="integer-value">
+                        <div class="integer-value" style="padding-top: 15%; padding-left: 15px;">
                             <span class="number"></span>
                             <span class="description-number"></span>
                         </div>
-                        <div class="percent-value">
-                            <span class="number"></span>
-                            <span class="description-number"></span>
+                        <div class="percent-value" style="top: -50px;">
+
+                            <div class="box-dado" style="height: 70px; margin-top: 10px">
+                                <span class="number" style="float:left;  width: 40%; font-size: 30px;">100%</span>
+                                <span class="description-number" style="float:right; width: 60%; font-size: 12px;"></span>
+                            </div>
+
+                            <div class="box-dado" style="height: 70px; margin-top: 10px; display: none">
+                                <span class="number" style="float:left;  width: 40%; font-size: 30px;">100%</span>
+                                <span class="description-number" style="float:right; width: 60%; font-size: 12px;"></span>
+                            </div>
+
+                            <div class="box-dado" style="height: 70px; margin-top: 10px; display: none">
+                                <span class="number" style="float:left; width: 40%; font-size: 30px;">100%</span>
+                                <span class="description-number" style="float:right; width: 60%; font-size: 12px;"></span>
+                            </div>
+
                         </div>
                         <div class ="setor-value" style="display:none;">
                             <span class="number"></span>

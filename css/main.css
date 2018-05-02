@@ -309,7 +309,6 @@ button.opt:hover, button.opt.active{
 	width: 48%;
 	padding-right: 10px;
 	margin-bottom: 20px;
-	margin-right: 4%;
 }
 
 .number {
@@ -323,12 +322,12 @@ button.opt:hover, button.opt.active{
 
 .description-number {
 	text-transform: uppercase;
+	padding-left: 5px;
 }
 
 .percent-value {
 	float: left;
-	width: 48%;
-	padding-left: 10px;
+	width: 50%;
 	margin-bottom: 20px;
 }
 
@@ -709,6 +708,7 @@ article.results-article div.results-content{
 .desc-var {
 	color:	#aaa;
 	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 .view-title, .view-title-leg {
