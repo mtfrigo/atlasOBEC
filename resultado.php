@@ -237,7 +237,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         <div class="bread-separator">/</div>
 
                         <div class="bread-caixa">
-                            <div class="rotulo-bread opt view active">Desagregação</div>
+                            <span class="rotulo-bread opt view active">Desagregação</span>
                             <select class="bread-select" id="bread-select-deg" data-id="deg">
                                 <option value="0">Escolher</option>
 
