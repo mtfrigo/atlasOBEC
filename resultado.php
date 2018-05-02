@@ -403,7 +403,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         DADOS
                     </div>
 
-                    <div class="btn-opt" style="width: 40%; margin-top: 10px; margin-bottom: 10px; float: right;">
+                    <div class="btn-opt" style="width: 48%; margin-top: 10px; margin-bottom: 10px;">
                         <?php
                         if($eixo == "mercado") {
                             ?>
@@ -424,7 +424,10 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         <?php } ?>
                     </div>
 
-                    
+
+                    <br>
+                    <br>
+
                     <?php if($eixo == "comercio") { ?>
                         
                         <div class="state-title">
@@ -435,21 +438,35 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                             MUNDO
                         </div>
                     <?php } else { ?>
-                        <div class="state-title">
+                        <div class="state-title" style="display: none">
                             BRASIL
                         </div>
                     <?php  }?>
-                    <div class="cad-title">
+                    <div class="cad-title" style="display:none">
                         TODOS SETORES
                     </div>
                     <div class="data-values">
-                        <div class="integer-value">
+                        <div class="integer-value" style="padding-top: 15%; padding-left: 15px;">
                             <span class="number"></span>
                             <span class="description-number"></span>
                         </div>
-                        <div class="percent-value">
-                            <span class="number"></span>
-                            <span class="description-number"></span>
+                        <div class="percent-value" style="top: -50px;">
+
+                            <div class="box-dado" style="height: 70px; margin-top: 10px">
+                                <span class="number" style="float:left;  width: 40%; font-size: 30px;">100%</span>
+                                <span class="description-number" style="float:right; width: 60%; font-size: 12px;"></span>
+                            </div>
+
+                            <div class="box-dado" style="height: 70px; margin-top: 10px; display: none">
+                                <span class="number" style="float:left;  width: 40%; font-size: 30px;">100%</span>
+                                <span class="description-number" style="float:right; width: 60%; font-size: 12px;"></span>
+                            </div>
+
+                            <div class="box-dado" style="height: 70px; margin-top: 10px; display: none">
+                                <span class="number" style="float:left; width: 40%; font-size: 30px;">100%</span>
+                                <span class="description-number" style="float:right; width: 60%; font-size: 12px;"></span>
+                            </div>
+
                         </div>
                         <div class ="setor-value" style="display:none;">
                             <span class="number"></span>
@@ -718,13 +735,12 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     <iframe id="view_box_scc" src="treemap_scc_box.php" style="border: none; width: 80%; height: 90%; float: left;" scrolling="no"></iframe>
                     <div id="menu-view" style="float: right; width: 20%">
 
-
+                        <?php if($eixo != 'comercio') { ?>
 
                         <div class="view-title-leg" data-id="scc&ocp">
-
                             SETORES
                         </div>
-                        <div id="title-view-scc">
+                        <div id="title-view-leg-scc">
                             <span class="scc" data-id="0"><i style="display: inline-block; width: 10px; height: 10px; background-color: #071342"></i> Todos<br></span>
                             <span class="scc" data-id="1"><i style="display: inline-block; width: 10px; height: 10px; background-color: #87A8CA"></i> Arquitetura e Design<br></span>
                             <span class="scc" data-id="2"><i style="display: inline-block; width: 10px; height: 10px; background-color: #077DDD"></i> Artes Cênicas e Espetáculos<br></span>
@@ -737,6 +753,8 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                             <span class="scc" data-id="9"><i style="display: inline-block; width: 10px; height: 10px; background-color: #E96B00"></i> Patrimônio<br></span>
                             <span class="scc" data-id="10"><i style="display: inline-block; width: 10px; height: 10px; background-color: #B2510F"></i> Publicidade<br></span>
                         </div>
+
+                        <?php } ?>
                     </div>
                 </div>
 

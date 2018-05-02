@@ -1086,11 +1086,11 @@ function updateUrl() {
 }
 
 function switchToSetores() {
-    $(".view-title[data-id='scc&ocp']").html("SETORES");
-    $("#title-view-scc").empty();
+    $(".view-title-leg[data-id='scc&ocp']").html("SETORES");
+    $("#title-view-leg-scc").empty();
     //console.log(getEixo(window.location.hash.substring(1)));
     if(getEixo(window.location.hash.substring(1)) == 2 && url['var'] == 2){
-        $("#title-view-scc").append("<span class=\"scc\" data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #071342\"></i> Todos<br></span>\n" +
+        $("#title-view-leg-scc").append("<span class=\"scc\" data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #071342\"></i> Todos<br></span>\n" +
         
         "                                <span class=\"scc\" data-id=\"2\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #077DDD\"></i> Artes Cênicas e Espetáculos<br></span>\n" +
         "                                <span class=\"scc\" data-id=\"3\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #0F4B67\"></i> Audiovisual<br></span>\n" +
@@ -1100,7 +1100,7 @@ function switchToSetores() {
 
 
         var cads = [];
-        $("#title-view-scc").find(".scc").each(function(){
+        $("#title-view-leg-scc").find(".scc").each(function(){
             cad = {id: $(this).attr("data-id"), nome: $(this).text()}
             cads.push(cad)
         })
@@ -1109,7 +1109,7 @@ function switchToSetores() {
         
     }
     else{
-        $("#title-view-scc").append("<span class=\"scc\" data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #071342\"></i> Todos<br></span>\n" +
+        $("#title-view-leg-scc").append("<span class=\"scc\" data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #071342\"></i> Todos<br></span>\n" +
             "                                <span class=\"scc\" data-id=\"1\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #87A8CA\"></i> Arquitetura e Design<br></span>\n" +
             "                                <span class=\"scc\" data-id=\"2\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #077DDD\"></i> Artes Cênicas e Espetáculos<br></span>\n" +
             "                                <span class=\"scc\" data-id=\"3\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #0F4B67\"></i> Audiovisual<br></span>\n" +
@@ -1126,7 +1126,7 @@ function switchToSetores() {
     $(".bread-select[data-id='ocp']").attr("data-id", "cad");
 
     var cads = [];
-    $("#title-view-scc").find(".scc").each(function(){
+    $("#title-view-leg-scc").find(".scc").each(function(){
         cad = {id: $(this).attr("data-id"), nome: $(this).text()}
         cads.push(cad)
     })
@@ -1136,10 +1136,13 @@ function switchToSetores() {
 }
 
 function switchToOcupations() {
-    $(".view-title[data-id='scc&ocp']").html("OCUPAÇÕES");
-    $("#title-view-scc").empty();
-    $("#title-view-scc").append("<span class=\"ocp\" data-id=\"1\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #87A8CA\"></i> Atividades Relacionadas<br></span>");
-    $("#title-view-scc").append("<span class=\"ocp\" data-id=\"2\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #077DDD\"></i> Cultura<br></span>");
+
+
+
+    $(".view-title-leg[data-id='scc&ocp']").html("OCUPAÇÕES");
+    $("#title-view-leg-scc").empty();
+    $("#title-view-leg-scc").append("<span class=\"ocp\" data-id=\"1\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #87A8CA\"></i> Atividades Relacionadas<br></span>");
+    $("#title-view-leg-scc").append("<span class=\"ocp\" data-id=\"2\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #077DDD\"></i> Cultura<br></span>");
     $(".bread-select[data-id='cad']").empty();
     $(".bread-select[data-id='cad']").append("<option value='1'>Atividades Relacionadas</option>");
     $(".bread-select[data-id='cad']").append("<option value='2'>Cultura</option>");
