@@ -217,6 +217,9 @@ function analyze(error, data) {
                     d3.select(this).style("opacity", 1)
                 }
             })
+            .on("click", function (dados) {
+                click(dados, (this));
+            })
             .on("mouseout", function () {
                 tooltipInstance.hideTooltip();
 
@@ -228,7 +231,6 @@ function analyze(error, data) {
         var coordsAxisX = [];
         var coordsAxisY = [];
 
-
         d3.selectAll('.x g').each(function (d, index) {
             transform = d3.select(this).attr('transform')
             transform = transform.replace('translate(', '');
@@ -237,7 +239,6 @@ function analyze(error, data) {
             y = parseFloat(transform.split(',')[1].replace(')', ''));
             coordsAxisX.push({'ano': anos[index], 'x': x, 'y': y})
         })
-
         d3.selectAll('.y g').each(function (d, index) {
             transform = d3.select(this).attr('transform')
             transform = transform.replace('translate(', '');
@@ -309,6 +310,29 @@ function analyze(error, data) {
             }
 
 
+        }
+        function click(d, path) {
+
+            if(!($(path).hasClass("domain")) ) {
+
+                cadId = getCadId($(path).attr("scc"));
+
+                url['cad'] = cadId;
+
+                var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/cad=[0-9]*/, "cad=" +cadId);
+                newMapaSrc = newMapaSrc.replace(/uf=[0-9]*/, "uf=" + url['uf']);
+
+                var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/cad=[0-9]*/, "cad=" + cadId);
+                newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano=" + url['ano']);
+
+                $(window.parent.document).find("#view_box").attr("src", newMapaSrc);
+                $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
+                $(window.parent.document).find("select[data-id='cad']").val(cadId);
+
+                //enableDesag(eixo, vrv, cadId, true, slc, url);
+                destacaSetor($(path).attr("scc"));
+
+            }
         }
 
 
@@ -447,6 +471,16 @@ function analyze(error, data) {
             case "Patrimônio": return 9;
             case "Publicidade":  return 10;
         }
+    }
+
+    function destacaSetor(cadName){
+
+        $( "path" ).each(function( index ) {
+            if($( this ).attr("scc") == cadName)
+                $( this ).css("opacity", "1")
+            else
+                $( this ).css("opacity", "0.2")
+        });
     }
 
 
