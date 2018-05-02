@@ -541,6 +541,7 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
         else{
             dados.valor = dados.value[i];
             setIntegerValueData(dados, eixo, vrv);
+            setPercentValueData({percentual: dados.percentual[i]}, eixo, vrv);
         }
     }
     else if(eixo == 2){
