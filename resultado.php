@@ -718,13 +718,12 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     <iframe id="view_box_scc" src="treemap_scc_box.php" style="border: none; width: 80%; height: 90%; float: left;" scrolling="no"></iframe>
                     <div id="menu-view" style="float: right; width: 20%">
 
-
+                        <?php if($eixo != 'comercio') { ?>
 
                         <div class="view-title-leg" data-id="scc&ocp">
-
                             SETORES
                         </div>
-                        <div id="title-view-scc">
+                        <div id="title-view-leg-scc">
                             <span class="scc" data-id="0"><i style="display: inline-block; width: 10px; height: 10px; background-color: #071342"></i> Todos<br></span>
                             <span class="scc" data-id="1"><i style="display: inline-block; width: 10px; height: 10px; background-color: #87A8CA"></i> Arquitetura e Design<br></span>
                             <span class="scc" data-id="2"><i style="display: inline-block; width: 10px; height: 10px; background-color: #077DDD"></i> Artes Cênicas e Espetáculos<br></span>
@@ -737,6 +736,8 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                             <span class="scc" data-id="9"><i style="display: inline-block; width: 10px; height: 10px; background-color: #E96B00"></i> Patrimônio<br></span>
                             <span class="scc" data-id="10"><i style="display: inline-block; width: 10px; height: 10px; background-color: #B2510F"></i> Publicidade<br></span>
                         </div>
+
+                        <?php } ?>
                     </div>
                 </div>
 

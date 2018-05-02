@@ -13,7 +13,7 @@ function ready(json){
     var data = JSON.parse(json);
     getPercent(data);
 
-    height = 300;
+    height = $('#corpo').height() - 40;;
     width = $('#corpo').width() - 40;
 
     radius = Math.min(width, height) / 2;
