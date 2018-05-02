@@ -35,8 +35,9 @@ if (!empty($_GET["var"])) {
     $slc    =   isset($_GET["slc"])   ?   $_GET["slc"]  :   0;	   /*== visualizacao ==*/
     $prc    =   isset($_GET["prc"])   ?   $_GET["prc"]  :   0;	   /*== Parceiro ==*/
     $typ    =   isset($_GET["typ"])   ?   $_GET["typ"]  :   1;	   /*== Tipo de atividade ==*/
-	$ano = $_GET["ano"];
-    $eixo = $_GET['eixo'];
+    $desag    =   isset($_GET["deg"])   ?   $_GET["deg"]  :   0;
+    $ano    = $_GET["ano"];
+    $eixo   = $_GET['eixo'];
 }
 else{
 	$var = 1;
@@ -143,41 +144,41 @@ if($eixo == 0) {
 }
 else if($eixo == 1) {
     require_once("EixoDois.php");
-    if($slc == 0) {
-        for ($cad=1; $cad <= 10; $cad++) {
-
-            $tupla = EixoDois::find($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $ano);
-            $treemap .= '
-                {
-                  "colorId": "' . $cad . '", 
-                  "name": "' . $tupla[0]->CadeiaNome . '",
-                  "children": [
+        
+        foreach(EixoDois::find($var, $uf, $ocp, $desag, $ano) as $tupla){
+            for ($cad=1; $cad <= 10; $cad++) {
+                $treemap .= '
                     {
-                      "name": "' . $tupla[0]->CadeiaNome . '",
-                      "children": [';
-            foreach ($tupla as $index => $item) {
-                if($prt != 0) $treemap .= '{"name": "' . $item->PorteNome . '",';
-                else if($esc != 0) $treemap .= '{"name": "' . $item->EscolaridadeNome . '",';
-                else if($fax != 0) $treemap .= '{"name": "' . $item->IdadeNome . '",';
-                else if($sex != NULL) {
-                    if($item->Sexo == 1) $treemap .= '{"name": "Masculino",';
-                    if($item->Sexo == 0) $treemap .= '{"name": "Feminino",';
+                    "colorId": "' . $cad . '", 
+                    "name": "' . $tupla[0]->CadeiaNome . '",
+                    "children": [
+                        {
+                        "name": "' . $tupla[0]->CadeiaNome . '",
+                        "children": [';
+                foreach ($tupla as $index => $item) {
+                    if($prt != 0) $treemap .= '{"name": "' . $item->PorteNome . '",';
+                    else if($esc != 0) $treemap .= '{"name": "' . $item->EscolaridadeNome . '",';
+                    else if($fax != 0) $treemap .= '{"name": "' . $item->IdadeNome . '",';
+                    else if($sex != NULL) {
+                        if($item->Sexo == 1) $treemap .= '{"name": "Masculino",';
+                        if($item->Sexo == 0) $treemap .= '{"name": "Feminino",';
+                    }
+                    else $treemap .= '{"name": "' . $item->CadeiaNome . '",';
+                    $treemap .= '"estado": "' . $item->UFNome . '",  
+                                "percentual": "' . $item->Percentual . '",
+                                "taxa": "' . $item->Taxa . '", 
+                                "desagreg": "' . ($index+1) . '", 
+                                "size": "' . $item->Valor . '"}';
+                    $treemap .= ($index == sizeof($tupla)-1) ? '' : ',';
                 }
-                else $treemap .= '{"name": "' . $item->CadeiaNome . '",';
-                $treemap .= '"estado": "' . $item->UFNome . '",  
-                             "percentual": "' . $item->Percentual . '",
-                             "taxa": "' . $item->Taxa . '", 
-                             "desagreg": "' . ($index+1) . '", 
-                             "size": "' . $item->Valor . '"}';
-                $treemap .= ($index == sizeof($tupla)-1) ? '' : ',';
-            }
-            $treemap .= '   ]
-                        }
-                    ]
-                }
-            ';
+                $treemap .= '   ]
+                            }
+                        ]
+                    }
+                ';
 
-            $treemap .= ($cad === 10) ? '' : ',';
+                $treemap .= ($cad === 10) ? '' : ',';
+            }
         }
     }
     else {
