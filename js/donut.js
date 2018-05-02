@@ -13,7 +13,7 @@ function ready(json){
     var data = JSON.parse(json);
     getPercent(data);
 
-    height = 220;
+    height = 300;
     width = $('#corpo').width() - 40;
 
     radius = Math.min(width, height) / 2;
@@ -100,8 +100,6 @@ function color(tipo){
         "Importação": "rgb(109, 191, 201)",
         "Sim": "#071342",
         "Não": "#aaa"
-
-
     }
     return colors[tipo];
 }
