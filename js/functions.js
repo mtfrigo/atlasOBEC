@@ -507,14 +507,8 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
             }
         }
         else if (vrv == 9) {
-            if(url['uf'] != 0){
-                dados.valor = dados.value[i] / 100
-                setIntegerValueData(dados, eixo, vrv);
-            }
-            else{
-                    dados.valor = dados.value[i];
-                    setIntegerValueData(dados, eixo, vrv);
-            }
+            dados.valor = dados.value[i] /100;
+            setIntegerValueData(dados, eixo, vrv);
         }
         else if (vrv >= 4 && vrv <= 8) {
             dados.valor = dados.value[i];
@@ -1439,8 +1433,10 @@ function setIntegerValueData(value, eixo, vrv) {
             literal = formatDecimalLimit(valor, 2);
         }
         if(eixo == 0 && url['var'] == 9){
-            if(uf != 0 && cad != 0)
+            console.log("uf:" + url['uf'])
+            if(uf != 0)
                 valor = valor*100;
+
 
             literal = formatDecimalLimit(valor, 2);
         }

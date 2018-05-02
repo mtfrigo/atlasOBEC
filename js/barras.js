@@ -747,25 +747,18 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                     ]);
                 }
                 else if(vrv === 9){
-                    if(url['uf'] != 0 && url['cad'] != 0){
+
+                    if(url['uf'] != 0){
                          tooltipInstance.showTooltip(d, [
                              ["title", dados.key[i]],
                              ["", formatTextVrv(dados.value[i]*100, eixo, vrv)],
                              //    ["", formatTextTaxaVrv(dados.taxa[i], eixo, vrv)],
                          ]);
                      }
-                    else if(url['uf'] != 0){
+                    else{
                         tooltipInstance.showTooltip(d, [
                             ["title", dados.key[i]],
                             ["", formatTextVrv(dados.value[i], eixo, vrv)],
-                         //   ["", formatTextTaxaVrv(dados.taxa[i], eixo, vrv)],
-                        ]);
-                    }
-
-                    else if(url['uf'] == 0){
-                        tooltipInstance.showTooltip(d, [
-                            ["title", dados.key[i]],
-                            ["", formatTextVrv(dados.value[i]*100, eixo, vrv)],
                         //    ["", formatTextTaxaVrv(dados.taxa[i], eixo, vrv)],
                         ]);
                     }
