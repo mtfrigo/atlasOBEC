@@ -146,8 +146,8 @@ span.opt{
 	cursor: pointer;
 	padding-left: 5px;
 	padding-right: 5px;
-	font-size: 8px;
-	height: 12px;
+	font-size: 12px;
+	height: 14px;
 	border-radius: 10px;
 	background-color: #6DBFC9;
 	color: #FFF;
@@ -309,6 +309,9 @@ button.opt:hover, button.opt.active{
 	width: 48%;
 	padding-right: 10px;
 	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
 
 .number {
@@ -326,9 +329,15 @@ button.opt:hover, button.opt.active{
 }
 
 .percent-value {
-	float: left;
-	width: 50%;
 	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	height: 70%;
+}
+
+.percent-value .box-dados{
+	margin-top: 10px;
 }
 
 .desc{
@@ -900,7 +909,7 @@ article.results-article div.results-content{
 	color: #737277;
 	border: 1px solid #e7e7e7;
 	outline: none;
-	width: auto;
+	width: 100px;
 	font-size: 10px;
 	border-radius: 2px;
 	text-transform: uppercase;
@@ -916,8 +925,13 @@ article.results-article div.results-content{
 }
 
 .bread-select-var{
-	width: 90%;
+	width: 100%;
 }
+
+.bread-select-eixo{
+	width: 100%;
+}
+
 
 .bread-select-prc{
 	width: 10%;
@@ -925,12 +939,14 @@ article.results-article div.results-content{
 
 .bread-caixa{
 	float: left;
+	width: 100px;
 
 }
 
 .rotulo-bread{
 	padding-left: 5px;
-	font-size: 10px;
+	font-size: 12px;
+	text-align: center;
 }
 
 
