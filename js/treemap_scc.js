@@ -4,13 +4,14 @@ var windowWidth = $(window).width();
 var svg = d3.select("#corpo").append("svg");
 
 svg.attr('width',$('.chart').width());
-svg.attr('height',230);
+svg.attr('height', $('.chart').height());
+
 
 svg = d3.select("svg"),
 	width = +svg.attr("width"),
 	height = +svg.attr("height");
 
-svg.attr('height','230');
+//svg.attr('height','230');
 
 var fonteTransform = "translate("+(width-120)+","+(height+140)+")";
 var valoresTransform = "translate(10,"+(height+140)+")";

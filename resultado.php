@@ -228,8 +228,8 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
 
             <!--==== jquery load menu ===-->
 			<div class="row" id="view-boxes">
-				<!-- gráfico -->
-				<div class="col-md-4 col-xs-12" style="height: 452px">
+				<!-- MAPA -->
+				<div class="col-md-5 col-xs-12" style="height: 452px">
                     <div class="view-title">
                         MAPA DO BRASIL
                         <i class="plus"></i>
@@ -268,10 +268,8 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     <?php endforeach;?>
                     </div>
 				</div>
-
                 <!--=============== DADOS! ================-->
-
-                <div class="col-md-4 col-xs-12 iframe-dados" style="height: 320px; padding: 20px 35px;">
+                <div class="col-md-5 col-xs-12 iframe-dados" style="height: 330px;">
                     <div class="view-title" style="margin-top: 5px" >
                         DADOS
                     </div>
@@ -314,9 +312,8 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         FONTE(S): RAIS
                     </div>
                 </div>
-
                 <!--============= opções gráfico! ============-->
-				<div class="col-md-4 col-xs-12 opts-result" style="height: 320px;">
+				<div class="col-md-12 col-xs-12 opts-result" style="display: none; height: 330px; ">
                     <div id="menu-view">
                         <div class="view-title">
                             MENU
@@ -543,21 +540,16 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         </div>
                     <?php } ?>
 				</div>
-                <div class="col-md-4 col-xs-12" style="height: 330px;">
+                <!--=============== BARRAS! ================-->
+                <div class="col-md-5 col-xs-12" style="height: 330px;">
                     <div class="view-title">
                         SÉRIE HISTÓRICA
                         <i class="plus"></i>
                     </div>
                     <iframe id="view_box_barras" src="barras_box.php" style="border: none; width: 100%; height: 275px;" scrolling="no"></iframe>
                 </div>
-                <div class="col-md-4 col-xs-12"  style="height: 330px;">
-                    <div class="view-title">
-                        <div style="float: left; width: 90%;">TREEMAP - SETORES CULTURAIS CRIATIVOS</div>
-                        <i class="plus"></i>
-                    </div>
-                    <iframe id="view_box_scc" src="treemap_scc_box.php" style="border: none; width: 100%; height: 270px;" scrolling="no"></iframe>
-                </div>
-                <div id="descricao" class="col-md-4 col-xs-12" style="height: 199px; overflow: auto; top: -210px;">
+                <!--=============== DESCRICAO! ================-->
+                <div id="descricao" class="col-md-5 col-xs-12" style="height: 210px; top: -220px; overflow: auto;">
                     <div class="view-title">
                         DESCRIÇÃO DAS VARIÁVEIS
                     </div>
@@ -565,6 +557,38 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         <?=$text['desc_var_mapa'];?>
                     </div>
                 </div>
+                <!--=============== TREEMAP! ================-->
+                <div class="col-md-10 col-xs-12"  style="height: 452px; top: -220px">
+                    <div class="view-title">
+                        <div style="float: left; width: 90%;">TREEMAP - SETORES CULTURAIS CRIATIVOS</div>
+                        <i class="plus"></i>
+                    </div>
+
+                    <iframe id="view_box_scc" src="treemap_scc_box.php" style="border: none; width: 80%; height: 90%; float: left;" scrolling="no"></iframe>
+                    <div id="menu-view" style="float: right; width: 20%">
+                        <div class="view-title-leg" data-id="scc&ocp">
+                            SETORES
+                        </div>
+                        <div id="title-view-scc">
+                            <span class="scc" data-id="0"><i style="display: inline-block; width: 10px; height: 10px; background-color: #071342"></i> Todos<br></span>
+                            <span class="scc" data-id="1"><i style="display: inline-block; width: 10px; height: 10px; background-color: #87A8CA"></i> Arquitetura e Design<br></span>
+                            <span class="scc" data-id="2"><i style="display: inline-block; width: 10px; height: 10px; background-color: #077DDD"></i> Artes Cênicas e Espetáculos<br></span>
+                            <span class="scc" data-id="3"><i style="display: inline-block; width: 10px; height: 10px; background-color: #0F4B67"></i> Audiovisual<br></span>
+                            <span class="scc" data-id="4"><i style="display: inline-block; width: 10px; height: 10px; background-color: #8178AF"></i> Cultura Digital<br></span>
+                            <span class="scc" data-id="5"><i style="display: inline-block; width: 10px; height: 10px; background-color: #F6D5AB"></i> Editorial<br></span>
+                            <span class="scc" data-id="6"><i style="display: inline-block; width: 10px; height: 10px; background-color: #EC8A91"></i> Educação e Criação em Artes<br></span>
+                            <span class="scc" data-id="7"><i style="display: inline-block; width: 10px; height: 10px; background-color: #AD5468"></i> Entretenimento<br></span>
+                            <span class="scc" data-id="8"><i style="display: inline-block; width: 10px; height: 10px; background-color: #6A474D"></i> Música<br></span>
+                            <span class="scc" data-id="9"><i style="display: inline-block; width: 10px; height: 10px; background-color: #E96B00"></i> Patrimônio<br></span>
+                            <span class="scc" data-id="10"><i style="display: inline-block; width: 10px; height: 10px; background-color: #B2510F"></i> Publicidade<br></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
                 <script>
                     function result_mobile() {
                         if($(window).width() < 1200) {
@@ -577,8 +601,8 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     }
                     setTimeout(result_mobile(), 500);
                 </script>
-                <span class="col-md-4 col-xs-12 contexto">
-                    <div class="row contexto">
+                <span class="col-md-10 col-xs-12 contexto" style="top:-220px">
+                    <div class="row">
                         <div class="col-md-12 opt-title text-center">DOWNLOAD</div>
                         <div class="col-xs-4 col-btn"><button class="opt select" id="pdf">PDF</button></div>
                         <div class="col-xs-4 col-btn"><button class="opt select" id="csv">ODS</button></div>

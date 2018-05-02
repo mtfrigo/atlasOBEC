@@ -693,6 +693,10 @@ article.results-article div.results-content{
 	margin:	0.5%;
 }
 
+#view-boxes{
+	display: block;
+}
+
 .plus {
 	display: inline-block;
 	float: right;
@@ -714,6 +718,18 @@ article.results-article div.results-content{
 	color: #aaa;
 	font-size: 14px;
 	letter-spacing: 1px;
+	font-family: Lato Regular;
+}
+
+
+.view-title-leg {
+	width: 100%;
+	margin-top:	50px;
+	padding-right: 5px;
+	color: #aaa;
+	font-size: 14px;
+	letter-spacing: 1px;
+	text-align: center;
 	font-family: Lato Regular;
 }
 
