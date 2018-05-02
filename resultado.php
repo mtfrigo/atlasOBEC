@@ -123,10 +123,11 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
 
             <div class="bread-parent">
                 <div class="row breadcrumb">
-                    <div class="bread-caixa">
-                        <div class="rotulo-bread">Eixo</div>
+                    <div class="bread-caixas" style="margin: auto">
+                    <div class="bread-caixa" style="width: 15%">
+                        <span class="rotulo-bread opt view active">Eixo</span>
 
-                        <select class="bread-eixo" data-id="eixo">
+                        <select class="bread-eixo bread-select-eixo" data-id="eixo">
                             <?php
                             foreach ($json_text['select']['eixo'] as $bread_eixo) {
 
@@ -142,7 +143,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     </div>
                     <div class="bread-separator">/</div>
                     <div class="bread-caixa" style="width: 15%">
-                        <div class="rotulo-bread">Variável</div>
+                        <span class="rotulo-bread opt view active">Variável</span>
 
                         <select class="bread-select bread-select-var" data-id="var">
                             <?php
@@ -157,7 +158,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     <div class="bread-separator">/</div>
 
                         <div class="bread-caixa">
-                            <div class="rotulo-bread">Eixo</div>
+                            <span class="rotulo-bread opt view active">Parceiro</span>
 
                             <select class="bread-select" id="bread-select-prc" data-id="prc">
                                 <?php
@@ -173,7 +174,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     <div class="bread-separator">/</div>
 
                     <div class="bread-caixa">
-                        <div class="rotulo-bread">UF</div>
+                        <span class="rotulo-bread opt view active">UF</span>
 
                         <select class="bread-select bread-uf" data-id="uf">
                             <?php
@@ -185,7 +186,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     </div>
                     <div class="bread-separator">/</div>
                     <div class="bread-caixa">
-                        <div class="rotulo-bread">Ano</div>
+                        <span class="rotulo-bread opt view active">Ano</span>
 
                         <select class="bread-select" data-id="ano">
                             <?php
@@ -197,7 +198,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     </div>
                     <div class="bread-separator">/</div>
                     <div class="bread-caixa">
-                        <div class="rotulo-bread">Setor</div>
+                        <span class="rotulo-bread opt view active">Setor</span>
 
                         <select class="bread-select" id="bread-select-cad" data-id="cad">
                             <?php
@@ -216,7 +217,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         <div class="bread-separator">/</div>
 
                         <div class="bread-caixa">
-                            <div class="rotulo-bread">Desagregação</div>
+                            <span class="rotulo-bread opt view active">Desagregação</span>
                             <select class="bread-select" id="bread-select-deg   " data-id="deg">
                                 <option value="0">Escolher</option>
 
@@ -236,7 +237,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         <div class="bread-separator">/</div>
 
                         <div class="bread-caixa">
-                            <div class="rotulo-bread">Desagregação</div>
+                            <span class="rotulo-bread opt view active">Desagregação</span>
                             <select class="bread-select" id="bread-select-deg" data-id="deg">
                                 <option value="0">Escolher</option>
 
@@ -256,7 +257,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         <div class="bread-separator">/</div>
 
                         <div class="bread-caixa ">
-                            <div class="rotulo-bread ">Mecanismo</div>
+                            <span class="rotulo-bread opt view active ">Mecanismo</span>
                             <select class="bread-select" id="bread-select-mec" data-id="mec">
                                 <option value="0">Todos</option>
 
@@ -272,7 +273,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         <div class="bread-separator">/</div>
 
                         <div class="bread-caixa" style="display: none">
-                            <div class="rotulo-bread ">Modalidade</div>
+                            <span class="rotulo-bread opt view active ">Modalidade</span>
                             <select class="bread-select" id="bread-select-mod" data-id="mod">
                                 <option value="0">Todos</option>
 
@@ -289,7 +290,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
 
 
                         <div class="bread-caixa" style="display: none">
-                            <div class="rotulo-bread ">Pessoa</div>
+                            <span class="rotulo-bread opt view active ">Pessoa</span>
                             <select class="bread-select" id="bread-select-mec" data-id="pfj">
                                 <option value="0">Todos</option>
 
@@ -310,7 +311,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         <div class="bread-separator">/</div>
 
                         <div class="bread-caixa">
-                            <div class="rotulo-bread ">Tipo</div>
+                            <span class="rotulo-bread opt view active ">Tipo</span>
                             <select class="bread-select" id="bread-select-typ" data-id="typ">
 
                                 <?php foreach ($select['typ'] as $option): ?>
@@ -326,7 +327,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
 
 
                         <div class="bread-caixa">
-                            <div class="rotulo-bread ">Parceiro</div>
+                            <span class="rotulo-bread opt view active ">Parceiro</span>
                             <select class="bread-select" id="bread-select-prc" data-id="prc">
 
                                 <option value="0">Mundo</option>
@@ -347,7 +348,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
 
 
 
-
+                    </div>
 
 
 
@@ -450,21 +451,21 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                             <span class="number"></span>
                             <span class="description-number"></span>
                         </div>
-                        <div class="percent-value" style="top: -50px;">
+                        <div class="percent-value">
 
-                            <div class="box-dado" style="height: 70px; margin-top: 10px">
-                                <span class="number" style="float:left;  width: 40%; font-size: 30px;">100%</span>
-                                <span class="description-number" style="float:right; width: 60%; font-size: 12px;"></span>
+                            <div class="box-dado">
+                                <span class="number">100%</span>
+                                <span class="description-number" ></span>
                             </div>
 
-                            <div class="box-dado" style="height: 70px; margin-top: 10px; display: none">
-                                <span class="number" style="float:left;  width: 40%; font-size: 30px;">100%</span>
-                                <span class="description-number" style="float:right; width: 60%; font-size: 12px;"></span>
+                            <div class="box-dado" style="display:none">
+                                <span class="number">100%</span>
+                                <span class="description-number" ></span>
                             </div>
 
-                            <div class="box-dado" style="height: 70px; margin-top: 10px; display: none">
-                                <span class="number" style="float:left; width: 40%; font-size: 30px;">100%</span>
-                                <span class="description-number" style="float:right; width: 60%; font-size: 12px;"></span>
+                            <div class="box-dado" style="display:none">
+                                <span class="number">100%</span>
+                                <span class="description-number" ></span>
                             </div>
 
                         </div>
@@ -774,7 +775,9 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     }
                     setTimeout(result_mobile(), 500);
                 </script>
-                <span class="col-md-10 col-xs-12 contexto" style="top:-220px">
+                <span class="col-md-4 col-xs-12 contexto" style="top:-220px"></span>
+
+                <span class="col-md-4 col-xs-12 contexto" style="top:-220px">
                     <div class="row">
                         <div class="col-md-12 opt-title text-center">DOWNLOAD</div>
                         <div class="col-xs-4 col-btn"><button class="opt select" id="pdf">PDF</button></div>
@@ -850,7 +853,9 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         </div>
                     </div>
                 </span>
-			</div>
+                <span class="col-md-4 col-xs-12 contexto" style="top:-220px"></span>
+
+            </div>
 		</div>
 	</div>
 
