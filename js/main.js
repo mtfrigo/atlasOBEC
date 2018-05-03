@@ -132,7 +132,6 @@ function updateIframe(url){
 
     var eixoAtual = getEixo(window.location.hash.substring(1));
    
-
     ///BOX DO MAPA
     if($('iframe[id="view_box"]').length != 0) {
         if(eixoAtual == 0){
@@ -1124,15 +1123,13 @@ function switchToSetores() {
     $(".bread-select[data-id='ocp']").empty();
     $(".bread-select[data-id='ocp']").append("<option value=\"0\">Todos</option><option value=\"1\">Arquitetura e Design</option><option value=\"2\">Artes Cênicas e Espetáculos</option><option value=\"3\">Audiovisual</option><option value=\"4\">Cultura Digital</option><option value=\"5\">Editorial</option><option value=\"6\">Educação e Criação em Artes</option><option value=\"7\">Entretenimento</option><option value=\"8\">Música</option><option value=\"9\">Patrimônio</option><option value=\"10\">Publicidade</option>");
     $(".bread-select[data-id='ocp']").attr("data-id", "cad");
-
+    
     var cads = [];
     $("#title-view-leg-scc").find(".scc").each(function(){
         cad = {id: $(this).attr("data-id"), nome: $(this).text()}
         cads.push(cad)
     })
-
     updateBreadcrumbSetores(cads);
-    
 }
 
 function switchToOcupations() {
@@ -1532,8 +1529,8 @@ $(document).ready(function(){
                 // updateDataDesc(url['var'], $(this).attr("data-id"), this.options[e.target.selectedIndex].text)
             }
             //quando muda a variável, é preciso trocar a UF para 'Brasil'
+            
             if($(this).attr('data-id') =='var'){
-
                 changeDescVar();
                 cleanDesagsUrl();
                 getAnoDefault(eixo_atual);
@@ -1547,7 +1544,7 @@ $(document).ready(function(){
                 $('.bread-select[data-id=uf]').val(0);
                 $('.bread-select[data-id=cad]').val(0);
 
-
+                
                 $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
                 $(window.document).find(".title[data-id='var-title']").first().html($('.bread-select[data-id=var] option:selected').text());
 
@@ -1569,18 +1566,19 @@ $(document).ready(function(){
                     updateDefaultMec(url['var']);
                 }
 
-
                 if(eixo_atual == 3){
                     updateServicos(url['var']);
                     updateTipo(url['var']);
+                    url['typ'] = 1;
+                    $(".opt-select[data-id='typ']").val(1);
+                    $('.bread-select[data-id=typ]').val(1);
                     if((url['var'] >= 5 && url['var'] <= 12) || url['var'] == 14){
                         $('.bread-select[data-id=prc]').val(0);
                         $(".opt-select[data-id='prc']").val(0)
                         url['prc'] = 0
-                        url['typ'] = 1;
-                        $(".opt-select[data-id='typ']").val(1)
                     }
-                    $(window.document).find(".prc-title").first().html($(".opt-select[data-id='prc'] option:selected").text());
+                    $(window.document).find(".prc-title").first().html($(".bread-select[data-id='prc'] option:selected").text());
+                    
                 }
                 
             }
@@ -1590,25 +1588,26 @@ $(document).ready(function(){
                 $(window.document).find(".state-title").first().html(this.options[e.target.selectedIndex].text);
                 updateDataDesc(url['var'], $(this).attr("data-id"), this.options[e.target.selectedIndex].text)
             }
-
+            
             
             if($(this).attr("data-id") === "cad") {
                 if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
 
                 url['cad'] = ($(this).val())
+                
             }
             if($(this).attr("data-id") === "ocp") {
                 if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
             }
             updateIframe(url);
+            
 
         }
         else {
             parent.window.location = "page.php#"+$(this).val();
         }
-
     });
 
     $(document).on('change', ".bread-eixo", function(){
