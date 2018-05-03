@@ -344,14 +344,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
 
                     <?php } ?>
 
-
-
-
-
                     </div>
-
-
-
 
                 </div>
             </div>

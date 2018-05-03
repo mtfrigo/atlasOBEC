@@ -96,11 +96,15 @@ function getNomeUF(idUF){
 
 function configInfoDataBoxMapa(eixo, vrv, dadosUF) {
 
+
     if(eixo == 0) {
 
     }
     else if(eixo == 1){
 
+        if(url['cad'] == 0)
+            if(dadosUF != undefined)
+                setPercentValueData({percentual: dadosUF.percentual}, eixo, vrv);
 
     }
     else if(eixo == 2){
@@ -371,7 +375,8 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
                 }
 
             }
-        }else if(url['uf'] == 0 && url['cad'] == 0 && url['ocp'] == 0){ 
+        }
+        else if(url['uf'] == 0 && url['cad'] == 0 && url['ocp'] == 0){
             setPercentValueData({percentual:1 , taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
             dados.valor = dados.value[dados.key.indexOf(url['ano'])];
             setIntegerValueData(dados, eixo, vrv);
@@ -379,8 +384,8 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
         else {
             dados.valor = dados.value[dados.key.indexOf(url['ano'])];
             setIntegerValueData(dados, eixo, vrv);
-            if(vrv == 1 || vrv == 7)
-                setPercentValueData({percentual: dados.percentual[index_ano], taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
+            // if(vrv == 1 || vrv == 7)
+            //     setPercentValueData({percentual: dados.percentual[index_ano], taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
             
         }
     }
@@ -541,7 +546,7 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
         else{
             dados.valor = dados.value[i];
             setIntegerValueData(dados, eixo, vrv);
-            setPercentValueData({percentual: dados.percentual[i]}, eixo, vrv);
+            //setPercentValueData({percentual: dados.percentual[i]}, eixo, vrv);
         }
     }
     else if(eixo == 2){
@@ -1542,10 +1547,21 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
             }
 
         }
-    }else if(eixo == 1){
-        if(url['var'] == 7 || url['var'] == 1){
+    }
+    else if(eixo == 1){
+        if(url['var'] == 7){
             if(tipo == "percent" ){
                 if(prepos[nomeestado]){
+                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                }
+                else{
+                    nomeestado = "DO BRASIL"
+                }
+            }
+        }
+        else if(url['var'] == 1){
+            if(tipo == "percent" ){
+                if(prepos[nomeestado] && url['cad'] != 0){
                     nomeestado = prepos[nomeestado] + ' ' +nomeestado
                 }
                 else{

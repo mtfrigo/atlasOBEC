@@ -785,7 +785,13 @@ function legendaBinario(){
                 ]);
             }
             ///Tooltips com só o valor na interface
-            else if(vrv === 2 || vrv === 9 || vrv === 6 || vrv === 4){
+            else if(vrv === 2){
+                tooltipInstance.showTooltip(d, [
+                    ["title", d['properties']['name']],
+                    ["", formatTextVrv(dict[d.id].valor*100, eixo, vrv)]
+                ]);
+            }
+            else if(vrv === 9 || vrv === 6 || vrv === 4){
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
                     ["", formatTextVrv(dict[d.id].valor, eixo, vrv)]

@@ -763,10 +763,16 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
 
             }
             else if(eixo === 1){
-                if (vrv === 2 || vrv === 9) {
+                if (vrv === 9) {
                     tooltipInstance.showTooltip(d, [
                         ["title", dados.key[i]],
                         ["", formatTextVrv(dados.value[i], eixo, vrv)],
+                    ]);
+                }
+                else if(vrv === 2){
+                    tooltipInstance.showTooltip(d, [
+                        ["title", dados.key[i]],
+                        ["", formatTextVrv(dados.value[i]*100, eixo, vrv)],
                     ]);
                 }
                 else if (vrv === 1 || (vrv >= 4 && vrv <= 8) || vrv === 11 || vrv === 10 || vrv >= 12) {

@@ -497,7 +497,7 @@
 				"sufixo_valor":"",
 				"prefixo_valor":"",
 				"fontes":"RAIS e IBGE (PNAD Anual).",
-				"desc_var_mapa": "A variável apresenta o número total de indivíduos ocupados em atividades produtivas ligadas aos Setores ou às Ocupações Culturais.",
+				"desc_var_mapa": " A variável apresenta o número total de indivíduos ocupado(a)s em atividades produtivas ligadas aos setores ou às ocupações criativas e culturais, com possibilidade de desagregações.",
 				"desc":"Esse indicador demonstra o total de empresas culturais. Uma elevação deste número pode indicar um aumento tanto em termos de oferta, quanto de demanda por bens e serviços culturais, assim como uma diminuição pode indicar um arrefecimento da demanda por bens e serviços culturais.",
 				"type":[
 					{"name":"Mapa", "id":"mapa"},
@@ -540,13 +540,13 @@
 			{
 				"id":"2",
 				"desc_int":"DE PARTICIPAÇÃO DOS TRABALHADORES [cad] NO MERCADO DE TRABALHO",
-				"title":"Participação no Emprego",
+				"title":"Participação no Emprego Total",
 				"desc_percent": "",
 				"sufixo_valor":"%",
 				"prefixo_valor":"",
-				"fontes":"Elaboração do NECCULT/UFRGS com base na RAIS e no IBGE (PNAD Anual). ",
+				"fontes":"Elaboração do NECCULT com base na RAIS e no IBGE (PNAD Anual).",
 				"desc":"Esse indicador representa a participação das empresas culturais no total de empresas. Um aumento da participação indica uma mudança na composição dos bens e serviços ofertados em que os bens culturais possuem maior peso. Da mesma forma, é um indicativo de quantos bens e serviços culturais integram a economia do país.",
-				"desc_var_mapa": "A variável calcula a participação do emprego relacionado aos Setores e às Ocupações Culturais e Criativos no mercado de trabalho do País.",
+				"desc_var_mapa": "A variável calcula a participação do emprego nos setores e ocupações culturais e criativas no emprego total do País, isto é, em todos os setores e ocupações.",
 				"type":[
 					{"name":"Mapa", "id":"mapa"},
 					{"name":"Treemap", "id":"treemap_region"},
@@ -642,7 +642,7 @@
 				"prefixo_valor":"R$ ",
 				"fontes":"RAIS E IBGE (PNAD Anual).",
 				"desc":"Esse indicador demonstra a receita total das empresas culturais, isto é, a entrada de fluxos monetários em decorrência das atividades produtivas. Um aumento na receita pode indicar uma elevação dos preços dos bens culturais, ou da quantidade vendida.",
-				"desc_var_mapa": "A variável retrata o valor médio das remunerações monetárias recebidas como compensação pelos trabalhadores empregados pelos Setores e Ocupações Culturais e Criativos.",
+				"desc_var_mapa": "A variável retrata o valor médio das remunerações monetárias, em R$, recebidas como compensação pelo(a)s trabalhadore(a)s empregado(a)s pelos setores e nas ocupações culturais e criativas.",
 				"type":[
 					{"name":"Mapa", "id":"mapa"},
 					{"name":"Ano a Ano", "id":"barras"}
@@ -668,9 +668,9 @@
 				"desc_percent": "",
 				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",
-				"fontes":"Elaboração do NECCULT/UFRGS com base na RAIS E no IBGE (PNAD Anual).",
+				"fontes":"Elaboração do NECCULT com base na RAIS E no IBGE (PNAD Anual).",
 				"desc":"Esse indicador demonstra a receita operacional líquida das empresas culturais, isto é, as receitas brutas provenientes da exploração das atividades principais e secundárias exercidas pela empresa, com deduções dos impostos e contribuições (ICMS, PIS/Pasep, IPI, ISS, Simples Nacional, Cofins etc.), das vendas canceladas, abatimentos e descontos incondicionais. Um aumento na receita pode indicar uma elevação dos preços dos bens culturais, ou da quantidade vendida.",
-				"desc_var_mapa": "A variável calcula o valor médio da remuneração monetária por hora trabalhada nos Setores e Ocupações Culturais e Criativos. ",
+				"desc_var_mapa": "A variável calcula o valor médio da remuneração monetária, em R$, por hora trabalhada nos setores e nas ocupações culturais e criativas. ",
 				"type":[
 					{"name":"Mapa", "id":"mapa"},
 					{"name":"Ano a Ano", "id":"barras"}
@@ -698,7 +698,7 @@
 				"prefixo_valor":"",
 				"fontes":"RAIS E IBGE (PNAD Anual).",
 				"desc":"Esse indicador demonstra o custo total para o funcionamento das empresas culturais. Indica a participação dos custos na composição do total necessário para as firmas operarem. Indiretamente, retrata o quanto os custos totais das atividades culturais representam em relação aos custos totais do conjunto da indústria, do comércio e dosserviços. Um aumento no dispêndio pode indicar o aumento do preço dos insumos e fatores de produção. Uma diminuição pode indicar a redução dos preços dos insumos, ou da diminuição dos custos via inovação da base técnica e produtiva. ",
-				"desc_var_mapa": "A variável detalha o número médio de horas semanais dos ocupados ligados às atividades dos Setores e das Ocupações Culturais e Criativos. ",
+				"desc_var_mapa": "A variável detalha o número médio de horas semanais trabalhadas nos setores e nas ocupações culturais e criativas.",
 				"type":[
 					{"name":"Mapa", "id":"mapa"},
 					{"name":"Ano a Ano", "id":"barras"}
@@ -726,7 +726,7 @@
 				"prefixo_valor":"R$ ",
 				"fontes":"RAIS E IBGE (PNAD Anual).",
 				"desc":"Esse indicador demonstra o ganho auferido ao longo das operações comerciais ou no exercício das atividades econômicas. Diante da subtração do total de receitas auferidas sobre o custo total das empresas, é possível, para cada estratificação proposta, delimitar as atividades culturais que geram maior retorno. Um aumento do lucro pode indicar um aumento da entrada e consecutiva geração de renda por parte das atividades culturias. O aumento da proporção de receitas em relação aos custos possibita aos setores culturais a obtenção de maiores ganhos reais.",
-				"desc_var_mapa": "A variável detalha o número médio de horas semanais dos ocupados ligados às atividades dos Setores e das Ocupações Culturais e Criativos. ",
+				"desc_var_mapa": "A variável mostra a soma de todas as remunerações monetárias pagas, em R$, como compensação pelo trabalho nos setores e nas ocupações culturais e criativas para cada ano.",
 				"type":[
 					{"name":"Mapa", "id":"mapa"},
 					{"name":"Treemap", "id":"treemap_region"},
@@ -768,12 +768,12 @@
 			{
 				"id":"9",
 				"desc_int":"DE RAZÃO ENTRE MASSA SALARIAL E VALOR ADICIONADO EM SETORES CULTURAIS E CRIATIVOS",
-				"title":"Razão entre a Massa de Rendimentos do Trabalho e Valor Adicionado pelos Setores Culturais e Criativos",
+				"title":"Razão entre a Massa de Rendimentos do Trabalho e o Valor Adicionado",
 				"desc_percent": "",
 				"sufixo_valor":"",
 				"prefixo_valor":"",
-				"fontes":"Elaboração do NECCULT/UFRGS com base na RAIS.",
-				"desc_var_mapa": "A variável mostra a relação entre o total de salários pagos e o valor adicionado nos Setores Culturais e Criativos no País. ",
+				"fontes":"Elaboração do NECCULT com base na RAIS.",
+				"desc_var_mapa": "A variável mostra a relação entre o total de rendimentos do trabalho pagos e o valor adicionado, que é a soma de todas rendas novas criadas pelos setores culturais e criativos no País.",
 				"desc":"Esse indicador demonstra a razão entre o Valor Adicionado e o PIB, elucidando e contabilizando a contribuição da cultura na geração de riqueza. Um aumento desta razão indica que a cultura está contribuindo mais para  a geração de renda e produto na economia.",
 				"type":[
 					{"name":"Mapa", "id":"mapa"},
@@ -794,12 +794,12 @@
 			{
 				"id":"10",
 				"desc_int":"RAZÃO DE VARIAÇÃO NO NÍVEL DE OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS",
-				"title":"Razão entre variação na ocupação e variação do Valor Adicionado pelos Setores Culturais e Criativos",
+				"title":"Razão entre a variação na ocupação e a variação do Valor Adicionado",
 				"desc_percent": "",
 				"sufixo_valor":"",
-				"fontes":"Elaboração do NECCULT/UFRGS com base na RAIS.",
+				"fontes":"Elaboração do NECCULT com base na RAIS.",
 				"prefixo_valor":"",
-				"desc_var_mapa": "A variável estima a relação entre as mudanças no nível de ocupação nos Setores Culturais e Criativos e as flutuações do nível valor adicionado pelos mesmos setores. ",
+				"desc_var_mapa": "A variável estima a relação entre as mudanças no nível de ocupação nos setores culturais e criativos e as variações no nível valor adicionado pelos setores culturais e criativos. Trata-se de uma medida indireta da escala produtiva relacionada ao emprego de pessoal nesses setores",
 				"desc":"Esse indicador demonstra o quão concentrada é a distribuição do Total de Empresas a partir do somatório dos quadrados das participações relativas de cada categoria observada. Quanto mais próximo de um for o valor do índice mais concentrado é o item.",
 				"type":[
 					{"name":"Mapa", "id":"mapa"},
@@ -817,12 +817,12 @@
 			{
 				"id":"11",
 				"desc_int":" DE INCIDÊNCIA DOS SALÁRIOS SOBRE OS CUSTOS DOS EMPREENDIMENTOS [cad] [uf]",
-				"title":"Razão entre Custo Total das Empresas Culturais e Criativas e Salários Pagos",
+				"title":"Razão entre os Salários Pagos e o Custo Total",
 				"desc_percent": "",
-				"fontes":"Elaboração do NECCULT/UFRGS com base na RAIS E no IBGE (PNAD Anual).",
+				"fontes":"Elaboração do NECCULT com base na RAIS E no IBGE (PNAD Anual).",
 				"sufixo_valor":"",
 				"prefixo_valor":"",
-				"desc_var_mapa": "A variável calcula a participação da remuneração dos trabalhadores dos Setores e Ocupações Culturais e Criativos no custo total das empresas culturais e criativas. ",
+				"desc_var_mapa": "A variável calcula a participação da remuneração monetária do(a)s trabalhadore(a)s dos setores culturais e criativos no custo monetário total das empresas formais desses setores, considerando que os salários são um componente do custo total. ",
 				"desc":"Esse indicador demonstra o quão concentrada é a distribuição do Valor Adicionado a partir do somatório dos quadrados das participações relativas de cada categoria observada. Quanto mais próximo de um for o valor do índice mais concentrado é o item.",
 				"type":[
 					{"name":"Mapa", "id":"mapa"},
@@ -839,12 +839,12 @@
 			},
 			{
 				"id":"12",
-				"title":"Razão de Concentração do emprego cultural (C4)",
+				"title":"Razão de Concentração do emprego cultural e criativo (C4)",
 				"desc_int":"Concentração do Emprego por UF",
 				"desc_percent":"Concentração do Emprego por Setor",
 				"sufixo_valor":"",
-				"fontes":"Elaboração do NECCULT/UFRGS com base na RAIS e no IBGE (PNAD Anual).",
-				"desc_var_mapa": "A variável mede a concentração dos ocupados entre os Setores Culturais e Criativos, as Ocupações Culturais e Criativas e as unidades federativas para cada ano, considerando a participação da soma das quatro maiores medidas no total. ",
+				"fontes":"Elaboração do NECCULT com base na RAIS e no IBGE (PNAD Anual).",
+				"desc_var_mapa": "A variável mede o grau de concentração do emprego nos setores e ocupações culturais e criativos e nas unidades federativas do País, para cada ano, considerando a participação da soma das quatro maiores medidas na soma total. Por exemplo, se a maior região detém 20% dos empregos culturais e criativos, a segunda maior possui 15%, a terceira maior possui 10% e a quarta maior tem 5%, então o C4 será igual a 50%, indicando elevada concentração dos empregos culturais e criativos em poucas regiões. O mesmo vale para os dez setores culturais e criativos.",
 				"prefixo_valor":"",
 				"desc":"Esse indicador demonstra o quão concentrada é a distribuição do Total de Empresas a partir do somatório das participações relativas das 4 maiores categorias observadas. Quanto mais próximo de um for o valor do índice mais concentrado é o item.",
 				"type":[
@@ -861,9 +861,9 @@
 				"desc_int":"Concentração de Massa Salarial por UF",
 				"desc_percent": "Concentração de Massa Salarial por Setor",
 				"sufixo_valor":"",
-				"fontes":"Elaboração do NECCULT/UFRGS com base na RAIS e no IBGE (PNAD Anual).",
+				"fontes":"Elaboração do NECCULT com base na RAIS e no IBGE (PNAD Anual).",
 				"prefixo_valor":"",
-				"desc_var_mapa": "A variável mensura a concentração da Massa de Rendimentos do Trabalho entre os Setores Culturais e Criativos, as Ocupações Culturais e Criativas e as unidades federativas para cada ano, considerando a participação da soma das quatro maiores medidas no total. ",
+				"desc_var_mapa": " A variável mede o grau de concentração da massa de rendimentos do trabalho nos setores e ocupações culturais e criativas e nas unidades federativas do País, para cada ano, considerando a participação da soma das quatro maiores da soma das quatro maiores medidas na soma total. Por exemplo, se o maior segmento cultural e criativo representa 30% da massa de rendimentos do trabalho, o segundo maior possui 25%, a terceira maior possui 20% e a quarta maior tem 15%, então o C4 será igual a 90%, indicando concentração extrema da massa de rendimentos do trabalho em poucos setores culturais e criativos. O mesmo vale para as unidades da federação.",
 				"desc":"Esse indicador demonstra o quão concentrada é a distribuição do Valor Adicionado a partir do somatório das participações relativas das 4 maiores categorias observadas. Quanto mais próximo de um for o valor do índice mais concentrado é o item.",
 				"type":[
 					{"name":"Ano a Ano", "id":"barras"}
@@ -875,13 +875,13 @@
 			},
 			{
 				"id":"14",
-				"title":"IHH (Índice Herfindal-Hirschman de concentração) de Número de Trabalhadores",
+				"title":"IHH (Índice Herfindahl-Hirschman de concentração) de Número de Trabalhadore(a)s",
 				"desc_int": "IHH DE NÚMERO DO TRABALHADORES POR UF",
 				"desc_percent": "IHH DE NÚMERO DO TRABALHADORES POR SETOR",
-				"fontes":"Elaboração do NECCULT/UFRGS com base na RAIS e no IBGE (PNAD Anual).",
+				"fontes":"Elaboração do NECCULT com base na RAIS e no IBGE (PNAD Anual).",
 				"sufixo_valor":"",
 				"prefixo_valor":"",
-				"desc_var_mapa": "A variável calcula a concentração do número de trabalhadores entre os Setores Culturais e Criativos, as Ocupações Culturais e Criativas e as unidades federativas para cada ano. ",
+				"desc_var_mapa": "A variável mede o grau de concentração do número de trabalhadore(a)s, por setor, ocupação e região, para cada ano. O índice varia entre 0 e 1 e, quanto mais próximo de 1, mais concentrada é a região, a ocupação ou o setor em termos do número de trabalhadore(a)s, pois o mesmo é proporcional à participação no volume médio de emprego, ponderado pelo volume de emprego em cada setor, ocupação ou unidade da federação. Por exemplo, se no Brasil há poucas empresas de um setor cultural em uma região, com elevado volume de emprego, haverá concentração, e o IHH será alto, acima de 0,25. Da mesma forma, se no Brasil um dado setor cultural e criativo apresenta poucas empresas com elevado volume de emprego, o IHH desse setor será alto, acima de 0,25.",
 				"desc":"Esse indicador demonstra o quão concentrada é a distribuição do Valor Adicionado a partir do somatório das participações relativas das 4 maiores categorias observadas. Quanto mais próximo de um for o valor do índice mais concentrado é o item.",
 				"type":[
 					{"name":"Ano a Ano", "id":"barras"}
@@ -893,12 +893,12 @@
 			},
 			{
 				"id":"15",
-				"title":"IHH (Índice Herfindal-Hirschman de concentração) da Massa de Rendimentos do Trabalho",
+				"title":"IHH (Índice Herfindahl-Hirschman de concentração) da Massa de Rendimentos do Trabalho",
 				"desc_int": "IHH DA MASSA DE RENDIMENTOS POR UF",
 				"desc_percent": "IHH DA MASSA DE RENDIMENTOS POR SETOR",
-				"fontes":"Elaboração do NECCULT/UFRGS com base na RAIS e no IBGE (PNAD Anual).",
+				"fontes":"Elaboração do NECCULT com base na RAIS e no IBGE (PNAD Anual).",
 				"sufixo_valor":"",
-                "desc_var_mapa": "A variável calcula a concentração dos rendimentos do trabalho entre os Setores Culturais e Criativos, as Ocupações Culturais e Criativas e as unidades federativas para cada ano.",
+                "desc_var_mapa": "A variável mede o grau de concentração da massa de rendimentos do trabalho, por setor, ocupação e região, para cada ano. O índice varia entre 0 e 1 e, quanto mais próximo de 1, mais concentrada é a região, a ocupação ou o setor em termos da massa de rendimentos, pois o mesmo é proporcional à participação na massa média de remuneração, ponderado pela massa de rendimento do trabalho em cada setor, ocupação ou unidade da federação. Por exemplo, se no Brasil há poucas empresas de um setor cultural em uma região, com elevada participação na massa de rendimento total, haverá concentração, e o IHH será alto, acima de 0,25. Da mesma forma, se no Brasil um dado setor cultural e criativo apresenta poucas empresas com elevada massa de rendimentos do trabalho frente ao total, o IHH desse setor será alto, acima de 0,25.",
                 "prefixo_valor":"",
 				"desc":"Esse indicador demonstra o quão concentrada é a distribuição do Valor Adicionado a partir do somatório das participações relativas das 4 maiores categorias observadas. Quanto mais próximo de um for o valor do índice mais concentrado é o item.",
 				"type":[

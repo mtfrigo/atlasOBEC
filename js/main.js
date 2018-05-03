@@ -1517,7 +1517,8 @@ $(document).ready(function(){
     $(document).on('change', ".bread-select", function(e){
         if($(this).attr("data-id") !== "eixo") {
             var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
-            
+
+
             updateUrl();
             controlFilter($(this).val(), $(this).attr('data-id'));
 
@@ -1594,6 +1595,8 @@ $(document).ready(function(){
             if($(this).attr("data-id") === "cad") {
                 if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
+
+                url['cad'] = ($(this).val())
             }
             if($(this).attr("data-id") === "ocp") {
                 if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
