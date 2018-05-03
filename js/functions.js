@@ -645,11 +645,11 @@ function appendPorts(iframe){
 */
 function appendSectorDesags(iframe){
     if(iframe) {
-        if($(window.parent.document).find("select[data-id='deg']").find("option[value='1']").length == 0) {
+        if($(window.parent.document).find("select[data-id='deg']").find("optgroup[value='1']").length == 0) {
             $(window.parent.document).find("select[data-id='deg']").append("<option value='1'>POR PORTE</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='2'>POR SEXO</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='3'>POR IDADE</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='4'>POR ESCOLARIDADE</option>");
+            $(window.parent.document).find("select[data-id='deg']").append("<option value='1'>POR SEXO</option>");
+            $(window.parent.document).find("select[data-id='deg']").append("<option value='1'>POR IDADE</option>");
+            $(window.parent.document).find("select[data-id='deg']").append("<option value='1'>POR ESCOLARIDADE</option>");
         }
     }
     else {
@@ -757,9 +757,6 @@ function appendMecenatoDesags(iframe){
 }
 function removeMecenatoDesags(iframe){
     if(iframe) {
-
-
-
         if($(window.parent.document).find("select[data-id='deg']").find("option[value='15']").length == 0) {
             $(window.parent.document).find("select[data-id='deg']").find("option[value='15']").remove();
             $(window.parent.document).find("select[data-id='deg']").find("option[value='16']").remove();

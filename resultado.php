@@ -242,9 +242,12 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                                 <option value="0">Escolher</option>
 
                                 <?php foreach ($select['deg'] as $option): ?>
-
                                     <?php if($option['value'] >= 1 && $option['value'] <= 4):?>
-                                        <option value="<?php echo $option['value'] ?>"><?php echo $option['name'] ?></option>
+                                        <optgroup value="<?php echo $option['value'] ?>" label="<?php echo $option['name'] ?>">
+                                            <?php foreach ($option['desags'] as $desag): ?>
+                                                <option value="<?php echo $option['value'] ?>"><?php echo $desag ?></option>
+                                            <?php endforeach; ?>
+                                        </optgroup>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>
