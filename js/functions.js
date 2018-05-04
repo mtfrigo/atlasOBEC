@@ -643,15 +643,17 @@ function appendPorts(iframe){
 /*
 * Põe as desagregações no select das desagregações referentes aos setores do eixo 2.
 */
-function appendSectorDesags(iframe){
+function appendDesags(iframe, ocp){
 
     $.get("./data/select-deg.json", function(data){
-        desag_groups = data.control.mercado.setorial;
+        if(ocp == true)
+            desag_groups = data.control.mercado.ocupacional;
+        else
+            desag_groups = data.control.mercado.setorial;
 
         if(iframe) select = $(window.parent.document).find("select[data-id='deg']")
         else select = $("select[data-id='deg']")
 
-        console.log(select.html())
 
         desag_groups.forEach(function(option){
             group = data.data[option];
@@ -666,28 +668,6 @@ function appendSectorDesags(iframe){
                 
         })
     })
-}
-function appendOcupationDesags(iframe){
-    if(iframe) {
-        if($(window.parent.document).find("select[data-id='deg']").find("option[value='3']").length == 0) {
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='3'>POR IDADE</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='4'>POR ESCOLARIDADE</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='5'>POR COR</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='6'>POR FORMALIDADE</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='7'>POR PREVIDÊNCIA</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='8'>POR SINDICATO</option>");
-        }
-    }
-    else {
-        if($("select[data-id='deg']").find("option[value='3']").length == 0) {
-            $("select[data-id='deg']").append("<option value='3'>POR IDADE</option>");
-            $("select[data-id='deg']").append("<option value='4'>POR ESCOLARIDADE</option>");
-            $("select[data-id='deg']").append("<option value='5'>POR COR</option>");
-            $("select[data-id='deg']").append("<option value='6'>POR FORMALIDADE</option>");
-            $("select[data-id='deg']").append("<option value='7'>POR PREVIDÊNCIA</option>");
-            $("select[data-id='deg']").append("<option value='8'>POR SINDICATO</option>");
-        }
-    }
 }
 function removePorts(iframe){
 	if(iframe) {
@@ -707,9 +687,12 @@ function removePorts(iframe){
         }
 	}
 }
-function removeSectorDesags(iframe){
+function removeDesags(iframe, ocp){
     $.get("./data/select-deg.json", function(data){
-        desag_groups = data.control.mercado.setorial;
+        if(ocp == true)
+            desag_groups = data.control.mercado.ocupacional;
+        else
+            desag_groups = data.control.mercado.setorial;
 
         if(iframe) select = $(window.parent.document).find("select[data-id='deg']")
         else select = $("select[data-id='deg']")
@@ -728,28 +711,6 @@ function removeSectorDesags(iframe){
             }
         })
     })
-}
-function removeOcupationDesags(iframe){
-    if(iframe) {
-        if($(window.parent.document).find("select[data-id='deg']").find("option[value='5']").length != 0) {
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='3']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='4']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='5']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='6']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='7']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='8']").remove();
-        }
-    }
-    else {
-        if($("select[data-id='deg']").find("option[value='5']").length != 0) {
-            $("select[data-id='deg']").find("option[value='3']").remove();
-            $("select[data-id='deg']").find("option[value='4']").remove();
-            $("select[data-id='deg']").find("option[value='5']").remove();
-            $("select[data-id='deg']").find("option[value='6']").remove();
-            $("select[data-id='deg']").find("option[value='7']").remove();
-            $("select[data-id='deg']").find("option[value='8']").remove();
-        }
-    }
 }
 function appendMecenatoDesags(iframe){
     if(iframe) {
@@ -999,7 +960,7 @@ function enableDesag(eixo, vrv, setor, iframe, slc, url){
 	else if(eixo == 1) {
         if(slc == 0) {
 
-            removeOcupationDesags(iframe);
+            removeDesags(iframe, true);
             switch(parseInt(vrv)){
                 case 1:
                 case 2:
@@ -1007,12 +968,12 @@ function enableDesag(eixo, vrv, setor, iframe, slc, url){
                 case 4:
                 case 5:
                 case 6:
-                case 7: appendSectorDesags(iframe); break;
-                default: removeSectorDesags(iframe); break;
+                case 7: appendDesags(iframe, false); break;     //false = setorial, true = ocupacional
+                default: removeDesags(iframe, false); break;
             }
         }
         else {
-            removeSectorDesags(iframe);
+            removeDesags(iframe, false);
             switch(parseInt(vrv)){
                 case 1:
                 case 2:
@@ -1020,13 +981,13 @@ function enableDesag(eixo, vrv, setor, iframe, slc, url){
                 case 4:
                 case 5:
                 case 6:
-                case 7: appendOcupationDesags(iframe); break;
-                default: removeOcupationDesags(iframe); break;
+                case 7: appendDesags(iframe, true); break;
+                default: removeDesags(iframe, true); break;
             }
         }
 
         if(setor == 0 && vrv != 1) {
-            removeSectorDesags();
+            removeDesags(iframe, false);
         }
     }
     else if(eixo == 2) {

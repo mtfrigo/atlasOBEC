@@ -49,10 +49,41 @@
 					{"name": "Superior Completo", "value": "5"}
 				]
 			},
-			{"name":"Por cor","value":"5"},
-			{"name":"Por formalidade","value":"6"},
-			{"name":"Por previdência","value":"7"},
-			{"name":"Por sindicato","value":"8"},
+			{
+				"name":"Por cor",
+				"value":"5",
+				"desags": [
+					{"name": "Indígena", "value": "1"},
+					{"name": "Branca", "value": "2"},
+					{"name": "Preta", "value": "3"},
+					{"name": "Amarela", "value": "4"},
+					{"name": "Parda", "value": "5"}
+				]
+			},
+			{
+				"name":"Por formalidade",
+				"value":"6",
+				"desags": [
+					{"name": "Não", "value": "1"},
+					{"name": "Sim", "value": "2"}
+				]
+			},
+			{
+				"name":"Por previdência",
+				"value":"7",
+				"desags": [
+					{"name": "Não", "value": "1"},
+					{"name": "Sim", "value": "2"}
+				]
+			},
+			{
+				"name":"Por sindicato",
+				"value":"8",
+				"desags": [
+					{"name": "Não", "value": "1"},
+					{"name": "Sim", "value": "2"}
+				]
+			},
 			{"name":"Porte micro","value":"9"},
 			{"name":"Porte pequeno","value":"10"},
 			{"name":"Porte médio","value":"11"},
