@@ -23,8 +23,8 @@
 				"name":"Por sexo",
 				"value":"2", 
 				"desags": [
-					{"name": "Feminino", "value": "1"}, 
-					{"name": "Masculino", "value": "2"}
+					{"name": "Masculino", "value": "1"},
+					{"name": "Feminino", "value": "2"}
 				]
 			},
 			{

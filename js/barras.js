@@ -1101,8 +1101,7 @@ else {
                 }
                 if (slc == 0) $(window.parent.document).find(".cad-title").first().html(textJSON.select.cad[url['cad']].name + " - " + desagregacao_names()[obj]);
                 else $(window.parent.document).find(".cad-title").first().html(textJSON.select.ocp[url['ocp'] - 1].name + " - " + desagregacao_names()[obj]);
-                
-                $(window.parent.document).find(".bread-select[data-id=deg]").val(obj+1)
+                $(window.parent.document).find(".bread-select[data-id=deg]").find("optgroup[value="+deg+"]").find("option[value="+(obj+1)+"]").prop('selected', true)//.val(obj+1)
                 configInfoDataBoxBarrasStackedClick(eixo, vrv, d, getSoma(d.x), deg);
             })
             .style("cursor", "pointer");
