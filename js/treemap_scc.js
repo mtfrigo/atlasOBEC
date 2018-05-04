@@ -203,12 +203,15 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         cad_percent = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent");
                         cad_valor = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-valor");
 
-                        if(url['deg'] == 0){
-                            cad_percent_uf = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent-uf");
-                        }
-                        else{
-                            cad_percent_uf = getSoma(d.data.colorId);
-                        }
+
+                        cad_percent_uf = ($('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent-uf"))
+
+                        // if(url['deg'] == 0){
+                        //     cad_percent_uf = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent-uf");
+                        // }
+                        // else{
+                        //     cad_percent_uf = getSoma(d.data.colorId);
+                        // }
 
                         configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, cad_valor, cad_percent, cad_percent_uf);
                         if(deg  == 0) $(window.parent.document).find(".cad-title").first().html(d.data.name);
@@ -295,7 +298,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                 tooltipInstance.showTooltip(d, [
                     ["title", d.data.name],
                     ["", formatTextVrv(d.data.size*100, eixo, vrv)],
-                    //["", formatTextTaxaVrv((d.data.size / root.value), eixo, vrv)],
+                    ["", formatTextTaxaVrv((d.data.size / root.value), eixo, vrv)],
 
                 ]);
             }
@@ -306,7 +309,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                     tooltipInstance.showTooltip(d, [
                         ["title", d.data.name],
                         ["", formatTextVrv(d.data.size, eixo, vrv)],
-                        ["", formatDecimalLimit((d.data.size/d.parent.value)*100, 2) + "%"],
+                        //["", formatDecimalLimit((d.data.size/d.parent.value)*100, 2) + "%"],
                     ]);
                 }
                 else {
@@ -406,11 +409,12 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                 .attr("fill", function(d) { return color(d.data.colorId)[8-d.data.desagreg]; });
         }
         else {
+
             cell.append("rect")
                 .attr("data-legend", function(d) { return d.data.colorId; })
                 .attr("data-value", function(d) {  return (d.value); })
                 .attr("data-percent", function(d) { return (d.parent.value/root.value); })
-                .attr("data-percent-uf", function(d) { return (d.parent.value/root.value); })
+                .attr("data-percent-uf", function(d) { return (d.data.size/root.value); })
                 .attr("data-deg", function(d) { return (d.parent.value); })
                 .attr("id", function(d) { return d.data.id; })
                 .attr("width", function(d) { return nodeWidth(d); })
@@ -433,6 +437,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
 
         cell.append("rect")
             .attr("data-legend", function(d) { return d.data.colorId; })
+            .attr("data-valor", function(d) { return d.value; })
             .attr("data-valor", function(d) { return d.value; })
             .attr("data-percent-uf", function(d) { return d.data.percentual; })
             .attr("data-percent", function(d) { return d.data.size/root.value; })
@@ -501,7 +506,10 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                 }
             }
             else if(eixo == 1) {
-                if(deg !== 0) return formatDecimalLimit((d.data.size/d.parent.value)*100,2)+"%";
+
+
+
+                if(deg !== 0) return formatDecimalLimit((d.data.size/root.value)*100,2)+"%";
                 else return formatDecimalLimit((d.data.size/root.value)*100,2)+"%";
 			}
             else if(eixo === 2){

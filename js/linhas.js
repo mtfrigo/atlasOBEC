@@ -165,7 +165,7 @@ function analyze(error, data) {
         var max = d3.max(valoresBrutos, function(d) {
             return Math.max(d); });
 
-        if(!(eixo == 0 && vrv > 9)){
+        if(!(eixo == 0 && vrv > 9 || eixo == 1 && vrv == 6)){
             if(min >= 0)
                 min = 0;
         }
@@ -298,6 +298,22 @@ function analyze(error, data) {
                         ])
                     }
 
+                }
+                else if(eixo == 1){
+                    valor =  formatNumber(valor, 2).toString().replace(".", "");
+
+                    if(vrv == 4){
+                        tooltipInstance.showTooltip(d, [
+                            ["title", scc],
+                            ["R$ ", valor]
+                        ])
+                    }
+                    else{
+                        tooltipInstance.showTooltip(d, [
+                            ["title", scc],
+                            ["", valor]
+                        ])
+                    }
                 }
                 else{
                     valor =  formatNumber(valor, 2).toString().replace(".", "");

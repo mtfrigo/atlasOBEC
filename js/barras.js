@@ -770,10 +770,19 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                     ]);
                 }
                 else if(vrv === 2){
-                    tooltipInstance.showTooltip(d, [
-                        ["title", dados.key[i]],
-                        ["", formatTextVrv(dados.value[i]*100, eixo, vrv)],
-                    ]);
+                    if(url['ocp'] == 0){
+                        tooltipInstance.showTooltip(d, [
+                            ["title", dados.key[i]],
+                            ["", formatTextVrv(dados.value[i]*10000, eixo, vrv)],
+                        ]);
+                    }
+                    else{
+                        tooltipInstance.showTooltip(d, [
+                            ["title", dados.key[i]],
+                            ["", formatTextVrv(dados.value[i]*100, eixo, vrv)],
+                        ]);
+                    }
+
                 }
                 else if (vrv === 1 || (vrv >= 4 && vrv <= 8) || vrv === 11 || vrv === 10 || vrv >= 12) {
                     tooltipInstance.showTooltip(d, [
