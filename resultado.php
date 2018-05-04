@@ -729,7 +729,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     <iframe id="view_box_scc" src="treemap_scc_box.php" style="border: none; width: 80%; height: 90%; float: left;" scrolling="no"></iframe>
                     <div id="menu-view" style="float: right; width: 20%">
 
-                        <?php if($eixo != 'comercio') { ?>
+                        
 
                         <div class="view-title-leg" data-id="scc&ocp">
                             SETORES
@@ -745,10 +745,11 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                             <span class="scc" data-id="7"><i style="display: inline-block; width: 10px; height: 10px; background-color: #AD5468"></i> Entretenimento<br></span>
                             <span class="scc" data-id="8"><i style="display: inline-block; width: 10px; height: 10px; background-color: #6A474D"></i> Música<br></span>
                             <span class="scc" data-id="9"><i style="display: inline-block; width: 10px; height: 10px; background-color: #E96B00"></i> Patrimônio<br></span>
-                            <span class="scc" data-id="10"><i style="display: inline-block; width: 10px; height: 10px; background-color: #B2510F"></i> Publicidade<br></span>
+                            <?php if($eixo != 'comercio') { ?>  <span class="scc" data-id="10"><i style="display: inline-block; width: 10px; height: 10px; background-color: #B2510F"></i> Publicidade<br></span>
+                                <?php } ?>
                         </div>
 
-                        <?php } ?>
+                        
                     </div>
                 </div>
 
