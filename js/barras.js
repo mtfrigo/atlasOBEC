@@ -63,7 +63,6 @@ function destacaBarra(barraId, stacked = false) {
 var tooltipInstance = tooltip.getInstance();
 if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
 
-
     //Variaveis/Objetos
     var dict = {};
 
@@ -75,6 +74,11 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
     // import colors.json file
     var colorJSON;
     var textJSON;
+    var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo + "&deg=" +deg;
+
+    $.get('./db/json_barras.php' + config, function(dado){
+        console.log(dado)
+    })
     d3.json('data/colors.json', function (error, data) {
         if (error) throw error;
         colorJSON = data;
@@ -84,7 +88,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
         d3.json('data/pt-br.json', function (error, data) {
             if (error) throw error;
             textJSON = data;
-            var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo;
+            var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo + "&desag=" +deg;
 
             d3.queue()
                 .defer(d3.json, "./db/json_barras.php" + config)
@@ -828,17 +832,19 @@ else {
     // import colors.json file
     var colorJSON;
     var textJSON;
+
+    var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&slc=" + slc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&deg=" + deg;
+
+
     d3.json('data/colors.json', function (error, data) {
         if (error) throw error;
         colorJSON = data;
-
 
         // import pt-br.json file for get the title
         d3.json('data/pt-br.json', function (error, data) {
             if (error) throw error;
 
             textJSON = data;
-            var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&slc=" + slc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo;
 
             d3.queue()
                 .defer(d3.json, "./db/json_barras.php" + config)
@@ -847,6 +853,12 @@ else {
 
     });
     // return matching color value
+
+
+    $.get('./db/json_barras.php' + config, function(dado){
+        //console.log(dado)
+    })
+
     function color_eixo1() {
         if(ocp == 0) {
             if (colorJSON.cadeias[cad]) {
@@ -874,6 +886,7 @@ else {
 
     function desagregacao_names() {
 
+
         if(eixo == 1 && (vrv == 6 || vrv == 4)){
             var array_names = [];
 
@@ -882,12 +895,14 @@ else {
         }
 
         if(prt != 0) {
+
             var array_names = [];
             textJSON.select.prt.forEach(function(d, i) {
                 if(i) {
                     array_names.push(d.name_bar);
                 }
             });
+
         }
         if(esc != 0) {
             var array_names = [];
@@ -956,27 +971,6 @@ else {
         }
 
 
-        if((vrv == 6 || vrv == 4) && eixo == 1){
-            aux = []
-
-            Object.keys(data).forEach(function (key) {
-
-                soma = 0;
-                cont = 0;
-
-                Object.keys(data[key]).forEach(function (chave) {
-                    if(chave != "year"){
-                        obj = {};
-                        obj[chave] = data[key][chave];
-                        soma = soma + obj[chave];
-                        cont++;
-                    }
-                });
-                aux.push({year: data[key].year, Média: soma/cont})
-            });
-            data = aux;
-        }
-
         setTimeout(function () {
         }, 500);
 
@@ -1001,9 +995,12 @@ else {
             });
         });
 
+        console.log(data)
 
         // Transpose the data into layers
         var dataset = d3.layout.stack()(dados);
+
+        // console.log(dataset)
 
         // Set x, y and colors
         var x_eixo1 = d3.scale.ordinal()
@@ -1100,7 +1097,7 @@ else {
                 }
                 if (slc == 0) $(window.parent.document).find(".cad-title").first().html(textJSON.select.cad[url['cad']].name + " - " + desagregacao_names()[obj]);
                 else $(window.parent.document).find(".cad-title").first().html(textJSON.select.ocp[url['ocp'] - 1].name + " - " + desagregacao_names()[obj]);
-                console.log(d)
+                // console.log(d)
 
                 configInfoDataBoxBarrasStackedClick(eixo, vrv, d, getSoma(d.x), deg);
             })

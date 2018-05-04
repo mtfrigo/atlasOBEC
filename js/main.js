@@ -1141,6 +1141,7 @@ function switchToOcupations() {
     $("#title-view-leg-scc").append("<span class=\"ocp\" data-id=\"1\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #87A8CA\"></i> Atividades Relacionadas<br></span>");
     $("#title-view-leg-scc").append("<span class=\"ocp\" data-id=\"2\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #077DDD\"></i> Cultura<br></span>");
     $(".bread-select[data-id='cad']").empty();
+    $(".bread-select[data-id='cad']").append("<option value='3'>Todos</option>");
     $(".bread-select[data-id='cad']").append("<option value='1'>Atividades Relacionadas</option>");
     $(".bread-select[data-id='cad']").append("<option value='2'>Cultura</option>");
     $(".bread-select[data-id='cad']").attr("data-id", "ocp");

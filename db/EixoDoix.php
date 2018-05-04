@@ -181,22 +181,22 @@ class EixoDois {
                 $query .= " AND idPorte > 0";
                 break;
             case 3:
-                $query .= " AND idIdade > 0";
+                $query .= " AND idIdade > 0"; 
                 break;
-            case 4:
+            case 4: 
                 $query .= " AND idEscolaridade > 0";
                 break;
             case 5:
-                $query .= " AND idEtinia > 0";
+                $query .= " AND idEtinia > 0"; 
                 break;
-            case 6:
+            case 6: 
                 $query .= " AND Formalidade > 0";
                 break;
             case 7:
-                $query .= " AND Previdencia > 0";
+                $query .= " AND Previdencia > 0"; 
                 break;
             case 8:
-                $query .= " AND Sindical > 0";
+                $query .= " AND Sindical > 0"; 
                 break;
         }*/
         $query .= ($anos > 0) ? " AND Ano = ".$anos : "" ;

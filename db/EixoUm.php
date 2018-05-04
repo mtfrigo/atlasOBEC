@@ -261,7 +261,7 @@ class EixoUm {
 	    $cad = id do SCC 
 	    $prt = id do porte
 	Saída:
-	    Um conjunto de instâncias da Classe EixoUm com seus devidos atributos
+	    Um conjunto de instâncias da Classe EixoUm com seus devidos atributosa
 	-----------------------------------------------------------------------------*/
 	public static function getter_barras($var, $ufs, $atc, $cad, $prt, $uos){
 
