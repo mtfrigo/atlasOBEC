@@ -1503,7 +1503,6 @@ $(document).ready(function(){
             if($(this).attr('data-id') == 'desag'){
                 url['mec'] = $('.opt-select[data-id=desag]').val()
             }
-
             updateIframe(url);
         }
         else {
@@ -1517,8 +1516,16 @@ $(document).ready(function(){
 
 
             updateUrl();
-            controlFilter($(this).val(), $(this).attr('data-id'));
-
+            if($(this).attr("data-id") == "deg" && eixo_atual == 1){
+                if($(this).find('option:selected').parent().attr("value") != undefined)
+                    deg_value =  $(this).find('option:selected').parent().attr("value")
+                else
+                    deg_value = $(this).val()
+                controlFilter(deg_value, $(this).attr('data-id'));
+            } else{
+                controlFilter($(this).val(), $(this).attr('data-id'));
+            }
+           
             /* controla relações entre filtros */
             
             /* muda o select das opções para o mesmo do bread */
@@ -1601,6 +1608,8 @@ $(document).ready(function(){
                 if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
             }
+
+            console.log(url['prt'])
             updateIframe(url);
             
 

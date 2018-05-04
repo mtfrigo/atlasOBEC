@@ -644,25 +644,26 @@ function appendPorts(iframe){
 * Põe as desagregações no select das desagregações referentes aos setores do eixo 2.
 */
 function appendSectorDesags(iframe){
+
     $.get("./data/select-deg.json", function(data){
         desag_groups = data.control.mercado.setorial;
 
         if(iframe) select = $(window.parent.document).find("select[data-id='deg']")
         else select = $("select[data-id='deg']")
 
-        console.log($("select[data-id='deg']").find("option[value='3']"))
+        console.log(select.html())
 
         desag_groups.forEach(function(option){
             group = data.data[option];
             if(select.find("optgroup[value='"+group.value+"']").length == 0) {
                 select.append("<optgroup value='"+group.value+"' label='"+group.name+"'></option>");
-                group.desags.forEach(function(deg){
-                    if(select.find("optgroup[value='"+group.value+"']").find("option[value="+deg.value+"]").length == 0) {
-                        select.find("optgroup[value='"+group.value+"']").append("<option value='"+deg.value+"'>"+deg.name+"</option>");
-                    }
-                })
-                
             }
+            group.desags.forEach(function(deg){
+                if(select.find("optgroup[value='"+group.value+"']").find("option[value="+deg.value+"]").length == 0) {
+                    select.find("optgroup[value='"+group.value+"']").append("<option value='"+deg.value+"'>"+deg.name+"</option>");
+                }
+            })
+                
         })
     })
 }
@@ -715,15 +716,14 @@ function removeSectorDesags(iframe){
         
         desag_groups.forEach(function(option){
             group = data.data[option];
-            console.log(group.value)
             if(select.find("optgroup[value='"+group.value+"']").length != 0) {
-                select.find("optgroup[value='"+group.value+"']").remove()
-                
                 group.desags.forEach(function(deg){
                     if(select.find("option[value="+deg.value+"]").length != 0) {
                         select.find("option[value="+deg.value+"]").remove();
                     }
                 })
+
+                select.find("optgroup[value='"+group.value+"']").remove()              
                 
             }
         })
