@@ -98,9 +98,9 @@ function getNamePorte($id) {
         case 1:
             return "Micro";
         case 2:
-            return "Pequeno";
+            return "Pequena";
         case 3:
-            return "Médio";
+            return "Média";
         case 4:
             return "Grande";
     }
@@ -135,19 +135,19 @@ function getNameIdade($id) {
 function getNameEscolaridade($id) {
     switch ($id) {
         case 1:
-            return "Sem instrução";
+            return "Sem Instrução";
         case 2:
-            return "Fundamental incompleto";
+            return "Fundamental Incompleto";
         case 3:
-            return "Fundamental completo";
+            return "Fundamental Completo";
         case 4:
-            return "Médio completo";
+            return "Médio Completo";
         case 5:
-            return "Superior incompleto";
+            return "Superior Incompleto";
         case 6:
-            return "Superior completo";
+            return "Superior Completo";
         case 7:
-            return "Não determinado";
+            return "Não Determinado";
     }
 }
 
@@ -271,7 +271,10 @@ else if($eixo == 1) {
             $barras[$id]['percentual'] = (double) $tupla->Percentual;
             $barras[$id]['taxa'] = (double) $tupla->Taxa;
         }
-        else {
+        else if($ocp == 3) {
+            
+        }
+        else{
 
             $id = $tupla->Ano;
             if($slc == 1) {
@@ -292,16 +295,16 @@ else if($eixo == 1) {
                 }
             }
 
+
             $idEsc = $tupla->idEscolaridade;
             $barras[intval($id-2007)]['year'] = $tupla->Ano;
             if($prt != 0) $barras[intval($id-2007)][getNamePorte($tupla->idPorte)] = (double)$tupla->Valor;
             else if($sex != NULL) {
-                if($tupla->Sexo) $barras[intval($id-2007)]["Masculino"] = (double)$tupla->Valor;
-                else $barras[intval($id-2007)]["Feminino"] = (double)$tupla->Valor;
+                $barras[intval($id-2007)][getNameSexo($tupla->Sexo)] = (double)$tupla->Valor;
             }
             else if($fax != 0) $barras[intval($id-2007)][getNameIdade($tupla->idIdade)] = (double)$tupla->Valor;
-            else if($esc != 0) $barras[intval($id-2007)][getNameIdade($tupla->idEsc)] = (double)$tupla->Valor;
-            else if($cor != 0) $barras[intval($id-2007)][$tupla->EtiniaNome] = (double)$tupla->Valor;
+            else if($esc != 0) $barras[intval($id-2007)][getNameEscolaridade($tupla->idEscolaridade)] = (double)$tupla->Valor;
+            else if($cor != 0) $barras[intval($id-2007)][getNameEtinia($tupla->idEtinia)] = (double)$tupla->Valor;
             else if($frm != 0) {
                 if($tupla->Formalidade == 1) $barras[intval($id-2007)]["Não"] = (double)$tupla->Valor;
                 else $barras[intval($id-2007)]["Sim"] = (double)$tupla->Valor;

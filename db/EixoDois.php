@@ -309,10 +309,12 @@ class EixoDois {
     -----------------------------------------------------------------------------*/
     public static function getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $etn, $idd, $form, $prev, $sind, $sexos, $uos, $slc, $desag){
         self::connect();
-        $query = "SELECT * FROM ".self::$table." WHERE Numero =".$var." AND idUF = ".$uf." AND idCadeia = ".$cad;
+        $query = "SELECT * FROM ".self::$table." WHERE Numero =".$var." AND idUF = ".$uf;
 
         if($ocp == 0){
+
             $query .= " AND idOcupacao = 0";
+            $query .= " AND idCadeia = ".$cad;
         }
         else if($ocp == 1){
             $query .= " AND idOcupacao = 1";
@@ -324,7 +326,12 @@ class EixoDois {
             $query .= " AND (idOcupacao = 1 OR idOcupacao = 2)";
         }
 
-        $query .= " AND Sexo IS NULL";
+        if($desag == 2){
+            $query .= " AND (Sexo = 1 OR Sexo = 0)";
+        }
+        else{
+            $query .= " AND Sexo IS NULL";
+        }
 
         $query .= self::concatDeg($desag, 1, "idPorte");
         $query .= self::concatDeg($desag, 3, "idIdade");
@@ -335,6 +342,7 @@ class EixoDois {
         $query .= self::concatDeg($desag, 8, "Sindical");
 
         //$query .= " ORDER BY `Eixo_2`.`Ano` ASC";
+        echo $query;
 
         $result = mysqli_query(self::$conn, $query);
 

@@ -856,7 +856,7 @@ else {
 
 
     $.get('./db/json_barras.php' + config, function(dado){
-        //console.log(dado)
+        console.log(dado)
     })
 
     function color_eixo1() {
@@ -886,7 +886,6 @@ else {
 
     function desagregacao_names() {
 
-
         if(eixo == 1 && (vrv == 6 || vrv == 4)){
             var array_names = [];
 
@@ -911,6 +910,7 @@ else {
                     array_names.push(d.name);
                 }
             });
+
         }
 
         if(fax != 0) {
@@ -928,6 +928,8 @@ else {
                     array_names.push(d.name);
                 }
             });
+            // console.log(array_names)
+
         }
         if(frm != 0) {
             var array_names = [];

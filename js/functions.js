@@ -1521,7 +1521,9 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         "TOCANTINS": "DO"
     }
 
-    nomeestado = nomeestado.toUpperCase()
+    if(nomeestado != undefined)
+        nomeestado = nomeestado.toUpperCase()
+
     if(eixo == 0){
         if(url['var'] == 3 || url['var'] == 9){
             if(prepos[nomeestado]){
