@@ -724,6 +724,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
         destacaBarra(url['ano']);
 
         var valor = $('svg').find('rect[data-legend="'+url['ano']+'"]').attr("data-value");
+
         configInfoDataBoxBarras(eixo, vrv, dados, valor);
         
         if(eixo == 1)
@@ -1100,12 +1101,20 @@ else {
                 }
                 if (slc == 0) $(window.parent.document).find(".cad-title").first().html(textJSON.select.cad[url['cad']].name + " - " + desagregacao_names()[obj]);
                 else $(window.parent.document).find(".cad-title").first().html(textJSON.select.ocp[url['ocp'] - 1].name + " - " + desagregacao_names()[obj]);
-                console.log(d)
-
+                
+                $(window.parent.document).find(".bread-select[data-id=deg]").val(obj+1)
                 configInfoDataBoxBarrasStackedClick(eixo, vrv, d, getSoma(d.x), deg);
             })
             .style("cursor", "pointer");
-
+        
+        desagregacao = $(window.parent.document).find(".bread-select[data-id=deg]").val();
+        dado_anos = dataset[desagregacao-1]
+        dado = dado_anos.filter(function(obj){
+            return obj.x.getFullYear() == url['ano']
+        })[0]
+        configInfoDataBoxBarrasStacked(eixo, vrv, dado, getSoma(dado.x), deg);
+        
+        
         $('corpo').find('svg').attr('height',$('.chart').height() + 350);
 
         // Draw legend

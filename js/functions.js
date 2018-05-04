@@ -616,8 +616,17 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
     }
 }
 
-function configInfoDataBoxBarrasStackedClick(eixo, vrv, d, soma, deg) {
+function configInfoDataBoxBarrasStacked(eixo, vrv, d, soma, deg) {
+    if(eixo == 1) {
+        if(d.y == "NaN") {
+            d.y = 0;
+        }
+        setIntegerValueData({valor: d.y}, eixo, vrv);
+        setPercentValueData({percentual: parseFloat(d.y)/soma}, eixo, vrv);
+    }
+}
 
+function configInfoDataBoxBarrasStackedClick(eixo, vrv, d, soma, deg) {
     if(eixo == 1) {
         if(d.y == "NaN") {
             d.y = 0;
@@ -661,45 +670,31 @@ function appendPorts(iframe){
 /*
 * Põe as desagregações no select das desagregações referentes aos setores do eixo 2.
 */
-function appendSectorDesags(iframe){
-    if(iframe) {
-        if($(window.parent.document).find("select[data-id='deg']").find("option[value='1']").length == 0) {
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='1'>POR PORTE</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='2'>POR SEXO</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='3'>POR IDADE</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='4'>POR ESCOLARIDADE</option>");
-        }
-    }
-    else {
-        if($("select[data-id='deg']").find("option[value='1']").length == 0) {
-            $("select[data-id='deg']").append("<option value='1'>POR PORTE</option>");
-            $("select[data-id='deg']").append("<option value='2'>POR SEXO</option>");
-            $("select[data-id='deg']").append("<option value='3'>POR IDADE</option>");
-            $("select[data-id='deg']").append("<option value='4'>POR ESCOLARIDADE</option>");
-        }
-    }
-}
-function appendOcupationDesags(iframe){
-    if(iframe) {
-        if($(window.parent.document).find("select[data-id='deg']").find("option[value='3']").length == 0) {
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='3'>POR IDADE</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='4'>POR ESCOLARIDADE</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='5'>POR COR</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='6'>POR FORMALIDADE</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='7'>POR PREVIDÊNCIA</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='8'>POR SINDICATO</option>");
-        }
-    }
-    else {
-        if($("select[data-id='deg']").find("option[value='3']").length == 0) {
-            $("select[data-id='deg']").append("<option value='3'>POR IDADE</option>");
-            $("select[data-id='deg']").append("<option value='4'>POR ESCOLARIDADE</option>");
-            $("select[data-id='deg']").append("<option value='5'>POR COR</option>");
-            $("select[data-id='deg']").append("<option value='6'>POR FORMALIDADE</option>");
-            $("select[data-id='deg']").append("<option value='7'>POR PREVIDÊNCIA</option>");
-            $("select[data-id='deg']").append("<option value='8'>POR SINDICATO</option>");
-        }
-    }
+function appendDesags(iframe, ocp){
+
+    $.get("./data/select-deg.json", function(data){
+        if(ocp == true)
+            desag_groups = data.control.mercado.ocupacional;
+        else
+            desag_groups = data.control.mercado.setorial;
+
+        if(iframe) select = $(window.parent.document).find("select[data-id='deg']")
+        else select = $("select[data-id='deg']")
+
+
+        desag_groups.forEach(function(option){
+            group = data.data[option];
+            if(select.find("optgroup[value='"+group.value+"']").length == 0) {
+                select.append("<optgroup value='"+group.value+"' label='"+group.name+"'></option>");
+            }
+            group.desags.forEach(function(deg){
+                if(select.find("optgroup[value='"+group.value+"']").find("option[value="+deg.value+"]").length == 0) {
+                    select.find("optgroup[value='"+group.value+"']").append("<option value='"+deg.value+"'>"+deg.name+"</option>");
+                }
+            })
+                
+        })
+    })
 }
 function removePorts(iframe){
 	if(iframe) {
@@ -719,45 +714,30 @@ function removePorts(iframe){
         }
 	}
 }
-function removeSectorDesags(iframe){
-    if(iframe) {
-        if($(window.parent.document).find("select[data-id='deg']").find("option[value='1']").length != 0) {
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='1']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='2']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='3']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='4']").remove();
-        }
-    }
-    else {
-        if($("select[data-id='deg']").find("option[value='1']").length != 0) {
-            $("select[data-id='deg']").find("option[value='1']").remove();
-            $("select[data-id='deg']").find("option[value='2']").remove();
-            $("select[data-id='deg']").find("option[value='3']").remove();
-            $("select[data-id='deg']").find("option[value='4']").remove();
-        }
-    }
-}
-function removeOcupationDesags(iframe){
-    if(iframe) {
-        if($(window.parent.document).find("select[data-id='deg']").find("option[value='5']").length != 0) {
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='3']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='4']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='5']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='6']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='7']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='8']").remove();
-        }
-    }
-    else {
-        if($("select[data-id='deg']").find("option[value='5']").length != 0) {
-            $("select[data-id='deg']").find("option[value='3']").remove();
-            $("select[data-id='deg']").find("option[value='4']").remove();
-            $("select[data-id='deg']").find("option[value='5']").remove();
-            $("select[data-id='deg']").find("option[value='6']").remove();
-            $("select[data-id='deg']").find("option[value='7']").remove();
-            $("select[data-id='deg']").find("option[value='8']").remove();
-        }
-    }
+function removeDesags(iframe, ocp){
+    $.get("./data/select-deg.json", function(data){
+        if(ocp == true)
+            desag_groups = data.control.mercado.ocupacional;
+        else
+            desag_groups = data.control.mercado.setorial;
+
+        if(iframe) select = $(window.parent.document).find("select[data-id='deg']")
+        else select = $("select[data-id='deg']")
+        
+        desag_groups.forEach(function(option){
+            group = data.data[option];
+            if(select.find("optgroup[value='"+group.value+"']").length != 0) {
+                group.desags.forEach(function(deg){
+                    if(select.find("option[value="+deg.value+"]").length != 0) {
+                        select.find("option[value="+deg.value+"]").remove();
+                    }
+                })
+
+                select.find("optgroup[value='"+group.value+"']").remove()              
+                
+            }
+        })
+    })
 }
 function appendMecenatoDesags(iframe){
     if(iframe) {
@@ -775,9 +755,6 @@ function appendMecenatoDesags(iframe){
 }
 function removeMecenatoDesags(iframe){
     if(iframe) {
-
-
-
         if($(window.parent.document).find("select[data-id='deg']").find("option[value='15']").length == 0) {
             $(window.parent.document).find("select[data-id='deg']").find("option[value='15']").remove();
             $(window.parent.document).find("select[data-id='deg']").find("option[value='16']").remove();
@@ -1010,7 +987,7 @@ function enableDesag(eixo, vrv, setor, iframe, slc, url){
 	else if(eixo == 1) {
         if(slc == 0) {
 
-            removeOcupationDesags(iframe);
+            removeDesags(iframe, true);
             switch(parseInt(vrv)){
                 case 1:
                 case 2:
@@ -1018,12 +995,12 @@ function enableDesag(eixo, vrv, setor, iframe, slc, url){
                 case 4:
                 case 5:
                 case 6:
-                case 7: appendSectorDesags(iframe); break;
-                default: removeSectorDesags(iframe); break;
+                case 7: appendDesags(iframe, false); break;     //false = setorial, true = ocupacional
+                default: removeDesags(iframe, false); break;
             }
         }
         else {
-            removeSectorDesags(iframe);
+            removeDesags(iframe, false);
             switch(parseInt(vrv)){
                 case 1:
                 case 2:
@@ -1031,13 +1008,13 @@ function enableDesag(eixo, vrv, setor, iframe, slc, url){
                 case 4:
                 case 5:
                 case 6:
-                case 7: appendOcupationDesags(iframe); break;
-                default: removeOcupationDesags(iframe); break;
+                case 7: appendDesags(iframe, true); break;
+                default: removeDesags(iframe, true); break;
             }
         }
 
         if(setor == 0 && vrv != 1) {
-            removeSectorDesags();
+            removeDesags(iframe, false);
         }
     }
     else if(eixo == 2) {
