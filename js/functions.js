@@ -598,8 +598,17 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
     }
 }
 
-function configInfoDataBoxBarrasStackedClick(eixo, vrv, d, soma, deg) {
+function configInfoDataBoxBarrasStacked(eixo, vrv, d, soma, deg) {
+    if(eixo == 1) {
+        if(d.y == "NaN") {
+            d.y = 0;
+        }
+        setIntegerValueData({valor: d.y}, eixo, vrv);
+        setPercentValueData({percentual: parseFloat(d.y)/soma}, eixo, vrv);
+    }
+}
 
+function configInfoDataBoxBarrasStackedClick(eixo, vrv, d, soma, deg) {
     if(eixo == 1) {
         if(d.y == "NaN") {
             d.y = 0;

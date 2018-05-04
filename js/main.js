@@ -1489,6 +1489,7 @@ $(document).ready(function(){
             }
             if($(this).attr('data-id') == 'deg') {
                 $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
+                desagregacao = $(window.parent.document).find(".bread-select[data-id=deg]").val();
             }
             if($(this).attr('data-id') == 'mod'){
                 $('.opt-select[data-id=mec]').val(0)
@@ -1589,6 +1590,10 @@ $(document).ready(function(){
                 }
                 
             }
+            if($(this).attr('data-id') == 'deg') {
+                $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
+                document.getElementById('view_box_barras').contentWindow.location.reload(true);             
+            }
             if($(this).attr("data-id") == "uf"){
                 document.getElementById('view_box').contentWindow.location.reload(true);
 
@@ -1609,7 +1614,6 @@ $(document).ready(function(){
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
             }
 
-            console.log(url['prt'])
             updateIframe(url);
             
 
