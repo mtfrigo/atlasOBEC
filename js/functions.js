@@ -644,22 +644,27 @@ function appendPorts(iframe){
 * Põe as desagregações no select das desagregações referentes aos setores do eixo 2.
 */
 function appendSectorDesags(iframe){
-    if(iframe) {
-        if($(window.parent.document).find("select[data-id='deg']").find("optgroup[value='1']").length == 0) {
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='1'>POR PORTE</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='1'>POR SEXO</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='1'>POR IDADE</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='1'>POR ESCOLARIDADE</option>");
-        }
-    }
-    else {
-        if($("select[data-id='deg']").find("option[value='1']").length == 0) {
-            $("select[data-id='deg']").append("<option value='1'>POR PORTE</option>");
-            $("select[data-id='deg']").append("<option value='2'>POR SEXO</option>");
-            $("select[data-id='deg']").append("<option value='3'>POR IDADE</option>");
-            $("select[data-id='deg']").append("<option value='4'>POR ESCOLARIDADE</option>");
-        }
-    }
+    $.get("./data/select-deg.json", function(data){
+        desag_groups = data.control.mercado.setorial;
+
+        if(iframe) select = $(window.parent.document).find("select[data-id='deg']")
+        else select = $("select[data-id='deg']")
+
+        console.log($("select[data-id='deg']").find("option[value='3']"))
+
+        desag_groups.forEach(function(option){
+            group = data.data[option];
+            if(select.find("optgroup[value='"+group.value+"']").length == 0) {
+                select.append("<optgroup value='"+group.value+"' label='"+group.name+"'></option>");
+                group.desags.forEach(function(deg){
+                    if(select.find("optgroup[value='"+group.value+"']").find("option[value="+deg.value+"]").length == 0) {
+                        select.find("optgroup[value='"+group.value+"']").append("<option value='"+deg.value+"'>"+deg.name+"</option>");
+                    }
+                })
+                
+            }
+        })
+    })
 }
 function appendOcupationDesags(iframe){
     if(iframe) {
@@ -702,22 +707,27 @@ function removePorts(iframe){
 	}
 }
 function removeSectorDesags(iframe){
-    if(iframe) {
-        if($(window.parent.document).find("select[data-id='deg']").find("option[value='1']").length != 0) {
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='1']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='2']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='3']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='4']").remove();
-        }
-    }
-    else {
-        if($("select[data-id='deg']").find("option[value='1']").length != 0) {
-            $("select[data-id='deg']").find("option[value='1']").remove();
-            $("select[data-id='deg']").find("option[value='2']").remove();
-            $("select[data-id='deg']").find("option[value='3']").remove();
-            $("select[data-id='deg']").find("option[value='4']").remove();
-        }
-    }
+    $.get("./data/select-deg.json", function(data){
+        desag_groups = data.control.mercado.setorial;
+
+        if(iframe) select = $(window.parent.document).find("select[data-id='deg']")
+        else select = $("select[data-id='deg']")
+        
+        desag_groups.forEach(function(option){
+            group = data.data[option];
+            console.log(group.value)
+            if(select.find("optgroup[value='"+group.value+"']").length != 0) {
+                select.find("optgroup[value='"+group.value+"']").remove()
+                
+                group.desags.forEach(function(deg){
+                    if(select.find("option[value="+deg.value+"]").length != 0) {
+                        select.find("option[value="+deg.value+"]").remove();
+                    }
+                })
+                
+            }
+        })
+    })
 }
 function removeOcupationDesags(iframe){
     if(iframe) {
