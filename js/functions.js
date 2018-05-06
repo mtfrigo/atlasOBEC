@@ -1772,9 +1772,9 @@ function descByCAD(eixo, desc, tag){
     str = "do setor"
 
     if(cads[url['cad']]) {
-        if(eixo == 2 && (url['var'] == 8 || url['var'] == 9)){
-            if(tag == '[CAD]')
-                nome = "PARA O SETOR" + prepos[url['cad']] + " " + cads[url['cad']];
+        if(eixo == 2 && (url['var'] == 8 || url['var'] == 9 || url['var'] == 1)){
+            if(tag == '[CAD]' || url['var'] == 1)
+                nome = "PARA O SETOR " + prepos[url['cad']] + " " + cads[url['cad']];
             else
                 nome = "PELO SETOR " + prepos[url['cad']] + " " + cads[url['cad']];
         }
@@ -1787,7 +1787,7 @@ function descByCAD(eixo, desc, tag){
 
     }
     else {
-        if(eixo == 2 && (url['var'] == 5 ||  url['var'] == 4 ||  url['var'] == 9 || url['var'] == 11 || url['var'] == 12 || url['var'] == 13 || url['var'] == 14))
+        if(eixo == 2 && (url['var'] == 5 || url['var'] == 1 ||  url['var'] == 4 ||  url['var'] == 9 || url['var'] == 11 || url['var'] == 12 || url['var'] == 13 || url['var'] == 14))
             nome = "";
         else if(eixo == 2 && (url['var'] == 8 || url['var'] == 9))
             if(tag == '[CAD]')

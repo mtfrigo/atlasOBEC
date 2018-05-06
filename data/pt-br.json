@@ -915,7 +915,7 @@
 				"id":"1",
 				"title":"Financiamento público total",
 				"sufixo_valor":"",
-				"desc_int":"FINANCIAMENTO À CULTURA  [] das empresas [cad] {}",
+				"desc_int":"FINANCIAMENTO À CULTURA  [] [cad] {}",
 				"desc_percent": "DO TOTAL DO FINANCIAMENTO À CULTURA [] {}",
 				"desc_var_mapa": "A variável mostra o valor bruto total destinado ao fomento público da produção artística e cultural, por meio de políticas públicas e de seus mecanismos: mecenato, Fundo Nacional de Cultura (FNC) e total (soma dos dois anteriores). ",
 				"prefixo_valor":"R$ ",
