@@ -1,6 +1,6 @@
 /* tamanho container */
 var chartWidth = $('.chart').width()+25;
-var chartHeight = 254;
+var chartHeight = $('.chart').height();
 var minBarHeight = 5;
 var withLabels = false;
 
@@ -74,7 +74,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
     // import colors.json file
     var colorJSON;
     var textJSON;
-    var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo + "&deg=" +deg;
+    var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo + "&deg=" +deg + "&ano=" +ano;
 
     $.get('./db/json_barras.php' + config, function(dado){
         console.log(dado)
@@ -88,7 +88,6 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
         d3.json('data/pt-br.json', function (error, data) {
             if (error) throw error;
             textJSON = data;
-            var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo + "&desag=" +deg;
 
             d3.queue()
                 .defer(d3.json, "./db/json_barras.php" + config)
@@ -502,8 +501,11 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
 
                 return barHeight;
             })
-            .attr("fill", function (d) {
-                return color(cad);
+            .attr("fill", function (d,i ) {
+                if(eixo == 1 && vrv == 6 && uos == 1)
+                    return color(dados.key[i])
+                else
+                    return color(cad);
             })
             //mouseover
             .on("mouseover", function (d, i, obj) {
@@ -728,6 +730,8 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
         destacaBarra(url['ano']);
 
         var valor = $('svg').find('rect[data-legend="'+url['ano']+'"]').attr("data-value");
+
+        if(!(eixo == 1 && vrv == 6 && uos == 1))
         configInfoDataBoxBarras(eixo, vrv, dados, valor);
         
         if(eixo == 1)
@@ -833,8 +837,7 @@ else {
     var colorJSON;
     var textJSON;
 
-    var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&slc=" + slc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&deg=" + deg;
-
+    var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&slc=" + slc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&deg=" + deg + "&ano=" + ano;
 
     d3.json('data/colors.json', function (error, data) {
         if (error) throw error;

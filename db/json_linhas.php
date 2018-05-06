@@ -38,6 +38,22 @@ function sigla_cadeia($cadeia) {
     }
 }
 
+function getNameCadeia($id){
+    switch($id){
+        case 0: return "Todos";
+        case 1: return "Arquitetura e Design";
+        case 2: return "Artes Cênicas e Espetáculos";
+        case 3: return "Audiovisual";
+        case 4: return "Cultura Digital";
+        case 5: return "Editorial";
+        case 6: return "Educação e Criação em Artes";
+        case 7: return "Entretenimento";
+        case 8: return "Música";
+        case 9: return "Patrimônio";
+        case 10: return "Publicidade";
+    }
+}
+
 if (!empty($_GET["var"])) {
 
     $var = $_GET["var"];
@@ -323,7 +339,7 @@ else if($eixo == 1 && ($var > 11)) {
 
         for ($uos = 0; $uos <= 1; $uos++) {
 
-            foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc) as $tupla) {
+            foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $deg) as $tupla) {
                 if($prt == 0 && $esc == 0 && $cor == 0 && $fax == 0 && $frm == 0 && $prv == 0 && $snd == 0 && $sex == NULL) {
                     $id = $tupla->Ano;
 
@@ -338,7 +354,7 @@ else if($eixo == 1 && ($var > 11)) {
     else{
         for ($i = 0; $i <= 1; $i++) {
 
-            foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc) as $tupla) {
+            foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $deg) as $tupla) {
 
                 $id = $tupla->Ano;
                 if($slc == 1) {
@@ -409,12 +425,12 @@ else if($eixo == 1 && $var == 5) {
     require_once("EixoDois.php");
     for ($cad = 1; $cad <= 10; $cad++) {
 
-        foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc) as $tupla) {
+        foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $deg) as $tupla) {
 
             $id = $tupla->Ano;
             // $linhas[$tupla->Ano] = $tupla->Valor;
             $linhas[$id]['ano'] = (int)$tupla->Ano;
-            $linhas[$id][$tupla->CadeiaNome] = (double)$tupla->Valor;
+            $linhas[$id][getNameCadeia($tupla->idCadeia)] = (double)$tupla->Valor;
 
 
             //$linhas[$id]['uf'] = $tupla->UFNome;
@@ -426,11 +442,11 @@ else if($eixo == 1 && ($var == 11 || $var == 10 || $var == 9 || $var == 8 || $va
     require_once("EixoDois.php");
     for ($cad = 1; $cad <= 10; $cad++) {
 
-        foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc) as $tupla) {
+        foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $deg) as $tupla) {
             $id = $tupla->Ano;
             // $linhas[$tupla->Ano] = $tupla->Valor;
             $linhas[$id]['ano'] = (int)$tupla->Ano;
-            $linhas[$id][$tupla->CadeiaNome] = (double)$tupla->Valor;
+            $linhas[$id][getNameCadeia($tupla->idCadeia)] = (double)$tupla->Valor;
 
 
         }
@@ -477,7 +493,7 @@ else if($eixo == 2 && $var < 15){
             $id = $tupla->Ano;
             // $linhas[$tupla->Ano] = $tupla->Valor;
             $linhas[$id]['ano'] = (int)$tupla->Ano;
-            $linhas[$id][$tupla->CadeiaNome] = (double)$tupla->Valor;
+            $linhas[$id][getNameCadeia($tupla->idCadeia)] = (double)$tupla->Valor;
 
 
             //$linhas[$id]['uf'] = $tupla->UFNome;

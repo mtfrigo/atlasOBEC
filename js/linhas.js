@@ -22,7 +22,6 @@ d3.json('data/colors.json', function (error, data) {
 
         textJSON = data;
 
-        var config = "?var=" + vrv + "&deg=" + deg + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo;
 
         d3.queue()
             .defer(d3.json, "./db/json_linhas.php" + config)
@@ -33,6 +32,7 @@ d3.json('data/colors.json', function (error, data) {
 
 $.get("./db/json_linhas.php"+config, function(data) {
 
+    console.log(data)
 });
 /*
 function getIdCadeia(nomecadeia){
