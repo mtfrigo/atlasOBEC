@@ -499,7 +499,6 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                 if (barHeight < minBarHeight)
                     return minBarHeight;
 
-                console.log(minBarHeight)
                 return barHeight;
             })
             .attr("fill", function (d,i ) {
@@ -860,7 +859,7 @@ else {
 
 
     $.get('./db/json_barras.php' + config, function(dado){
-        console.log(dado)
+       // console.log(dado)
     })
 
     function color_eixo1() {
