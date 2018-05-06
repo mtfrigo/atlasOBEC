@@ -453,9 +453,9 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                 barHeight = Math.abs(height - barHeight);
 
                 // BARRA MUITO PEQUENA
-                if (barHeight <= 3)
+               // if (barHeight <= 3)
                 //return barHeight < 5? height - (5 - barHeight) : (barPosition - barHeight) - 1 ;
-                    return height - (minBarHeight - barHeight);
+                   // return height - (minBarHeight - barHeight);
 
                 // BARRA PEQUENA
                 if (barHeight <= minBarHeight)
@@ -499,6 +499,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
                 if (barHeight < minBarHeight)
                     return minBarHeight;
 
+                console.log(minBarHeight)
                 return barHeight;
             })
             .attr("fill", function (d,i ) {
