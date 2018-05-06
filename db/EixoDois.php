@@ -5,8 +5,8 @@
 define('DB_NOME', 'Atlas');
 define('DB_USUARIO', 'root');
 define('DB_SENHA', 'root');
-//define('DB_HOST', 'localhost');
-define('DB_HOST', '143.54.231.130');
+define('DB_HOST', 'localhost');
+//define('DB_HOST', '143.54.231.130');
 class EixoDois {
 
 ## Atributos ##
@@ -263,16 +263,30 @@ class EixoDois {
     public static function getter_mapa($var, $cad, $ocp, $anos){
 
         self::connect();
-        $query = "SELECT * FROM ".self::$table." AS ex"
-            ." JOIN UF AS uf ON uf.idUF = ex.idUF"
-            ." JOIN Cadeia AS cad ON cad.idCadeia = ex.idCadeia AND cad.idCadeia = ".$cad
-            ." JOIN Porte AS prt ON prt.idPorte = ex.idPorte AND prt.idPorte = 0"
-            ." JOIN Ocupacao AS ocp ON ocp.idOcupacao = ex.idOcupacao AND ocp.idOcupacao = ".$ocp
-            ." JOIN Escolaridade AS esc ON esc.idEscolaridade = ex.idEscolaridade AND esc.idEscolaridade = 0"
-            ." JOIN Etinia AS etn ON etn.idEtinia = ex.idEtinia AND etn.idEtinia = 0"
-            ." JOIN Idade AS idd ON idd.idIdade = ex.idIdade AND idd.idIdade = 0"
-            ." WHERE ex.Numero = ".$var
-            ." AND ex.Sexo IS NULL";
+        if($ocp == 3){
+            $query = "SELECT * FROM ".self::$table." AS ex"
+                ." JOIN UF AS uf ON uf.idUF = ex.idUF"
+                ." JOIN Cadeia AS cad ON cad.idCadeia = ex.idCadeia AND cad.idCadeia = ".$cad
+                ." JOIN Porte AS prt ON prt.idPorte = ex.idPorte AND prt.idPorte = 0"
+                ." JOIN Ocupacao AS ocp ON ocp.idOcupacao = ex.idOcupacao AND ocp.idOcupacao != 0"
+                ." JOIN Escolaridade AS esc ON esc.idEscolaridade = ex.idEscolaridade AND esc.idEscolaridade = 0"
+                ." JOIN Etinia AS etn ON etn.idEtinia = ex.idEtinia AND etn.idEtinia = 0"
+                ." JOIN Idade AS idd ON idd.idIdade = ex.idIdade AND idd.idIdade = 0"
+                ." WHERE ex.Numero = ".$var
+                ." AND ex.Sexo IS NULL";
+        }
+        else{
+            $query = "SELECT * FROM ".self::$table." AS ex"
+                ." JOIN UF AS uf ON uf.idUF = ex.idUF"
+                ." JOIN Cadeia AS cad ON cad.idCadeia = ex.idCadeia AND cad.idCadeia = ".$cad
+                ." JOIN Porte AS prt ON prt.idPorte = ex.idPorte AND prt.idPorte = 0"
+                ." JOIN Ocupacao AS ocp ON ocp.idOcupacao = ex.idOcupacao AND ocp.idOcupacao = ".$ocp
+                ." JOIN Escolaridade AS esc ON esc.idEscolaridade = ex.idEscolaridade AND esc.idEscolaridade = 0"
+                ." JOIN Etinia AS etn ON etn.idEtinia = ex.idEtinia AND etn.idEtinia = 0"
+                ." JOIN Idade AS idd ON idd.idIdade = ex.idIdade AND idd.idIdade = 0"
+                ." WHERE ex.Numero = ".$var
+                ." AND ex.Sexo IS NULL";
+        };
 
         $query .= ($anos > 0) ? " AND ex.Ano = ".$anos : "" ;
 
@@ -282,6 +296,23 @@ class EixoDois {
         while($obj = mysqli_fetch_object($result, 'EixoDois')){
             $allObjects[] = $obj;
         }
+
+        if($ocp == 3){
+            $result_aux = array();
+            $value_aux = array();
+            $percent_aux = array();
+            foreach ($allObjects as $data) {
+                if(!isset($value_aux[$data->idUF])) $value_aux[$data->idUF] = 0;
+                if(!isset($percent_aux[$data->idUF])) $percent_aux[$data->idUF] = 0;
+                $value_aux[$data->idUF] += $data->Valor;
+                $percent_aux[$data->idUF] += $data->Percentual;
+                $result_aux[$data->idUF] = $data;
+                $result_aux[$data->idUF]->Valor = $value_aux[$data->idUF];
+                $result_aux[$data->idUF]->Percentual = $percent_aux[$data->idUF];
+            }
+            $allObjects = $result_aux;
+        }
+
 
         self::disconnect();
 
@@ -307,14 +338,18 @@ class EixoDois {
     Saída:
         Um conjunto de instâncias da Classe EixoDois com seus devidos atributos
     -----------------------------------------------------------------------------*/
-    public static function getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $etn, $idd, $form, $prev, $sind, $sexos, $uos, $slc, $desag){
+    public static function getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $etn, $idd, $form, $prev, $sind, $sexos, $uos, $slc, $desag, $ano){
         self::connect();
         $query = "SELECT * FROM ".self::$table." WHERE Numero =".$var." AND idUF = ".$uf;
 
         if($ocp == 0){
 
+            if($uos == 1 && $var == 6)
+                $query .= " AND idCadeia != 0";
+            else
+                $query .= " AND idCadeia = ".$cad;
+
             $query .= " AND idOcupacao = 0";
-            $query .= " AND idCadeia = ".$cad;
         }
         else if($ocp == 1){
             $query .= " AND idOcupacao = 1";
@@ -333,6 +368,11 @@ class EixoDois {
             $query .= " AND Sexo IS NULL";
         }
 
+        if($uos == 1){
+            $query .= " AND Ano = ".$ano;
+
+        }
+
         $query .= self::concatDeg($desag, 1, "idPorte");
         $query .= self::concatDeg($desag, 3, "idIdade");
         $query .= self::concatDeg($desag, 4, "idEscolaridade");
@@ -342,7 +382,7 @@ class EixoDois {
         $query .= self::concatDeg($desag, 8, "Sindical");
 
         //$query .= " ORDER BY `Eixo_2`.`Ano` ASC";
-        echo $query;
+        //echo $query;
 
         $result = mysqli_query(self::$conn, $query);
 
@@ -351,6 +391,23 @@ class EixoDois {
         while($obj = mysqli_fetch_object($result, 'EixoDois')){
             $allObjects[] = $obj;
         }
+
+        if($ocp == 3 && $desag == 0 && $slc == 1){
+            $result_aux = array();
+            $value_aux = array();
+            $percent_aux = array();
+            foreach ($allObjects as $data) {
+                if(!isset($value_aux[$data->Ano])) $value_aux[$data->Ano] = 0;
+                if(!isset($percent_aux[$data->Ano])) $percent_aux[$data->Ano] = 0;
+                $value_aux[$data->Ano] += $data->Valor;
+                $percent_aux[$data->Ano] += $data->Percentual;
+                $result_aux[$data->Ano] = $data;
+                $result_aux[$data->Ano]->Valor = $value_aux[$data->Ano];
+                $result_aux[$data->Ano]->Percentual = $percent_aux[$data->Ano];
+            }
+            $allObjects = $result_aux;
+        }
+
 
 
         self::disconnect();

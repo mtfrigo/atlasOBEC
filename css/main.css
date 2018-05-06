@@ -705,14 +705,14 @@ article.results-article div.results-content{
 	display: block;
 }
 
-.plus {
-	display: inline-block;
-	float: right;
-	width: 20px;
-	height: 20px;
-	background-image: url(../images/plus.png);
-	background-size: 20px;
-}
+/*.plus {*/
+	/*display: inline-block;*/
+	/*float: right;*/
+	/*width: 20px;*/
+	/*height: 20px;*/
+	/*background-image: url(../images/plus.png);*/
+	/*background-size: 20px;*/
+/*}*/
 
 .desc-var {
 	color:	#aaa;

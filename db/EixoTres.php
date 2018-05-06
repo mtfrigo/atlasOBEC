@@ -5,8 +5,8 @@
 define('DB_NOME', 'Atlas');
 define('DB_USUARIO', 'root');
 define('DB_SENHA', 'root');
-//sdefine('DB_HOST', 'localhost');
-define('DB_HOST', '143.54.231.130');
+define('DB_HOST', 'localhost');
+//define('DB_HOST', '143.54.231.130');
 class EixoTres {
 
 ## Atributos ##
@@ -140,7 +140,7 @@ class EixoTres {
 					." JOIN Mecanismo AS mec ON mec.idMecanismo = ex.idMecanismo AND mec.idMecanismo = ".$mec
 					." WHERE ex.Numero = ".$var;
 
-            if(!is_null($pf)) {
+            if($pf != 99 && $pf != NULL) {
 			    $query .= " AND ex.PessoaFisica = ".$pf;
             }
             if(!is_null($mod)) {
@@ -150,6 +150,7 @@ class EixoTres {
 
 			$result = mysqli_query(self::$conn, $query);
 			$obj = mysqli_fetch_object($result, 'EixoTres');
+
 
 		self::disconnect();
 
