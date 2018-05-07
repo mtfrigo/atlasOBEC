@@ -167,10 +167,10 @@ function updateIframe(url){
         else if(eixoAtual == 1) {
             $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "none")
             if (url['var'] > 11) {
-                $('iframe[id="view_box"]').attr('src', 'linhas_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                $('iframe[id="view_box"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
+                newUrl = newUrl.replace(/uos=[0-9]*/, "uos=0");
+                $('iframe[id="view_box"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                $('iframe[id="view_box"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
             } else {
-
                 $('iframe[id="view_box"]').attr('src', url['view'] + '_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box"]').parent().find(".view-title").html("MAPA DO BRASIL");
             }
@@ -211,6 +211,7 @@ function updateIframe(url){
                 //$(".state-title").html("BRASIL");
 
             }
+
             if(url['var'] == 5 || url['var'] == 8){
                 newUrl = newUrl.replace(/cad=[0-9]*/, "cad=1");
                 $('iframe[id="view_box"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
@@ -322,9 +323,10 @@ function updateIframe(url){
 
             if (url['var'] > 11) {
                 if(url['slc'] == 0) {
-                    newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
-                    $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
+
+
+                    $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
                 }
                 else {
                     newUrl = newUrl.replace(/ocp=[0-9]*/, "ocp=2");
