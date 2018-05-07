@@ -2265,12 +2265,14 @@ function updateMenuSetor(eixo, vrv){
     }
     else if (eixo == 3){
 
-	    if(vrv == 5 || vrv == 8){
+	    if(vrv >= 1 && vrv <= 8 || vrv == 12){
             d3.selectAll('#menu-view').filter(function(d, i){
                 return i;
             }).style("display", "none");
+            d3.select("#view_box_scc").style("width", "100%");
         }
         else{
+            d3.select("#view_box_scc").style("width", "80%");
             d3.selectAll('#menu-view').filter(function(d, i){
                 return i;
             }).style("display", "inline");
@@ -2327,15 +2329,8 @@ var formatNumber = function(value, decimalLimit){
 
 		var tempFormat = d3.format(",."+decimalLimit+"f");
 
-		if((Math.abs(tempFormat(d)) < 0.0001) && tempFormat(d) !=  0){
-		    if(eixo == 3)
-		        return parseFloat(tempFormat(d)).toExponential(2)
-            else
-                return tempFormat(d);
-		}
-		else{
-            return tempFormat(d);
-        }
+        return tempFormat(d);
+        
 	}
 
 /*-----------------------------------------------------------------------------

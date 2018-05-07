@@ -326,25 +326,6 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                             </select>
                         </div>
 
-                        <div class="bread-separator">/</div>
-
-
-                        <div class="bread-caixa">
-                            <span class="rotulo-bread opt view active ">Parceiro</span>
-                            <select class="bread-select" id="bread-select-prc" data-id="prc">
-
-                                <option value="0">Mundo</option>
-
-
-                                <?php foreach ($select['prc'] as $option): ?>
-
-                                    <?php if($option['value'] >= 1 && $option['value'] <= 6):?>
-                                        <option value="<?php echo $option['value'] ?>"><?php echo $option['name'] ?></option>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
                     <?php } ?>
 
                     </div>
@@ -425,16 +406,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     <br>
                     <br>
 
-                    <?php if($eixo == "comercio") { ?>
-                        
-                        <div class="state-title">
-                            BRASIl
-                        </div>
-
-                        <div class="prc-title">
-                            MUNDO
-                        </div>
-                    <?php } else { ?>
+                    <?php if($eixo != "comercio") { ?>
                         <div class="state-title" style="display: none">
                             BRASIL
                         </div>
@@ -728,10 +700,13 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         <div style="float: left; width: 90%;">TREEMAP - SETORES CULTURAIS CRIATIVOS</div>
                         <i class="plus"></i>
                     </div>
-
-                    <iframe id="view_box_scc" src="treemap_scc_box.php" style="border: none; width: 80%; height: 90%; float: left;" scrolling="no"></iframe>
-                    <div id="menu-view" style="float: right; width: 20%">
-
+                    <?php if ($eixo != "comercio" && $var != 1) {?>
+                        <iframe id="view_box_scc" src="treemap_scc_box.php" style="border: none; width: 80%; height: 90%; float: left;" scrolling="no"></iframe>
+                        <div id="menu-view" style="float: right; width: 20%">
+                    <?php } else {?>
+                        <iframe id="view_box_scc" src="treemap_scc_box.php" style="border: none; width: 100%; height: 90%; float: left;" scrolling="no"></iframe>
+                        <div id="menu-view" style="float: right; width: 20%; display:none">
+                    <?php } ?>
                         
 
                         <div class="view-title-leg" data-id="scc&ocp">

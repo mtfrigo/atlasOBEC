@@ -501,6 +501,8 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 6 ))) {    /*==== 
             .attr("fill", function (d,i ) {
                 if(eixo == 1 && vrv == 6 && uos == 1)
                     return color(dados.key[i])
+                else if(eixo == 3 && (vrv == 5 || vrv == 8))
+                    return color(0);
                 else
                     return color(cad);
             })

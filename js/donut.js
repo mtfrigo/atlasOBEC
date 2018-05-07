@@ -46,7 +46,7 @@ function ready(json){
         .attr("dy", ".40em")
         .attr("dx", -radius/6)
         .text(function(d) { 
-            if(vrv == 3 && eixo == 3){
+            if(vrv == 3 && eixo == 3 && d.data.valor != 0){
                 return formatTextVrv(d.data.valor, 3, vrv);
             }
             if(d.data.percent != 0) 
