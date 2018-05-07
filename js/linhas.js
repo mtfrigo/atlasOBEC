@@ -68,7 +68,7 @@ function analyze(error, data) {
     });
 
     var keys = [];
-    console.log(dados)
+    // console.log(dados)
     Object.keys(dados[0]).forEach(function (key) {
         if(key != "ano")
             keys.push(key);

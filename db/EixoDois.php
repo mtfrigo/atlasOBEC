@@ -342,8 +342,11 @@ class EixoDois {
         self::connect();
         $query = "SELECT * FROM ".self::$table." WHERE Numero =".$var." AND idUF = ".$uf;
 
+
         if($ocp == 0){
-            if($desag != 0 && $cad == 0)
+            if($var > 11)
+                $query .= " AND idCadeia = ".$uos;
+            else if($desag != 0 && $cad == 0)
                 $query .= " AND idCadeia != 0";
             else
                 if($uos == 1 && $var == 6 && $desag == 0)
@@ -352,6 +355,9 @@ class EixoDois {
                     $query .= " AND idCadeia = ".$cad;
 
             $query .= " AND idOcupacao = 0";
+        }
+        else if($var == 6 && $ocp != 0){
+            $query .= " AND (idOcupacao = 1 OR idOcupacao = 2)";
         }
         else if($ocp == 1){
             $query .= " AND idOcupacao = 1";
@@ -363,10 +369,10 @@ class EixoDois {
             $query .= " AND (idOcupacao = 1 OR idOcupacao = 2)";
         }
 
-        $var_single_deg = array(4);
+        $var_single_deg = array(4, 5);
         
         if(in_array($var, $var_single_deg) || ($var == 6 && $uos == 0)){
-            if($sexos != NULL)
+            if($desag == 2 && $sexos >= 0)
                 $query .= " AND Sexo = ".$sexos;
             else
                 $query .= " AND Sexo is NULL";
@@ -400,7 +406,7 @@ class EixoDois {
 
         }
 
-//        if($uos == 0)
+//        if($uos == 1)
 //            echo $query;
 
         //$query .= " ORDER BY `Eixo_2`.`Ano` ASC";
@@ -413,7 +419,10 @@ class EixoDois {
             $allObjects[] = $obj;
         }
 
-        if($ocp == 3 && $desag == 0 && $slc == 1 || ($ocp == 0 && $desag == 0 && $cad == 0 && $uos != 1)){
+        if($ocp == 3 && $desag == 0 && !(($var == 4 || $var == 5|| $var) && $uos == 1)
+            || ($ocp == 0 && $desag == 0 && $cad == 0 && $uos != 1)
+            || (($var == 4 || $var == 5) && $ocp == 3 && $desag != 0)){
+
             $result_aux = array();
             $value_aux = array();
             $percent_aux = array();
@@ -574,6 +583,8 @@ class EixoDois {
         $query .= self::concatDeg($desag, 8, "Sindical");
 
         $result = mysqli_query(self::$conn, $query);
+
+//        echo $query;
 
         $allObjects = array();
 
