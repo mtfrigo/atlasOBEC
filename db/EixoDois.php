@@ -342,8 +342,11 @@ class EixoDois {
         self::connect();
         $query = "SELECT * FROM ".self::$table." WHERE Numero =".$var." AND idUF = ".$uf;
 
+
         if($ocp == 0){
-            if($desag != 0 && $cad == 0)
+            if($var > 11)
+                $query .= " AND idCadeia = ".$uos;
+            else if($desag != 0 && $cad == 0)
                 $query .= " AND idCadeia != 0";
             else
                 if($uos == 1 && $var == 6 && $desag == 0)

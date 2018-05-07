@@ -349,7 +349,7 @@ else if($eixo == 1 && ($var > 11)) {
 
         for ($uos = 0; $uos <= 1; $uos++) {
 
-            foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $desag) as $tupla) {
+            foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $desag , $ano) as $tupla) {
                 if($prt == 0 && $esc == 0 && $cor == 0 && $fax == 0 && $frm == 0 && $prv == 0 && $snd == 0 && $sex == NULL) {
                     $id = $tupla->Ano;
 
