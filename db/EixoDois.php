@@ -365,7 +365,7 @@ class EixoDois {
 
         $var_single_deg = array(4, 6);
         
-        if(in_array($var, $var_single_deg)){
+        if(in_array($var, $var_single_deg) && ($var == 6 && $uos == 0)){
             if($sexos != NULL)
                 $query .= " AND Sexo = ".$sexos;
             else
@@ -399,7 +399,9 @@ class EixoDois {
             $query .= " AND Ano = ".$ano;
 
         }
-        //echo $query;
+
+//        if($uos == 0)
+//            echo $query;
 
         //$query .= " ORDER BY `Eixo_2`.`Ano` ASC";
 

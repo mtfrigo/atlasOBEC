@@ -299,7 +299,7 @@ else if($eixo == 1) {
     require_once("EixoDois.php");
     foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $desag, $ano) as $tupla) {
         // $barras[$tupla->Ano] = $tupla->Valor;
-        if($desag == 0 && $sex == NULL || ($var == 4) || ($var == 6 && $uos == 1)) {
+        if($desag == 0 && $sex == NULL || $var == 4 || $var == 6) {
 
             if($var == 6 && $uos == 1 && $desag == 0){
                 $id = sigla_cadeia(getNameCadeia($tupla->idCadeia));
