@@ -135,7 +135,7 @@
 
 <!-- D3 JS v4 -->
 <?php
-    if($eixo == "mercado" && $deg != 0  && $var != 4 && $var != 6) {
+    if($eixo == "mercado" && $deg != 0  && $var != 4 && $var != 5 && $var != 6) {
         echo '<script src="https://d3js.org/d3.v3.min.js"></script>';
 ?>
         <style type="text/css">

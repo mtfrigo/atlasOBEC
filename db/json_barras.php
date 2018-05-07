@@ -10,6 +10,14 @@ Saída:
 
 header('charset=utf-8');
 
+function getNameOCP($slc) {
+    switch ($slc) {
+        case 1:
+            return "Relacionadas";
+        case 2:
+            return "Culturais";
+    }
+}
 
 function sigla_cadeia($cadeia) {
     switch($cadeia) {
@@ -61,7 +69,7 @@ if (!empty($_GET["var"])) {
 	$cad = $_GET["cad"];
 	$prt = $_GET["prt"];
     $ocp = $_GET["ocp"];
-    $sex    =   isset($_GET["sex"])   ?   $_GET["sex"]  :   0;	   /*== sexo ==*/
+    $sex    =   isset($_GET["sex"])   ?   $_GET["sex"]  :   NULL;	   /*== sexo ==*/
     $fax    =   isset($_GET["fax"])   ?   $_GET["fax"]  :   0;	   /*== faixa etaria ==*/
     $esc    =   isset($_GET["esc"])   ?   $_GET["esc"]  :   0;	   /*== escolaridade ==*/
     $cor    =   isset($_GET["cor"])   ?   $_GET["cor"]  :   0;	   /*== cor e raça ==*/
@@ -148,6 +156,8 @@ function getNameSexo($id) {
             return "Feminino";
         case 1:
             return "Masculino";
+        case 2:
+            return "Feminino";
     }
 }
 
@@ -299,10 +309,18 @@ else if($eixo == 1) {
     require_once("EixoDois.php");
     foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $desag, $ano) as $tupla) {
         // $barras[$tupla->Ano] = $tupla->Valor;
-        if($desag == 0 && $sex == NULL || $var == 4 || $var == 6) {
+        if($desag == 0 && $sex == NULL || $var == 4 || $var == 5 || $var == 6) {
 
-            if($var == 6 && $uos == 1 && $desag == 0){
+            if($var == 6 && $uos == 1 && $desag == 0 && $ocp == 0){
                 $id = sigla_cadeia(getNameCadeia($tupla->idCadeia));
+                $barras[$id]['uf'] = $tupla->UFNome;
+                $barras[$id]['ano'] = (int) $tupla->Ano;
+                $barras[$id]['valor'] = (double) $tupla->Valor;
+                $barras[$id]['percentual'] = (double) $tupla->Percentual;
+                $barras[$id]['taxa'] = (double) $tupla->Taxa;
+            }
+            else if($var == 6 && $uos == 1 && $desag == 0 && $ocp != 0){
+                $id = getNameOCP($tupla->idOcupacao);
                 $barras[$id]['uf'] = $tupla->UFNome;
                 $barras[$id]['ano'] = (int) $tupla->Ano;
                 $barras[$id]['valor'] = (double) $tupla->Valor;
@@ -318,6 +336,7 @@ else if($eixo == 1) {
                 $barras[$id]['taxa'] = (double) $tupla->Taxa;
             }
             else{
+
                 $id = $tupla->Ano;
                 $barras[$id]['uf'] = $tupla->UFNome;
                 $barras[$id]['ano'] = (int) $tupla->Ano;
