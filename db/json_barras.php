@@ -54,7 +54,6 @@ function getNameCadeia($id){
 }
 
 if (!empty($_GET["var"])) {
-
 	$var = $_GET["var"];
 	$uf = $_GET["uf"];
 
@@ -78,6 +77,7 @@ if (!empty($_GET["var"])) {
     $typ    =   isset($_GET["typ"])   ?   $_GET["typ"]  :   0;	   /*== Tipo de atividade ==*/
     $ano    =   isset($_GET["ano"])   ?   $_GET["ano"]  :NULL;	   /*== Ano ==*/
     $desag    =   isset($_GET["deg"])   ?   $_GET["deg"]  :   0;
+
     $mundo  =   isset($_GET['mundo']) ?   $_GET['mundo']:   0;
     $eixo = $_GET['eixo'];
 }

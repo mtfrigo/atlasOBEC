@@ -364,33 +364,46 @@ class EixoDois {
             $query .= " AND (idOcupacao = 1 OR idOcupacao = 2)";
         }
 
-        if($desag == 2){
-            if($var == 4)
+        $var_single_deg = array(4, 6);
+        
+        if(in_array($var, $var_single_deg)){
+            if($sexos != NULL)
                 $query .= " AND Sexo = ".$sexos;
             else
-                $query .= " AND (Sexo = 1 OR Sexo = 0)";
-
-
+                $query .= " AND Sexo is NULL";
+            $query .= " AND idPorte = ".$prt;
+            $query .= " AND idIdade = ".$idd;
+            $query .= " AND idEscolaridade = ".$esc;
+            $query .= " AND idEtinia = ".$etn;
+            $query .= " AND Formalidade = ".$form;
+            $query .= " AND Previdencia = ".$prev;
+            $query .= " AND Sindical = ".$sind;
         }
         else{
-            $query .= " AND Sexo IS NULL";
+            if($desag == 2){
+                $query .= " AND (Sexo = 1 OR Sexo = 0)";
+            }
+            else{
+                $query .= " AND Sexo IS NULL";
+            }
+            
+            $query .= self::concatDeg($desag, 1, "idPorte");
+            $query .= self::concatDeg($desag, 3, "idIdade");
+            $query .= self::concatDeg($desag, 4, "idEscolaridade");
+            $query .= self::concatDeg($desag, 5, "idEtinia");
+            $query .= self::concatDeg($desag, 6, "Formalidade");
+            $query .= self::concatDeg($desag, 7, "Previdencia");
+            $query .= self::concatDeg($desag, 8, "Sindical");
         }
 
+
+        
+        
         if($uos == 1){
             $query .= " AND Ano = ".$ano;
 
         }
-
-        $query .= self::concatDeg($desag, 1, "idPorte");
-        $query .= self::concatDeg($desag, 3, "idIdade");
-        $query .= self::concatDeg($desag, 4, "idEscolaridade");
-        $query .= self::concatDeg($desag, 5, "idEtinia");
-        $query .= self::concatDeg($desag, 6, "Formalidade");
-        $query .= self::concatDeg($desag, 7, "Previdencia");
-        $query .= self::concatDeg($desag, 8, "Sindical");
-
         //$query .= " ORDER BY `Eixo_2`.`Ano` ASC";
-//       echo $query;
 
         $result = mysqli_query(self::$conn, $query);
 
@@ -584,6 +597,7 @@ class EixoDois {
             return " AND ".$texto." = 0";
         }
     }
+
 
 }
 

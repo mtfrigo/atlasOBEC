@@ -77,7 +77,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && vrv == 4)) {    /*==== Barras JS ====*
     var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo + "&deg=" +deg + "&ano=" +ano;
 
     $.get('./db/json_barras.php' + config, function(dado){
-        // console.log(dado)
+        console.log(dado)
     })
     d3.json('data/colors.json', function (error, data) {
         if (error) throw error;
@@ -846,10 +846,9 @@ else {
             if (error) throw error;
 
             textJSON = data;
-            var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&slc=" + slc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo;
-            // $.get("./db/json_barras.php" + config, function(data){
-            //     console.log(data)
-            // })
+        //    $.get("./db/json_barras.php" + config, function(data){
+        //          console.log(data)
+        //     })
             d3.queue()
                 .defer(d3.json, "./db/json_barras.php" + config)
                 .await(analyze_eixo1);
@@ -991,7 +990,7 @@ else {
             aux = []
             selectDesag();
             Object.keys(data).forEach(function (key) {
-
+                alert("eite")
                 soma = 0;
                 cont = 0;
                 Object.keys(data[key]).forEach(function (chave) {
