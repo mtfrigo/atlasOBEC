@@ -85,7 +85,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
             if (error) throw error;
             textJSON = data;
             var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo;
-
+            
             d3.queue()
                 .defer(d3.json, "./db/json_barras.php" + config)
                 .await(analyze);
@@ -840,7 +840,9 @@ else {
 
             textJSON = data;
             var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&slc=" + slc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo;
-
+            // $.get("./db/json_barras.php" + config, function(data){
+            //     console.log(data)
+            // })
             d3.queue()
                 .defer(d3.json, "./db/json_barras.php" + config)
                 .await(analyze_eixo1);
@@ -949,31 +951,41 @@ else {
         }
         return array_names;
     }
-
+    function selectDesag(){
+        switch(deg){
+            case 1: return prt;
+            case 2: return sex;
+            case 3: return fax;
+            case 4: return esc;
+            case 5: return cor;
+            case 6: return frm;
+            case 7: return prv;
+            case 8: return snd;
+        }
+    }
     function analyze_eixo1(error, data) {
         $('#loading').fadeOut('fast');
         if (error) {
             console.log(error);
         }
-
-
+        desag = selectDesag()
         if((vrv == 6 || vrv == 4) && eixo == 1){
             aux = []
-
+            selectDesag();
             Object.keys(data).forEach(function (key) {
 
                 soma = 0;
                 cont = 0;
-
                 Object.keys(data[key]).forEach(function (chave) {
-                    if(chave != "year"){
+
+                    if(chave != "year" && cont == desag){
                         obj = {};
-                        obj[chave] = data[key][chave];
-                        soma = soma + obj[chave];
-                        cont++;
+                        valor = data[key][chave];
+                        
                     }
+                    cont++;
                 });
-                aux.push({year: data[key].year, Média: soma/cont})
+                aux.push({year: data[key].year, Média: valor})
             });
             data = aux;
         }
@@ -1105,8 +1117,10 @@ else {
                 configInfoDataBoxBarrasStackedClick(eixo, vrv, d, getSoma(d.x), deg);
             })
             .style("cursor", "pointer");
-        
-        desagregacao = $(window.parent.document).find(".bread-select[data-id=deg]").val();
+        if((vrv == 6 || vrv == 4) && eixo == 1)
+            desagregacao = 1
+        else
+            desagregacao = $(window.parent.document).find(".bread-select[data-id=deg]").val();
         dado_anos = dataset[desagregacao-1]
         dado = dado_anos.filter(function(obj){
             return obj.x.getFullYear() == url['ano']
