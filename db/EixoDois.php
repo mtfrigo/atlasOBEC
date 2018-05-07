@@ -376,10 +376,12 @@ class EixoDois {
             $query .= " AND Sexo IS NULL";
         }
 
-        if($uos == 1){
+        if($uos == 1 && $var == 6){
             $query .= " AND Ano = ".$ano;
 
         }
+
+
 
         $query .= self::concatDeg($desag, 1, "idPorte");
         $query .= self::concatDeg($desag, 3, "idIdade");
