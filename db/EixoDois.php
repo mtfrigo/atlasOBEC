@@ -363,9 +363,9 @@ class EixoDois {
             $query .= " AND (idOcupacao = 1 OR idOcupacao = 2)";
         }
 
-        $var_single_deg = array(4, 6);
+        $var_single_deg = array(4);
         
-        if(in_array($var, $var_single_deg) && ($var == 6 && $uos == 0)){
+        if(in_array($var, $var_single_deg) || ($var == 6 && $uos == 0)){
             if($sexos != NULL)
                 $query .= " AND Sexo = ".$sexos;
             else

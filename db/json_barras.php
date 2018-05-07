@@ -145,9 +145,9 @@ function getNamePorte($id) {
 function getNameSexo($id) {
     switch ($id) {
         case 0:
-            return "Masculino";
-        case 1:
             return "Feminino";
+        case 1:
+            return "Masculino";
     }
 }
 
