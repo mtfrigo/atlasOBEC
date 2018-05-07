@@ -131,7 +131,7 @@ function updateIframe(url){
     });
 
     var eixoAtual = getEixo(window.location.hash.substring(1));
-   
+    //console.log(url['fax'])
     ///BOX DO MAPA
     if($('iframe[id="view_box"]').length != 0) {
         if(eixoAtual == 0){
@@ -460,7 +460,7 @@ Entrada:
 Saída:
     void
 -----------------------------------------------------------------------------*/
-function controlFilter(selectvalue, selectid){
+function controlFilter(selectvalue, selectid, valueDesag){
     var SCCSrc = $("#view_box_scc").attr("src");
     var BarraSrc = $("#view_box_barras").attr("src");
     if(BarraSrc != undefined && BarraSrc != "no-view.html") var setor = BarraSrc.match(/cad=([0-9]*)/)[1];
@@ -493,7 +493,7 @@ function controlFilter(selectvalue, selectid){
             url['fax'] = 0;
 		}
         if(selectid==='deg' && selectvalue==='1') {
-            url['prt'] = 1;
+            url['prt'] = valueDesag;
             url['sex'] = 0;
             url['esc'] = 0;
             url['frm'] = 0;
@@ -504,7 +504,7 @@ function controlFilter(selectvalue, selectid){
         }
         if(selectid==='deg' && selectvalue==='2') {
             url['prt'] = 0;
-            url['sex'] = 1;
+            url['sex'] = valueDesag;
             url['esc'] = 0;
             url['frm'] = 0;
             url['snd'] = 0;
@@ -520,12 +520,12 @@ function controlFilter(selectvalue, selectid){
             url['snd'] = 0;
             url['cor'] = 0;
             url['prv'] = 0;
-            url['fax'] = 1;
+            url['fax'] = valueDesag;
         }
         if(selectid==='deg' && selectvalue==='4') {
             url['prt'] = 0;
             url['sex'] = 0;
-            url['esc'] = 1;
+            url['esc'] = valueDesag;
             url['frm'] = 0;
             url['snd'] = 0;
             url['cor'] = 0;
@@ -538,7 +538,7 @@ function controlFilter(selectvalue, selectid){
             url['esc'] = 0;
             url['frm'] = 0;
             url['snd'] = 0;
-            url['cor'] = 1;
+            url['cor'] = valueDesag;
             url['prv'] = 0;
             url['fax'] = 0;
         }
@@ -546,7 +546,7 @@ function controlFilter(selectvalue, selectid){
             url['prt'] = 0;
             url['sex'] = 0;
             url['esc'] = 0;
-            url['frm'] = 1;
+            url['frm'] = valueDesag;
             url['snd'] = 0;
             url['cor'] = 0;
             url['prv'] = 0;
@@ -559,7 +559,7 @@ function controlFilter(selectvalue, selectid){
             url['frm'] = 0;
             url['snd'] = 0;
             url['cor'] = 0;
-            url['prv'] = 1;
+            url['prv'] = valueDesag;
             url['fax'] = 0;
         }
         if(selectid==='deg' && selectvalue==='8') {
@@ -567,7 +567,7 @@ function controlFilter(selectvalue, selectid){
             url['sex'] = 0;
             url['esc'] = 0;
             url['frm'] = 0;
-            url['snd'] = 1;
+            url['snd'] = valueDesag;
             url['cor'] = 0;
             url['prv'] = 0;
             url['fax'] = 0;
@@ -1498,6 +1498,7 @@ $(document).ready(function(){
             }
             if($(this).attr('data-id') == 'deg') {
                 $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
+                desagregacao = $(window.parent.document).find(".bread-select[data-id=deg]").val();
             }
             if($(this).attr('data-id') == 'mod'){
                 $('.opt-select[data-id=mec]').val(0)
@@ -1512,7 +1513,6 @@ $(document).ready(function(){
             if($(this).attr('data-id') == 'desag'){
                 url['mec'] = $('.opt-select[data-id=desag]').val()
             }
-
             updateIframe(url);
         }
         else {
@@ -1526,8 +1526,16 @@ $(document).ready(function(){
 
 
             updateUrl();
-            controlFilter($(this).val(), $(this).attr('data-id'));
-
+            if($(this).attr("data-id") == "deg" && eixo_atual == 1){
+                if($(this).find('option:selected').parent().attr("value") != undefined)
+                    deg_value =  $(this).find('option:selected').parent().attr("value")
+                else
+                    deg_value = $(this).val()
+                controlFilter(deg_value, $(this).attr('data-id'), $(this).val());
+            } else{
+                controlFilter($(this).val(), $(this).attr('data-id'), 1);
+            }
+           
             /* controla relações entre filtros */
             
             /* muda o select das opções para o mesmo do bread */
@@ -1591,6 +1599,10 @@ $(document).ready(function(){
                 }
                 
             }
+            if($(this).attr('data-id') == 'deg') {
+                $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
+                document.getElementById('view_box_barras').contentWindow.location.reload(true);             
+            }
             if($(this).attr("data-id") == "uf"){
                 document.getElementById('view_box').contentWindow.location.reload(true);
 
@@ -1610,6 +1622,7 @@ $(document).ready(function(){
                 if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
             }
+
             updateIframe(url);
             
 
