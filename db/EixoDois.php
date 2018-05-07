@@ -5,8 +5,8 @@
 define('DB_NOME', 'Atlas');
 define('DB_USUARIO', 'root');
 define('DB_SENHA', 'root');
-define('DB_HOST', 'localhost');
-//define('DB_HOST', '143.54.231.130');
+//define('DB_HOST', 'localhost');
+define('DB_HOST', '143.54.231.130');
 class EixoDois {
 
 ## Atributos ##
@@ -346,7 +346,6 @@ class EixoDois {
 
             if($desag != 0 && $cad == 0)
                 $query .= " AND idCadeia != 0";
-
             else
                 if($uos == 1 && $var == 6)
                     $query .= " AND idCadeia != 0";
@@ -401,7 +400,7 @@ class EixoDois {
             $allObjects[] = $obj;
         }
 
-        if($ocp == 3 && $desag == 0 && $slc == 1 || ($ocp == 0 && $desag == 0 && $cad == 0)){
+        if($ocp == 3 && $desag == 0 && $slc == 1 || ($ocp == 0 && $desag == 0 && $cad == 0 && $uos != 1)){
             $result_aux = array();
             $value_aux = array();
             $percent_aux = array();

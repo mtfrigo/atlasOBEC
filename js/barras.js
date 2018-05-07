@@ -182,7 +182,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && vrv == 4)) {    /*==== Barras JS ====*
         /*==================*/
 
 
-        console.log(dados)
+        // console.log(dados)
 
         var minDisplayValue = minValue > 0 ? minValue - (minValue / 10) : 0;
 
@@ -393,7 +393,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && vrv == 4)) {    /*==== Barras JS ====*
         *  no select dos anos a fim de não criar visualizações impossíveis.
         */
 
-        if(!(eixo == 2 && vrv == 17)){
+        if(!((eixo == 2 && vrv == 17) || (eixo == 1 && vrv == 6 && uos == 1))){
             $(window.parent.document).find('select[data-id=ano]').each(function(){
                 selectOp = this;
                 $(this.options).each(function(){
@@ -832,7 +832,6 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && vrv == 4)) {    /*==== Barras JS ====*
 //BARRA 2
 else {
 
-    alert("ENTROU OHMGGG")
     // import colors.json file
     var colorJSON;
     var textJSON;
@@ -859,7 +858,7 @@ else {
 
 
     $.get('./db/json_barras.php' + config, function(dado){
-        console.log(dado)
+        // console.log(dado)
     })
 
     function color_eixo1() {
@@ -1000,7 +999,7 @@ else {
             });
         });
 
-        console.log(data)
+        // console.log(data)
 
         // Transpose the data into layers
         var dataset = d3.layout.stack()(dados);
