@@ -61,7 +61,7 @@ function destacaBarra(barraId, stacked = false) {
 }
 
 var tooltipInstance = tooltip.getInstance();
-if(eixo != 1 || deg == 0 || (eixo == 1 && vrv == 4)) {    /*==== Barras JS ====*/
+if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || (vrv == 6 && uos == 1)) )) {    /*==== Barras JS ====*/
 
     //Variaveis/Objetos
     var dict = {};
