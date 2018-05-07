@@ -32,7 +32,7 @@ d3.json('data/colors.json', function (error, data) {
 
 $.get("./db/json_linhas.php"+config, function(data) {
 
-    console.log(data)
+    // console.log(data)
 });
 /*
 function getIdCadeia(nomecadeia){

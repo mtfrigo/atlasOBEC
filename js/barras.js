@@ -61,7 +61,7 @@ function destacaBarra(barraId, stacked = false) {
 }
 
 var tooltipInstance = tooltip.getInstance();
-if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
+if(eixo != 1 || deg == 0 || (eixo == 1 && vrv == 4)) {    /*==== Barras JS ====*/
 
     //Variaveis/Objetos
     var dict = {};
@@ -77,7 +77,7 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
     var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo + "&deg=" +deg + "&ano=" +ano;
 
     $.get('./db/json_barras.php' + config, function(dado){
-        console.log(dado)
+        // console.log(dado)
     })
     d3.json('data/colors.json', function (error, data) {
         if (error) throw error;
@@ -181,27 +181,25 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
         /* *** gráfico! *** */
         /*==================*/
 
+
+        console.log(dados)
+
         var minDisplayValue = minValue > 0 ? minValue - (minValue / 10) : 0;
 
         if(eixo == 0 & (vrv >= 10 && vrv <= 13)) {
-            var x = d3.scaleBand()
-                .domain(d3.range(dados.value.length - 2))
-                .rangeRound([0, width])
-                .padding(0.1);
+            var tamanho = dados.value.length - 1;
         }
         else if(eixo == 0 && (vrv == 3)) {
-            var x = d3.scaleBand()
-                .domain(d3.range(dados.value.length - 2))
-                .rangeRound([0, width])
-                .padding(0.1);
-
+            var tamanho = dados.value.length - 1;
         }
         else {
-            var x = d3.scaleBand()
-                .domain(d3.range(dados.value.length - 1))
-                .rangeRound([0, width])
-                .padding(0.1);
+            var tamanho = dados.value.length;
         }
+        var x = d3.scaleBand()
+            .domain(d3.range(tamanho - 1))
+            .rangeRound([0, width])
+            .padding(0.1);
+
         var y = d3.scaleLinear()
             .domain(d3.extent(dados.value))
             .rangeRound([height, 0], .002);
@@ -833,6 +831,8 @@ if(eixo != 1 || deg == 0) {    /*==== Barras JS ====*/
 }
 //BARRA 2
 else {
+
+    alert("ENTROU OHMGGG")
     // import colors.json file
     var colorJSON;
     var textJSON;
@@ -859,7 +859,7 @@ else {
 
 
     $.get('./db/json_barras.php' + config, function(dado){
-       // console.log(dado)
+        console.log(dado)
     })
 
     function color_eixo1() {
@@ -889,12 +889,12 @@ else {
 
     function desagregacao_names() {
 
-        if(eixo == 1 && (vrv == 6 || vrv == 4)){
-            var array_names = [];
-
-            array_names.push('Média');
-            return array_names;
-        }
+        // if(eixo == 1 && (vrv == 6 || vrv == 4)){
+        //     var array_names = [];
+        //
+        //     array_names.push('Média');
+        //     return array_names;
+        // }
 
         if(prt != 0) {
 

@@ -818,7 +818,7 @@ function updateBreadUF(eixo, vrv){
                 $('.bread-select[data-id=cad]').prop("disabled", true);
 
             } else if(vrv == 2){
-                $('.bread-select[data-id=deg]').prop("disabled", true);
+                //$('.bread-select[data-id=deg]').prop("disabled", true);
             }
             break;
         case 2:
@@ -1019,7 +1019,7 @@ function enableDesag(eixo, vrv, setor, iframe, slc, url){
                 case 5:
                 case 6:
                 case 7: appendSectorDesags(iframe); break;
-                default: removeSectorDesags(iframe); break;
+                //default: removeSectorDesags(iframe); break;
             }
         }
         else {
@@ -1032,12 +1032,12 @@ function enableDesag(eixo, vrv, setor, iframe, slc, url){
                 case 5:
                 case 6:
                 case 7: appendOcupationDesags(iframe); break;
-                default: removeOcupationDesags(iframe); break;
+                //default: removeOcupationDesags(iframe); break;
             }
         }
 
         if(setor == 0 && vrv != 1) {
-            removeSectorDesags();
+            //removeSectorDesags();
         }
     }
     else if(eixo == 2) {

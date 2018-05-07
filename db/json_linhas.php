@@ -442,7 +442,7 @@ else if($eixo == 1 && ($var == 11 || $var == 10 || $var == 9 || $var == 8 || $va
     require_once("EixoDois.php");
     for ($cad = 1; $cad <= 10; $cad++) {
 
-        foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $deg) as $tupla) {
+        foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $deg, $ano) as $tupla) {
             $id = $tupla->Ano;
             // $linhas[$tupla->Ano] = $tupla->Valor;
             $linhas[$id]['ano'] = (int)$tupla->Ano;

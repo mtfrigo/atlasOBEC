@@ -344,10 +344,14 @@ class EixoDois {
 
         if($ocp == 0){
 
-            if($uos == 1 && $var == 6)
+            if($desag != 0 && $cad == 0)
                 $query .= " AND idCadeia != 0";
+
             else
-                $query .= " AND idCadeia = ".$cad;
+                if($uos == 1 && $var == 6)
+                    $query .= " AND idCadeia != 0";
+                else
+                    $query .= " AND idCadeia = ".$cad;
 
             $query .= " AND idOcupacao = 0";
         }
@@ -362,7 +366,12 @@ class EixoDois {
         }
 
         if($desag == 2){
-            $query .= " AND (Sexo = 1 OR Sexo = 0)";
+            if($var == 4)
+                $query .= " AND Sexo = ".$sexos;
+            else
+                $query .= " AND (Sexo = 1 OR Sexo = 0)";
+
+
         }
         else{
             $query .= " AND Sexo IS NULL";
@@ -382,7 +391,7 @@ class EixoDois {
         $query .= self::concatDeg($desag, 8, "Sindical");
 
         //$query .= " ORDER BY `Eixo_2`.`Ano` ASC";
-        //echo $query;
+//       echo $query;
 
         $result = mysqli_query(self::$conn, $query);
 
@@ -392,7 +401,7 @@ class EixoDois {
             $allObjects[] = $obj;
         }
 
-        if($ocp == 3 && $desag == 0 && $slc == 1){
+        if($ocp == 3 && $desag == 0 && $slc == 1 || ($ocp == 0 && $desag == 0 && $cad == 0)){
             $result_aux = array();
             $value_aux = array();
             $percent_aux = array();
