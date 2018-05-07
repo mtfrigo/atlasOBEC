@@ -684,7 +684,7 @@ function appendDesags(iframe, ocp){
 
         desag_groups.forEach(function(option){
             group = data.data[option];
-            console.log(group)
+            // console.log(group)
             if(select.find("optgroup[value='"+group.value+"']").length == 0) {
                 select.append("<optgroup value='"+group.value+"' label='"+group.name+"'></option>");
             }

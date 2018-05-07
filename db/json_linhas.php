@@ -339,7 +339,7 @@ else if($eixo == 1 && ($var > 11)) {
 
         for ($uos = 0; $uos <= 1; $uos++) {
 
-            foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $deg) as $tupla) {
+            foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $desag) as $tupla) {
                 if($prt == 0 && $esc == 0 && $cor == 0 && $fax == 0 && $frm == 0 && $prv == 0 && $snd == 0 && $sex == NULL) {
                     $id = $tupla->Ano;
 
@@ -354,7 +354,7 @@ else if($eixo == 1 && ($var > 11)) {
     else{
         for ($i = 0; $i <= 1; $i++) {
 
-            foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $deg) as $tupla) {
+            foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $desag, $ano) as $tupla) {
 
                 $id = $tupla->Ano;
                 if($slc == 1) {
@@ -425,7 +425,7 @@ else if($eixo == 1 && $var == 5) {
     require_once("EixoDois.php");
     for ($cad = 1; $cad <= 10; $cad++) {
 
-        foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $deg) as $tupla) {
+        foreach (EixoDois::getter_barras($var, $uf, $cad, $prt, $ocp, $esc, $cor, $fax, $frm, $prv, $snd, $sex, $uos, $slc, $desag, $ano) as $tupla) {
 
             $id = $tupla->Ano;
             // $linhas[$tupla->Ano] = $tupla->Valor;
