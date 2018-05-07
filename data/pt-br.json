@@ -1820,7 +1820,7 @@
 			{"name":"Por porte","value":"1", "desags": ["Micro", "Pequeno", "Médio", "Grande"]},
 			{"name":"Por sexo","value":"2", "desags": ["Masculino", "Feminino"]},
 			{"name":"Por idade","value":"3", "desags": ["10 - 17", "18 - 29", "30 - 49", "50 - 64", "65 ou mais"]},
-			{"name":"Por escolaridade","value":"4", "desags": ["Fundamental Incompleto", "Fundamental Completo", "Médio completo", "Superior incompleto", "Superior completo"]},
+			{"name":"Por escolaridade","value":"4", "desags": ["Sem Instrução", "Fundamental Incompleto", "Fundamental Completo", "Médio completo", "Superior incompleto", "Superior completo"]},
 			{"name":"Por cor","value":"5"},
 			{"name":"Por formalidade","value":"6"},
 			{"name":"Por previdência","value":"7"},

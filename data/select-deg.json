@@ -42,11 +42,12 @@
 				"name":"Por escolaridade",
 				"value":"4", 
 				"desags": [
-					{"name": "Fundamental Incompleto", "value": "1"},
-					{"name": "Fundamental Completo", "value": "2"},
-					{"name": "Médio Completo", "value": "3"},
-					{"name": "Superior Incompleto", "value": "4"},
-					{"name": "Superior Completo", "value": "5"}
+					{"name": "Sem Instrução", "value": "1"},
+					{"name": "Fundamental Incompleto", "value": "2"},
+					{"name": "Fundamental Completo", "value": "3"},
+					{"name": "Médio Completo", "value": "4"},
+					{"name": "Superior Incompleto", "value": "5"},
+					{"name": "Superior Completo", "value": "6"}
 				]
 			},
 			{
