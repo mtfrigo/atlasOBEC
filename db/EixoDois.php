@@ -396,13 +396,12 @@ class EixoDois {
             $query .= self::concatDeg($desag, 8, "Sindical");
         }
 
-
-        
-        
-        if($uos == 1){
+        if($uos == 1 && $var == 6){
             $query .= " AND Ano = ".$ano;
 
         }
+        //echo $query;
+
         //$query .= " ORDER BY `Eixo_2`.`Ano` ASC";
 
         $result = mysqli_query(self::$conn, $query);
@@ -537,44 +536,41 @@ class EixoDois {
         return $allObjects;
     }
 
-    public static function getter_linhas($var, $uf, $cad, $ocp, $desag){
+    public static function getter_linhas($var, $uf, $cad, $prt, $ocp, $esc, $etn, $idd, $form, $prev, $sind, $sexos, $uos, $slc, $desag){
 
         self::connect();
         $query = "SELECT * FROM ".self::$table." WHERE Numero =".$var." AND idUF = ".$uf;
 
         if($ocp == 0){
-            $query .= " AND idOcupacao = 0 AND idCadeia =".$cad;
-        } else {
-            $query .= " AND idOcupacao =".$ocp;
+
+            if($desag != 0 && $cad == 0)
+                $query .= " AND idCadeia != 0";
+            else
+                if($uos == 1 && $var == 6)
+                    $query .= " AND idCadeia != 0";
+                else
+                    $query .= " AND idCadeia = ".$cad;
+
+            $query .= " AND idOcupacao = 0";
         }
-        if($desag == 2){
-            $query .= " AND Sexo IS NOT NULL";
-        } else {
-            $query .= " AND Sexo IS NULL";
+        else if($ocp == 1){
+            $query .= " AND idOcupacao = 1";
         }
-        switch($desag){
-            case 1:
-                $query .= " AND idPorte > 0";
-                break;
-            case 3:
-                $query .= " AND idIdade > 0";
-                break;
-            case 4:
-                $query .= " AND idEscolaridade > 0";
-                break;
-            case 5:
-                $query .= " AND idEtinia > 0";
-                break;
-            case 6:
-                $query .= " AND Formalidade > 0";
-                break;
-            case 7:
-                $query .= " AND Previdencia > 0";
-                break;
-            case 8:
-                $query .= " AND Sindical > 0";
-                break;
+        else if($ocp == 2){
+            $query .= " AND idOcupacao = 2";
         }
+        else if($ocp == 3){
+            $query .= " AND (idOcupacao = 1 OR idOcupacao = 2)";
+        }
+
+            
+        $query .= self::concatDeg($desag, 1, "idPorte");
+        $query .= self::concatDeg($desag, 3, "idIdade");
+        $query .= self::concatDeg($desag, 4, "idEscolaridade");
+        $query .= self::concatDeg($desag, 5, "idEtinia");
+        $query .= self::concatDeg($desag, 6, "Formalidade");
+        $query .= self::concatDeg($desag, 7, "Previdencia");
+        $query .= self::concatDeg($desag, 8, "Sindical");
 
         $result = mysqli_query(self::$conn, $query);
 

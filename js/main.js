@@ -346,6 +346,7 @@ function updateIframe(url){
             }
             else if(url['var'] == 4){
 
+                newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
                 //if(url['cad'] != 0 && url['deg'] != 0) {
                 $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS")

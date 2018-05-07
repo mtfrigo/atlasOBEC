@@ -31,8 +31,7 @@ d3.json('data/colors.json', function (error, data) {
 });
 
 $.get("./db/json_linhas.php"+config, function(data) {
-
-    // console.log(data)
+    console.log(data)
 });
 /*
 function getIdCadeia(nomecadeia){
@@ -69,7 +68,7 @@ function analyze(error, data) {
     });
 
     var keys = [];
-
+    console.log(dados)
     Object.keys(dados[0]).forEach(function (key) {
         if(key != "ano")
             keys.push(key);
