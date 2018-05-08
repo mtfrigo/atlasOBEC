@@ -1014,13 +1014,10 @@ function enableDesag(eixo, vrv, setor, iframe, slc, url){
                 case 5:
                 case 6:
                 case 7: appendDesags(iframe, true); break;
-                //default: removeDesags(iframe, true); break;
+               // default: removeDesags(iframe, true); break;
             }
         }
 
-        if(setor == 0 && vrv != 1) {
-            //removeDesags(iframe, false);
-        }
     }
     else if(eixo == 2) {
 

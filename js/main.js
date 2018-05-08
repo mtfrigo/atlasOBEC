@@ -40,8 +40,11 @@ function getAnoDefault(eixo_atual){
                 url['slc'] = 0
                 url['ocp'] = 0
             }
+            
             if(url['ocp'] == 3)
                 index_ocp = 1
+            else
+                index_ocp = url['ocp']
             url['ano'] = anos_default[url['var']][index_ocp]; break;
 
         case 2: url['ano'] = anos_default[url['var']][0]; break;
