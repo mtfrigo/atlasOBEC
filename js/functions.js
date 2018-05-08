@@ -1180,7 +1180,7 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
 }
 
 function updateDescMercado(desc, vrv, nomeestado){
-    var deg = $(window.parent.document).find(".opt-select[data-id=deg]").val();
+    var deg = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").parent().attr("value");
     var cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
     
     if(cad.toUpperCase() == "TODOS" || cad.toUpperCase() == " TODOS"){
@@ -1213,12 +1213,9 @@ function updateDescMercado(desc, vrv, nomeestado){
     option_selected = '';
     
     if(deg != 0){
-        cad_e_deg = $(window.parent.document).find(".cad-title").first().text().split(" - ");
-
-        if(cad_e_deg.length > 1)
-        {
-            option_selected = cad_e_deg[1];
-            switch(deg){
+        option_selected = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").text();
+        
+        switch(deg){
                 case '1':
                     if(vrv == 5)
                         option_selected = "EM EMPRESAS DE PORTE "+option_selected; 
@@ -1246,8 +1243,11 @@ function updateDescMercado(desc, vrv, nomeestado){
                         option_selected = "PARA TRABALHADORES COM ENSINO"+option_selected;
                     else 
                         option_selected = "COM ENSINO "+option_selected;
-            }
+                    break;
+                default:
+                    option_selected = ''
         }
+        
     } 
     description = desc.replace("[cad]", cad).replace("[deg]", option_selected).replace("[uf]", uf);
     $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(description)

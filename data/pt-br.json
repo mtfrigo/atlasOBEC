@@ -491,7 +491,7 @@
 		[
 			{
 				"id":"1",
-				"desc_int":"Trabalhadores [cad] [deg]",
+				"desc_int":"Trabalhadores [cad] [deg] [uf]",
 				"desc_percent": "Do total de trabalhadores [cad] [uf]",
 				"title":"Total de Ocupados",
 				"sufixo_valor":"",
@@ -539,7 +539,7 @@
 			},
 			{
 				"id":"2",
-				"desc_int":"DE PARTICIPAÇÃO DOS TRABALHADORES [cad] NO MERCADO DE TRABALHO",
+				"desc_int":"DE PARTICIPAÇÃO DOS TRABALHADORES DOS SETORES CULTURAIS E CRIATIVOS NO MERCADO DE TRABALHO",
 				"title":"Participação no Emprego Total",
 				"desc_percent": "",
 				"sufixo_valor":"%",
