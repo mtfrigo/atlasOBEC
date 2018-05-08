@@ -275,12 +275,11 @@ function updateIframe(url){
             }
             else if(url['var'] == 17){
                 $('iframe[id="view_box_barras"]').parent().find(".view-title").html("PROPORÇÃO SIM-NÃO");
-
                 $('iframe[id="view_box_barras"]').attr('src', 'donut.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-
-                console.log($('iframe[id="view_box_barras]').attr('src'));
-
-
+            }
+            else if (url['var'] ==  18 || url ['var'] == 19) {
+                $('iframe[id="view_box_barras"]').parent().find(".view-title").html("PROPORÇÃO ACUMULADO POR SETOR");
+                $('iframe[id="view_box_barras"]').attr('src', 'donut.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
             }
             else if(url['var'] == 10){
                 newUrl = newUrl.replace(/mec=[0-9]/, "mec=0");
@@ -390,7 +389,6 @@ function updateIframe(url){
             else if(url['var'] ==  17){
                 $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
-
             }
 
             else if (url['var'] == 15 || url['var'] == 16 ) {
@@ -399,9 +397,9 @@ function updateIframe(url){
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
             }
             else if (url['var'] == 18 || url['var'] == 19 ) {
-                newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
+                newUrl = newUrl.replace(/uos=[0-9]*/, "uos=0");
                 $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("ACUMULADO POR SETOR AO LONGO DOS ANOS");
+                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
             }
             else if(url['var'] == 10){
                 newUrl = newUrl.replace(/mec=[0-9]/, "mec=1");
@@ -1395,14 +1393,32 @@ $(document).ready(function(){
                 $(this).addClass("active");
                 $('#servicos').removeClass("active");
                 url['ano'] = anos_default[url['var']][1]
-                
+
             }
             else {
                 if(url['ano'] < 2014)
-                url['ano'] = 2014;
+                    url['ano'] = 2014;
                 url['slc'] = 1;
                 $(this).addClass("active");
                 $('#bens').removeClass("active");
+                url['ano'] = anos_default[url['var']][0]
+            }
+            updateIframe(url); /* altera gráfico */
+        }
+        else if($(this).attr("id") == "recebedora" || $(this).attr("id") == "trabalhador"){
+
+            updateUrl();
+            if($(this).attr("id") === "recebedora") {
+                url['mec'] = 0;
+                $(this).addClass("active");
+                $('#trabalhadora').removeClass("active");
+                url['ano'] = anos_default[url['var']][1]
+
+            }
+            else {
+                url['mec'] = 1;
+                $(this).addClass("active");
+                $('#recebedora').removeClass("active");
                 url['ano'] = anos_default[url['var']][0]
             }
             updateIframe(url); /* altera gráfico */

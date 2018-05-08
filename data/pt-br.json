@@ -952,40 +952,38 @@
 				}
 			},
 			{
-				"id":"2",
-				"title":"Financiamento do Vale-Cultura",
+				"id":"18",
+				"title":"<span>CONSUMO VIA VALE-CULTURA<span>",
+				"desc_int":"",
+				"desc_percent": "",
+				"desc_var_mapa": "Valor do consumo realizado por meio do cartão Vale-Cultura, segundo a Unidade Federativa do Trabalhador beneficiado ou segundo a Unidade Federativa da empresa recebedora onde o cartão foi utilizado.",
+				"desc":"",
 				"sufixo_valor":"",
-				"desc_int":"CONSUMIDOS VIA VALE-CULTURA por empresas [cad] {}",
-				"desc_percent": "DO TOTAL CONSUMIDO VIA VALE-CULTURA {}",
-				"desc_var_mapa": "A variável apresenta o valor monetário bruto, em R$, do financiamento cultural via mecenato, desagregado, por empresas privadas e pessoas físicas, e agregado (soma dos dois anteriores).",
 				"prefixo_valor":"R$ ",
-				"fontes": "Portal Brasileiro de Dados Abertos",
-				"desc":"Demonstra o valor bruto total utilizado em compras de bens e serviços culturais por meio do financiamento do Programa Vale Cultura.",
 				"type":[
-					{"name":"Mapa", "id":"mapa"},
-					{"name":"Treemap", "id":"treemap_region"},
-					{"name":"Treemap SCC", "id":"treemap_scc"},
 					{"name":"Barras", "id":"barras"}
 				],
-				"mapa":[
-					{"name":"Setor","id":"cad"},
+				"barras":[
+					{"name":"UF ou Setores","id":"uos"},
 					{"name":"Ano","id":"ano"}
-				],
-				"treemap_region":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_scc":[
-					{"name":"UF","id":"uf"},
-					{"name":"Ano","id":"ano"}
+				]
+			},
+			{
+				"id":"19",
+				"title":"<span>AGENTES DO VALE-CULTURA<span>",
+				"desc_int":"",
+				"desc_percent": "",
+				"desc_var_mapa": "Quantidade de trabalhadores possuidores do cartão Vale-Cultura e quantidade de empresas cadastradas para receber compras realizadas com o cartão.",
+				"desc":"",
+				"sufixo_valor":" ",
+				"prefixo_valor":" ",
+				"type":[
+					{"name":"Barras", "id":"barras"}
 				],
 				"barras":[
-					{"name":"UF","id":"uf"},
-					{"name":"Setor","id":"cad"}
-				],
-				"inativos":{
-					"mapa":["prt","uf"], "treemap_region":["uf"], "treemap_scc":["cad"],"barras":["ano"]
-				}
+					{"name":"UF ou Setores","id":"uos"},
+					{"name":"Ano","id":"ano"}
+				]
 			},
 			{
 				"id":"3",
@@ -1373,41 +1371,8 @@
 					{"name":"UF ou Setores","id":"uos"},
 					{"name":"Ano","id":"ano"}
 				]
-			},
-			{
-				"id":"18",
-				"title":"<span>CONSUMO VIA VALE-CULTURA<span>",
-				"desc_int":"",
-				"desc_percent": "",
-				"desc_var_mapa": "Valor do consumo realizado por meio do cartão Vale-Cultura, segundo a Unidade Federativa do Trabalhador beneficiado ou segundo a Unidade Federativa da empresa recebedora onde o cartão foi utilizado.",
-				"desc":"",
-				"sufixo_valor":"",
-				"prefixo_valor":"R$ ",
-				"type":[
-					{"name":"Barras", "id":"barras"}
-				],
-				"barras":[
-					{"name":"UF ou Setores","id":"uos"},
-					{"name":"Ano","id":"ano"}
-				]
-			},
-			{
-				"id":"19",
-				"title":"<span>AGENTES DO VALE-CULTURA<span>",
-				"desc_int":"",
-				"desc_percent": "",
-				"desc_var_mapa": "Quantidade de trabalhadores possuidores do cartão Vale-Cultura e quantidade de empresas cadastradas para receber compras realizadas com o cartão.",
-				"desc":"",
-				"sufixo_valor":"",
-				"prefixo_valor":" ",
-				"type":[
-					{"name":"Barras", "id":"barras"}
-				],
-				"barras":[
-					{"name":"UF ou Setores","id":"uos"},
-					{"name":"Ano","id":"ano"}
-				]
 			}
+
 		],
 		[
 			{

@@ -569,7 +569,7 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
     }
     else if(eixo == 2){
 
-        if(vrv === 1 || vrv === 2 || vrv === 3 || vrv === 4 || vrv == 5 || vrv == 6 || vrv === 7 || vrv === 8 || vrv === 9 || vrv === 11 || vrv === 12 || vrv === 13 || vrv === 14){
+        if(vrv === 1 || vrv === 2 || vrv === 3 || vrv === 4 || vrv == 5 || vrv == 6 || vrv === 7 || vrv === 8 || vrv === 9 || vrv === 11 || vrv === 12 || vrv === 13 || vrv === 14 || vrv === 18 || vrv === 19){
             dados.valor = dados.value[i];
             setIntegerValueData(dados, eixo, vrv);
         }
@@ -881,6 +881,11 @@ function updateMecanismo(url, vrv){
 
         if(vrv == 1 ||  vrv == 8 || vrv == 9 || vrv == 15 || vrv == 16){
             $("select[data-id='mec']").append("<option value='1'>FNC</option>");
+            $("select[data-id='mec']").append("<option value='2'>Mecenato</option>");
+        }
+
+        else if(vrv == 17){
+            $("select[data-id='mec']").append("<option value='1'>Editais Estaduais</option>");
             $("select[data-id='mec']").append("<option value='2'>Mecenato</option>");
         }
 
@@ -1435,7 +1440,10 @@ function setIntegerValueData(value, eixo, vrv) {
         if(eixo == 0 && url['var'] > 9){
             literal = formatDecimalLimit(valor, 5);
         }
-		if(eixo == 1 && url['var'] == 2){
+        if(eixo == 1 && url['var'] == 2){
+            literal = formatDecimalLimit(valor, 4);
+        }
+        if(eixo == 1 && url['var'] == 9){
             literal = formatDecimalLimit(valor, 4);
         }
         else if(eixo == 3)
@@ -2089,6 +2097,8 @@ function formatTextVrv(value, eixo, vrv){
 
             }*/
             if(eixo == 1 && url['var'] == 2)
+                string = prefixo+formatDecimalLimit(valor, 4)+sufixo;
+            else if(eixo == 1 && url['var'] == 9)
                 string = prefixo+formatDecimalLimit(valor, 4)+sufixo;
             else
                 string = prefixo+formatDecimalLimit(valor, 2)+sufixo;
