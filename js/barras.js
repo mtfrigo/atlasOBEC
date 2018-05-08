@@ -539,6 +539,12 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
                         $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
                     }
                 }
+                else if(eixo == 2 && url['var'] == 17){
+                    var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src");
+                    newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano="+url['ano']);
+                    $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
+
+                }
                 else if(eixo == 3 && (url['var'] == 5 || url['var'] == 8)){
                     var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
                     $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
@@ -1125,6 +1131,8 @@ else {
 
                     var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + d.x.getFullYear());
                     newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']+"&chg=1");
+
+
 
                     $(window.parent.document).find("#view_box").attr("src", newMapaSrc);
                     $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);

@@ -76,28 +76,35 @@ if($eixo == 2){
 
     foreach (EixoTres::getter_donut($var, $uf, $cad, $mec, $pfj, $mod, $ano, $uos) as $tupla) {
 
-        // $barras[$tupla->Ano] = $tupla->Valor;
+
         $valor = array();
-        $valor['tipo'] = binario($tupla->Valor);
+        $valor['tipo'] = binario($tupla->idCadeia);
         $valor['valor'] = (float) $tupla->Valor;
+        $valor['uf'] = (int) $tupla->idUF;
         array_push($aux, $valor);
     }
 
     $contSim = 0;
     $contNao = 0;
+    $total = 0;
 
     foreach ($aux as $valor){
         if($valor['tipo'] == 'Sim'){
-            $contSim++;
+            if($valor['uf'] == 0)
+                $total = $valor['valor'];
+        $contSim++;
         }
         else if($valor['tipo'] == 'Não'){
             $contNao++;
         }
     }
 
+    $contSim--;
+
     $valor = array();
     $valor['tipo'] = 'Sim';
     $valor['valor'] = $contSim;
+    $valor['total'] = $total;
     array_push($tipos, $valor);
     $valor['tipo'] = 'Não';
     $valor['valor'] = $contNao;

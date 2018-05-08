@@ -1362,7 +1362,7 @@
 				"title":"<span>Fomento Público Estadual à Cultura<span>",
 				"desc_int":"",
 				"desc_percent": "",
-				"desc_var_mapa": "",
+				"desc_var_mapa": "A variável demonstra os estados que possuem fomento a nível estadual em três perspectivas: Editais Estaduais, Mecenato Estadual e Crédito Especial. Dentro dessas perspectivas, a variável ainda demonstra o valor - conforme informado por cada Estado - para o ano selecionado.",
 				"desc":"",
 				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",
