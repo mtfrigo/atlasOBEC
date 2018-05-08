@@ -203,7 +203,7 @@ class EixoTres {
 		$vars_com_cad_0 = array( 1, 3, 4, 6, 7, 8, 9,  11, 12, 13, 14, 15, 16, 17);
 
 
-		if($var == 17){
+        if($var == 17 || $var == 18 || $var == 19){
             $query = "SELECT * FROM " . self::$table . " AS ex"
                 . " JOIN UF AS uf ON uf.idUF =  ex.idUF"
                 . " JOIN Mecanismo AS mec ON mec.idMecanismo = ex.idMecanismo AND mec.idMecanismo = ".$mec
@@ -217,9 +217,6 @@ class EixoTres {
             while($obj = mysqli_fetch_object($result, 'EixoTres')){
                 $allObjects[] = $obj;
             }
-
-
-
         }
         else if($mec == 0 || ($cad != 0 && $mec != 0) || in_array($var, $vars_com_cad_0)){
             $query = "SELECT * FROM ".self::$table." AS ex"
@@ -309,9 +306,7 @@ class EixoTres {
 
             if($var == 18 || $var == 19){
                 $query = "SELECT * FROM ".self::$table." AS ex"
-                    ." JOIN UF AS uf ON uf.idUF =  ex.idUF AND uf.idUF = ".$ufs
-                    ." JOIN Mecanismo AS mec ON mec.idMecanismo =  ex.idMecanismo AND mec.idMecanismo = ".$mec
-                    ." WHERE ex.Numero = ".$var;
+                    ." WHERE ex.Numero = ".$var . " AND idMecanismo = ".$mec . " AND idUF = ".$ufs;
 
                 if($uos == 0)
                     $query .=  " AND Ano > 0" ;
@@ -482,7 +477,16 @@ class EixoTres {
             . " WHERE ex.Numero = " . $var;;
 
 
-        $query .= ($ano > 0) ? " AND Ano = ".$ano : "" ;
+        if($var == 18 || $var == 19){
+         $query = $query = "SELECT * FROM " . self::$table . " AS ex"
+                . " WHERE ex.Numero = " . $var;
+                $query .=  " AND idMecanismo = ".$mec ;
+                $query .=  " AND Ano = 0" ;
+                $query .=  " AND idUF = ".$ufs ;
+                $query .=  " AND idCadeia > 0" ;
+        }
+        else
+            $query .= ($ano > 0) ? " AND Ano = ".$ano : "" ;
 
         $result = mysqli_query(self::$conn, $query);
         $allObjects = array();
@@ -490,7 +494,6 @@ class EixoTres {
         while($obj = mysqli_fetch_object($result, 'EixoTres')){
             $allObjects[] = $obj;
         }
-
 
         self::disconnect();
         return $allObjects;

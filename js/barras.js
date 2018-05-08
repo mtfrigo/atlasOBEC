@@ -77,7 +77,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
     var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo + "&deg=" +deg + "&ano=" +ano;
 
     $.get('./db/json_barras.php' + config, function(dado){
-        console.log(dado)
+        // console.log(dado)
     })
     d3.json('data/colors.json', function (error, data) {
         if (error) throw error;
@@ -556,7 +556,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
                       
                   
                  }
-                else {//if(eixo == 1){
+                else {
                     if(url['uos'] == 1) {
                         var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
                         newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
@@ -577,6 +577,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
 
                 destacaBarra(dados.key[i]);
                 var valor = $('svg').find('rect[data-legend="'+dados.key[i]+'"]').attr("data-value");
+
 
                 configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor);
 

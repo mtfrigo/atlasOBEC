@@ -9,20 +9,14 @@ $.get("./db/json_donut.php"+config, function(data){
 
 $.get("./db/json_donut.php"+config, ready);
 
-
-
-
-
-
-
 function ready(json){
     $('#corpo').attr("class", $('#corpo').attr("class")+ " done")
     $('#loading').fadeOut('fast');
     var data = JSON.parse(json);
     getPercent(data);
 
-    height = $('#corpo').height() - 40;;
-    width = $('#corpo').width() - 40;
+    height = $('#corpo').height();
+    width = $('#corpo').width();
 
     radius = Math.min(width, height) / 2;
     var arc = d3.arc()
@@ -57,6 +51,8 @@ function ready(json){
             if(vrv == 3 && eixo == 3 && d.data.valor != 0){
                 return formatTextVrv(d.data.valor, 3, vrv);
             }
+            if(eixo == 2 && vrv >= 18)
+                return;
             if(d.data.percent != 0) 
                 return percentFormat(d.data.percent) 
             })
@@ -81,6 +77,16 @@ function ready(json){
                         ["", formatTextVrv(d.data.total, 2, vrv)]
                     ]);
                 }
+
+            }
+            if(eixo == 2 && vrv >= 18){
+                tooltipInstance.showTooltip(d.data, [
+                    ["title", d.data.tipo],
+                    ["", formatTextVrv(d.data.valor, 2, vrv)],
+                    ["", percentFormat(d.data.percent)]
+
+
+                ]);
 
             }
             else{
@@ -117,8 +123,20 @@ function color(tipo){
         "Exportação": "#071342",
         "Importação": "rgb(109, 191, 201)",
         "Sim": "#077DDD",
-        "Não": "rgb(217, 213, 222)"
-    }
+        "Não": "rgb(217, 213, 222)",
+        "Arq e D": "#87A8CA",
+        "Artes":  "#077DDD",
+        "Audio": "#0F4B67",
+        "Cult. Dig.": "#8178AF",
+        "Edit.":  "#E6C59B",
+        "Edu. Art.":"#EC8A91",
+        "Entretenimento":  "#AD5468",
+        "Música": "#6A474D",
+        "Patrimônio": "#E96B00",
+        "Publ.":  "#B2510F",
+        "Outros": "#B2510F"
+        }
+
     return colors[tipo];
 }
 
