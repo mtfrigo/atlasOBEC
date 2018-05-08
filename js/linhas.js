@@ -48,6 +48,53 @@ function getIdCadeia(nomecadeia){
     }
 }
 */
+
+function getDesagId(deg, nome){
+    switch(deg){
+        case 1:
+            switch (nome) {
+                case "Micro":
+                    return 1;
+                case "Pequeno":
+                    return 2;
+                case "Médio":
+                    return 3;
+                case "Grande":
+                    return 4;
+            }
+        case 2:
+
+        case 3:
+
+        case 4:
+
+        case 5:
+
+        case 6:
+
+        case 7:
+    }
+}
+
+function updateUrlDesag(deg, id){
+    switch(deg){
+        case 1:
+            url['prt'] = id;
+            return 'prt'
+        case 2:
+
+        case 3:
+
+        case 4:
+
+        case 5:
+
+        case 6:
+
+        case 7:
+    }
+}
+
 function analyze(error, data) {
 
     //console.log(colorJSON)
@@ -330,21 +377,44 @@ function analyze(error, data) {
 
             if(!($(path).hasClass("domain")) ) {
 
-                cadId = getCadId($(path).attr("scc"));
+                if(eixo == 1 && (vrv == 4)){
+                    desagId = (getDesagId(deg, $(path).attr("scc")));
+                    desagName = updateUrlDesag(deg, desagId)
 
-                url['cad'] = cadId;
+                    replace = "/"+desagName+"=[0-9]*/";
 
-                var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/cad=[0-9]*/, "cad=" +cadId);
-                newMapaSrc = newMapaSrc.replace(/uf=[0-9]*/, "uf=" + url['uf']);
+                    // var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(replace, desagName+"=" +desagId);
+                    var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/prt=[0-9]*/, desagName+"=" +desagId);
 
-                var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/cad=[0-9]*/, "cad=" + cadId);
-                newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano=" + url['ano']);
+                    console.log(newMapaSrc)
 
-                $(window.parent.document).find("#view_box").attr("src", newMapaSrc);
-                $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
-                $(window.parent.document).find("select[data-id='cad']").val(cadId);
+                    var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(replace, desagName+"=" +desagId);
 
-                //enableDesag(eixo, vrv, cadId, true, slc, url);
+                    $(window.parent.document).find("#view_box").attr("src", newMapaSrc);
+                    $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
+
+                    $(window.parent.document).find(".bread-select[data-id=deg]").find("optgroup[value="+deg+"]").find("option[value="+(desagId)+"]").prop('selected', true)
+
+                    console.log(replace)
+
+                }
+                else{
+                    cadId = getCadId($(path).attr("scc"));
+
+                    url['cad'] = cadId;
+
+                    var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/cad=[0-9]*/, "cad=" +cadId);
+                    newMapaSrc = newMapaSrc.replace(/uf=[0-9]*/, "uf=" + url['uf']);
+
+                    var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/cad=[0-9]*/, "cad=" + cadId);
+                    newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano=" + url['ano']);
+
+                    $(window.parent.document).find("#view_box").attr("src", newMapaSrc);
+                    $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
+                    $(window.parent.document).find("select[data-id='cad']").val(cadId);
+
+                }
+
                 destacaSetor($(path).attr("scc"));
 
             }
