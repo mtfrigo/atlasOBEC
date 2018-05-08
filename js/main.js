@@ -178,7 +178,7 @@ function updateIframe(url){
         else if(eixoAtual == 2){
             $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "none")
 
-            if(url['var'] == 17){
+            if(url['var'] == 17 || url['var'] == 18 ||  url['var'] == 19){
                 $('iframe[id="view_box"]').attr('src', url['view']+'_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
                 $('iframe[id="view_box"]').parent().find(".view-title").html("MAPA DO BRASIL");
             }
@@ -392,6 +392,11 @@ function updateIframe(url){
                 newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
                 $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
+            }
+            else if (url['var'] == 18 || url['var'] == 19 ) {
+                newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
+                $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("ACUMULADO POR SETOR AO LONGO DOS ANOS");
             }
             else if(url['var'] == 10){
                 newUrl = newUrl.replace(/mec=[0-9]/, "mec=1");
@@ -1599,6 +1604,12 @@ $(document).ready(function(){
 
                 if(eixo_atual == 2){
                     updateDefaultMec(url['var']);
+
+                    if(url['var'] == 18 || url['var'] == 19)
+                        $("#btn-opt").find(".col-btn").css("display", "block")
+                    else
+                        $("#btn-opt").find(".col-btn").css("display", "none")
+
                 }
 
                 if(eixo_atual == 3){

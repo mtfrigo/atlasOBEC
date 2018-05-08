@@ -233,7 +233,12 @@
 		"Publ.": {
 			"name": "Publicidade",
 			"color": "#B2510F"
+		},
+		"Outros": {
+			"name": "Outros",
+			"color": "#B2510F"
 		}
+
 	},
 	"regioes": {
 		"0": {

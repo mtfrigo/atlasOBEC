@@ -400,7 +400,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         DADOS
                     </div>
 
-                    <div class="btn-opt" style="width: 48%; margin-top: 10px; margin-bottom: 10px;">
+                    <div id="btn-opt" class="btn-opt" style="width: 48%; margin-top: 10px; margin-bottom: 10px;">
                         <?php
                         if($eixo == "mercado") {
                             ?>
@@ -409,6 +409,16 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                             </div>
                             <div style="margin-bottom: 10px;" class="col-xs-6 col-btn">
                                 <button data-desc="<?= $json_text['deg_ocupacao'] ?>" class="opt view <?php if($slc == 1) echo 'active';?>" id="ocupacao">Ocupação</button>
+                            </div>
+                        <?php } ?>
+                        <?php
+                        if($eixo == "politicas") {
+                            ?>
+                            <div style="margin-bottom: 10px; display: none" class="col-xs-6 col-btn">
+                                <button  class="opt view <?php if($mec == 0) echo 'active';?>" id="recebedora">Recebedor</button>
+                            </div>
+                            <div style="margin-bottom: 10px; display: none" class="col-xs-6 col-btn">
+                                <button  class="opt view <?php if($mec == 1) echo 'active';?>" id="trabalhador">Trabalhador</button>
                             </div>
                         <?php } ?>
                         <?php if($eixo == "comercio") { ?>

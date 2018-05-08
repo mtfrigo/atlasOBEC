@@ -307,7 +307,30 @@ class EixoTres {
 		$vars_com_cad_0 = array( 1, 4, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16);
 		self::connect();
 
-		    if($var == 17){
+            if($var == 18 || $var == 19){
+                $query = "SELECT * FROM ".self::$table." AS ex"
+                    ." JOIN UF AS uf ON uf.idUF =  ex.idUF AND uf.idUF = ".$ufs
+                    ." JOIN Mecanismo AS mec ON mec.idMecanismo =  ex.idMecanismo AND mec.idMecanismo = ".$mec
+                    ." WHERE ex.Numero = ".$var;
+
+                if($uos == 0)
+                    $query .=  " AND Ano > 0" ;
+                else{
+                    $query .=  " AND Ano = 0" ;
+                    $query .=  " AND idCadeia > 0" ;
+
+                }
+
+
+                $result = mysqli_query(self::$conn, $query);
+                $allObjects = array();
+
+                while($obj = mysqli_fetch_object($result, 'EixoTres')){
+                    $allObjects[] = $obj;
+                }
+
+            }
+            else if($var == 17){
                 $query = "SELECT * FROM ".self::$table." AS ex"
                     ." JOIN UF AS uf ON uf.idUF =  ex.idUF AND uf.idUF = ".$ufs
                     ." JOIN Mecanismo AS mec ON mec.idMecanismo =  ex.idMecanismo AND mec.idMecanismo = ".$mec

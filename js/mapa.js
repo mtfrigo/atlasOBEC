@@ -820,7 +820,7 @@ function legendaBinario(){
         else if(eixo == 2){
 
             //tooltips com os 3 valores na interface (valor, percentual e taxa)
-            if(vrv === 1  || vrv === 2 || vrv === 3 || vrv === 4 ||  vrv === 5 || vrv === 6 || vrv === 7 || vrv === 8 || vrv === 9 || vrv === 11 || vrv === 12 || vrv === 13){
+            if(vrv === 1  || vrv === 2 || vrv === 3 || vrv === 4 ||  vrv === 5 || vrv === 6 || vrv === 7 || vrv === 8 || vrv === 9 || vrv === 11 || vrv === 12 || vrv === 13 || vrv == 18 || vrv == 19){
                 // console.log(dict[d.id])
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],

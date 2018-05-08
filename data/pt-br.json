@@ -1373,6 +1373,40 @@
 					{"name":"UF ou Setores","id":"uos"},
 					{"name":"Ano","id":"ano"}
 				]
+			},
+			{
+				"id":"18",
+				"title":"<span>CONSUMO VIA VALE-CULTURA<span>",
+				"desc_int":"",
+				"desc_percent": "",
+				"desc_var_mapa": "Valor do consumo realizado por meio do cartão Vale-Cultura, segundo a Unidade Federativa do Trabalhador beneficiado ou segundo a Unidade Federativa da empresa recebedora onde o cartão foi utilizado.",
+				"desc":"",
+				"sufixo_valor":"",
+				"prefixo_valor":"R$ ",
+				"type":[
+					{"name":"Barras", "id":"barras"}
+				],
+				"barras":[
+					{"name":"UF ou Setores","id":"uos"},
+					{"name":"Ano","id":"ano"}
+				]
+			},
+			{
+				"id":"19",
+				"title":"<span>AGENTES DO VALE-CULTURA<span>",
+				"desc_int":"",
+				"desc_percent": "",
+				"desc_var_mapa": "Quantidade de trabalhadores possuidores do cartão Vale-Cultura e quantidade de empresas cadastradas para receber compras realizadas com o cartão.",
+				"desc":"",
+				"sufixo_valor":"",
+				"prefixo_valor":" ",
+				"type":[
+					{"name":"Barras", "id":"barras"}
+				],
+				"barras":[
+					{"name":"UF ou Setores","id":"uos"},
+					{"name":"Ano","id":"ano"}
+				]
 			}
 		],
 		[
