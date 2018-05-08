@@ -710,7 +710,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         <div style="float: left; width: 90%;">TREEMAP - SETORES CULTURAIS CRIATIVOS</div>
                         <i class="plus"></i>
                     </div>
-                    <?php if ($eixo != "comercio" && $var != 1) {?>
+                    <?php if ($eixo != "comercio") {?>
                         <iframe id="view_box_scc" src="treemap_scc_box.php" style="border: none; width: 80%; height: 90%; float: left;" scrolling="no"></iframe>
                         <div id="menu-view" style="float: right; width: 20%">
                     <?php } else {?>

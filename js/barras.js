@@ -738,9 +738,9 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
 
         if(!(eixo == 1 && vrv == 6 && uos == 1) && !(eixo == 2 && (vrv == 18 || vrv == 19) && uos == 1))
             configInfoDataBoxBarras(eixo, vrv, dados, valor);
-        
+
         if(eixo == 1)
-            updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, data[dados.key[0]].uf);
+            updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, data[dados.key[0]].uf, ocp);
         else
             $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, data[dados.key[0]].uf));
             $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, data[dados.key[0]].uf));
@@ -1220,7 +1220,7 @@ else {
         if(eixo == 0) setStateTitle(function(){if(data[dados.key[0]].uf == "Todos") return "Brasil"; else return data[dados.key[0]].uf});
 
         if(eixo == 1 && dados.key != undefined){
-            updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, data[dados.key[0]].uf);
+            updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, data[dados.key[0]].uf, ocp);
 
         }
         else if(eixo != 3 && dados.key != undefined){

@@ -495,7 +495,8 @@ function controlFilter(selectvalue, selectid, valueDesag){
         var ano = 2015;
         var uf = 0;
     }
-	/* se for PORTE x ATUAÇÃO */
+    /* se for PORTE x ATUAÇÃO */
+    
     if(selectid==='var') {
         var save_ocp = url['ocp'];
         defaultUrl();
@@ -1330,7 +1331,7 @@ $(document).ready(function(){
 
 	/* alterar tipo de visualização */
 	$(document).on('click', "button.opt.view", function(){
-
+        
 		if($(this).attr("id") == "treemap_region" || $(this).attr("id") == "mapa") {
             if($(this).html() == "BRASIL" || $(this).html() == "MUNDO"){
 
@@ -1439,12 +1440,12 @@ $(document).ready(function(){
                 if(url['var'] == 4 || url['var']  == 5 || url['var']  == 6)
                     url['ocp'] = 1;
                 else
-                    url['ocp'] == 3;
+                    url['ocp'] = 3;
                 controlFilter('0', 'deg');
                 url['cad'] = 0;
                 $(this).addClass("active");
                 $('#setor').removeClass("active");
-
+                
                 url['ano'] = anos_default[url['var']][1];
             }
             updateIframe(url); /* altera gráfico */

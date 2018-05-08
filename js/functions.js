@@ -1179,7 +1179,7 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
     }
 }
 
-function updateDescMercado(desc, vrv, nomeestado){
+function updateDescMercado(desc, vrv, nomeestado, ocp){
     var deg = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").parent().attr("value");
     var cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
     
@@ -1249,7 +1249,11 @@ function updateDescMercado(desc, vrv, nomeestado){
         }
         
     } 
-    description = desc.replace("[cad]", cad).replace("[deg]", option_selected).replace("[uf]", uf);
+    description = desc.replace("[deg]", option_selected).replace("[uf]", uf);
+    if(ocp > 0)
+        description = description.replace("[cad]", "EM ATIVIDADES CULTURAIS E CRIATIVAS").replace("[ocp]", "OCUPADOS");
+    else
+        description = description.replace("[cad]", cad).replace("[ocp]", "TRABALHADORES")
     $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(description)
     //$(window.parent.document).find(".percent-value").first().find(".description-number").first().html(description)
             
@@ -1446,7 +1450,7 @@ function setIntegerValueData(value, eixo, vrv) {
         estado = $(window.parent.document).find(".state-title").first().text()
         if(eixo == 1){
             if(vrv <= 11)
-                updateDescMercado(result.desc_int, vrv, estado);
+                updateDescMercado(result.desc_int, vrv, estado, url['ocp']);
         }
         if(eixo == 3){
             $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(updateDescComercio(result.desc_int, vrv, estado))
@@ -1831,6 +1835,8 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     // [prt] - prt
     // [ano] - ano
 
+    ocp = $(window.parent.document).find("iframe#view_box_barras").attr("src").match(/ocp=[0-9]/)[0].split("=")[1]
+
     if(desc == undefined){
         return ;
     }
@@ -1852,10 +1858,16 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     }
 
     if(desc.includes('[cad]')){
-        desc =  descByCAD(eixo, desc, '[cad]')
+        if(ocp == 0)
+            desc =  descByCAD(eixo, desc, '[cad]')
+        else
+            desc = desc.replace("[cad]", "EM ATIVIDADES CULTURAIS E CRIATIVAS")
     }
     if(desc.includes('[CAD]')){
-        desc =  descByCAD(eixo, desc, '[CAD]')
+        if(ocp == 0)
+            desc =  descByCAD(eixo, desc, '[CAD]')
+        else
+            desc = desc.replace("[cad]", "EM ATIVIDADES CULTURAIS E CRIATIVAS")
     }
 
     if(desc.includes('[prt]')){
@@ -1864,6 +1876,12 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
 
     if(desc.includes('[ano]')){
         desc =  descByANO(eixo, desc)
+    }
+    if(desc.includes('[ocp]')){
+        if(ocp > 0)
+            desc = desc.replace("[ocp]", "OCUPADOS")
+        else
+            desc = desc.replace("[ocp]", "TRABALHADORES")
     }
 
 

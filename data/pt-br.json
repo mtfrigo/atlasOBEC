@@ -491,10 +491,10 @@
 		[
 			{
 				"id":"1",
-				"desc_int":"Trabalhadores [cad] [deg] [uf]",
-				"desc_percent": "Do total de trabalhadores [cad] [uf]",
+				"desc_int":"[ocp] [cad] [deg] [uf]",
+				"desc_percent": "Do total de [ocp] [cad] do Brasil",
 				"title":"Total de Ocupados",
-				"sufixo_valor":"",
+				"sufixo_valor" :"",
 				"prefixo_valor":"",
 				"fontes":"RAIS e IBGE (PNAD Anual).",
 				"desc_var_mapa": " A variável apresenta o número total de indivíduos ocupado(a)s em atividades produtivas ligadas aos setores ou às ocupações criativas e culturais, com possibilidade de desagregações.",
