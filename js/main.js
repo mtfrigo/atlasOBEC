@@ -40,7 +40,7 @@ function getAnoDefault(eixo_atual){
                 url['slc'] = 0
                 url['ocp'] = 0
             }
-            
+
             if(url['ocp'] == 3)
                 index_ocp = 1
             else
@@ -1610,7 +1610,10 @@ $(document).ready(function(){
                     $('#setor').addClass("active");
                     $('#ocupacao').removeClass("active");
                 }
-                enableDesag(getEixo(window.location.hash.substring(1)), $(this).val(), url['cad'], false, 0, url);
+                if(url['ocp'] > 0)
+                    enableDesag(getEixo(window.location.hash.substring(1)), $(this).val(), url['cad'], false, 1, url);
+                else
+                    enableDesag(getEixo(window.location.hash.substring(1)), $(this).val(), url['cad'], false, 0, url);
                 $('.bread-select[data-id=uf]').val(0);
                 $('.bread-select[data-id=cad]').val(0);
 
