@@ -77,7 +77,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
     var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo + "&deg=" +deg + "&ano=" +ano;
 
     $.get('./db/json_barras.php' + config, function(dado){
-        // console.log(dado)
+        console.log(dado)
     })
     d3.json('data/colors.json', function (error, data) {
         if (error) throw error;
@@ -392,7 +392,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
         *  no select dos anos a fim de não criar visualizações impossíveis.
         */
 
-        if(!((eixo == 2 && vrv == 17) || (eixo == 1 && vrv == 6 && uos == 1))){
+        if(!((eixo == 2 && (vrv == 17 || vrv == 18 || vrv == 19) ) || (eixo == 1 && vrv == 6 && uos == 1))){
             $(window.parent.document).find('select[data-id=ano]').each(function(){
                 selectOp = this;
                 $(this.options).each(function(){
@@ -499,7 +499,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
                 return barHeight;
             })
             .attr("fill", function (d,i ) {
-                if(eixo == 1 && vrv == 6 && uos == 1)
+                if((eixo == 1 && vrv == 6 && uos == 1) || (eixo == 2 && (vrv == 18 || vrv == 19) && uos == 1))
                     return color(dados.key[i])
                 else if(eixo == 3 && (vrv == 5 || vrv == 8))
                     return color(0);
@@ -540,6 +540,12 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
                         newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
                         $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
                     }
+                }
+                else if(eixo == 2 && url['var'] == 17){
+                    var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src");
+                    newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano="+url['ano']);
+                    $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
+
                 }
                 else if(eixo == 3 && (url['var'] == 5 || url['var'] == 8)){
                     var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
@@ -730,7 +736,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
 
         var valor = $('svg').find('rect[data-legend="'+url['ano']+'"]').attr("data-value");
 
-        if(!(eixo == 1 && vrv == 6 && uos == 1))
+        if(!(eixo == 1 && vrv == 6 && uos == 1) && !(eixo == 2 && (vrv == 18 || vrv == 19) && uos == 1))
             configInfoDataBoxBarras(eixo, vrv, dados, valor);
         
         if(eixo == 1)
@@ -800,7 +806,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
                 }
             }
             else if(eixo === 2){
-                if(vrv === 1 || vrv === 2 || vrv === 3 || vrv === 4 ||   vrv === 5 || vrv === 6 || vrv === 7 || vrv === 8 || vrv === 9 || vrv == 10 || vrv === 11 || vrv === 12 || vrv === 13 || vrv === 14 || vrv === 15 || vrv === 16){
+                if(vrv === 1 || vrv === 2 || vrv === 3 || vrv === 4 ||   vrv === 5 || vrv === 6 || vrv === 7 || vrv === 8 || vrv === 9 || vrv == 10 || vrv === 11 || vrv === 12 || vrv === 13 || vrv === 14 || vrv === 15 || vrv === 16 || vrv === 18 || vrv === 19){
                     tooltipInstance.showTooltip(d, [
                         ["title", dados.key[i]],
                         ["", formatTextVrv(dados.value[i], eixo, vrv)],
@@ -1127,6 +1133,8 @@ else {
 
                     var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + d.x.getFullYear());
                     newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']+"&chg=1");
+
+
 
                     $(window.parent.document).find("#view_box").attr("src", newMapaSrc);
                     $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);

@@ -58,6 +58,7 @@ function getNameCadeia($id){
         case 8: return "Música";
         case 9: return "Patrimônio";
         case 10: return "Publicidade";
+        case 11: return "Outros";
     }
 }
 
@@ -419,14 +420,34 @@ else if($eixo == 2) {
                 $barras[$id]['percentual'] = (double)$tupla->Percentual;
                 $barras[$id]['taxa'] = (double)$tupla->Taxa;
                 $barras[$id]['uos'] = 2;
-            } else {
-                $id = $tupla->Ano;
-                $barras[$id]['ano'] = (int)$tupla->Ano;
-                $barras[$id]['valor'] = (double)$tupla->Valor;
-                $barras[$id]['percentual'] = (double)$tupla->Percentual;
-                $barras[$id]['taxa'] = (double)$tupla->Taxa;
-                $barras[$id]['uos'] = (int)$uos;
+            } else if(($var == 18 || $var == 19)) {
+                if($uos == 1){
+                    $id = sigla_cadeia(getNameCadeia($tupla->idCadeia));
+                    $barras[$id]['uf'] = $tupla->UFNome;
+                    $barras[$id]['ano'] = (int) $tupla->Ano;
+                    $barras[$id]['valor'] = (double) $tupla->Valor;
+                    $barras[$id]['percentual'] = (double) $tupla->Percentual;
+                    $barras[$id]['taxa'] = (double) $tupla->Taxa;
+                }
+                else{
+                    $id = $tupla->Ano;
+                    $barras[$id]['ano'] = (int)$tupla->Ano;
+                    $barras[$id]['valor'] = (double)$tupla->Valor;
+                    $barras[$id]['percentual'] = (double)$tupla->Percentual;
+                    $barras[$id]['taxa'] = (double)$tupla->Taxa;
+                    $barras[$id]['uos'] = (int)$uos;
+                }
+
+
             }
+            else {
+                    $id = $tupla->Ano;
+                    $barras[$id]['ano'] = (int)$tupla->Ano;
+                    $barras[$id]['valor'] = (double)$tupla->Valor;
+                    $barras[$id]['percentual'] = (double)$tupla->Percentual;
+                    $barras[$id]['taxa'] = (double)$tupla->Taxa;
+                    $barras[$id]['uos'] = (int)$uos;
+                }
         }
 
 }

@@ -2,7 +2,15 @@
 });*/
 var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo;
 var tooltipInstance = tooltip.getInstance();
+$.get("./db/json_donut.php"+config, function(data){
+    console.log(data)
+
+});
+
 $.get("./db/json_donut.php"+config, ready);
+
+
+
 
 
 
@@ -60,10 +68,20 @@ function ready(json){
         .on("mouseover", function(d){
             d3.select(this).attr("transform", "scale(1.01)")
 
+
             if(eixo == 2 && vrv == 17){
-                tooltipInstance.showTooltip(d.data, [
-                    ["title", d.data.tipo]
-                ]);
+                if(d.data.tipo == "Não"){
+                    tooltipInstance.showTooltip(d.data, [
+                        ["title", d.data.tipo]
+                    ]);
+                }
+                else{
+                    tooltipInstance.showTooltip(d.data, [
+                        ["title", d.data.tipo],
+                        ["", formatTextVrv(d.data.total, 2, vrv)]
+                    ]);
+                }
+
             }
             else{
                 tooltipInstance.showTooltip(d.data, [
@@ -98,8 +116,8 @@ function color(tipo){
     colors = {
         "Exportação": "#071342",
         "Importação": "rgb(109, 191, 201)",
-        "Sim": "#071342",
-        "Não": "#aaa"
+        "Sim": "#077DDD",
+        "Não": "rgb(217, 213, 222)"
     }
     return colors[tipo];
 }

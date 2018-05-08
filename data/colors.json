@@ -233,7 +233,12 @@
 		"Publ.": {
 			"name": "Publicidade",
 			"color": "#B2510F"
+		},
+		"Outros": {
+			"name": "Outros",
+			"color": "#B2510F"
 		}
+
 	},
 	"regioes": {
 		"0": {
@@ -294,11 +299,11 @@
 	"binario": {
 		"0": {
 			"name": "Não",
-			"color": "#aaa"
+			"color": "rgb(217, 213, 222)"
 		},
 		"1": {
 			"name": "Sim",
-			"color": "#071342"
+			"color": "#077DDD"
 		}
 	}
 }

@@ -106,7 +106,7 @@ function changeChart(url){
         $('iframe[id="view_box"]').attr('src', url['view']+'_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
     }
     if($('iframe[id="view_box_barras"]').length != 0) {
-        $('iframe[id="view_box_barras"]').attr('src', 'barras_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
+        $('iframe[id="view_box_barras"]').attr('src', url['view']+'_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
     }
     if($('iframe[id="view_box_scc"]').length != 0) {
         $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
@@ -178,7 +178,7 @@ function updateIframe(url){
         else if(eixoAtual == 2){
             $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "none")
 
-            if(url['var'] == 17){
+            if(url['var'] == 17 || url['var'] == 18 ||  url['var'] == 19){
                 $('iframe[id="view_box"]').attr('src', url['view']+'_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
                 $('iframe[id="view_box"]').parent().find(".view-title").html("MAPA DO BRASIL");
             }
@@ -273,13 +273,23 @@ function updateIframe(url){
                     $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
                 }
             }
+            else if(url['var'] == 17){
+                $('iframe[id="view_box_barras"]').parent().find(".view-title").html("PROPORÇÃO SIM-NÃO");
+
+                $('iframe[id="view_box_barras"]').attr('src', 'donut.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+
+                console.log($('iframe[id="view_box_barras]').attr('src'));
+
+
+            }
             else if(url['var'] == 10){
                 newUrl = newUrl.replace(/mec=[0-9]/, "mec=0");
                 $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA FINANCIAMENTO TOTAL / RECEITA EXECUTIVO");
                 $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA DESPESA MINC / RECEITA EXECUTIVO");
             }
-        } else if( eixoAtual == 3){
+        }
+        else if( eixoAtual == 3){
             $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
             if(url['var'] == 5 || url['var'] == 8){
                 newUrl = newUrl.replace(/cad=[0-9]*/, "cad=0");
@@ -378,16 +388,20 @@ function updateIframe(url){
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
             }
             else if(url['var'] ==  17){
-                $('iframe[id="view_box_scc"]').attr('src', 'donut.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
+
             }
-            // else if(url['var'] == 7){
-            //     $('iframe[id="view_box_scc"]').attr('src', 'treemap_region_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
-            //     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - UF");
-            // }
+
             else if (url['var'] == 15 || url['var'] == 16 ) {
                 newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
                 $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
+            }
+            else if (url['var'] == 18 || url['var'] == 19 ) {
+                newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
+                $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("ACUMULADO POR SETOR AO LONGO DOS ANOS");
             }
             else if(url['var'] == 10){
                 newUrl = newUrl.replace(/mec=[0-9]/, "mec=1");
@@ -1599,6 +1613,12 @@ $(document).ready(function(){
 
                 if(eixo_atual == 2){
                     updateDefaultMec(url['var']);
+
+                    if(url['var'] == 18 || url['var'] == 19)
+                        $("#btn-opt").find(".col-btn").css("display", "block")
+                    else
+                        $("#btn-opt").find(".col-btn").css("display", "none")
+
                 }
 
                 if(eixo_atual == 3){

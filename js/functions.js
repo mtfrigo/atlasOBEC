@@ -1999,7 +1999,7 @@ function setPercentValueData(value, eixo, vrv) {
     else if(eixo == 2){
 
 
-        if(vrv == 6 || vrv == 7 || vrv == 8 || vrv == 9|| vrv == 13 || vrv == 14 || vrv == 17){
+        if(vrv == 6 || vrv == 7 || vrv == 8 || vrv == 9|| vrv == 13 || vrv == 14 || vrv == 17|| vrv == 18 || vrv == 19){
             $(window.parent.document).find(".percent-value").first().find(".number").first().html("");
         }
         else if(vrv == 15 || vrv == 16){

@@ -297,6 +297,7 @@ button.opt:hover, button.opt.active{
 }
 
 .data-values {
+	margin-top: 1px;
 	width:	100%;
 	color: #bbb;
 	font-size: 14px;

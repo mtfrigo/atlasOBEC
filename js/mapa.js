@@ -247,7 +247,7 @@ d3.json('data/pt-br.json', function(error, data) {
 var config = "?var="+vrv+"&atc="+atc+"&cad="+cad+"&prt="+prt+"&ocp="+ocp+"&mec="+mec+"&typ="+typ+"&prc="+prc+"&pfj="+pfj+"&mod="+mod+"&ano="+ano+"&eixo="+eixo+"&mundo="+mundo+"&slc="+slc;
 
 $.get("./db/json_mapa.php"+config, function(data) {
-     //console.log(data);
+     // console.log(data);
 });
 //pre-load arquivos
 d3.queue()
@@ -271,7 +271,10 @@ function ready(error, br_states, mapa){
 	Object.keys(mapa).forEach(function(key) {
 
         info.push(mapa[key]);
-		return dict[mapa[key].id] = {id:mapa[key].id, uf:mapa[key].uf, valor:mapa[key].valor, ano:mapa[key].ano, percentual:mapa[key].percentual, taxa:mapa[key].taxa};
+        if(eixo == 2 && url['var'] == 17)
+		    return dict[mapa[key].id] = {id:mapa[key].id, SouN:mapa[key].SouN, uf:mapa[key].uf, valor:mapa[key].valor, ano:mapa[key].ano, percentual:mapa[key].percentual, taxa:mapa[key].taxa};
+		else
+            return dict[mapa[key].id] = {id:mapa[key].id, uf:mapa[key].uf, valor:mapa[key].valor, ano:mapa[key].ano, percentual:mapa[key].percentual, taxa:mapa[key].taxa};
 
 	});
 
@@ -385,7 +388,7 @@ function ready(error, br_states, mapa){
 
             if(eixo == 2 && vrv == 17){
 
-                if(dict[d.id].valor == 0){
+                if(dict[d.id].SouN == 0){
                    return  colorJSON.binario['0'].color;
                 }
                 else{
@@ -817,7 +820,7 @@ function legendaBinario(){
         else if(eixo == 2){
 
             //tooltips com os 3 valores na interface (valor, percentual e taxa)
-            if(vrv === 1  || vrv === 2 || vrv === 3 || vrv === 4 ||  vrv === 5 || vrv === 6 || vrv === 7 || vrv === 8 || vrv === 9 || vrv === 11 || vrv === 12 || vrv === 13){
+            if(vrv === 1  || vrv === 2 || vrv === 3 || vrv === 4 ||  vrv === 5 || vrv === 6 || vrv === 7 || vrv === 8 || vrv === 9 || vrv === 11 || vrv === 12 || vrv === 13 || vrv == 18 || vrv == 19){
                 // console.log(dict[d.id])
                 tooltipInstance.showTooltip(d, [
                     ["title", d['properties']['name']],
@@ -834,18 +837,38 @@ function legendaBinario(){
             else if(vrv === 17){
 
                 var SouN = "";
+                var valor = "";
 
-                if(dict[d.id].valor == 0)
+
+                if(dict[d.id].SouN == 0){
                     SouN = "Não";
-                else
+                    valor =  "";
+                }
+                else{
                     SouN = "Sim";
+                    if(dict[d.id].valor > 0)
+                        valor = formatTextVrv(dict[d.id].valor, eixo, vrv) ;
+                    else
+                        valor = "Indisponível."
+
+                }
+
+                if(dict[d.id].SouN == 1){
+                    tooltipInstance.showTooltip(d, [
+                        ["title", d['properties']['name']],
+                        ["", SouN],
+                        ["", valor],
+                    ]);
+                }
+                else{
+                    tooltipInstance.showTooltip(d, [
+                        ["title", d['properties']['name']],
+                        ["", SouN],
+                    ]);
+                }
 
 
-                tooltipInstance.showTooltip(d, [
-                    ["title", d['properties']['name']],
-                    ["", SouN],
-                    ["", formatTextVrv(dict[d.id].valor, eixo, vrv)],
-                ]);
+
             }
 
         }
