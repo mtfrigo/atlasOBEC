@@ -168,6 +168,7 @@ if($eixo == 2 && $var >= 18){
         $valor['tipo'] = sigla_cadeia(getNameCadeia($tupla->idCadeia));
         $valor['valor'] = (float) $tupla->Valor;
         $valor['uf'] = (int) $tupla->idUF;
+        $valor['cad'] = (int) $tupla->idCadeia;
         array_push($tipos, $valor);
 
     }

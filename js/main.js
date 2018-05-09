@@ -81,7 +81,6 @@ function defaultUrl(){
     url['deg'] = 0;
     url['mec'] = 0;
     url['mod'] = 0;
-    url['deg'] = 0;
     url['pfj'] = 0;
     url['uos'] = 0;
 }
@@ -372,14 +371,8 @@ function updateIframe(url){
             else if(url['var'] == 4 || url['var'] == 5 ){
 
                 newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
-                //if(url['cad'] != 0 && url['deg'] != 0) {
                 $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS")
-                //}
-                /* else  {
-                     $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");
-                 }*/
 
             }
             else {
@@ -411,11 +404,8 @@ function updateIframe(url){
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
             }
             else if(url['var'] == 10){
-
                 $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
-
-
             }
             else{
                 $('iframe[id="view_box_scc"]').css('display', 'block')
@@ -492,6 +482,7 @@ Saída:
     void
 -----------------------------------------------------------------------------*/
 function controlFilter(selectvalue, selectid, valueDesag){
+
     var SCCSrc = $("#view_box_scc").attr("src");
     var BarraSrc = $("#view_box_barras").attr("src");
     if(BarraSrc != undefined && BarraSrc != "no-view.html") var setor = BarraSrc.match(/cad=([0-9]*)/)[1];
@@ -505,7 +496,7 @@ function controlFilter(selectvalue, selectid, valueDesag){
         var uf = 0;
     }
     /* se for PORTE x ATUAÇÃO */
-    
+
     if(selectid==='var') {
         var save_ocp = url['ocp'];
         defaultUrl();
@@ -513,8 +504,16 @@ function controlFilter(selectvalue, selectid, valueDesag){
         controlAno($('.opt-select[data-id="ano"]'));
         controlAno($('.bread-select[data-id="ano"]'));
     }
-    if(window.location.hash === "#mercado") {
-		if(selectid==='deg' && selectvalue==='0') {
+
+
+    if(selectid==='cad') {
+        var save_deg = url['deg'];
+        defaultUrl();
+        url['deg'] = save_deg;
+    }
+
+    if(window.location.hash === "#mercado" && selectid === 'deg') {
+		if(selectvalue==='0') {
             url['prt'] = 0;
             url['sex'] = 0;
             url['esc'] = 0;
@@ -524,7 +523,7 @@ function controlFilter(selectvalue, selectid, valueDesag){
             url['prv'] = 0;
             url['fax'] = 0;
 		}
-        if(selectid==='deg' && selectvalue==='1') {
+        if(selectvalue==='1') {
             url['prt'] = valueDesag;
             url['sex'] = 0;
             url['esc'] = 0;
@@ -534,7 +533,7 @@ function controlFilter(selectvalue, selectid, valueDesag){
             url['prv'] = 0;
             url['fax'] = 0;
         }
-        if(selectid==='deg' && selectvalue==='2') {
+        if(selectvalue==='2') {
             url['prt'] = 0;
             url['sex'] = valueDesag;
             url['esc'] = 0;
@@ -544,7 +543,7 @@ function controlFilter(selectvalue, selectid, valueDesag){
             url['prv'] = 0;
             url['fax'] = 0;
         }
-        if(selectid==='deg' && selectvalue==='3') {
+        if(selectvalue==='3') {
             url['prt'] = 0;
             url['sex'] = 0;
             url['esc'] = 0;
@@ -554,7 +553,7 @@ function controlFilter(selectvalue, selectid, valueDesag){
             url['prv'] = 0;
             url['fax'] = valueDesag;
         }
-        if(selectid==='deg' && selectvalue==='4') {
+        if(selectvalue==='4') {
             url['prt'] = 0;
             url['sex'] = 0;
             url['esc'] = valueDesag;
@@ -564,7 +563,7 @@ function controlFilter(selectvalue, selectid, valueDesag){
             url['prv'] = 0;
             url['fax'] = 0;
         }
-        if(selectid==='deg' && selectvalue==='5') {
+        if(selectvalue==='5') {
             url['prt'] = 0;
             url['sex'] = 0;
             url['esc'] = 0;
@@ -574,7 +573,7 @@ function controlFilter(selectvalue, selectid, valueDesag){
             url['prv'] = 0;
             url['fax'] = 0;
         }
-        if(selectid==='deg' && selectvalue==='6') {
+        if(selectvalue==='6') {
             url['prt'] = 0;
             url['sex'] = 0;
             url['esc'] = 0;
@@ -584,7 +583,7 @@ function controlFilter(selectvalue, selectid, valueDesag){
             url['prv'] = 0;
             url['fax'] = 0;
         }
-        if(selectid==='deg' && selectvalue==='7') {
+        if(selectvalue==='7') {
             url['prt'] = 0;
             url['sex'] = 0;
             url['esc'] = 0;
@@ -594,7 +593,7 @@ function controlFilter(selectvalue, selectid, valueDesag){
             url['prv'] = valueDesag;
             url['fax'] = 0;
         }
-        if(selectid==='deg' && selectvalue==='8') {
+        if(selectvalue==='8') {
             url['prt'] = 0;
             url['sex'] = 0;
             url['esc'] = 0;
@@ -1131,12 +1130,12 @@ function switchToSetores() {
     //console.log(getEixo(window.location.hash.substring(1)));
     if(getEixo(window.location.hash.substring(1)) == 2 && url['var'] == 2){
         $("#title-view-leg-scc").append("<span class=\"scc\" data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #071342\"></i> Todos<br></span>\n" +
-        
-        "                                <span class=\"scc\" data-id=\"2\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #077DDD\"></i> Artes Cênicas e Espetáculos<br></span>\n" +
-        "                                <span class=\"scc\" data-id=\"3\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #0F4B67\"></i> Audiovisual<br></span>\n" +
-        "                                <span class=\"scc\" data-id=\"5\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #F6D5AB\"></i> Editorial<br></span>\n" +
-        "                                <span class=\"scc\" data-id=\"8\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #6A474D\"></i> Música<br></span>\n" +
-        "                                <span class=\"scc\" data-id=\"11\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #B2510F\"></i> Outros<br></span>");
+
+            "                                <span class=\"scc\" data-id=\"2\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #077DDD\"></i> Artes Cênicas e Espetáculos<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"3\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #0F4B67\"></i> Audiovisual<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"5\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #F6D5AB\"></i> Editorial<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"8\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #6A474D\"></i> Música<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"11\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #B2510F\"></i> Outros<br></span>");
 
 
         var cads = [];
@@ -1146,7 +1145,48 @@ function switchToSetores() {
         })
 
         updateBreadcrumbSetores(cads);
-        
+
+    }
+    else if(getEixo(window.location.hash.substring(1)) == 2 && url['var'] == 18){
+        $("#title-view-leg-scc").append("<span class=\"scc\" data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #071342\"></i> Todos<br></span>\n" +
+
+            "                                <span class=\"scc\" data-id=\"2\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #077DDD\"></i> Artes Cênicas e Espetáculos<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"3\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #0F4B67\"></i> Audiovisual<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"4\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #8178AF\"></i> Cultura Digital<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"5\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #F6D5AB\"></i> Editorial<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"6\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #EC8A91\"></i> Educação e Criação em Artes<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"8\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #6A474D\"></i> Música<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"9\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #E96B00\"></i> Patrimônio<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"11\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #B2510F\"></i> Outros<br></span>");
+
+
+        var cads = [];
+        $("#title-view-leg-scc").find(".scc").each(function(){
+            cad = {id: $(this).attr("data-id"), nome: $(this).text()}
+            cads.push(cad)
+        })
+
+        updateBreadcrumbSetores(cads);
+
+    }
+    else if(getEixo(window.location.hash.substring(1)) == 2 && url['var'] == 19){
+        $("#title-view-leg-scc").append("<span class=\"scc\" data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #071342\"></i> Todos<br></span>\n" +
+
+            "                                <span class=\"scc\" data-id=\"2\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #077DDD\"></i> Artes Cênicas e Espetáculos<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"3\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #0F4B67\"></i> Audiovisual<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"5\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #F6D5AB\"></i> Editorial<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"8\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #6A474D\"></i> Música<br></span>\n" +
+            "                                <span class=\"scc\" data-id=\"11\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #B2510F\"></i> Outros<br></span>");
+
+
+        var cads = [];
+        $("#title-view-leg-scc").find(".scc").each(function(){
+            cad = {id: $(this).attr("data-id"), nome: $(this).text()}
+            cads.push(cad)
+        })
+
+        updateBreadcrumbSetores(cads);
+
     }
     else{
         stringSetores = "<span class=\"scc\" data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #071342\"></i> Todos<br></span>\n" +
@@ -1429,14 +1469,14 @@ $(document).ready(function(){
                 url['mec'] = 0;
                 $(this).addClass("active");
                 $('#trabalhadora').removeClass("active");
-                url['ano'] = anos_default[url['var']][1]
+                //url['ano'] = anos_default[url['var']][0]
 
             }
             else {
                 url['mec'] = 1;
                 $(this).addClass("active");
                 $('#recebedora').removeClass("active");
-                url['ano'] = anos_default[url['var']][0]
+                //url['ano'] = anos_default[url['var']][0]
             }
             updateIframe(url); /* altera gráfico */
         }
@@ -1497,16 +1537,14 @@ $(document).ready(function(){
 
         if($(this).attr("data-id") !== "eixo") {
             var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
-            updateUrl();
+            // updateUrl();
                             
-            
-		    controlFilter($(this).val(), $(this).attr('data-id'));
+
+		    //controlFilter($(this).val(), $(this).attr('data-id'));
             /* controla relações entre filtros */
             
             /* muda o select do bread para o mesmo que o das opções*/
             $(".bread-select[data-id="+$(this).attr('data-id')+"]").val($(this).val());
-            
-           
 
             if($(this).attr("data-id") == "prc"){
                 document.getElementById('view_box').contentWindow.location.reload(true);
@@ -1561,7 +1599,7 @@ $(document).ready(function(){
                 }
                 
             }
-            if($(this).attr('data-id') == 'deg') {
+            if($(this).attr('data-id') == 'deg'){
                 $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
                 desagregacao = $(window.parent.document).find(".bread-select[data-id=deg]").val();
             }
@@ -1674,6 +1712,7 @@ $(document).ready(function(){
                 
             }
             if($(this).attr('data-id') == 'deg') {
+
                 $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
                 document.getElementById('view_box_barras').contentWindow.location.reload(true);             
             }
@@ -1691,7 +1730,7 @@ $(document).ready(function(){
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
 
                 url['cad'] = ($(this).val())
-                
+
             }
             if($(this).attr("data-id") === "ocp") {
                 if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();

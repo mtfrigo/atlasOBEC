@@ -1309,3 +1309,26 @@ body.contraste{
 	display: none;
 }
 
+.mob-bread{
+	width:100%;
+	height: 200px;
+	background-color: black;
+}
+
+@media (max-width: 479px) {
+
+	.mob-bread{
+		font-size: 24px;
+	}
+	.mob-rotulo-bread{
+		padding: 10px 5px 5px 10px;
+		color: white;
+
+	}
+
+	#resultado{
+		margin-top: 0;
+	}
+}
+
+

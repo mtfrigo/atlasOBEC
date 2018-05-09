@@ -26,6 +26,7 @@ function ready(json){
     var pie = d3.pie()
         .value(function(d) { return d.valor; })(data);
 
+
     var svg = d3.select("#corpo").append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -114,6 +115,29 @@ function ready(json){
             $(parent.document).find("iframe#view_box").first().attr("src", srcMapa)
             $(parent.document).find("iframe#view_box_barras").first().attr("src", srcBarras)
         })
+
+
+
+    if(eixo == 2 && (vrv == 18 || vrv == 19)){
+        var soma = 0;
+        var acumuladoSetor;
+
+        Object.keys(data).forEach(function (key) {
+            soma += data[key].valor;
+            if(cad == data[key].cad)
+                acumuladoSetor = data[key].valor;
+        })
+
+        if(cad == 0)
+            acumuladoSetor = soma;
+
+
+        setPercentValueData({valor: formatTextVrv(acumuladoSetor,eixo, vrv)} , eixo, vrv)
+
+    }
+
+
+
 }
 
 
