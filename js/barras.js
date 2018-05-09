@@ -1223,7 +1223,7 @@ else {
         if(eixo == 0) setStateTitle(function(){if(data[dados.key[0]].uf == "Todos") return "Brasil"; else return data[dados.key[0]].uf});
 
         if(eixo == 1 && dados.key != undefined){
-            updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, data[dados.key[0]].uf, ocp);
+            updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, ocp);
 
         }
         else if(eixo != 3 && dados.key != undefined){

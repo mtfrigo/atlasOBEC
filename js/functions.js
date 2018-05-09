@@ -1185,7 +1185,6 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
 }
 function mapPronome(string, array_pron, array_new_pron){
 
-    alert(string)
     array_pron.forEach(function(d, i){
         string = string.replace(array_pron[i], array_new_pron[i])
     })
@@ -1210,7 +1209,6 @@ function descIntBySelectedParameters(desc, ocp, uf, cad, deg){
         desc = desc.replace("[ocp]", "OCUPADOS")
     }
     if(cad == 0 || ocp == 3){
-        alert(desc)
         return desc.replace("[cad]", "DOS SETORES CULTURAIS E CRIATIVOS")
                     .replace("[name_ocp]", "NA OCUPAÇÃO "+cad_nome)
                     .replace("[uf]", desc_uf)
@@ -1233,8 +1231,8 @@ function descIntBySelectedParameters(desc, ocp, uf, cad, deg){
                        .replace("[uf]", desc_uf)
         } else {
             desc_uf = mapPronome(desc_uf, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
-            return desc.replace("[deg]", "")
-                       .replace("[name_ocp]", "NA OCUPAÇÃO"+cad_nome)
+            desc = desc.replace("[deg]", "")
+            return desc.replace("[name_ocp]", "NA OCUPAÇÃO"+cad_nome)
                        .replace("[cad]", "DO SETOR "+cad_nome)
                        .replace("[uf]", desc_uf)
         }
@@ -1469,7 +1467,7 @@ function setIntegerValueData(value, eixo, vrv) {
                 $(window.parent.document).find(".setor-value").first().find(".description-number").first().text()
             }
             if(vrv <= 11)
-                updateDescMercado(result.desc_int, vrv, estado, url['ocp']);
+                updateDescMercado(result.desc_int, vrv, url['ocp']);
         }
         if(eixo == 3){
             $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(updateDescComercio(result.desc_int, vrv, estado))
