@@ -492,7 +492,8 @@
 			{
 				"id":"1",
 				"desc_int":"[ocp] [cad] [deg] [uf]",
-				"desc_percent": "Do total de [ocp] [cad] do Brasil",
+				"desc_percent": "Do total de [ocp] [setores] do Brasil",
+				"desc_setorial": "do total de [ocp] [cad] [uf]",
 				"title":"Total de Ocupados",
 				"sufixo_valor" :"",
 				"prefixo_valor":"",
@@ -539,7 +540,7 @@
 			},
 			{
 				"id":"2",
-				"desc_int":"DE PARTICIPAÇÃO DOS TRABALHADORES DOS SETORES CULTURAIS E CRIATIVOS NO MERCADO DE TRABALHO",
+				"desc_int":"DE PARTICIPAÇÃO DOS [ocp] [cad] NO MERCADO DE TRABALHO",
 				"title":"Participação no Emprego Total",
 				"desc_percent": "",
 				"sufixo_valor":"%",
@@ -635,7 +636,7 @@
 			},
 			{
 				"id":"4",
-				"desc_int":"DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES [cad] [deg]",
+				"desc_int":"DE REMUNERAÇÃO MÉDIA DOS [ocp] [cad] [deg]",
 				"title":"Remuneração Média",
 				"desc_percent": "",
 				"sufixo_valor":"",
@@ -721,7 +722,7 @@
 				"id":"7",
 				"title":"Massa de Rendimentos do Trabalho",
 				"desc_int":"",
-				"desc_percent": "da soma de remunerações pagas aos trabalhadores culturais e criativos {}",
+				"desc_percent": "da soma de remunerações pagas aos [ocp] [cad] {}",
 				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",
 				"fontes":"RAIS E IBGE (PNAD Anual).",
