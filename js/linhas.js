@@ -49,6 +49,31 @@ function getIdCadeia(nomecadeia){
 }
 */
 
+function getRegexDesag(desag){
+
+    // console.log(desag)
+
+    switch (desag){
+        case 1:
+            return /prt=[0-9]*/;
+        case 2:
+            return /sex=[0-9]*/;
+        case 3:
+            return /fax=[0-9]*/;
+        case 4:
+            return /esc=[0-9]*/;
+        case 5:
+            return /cor=[0-9]*/;
+        case 6:
+            return /frm=[0-9]*/;
+        case 7:
+            return /prv=[0-9]*/;
+        case 8:
+            return /snd=[0-9]*/;
+    }
+
+}
+
 function getDesagId(deg, nome){
     switch(deg){
         case 1:
@@ -62,17 +87,82 @@ function getDesagId(deg, nome){
                 case "Grande":
                     return 4;
             }
+            break;
+
         case 2:
+            switch (nome) {
+                case "Feminino":
+                    return 2;
+                case "Masculino":
+                    return 1;
+            }
+            break;
 
         case 3:
+            switch (nome) {
+                case "10 a 17":
+                    return 1;
+                case "18 a 29":
+                    return 2;
+                case "30 a 49":
+                    return 3;
+                case "50 a 64":
+                    return 4;
+                case "65 ou mais":
+                    return 5;
+                case "Não classificado":
+                    return 6;
+            }
+            break;
 
         case 4:
+            switch (nome) {
+                case "Sem instrução":
+                    return 1;
+                case "Fundamental incompleto":
+                    return 2;
+                case "Fundamental completo":
+                    return 3;
+                case "Médio completo":
+                    return 4;
+                case "Superior incompleto":
+                    return 5;
+                case "Superior completo":
+                    return 6;
+                case "Não determinado":
+                    return 7;
+            }
+            break;
 
         case 5:
+
+            switch (nome) {
+                case "Indígena":
+                    return 1;
+                case "Branca":
+                    return 2 ;
+                case "Preta":
+                    return 3 ;
+                case "Amarela":
+                    return 4;
+                case "Parda":
+                    return 5;
+            }
+            break;
 
         case 6:
 
         case 7:
+
+        case 8:
+            switch (nome) {
+                case "Sim":
+                    return 2;
+                case "Não":
+                    return 1;
+            }
+            break;
+
     }
 }
 
@@ -82,16 +172,26 @@ function updateUrlDesag(deg, id){
             url['prt'] = id;
             return 'prt'
         case 2:
-
+            url['sex'] = id;
+            return 'sex'
         case 3:
-
+            url['fax'] = id;
+            return 'fax'
         case 4:
-
+            url['esc'] = id;
+            return 'esc'
         case 5:
-
+            url['cor'] = id;
+            return 'cor'
         case 6:
-
+            url['frm'] = id;
+            return 'frm'
         case 7:
+            url['prv'] = id;
+            return 'prv'
+        case 8:
+            url['snd'] = id;
+            return 'snd'
     }
 }
 
@@ -381,21 +481,16 @@ function analyze(error, data) {
                     desagId = (getDesagId(deg, $(path).attr("scc")));
                     desagName = updateUrlDesag(deg, desagId)
 
-                    replace = "/"+desagName+"=[0-9]*/";
-
                     // var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(replace, desagName+"=" +desagId);
-                    var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/prt=[0-9]*/, desagName+"=" +desagId);
+                    var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(getRegexDesag(deg), desagName+"=" +desagId);
 
-                    console.log(newMapaSrc)
-
-                    var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(replace, desagName+"=" +desagId);
+                    var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(getRegexDesag(deg), desagName+"=" +desagId);
 
                     $(window.parent.document).find("#view_box").attr("src", newMapaSrc);
                     $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
 
                     $(window.parent.document).find(".bread-select[data-id=deg]").find("optgroup[value="+deg+"]").find("option[value="+(desagId)+"]").prop('selected', true)
 
-                    console.log(replace)
 
                 }
                 else{
