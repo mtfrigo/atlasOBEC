@@ -104,9 +104,11 @@ function configInfoDataBoxMapa(eixo, vrv, dadosUF) {
 
 
         if(url['var'] == 1)
-            if(url['cad'] == 0)
-                if(dadosUF != undefined)
+            if(url['cad'] == 0 && url['ocp'] == 0 || (url['cad'] == 0 && url['ocp'] == 3))
+                if(dadosUF != undefined){
                     setPercentValueData({percentual: dadosUF.percentual}, eixo, vrv);
+                }
+                    
 
 
     }
@@ -140,7 +142,7 @@ function configInfoDataBoxMapaClick(eixo, vrv, dados) {
     }
     else if(eixo == 1){
 
-        if(url['cad'] == 0){
+        if(url['cad'] == 0 && url['ocp'] == 0 || (url['cad'] == 0 && url['ocp'] == 3)){
             setPercentValueData(dados, eixo, vrv);
         }
 
@@ -176,7 +178,7 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, valor,  percent, percent_uf, url
     if(eixo == 1){
 
         if(url['ocp'] == 0){
-
+            
             if(url['cad'] != 0) {
                 destacaSetor(url['cad']);
 
@@ -185,14 +187,15 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, valor,  percent, percent_uf, url
                 }
                 else{
                     setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
-                    setPercentValueData({percentual: parseFloat(valor/percent_uf) , taxa: 0}, eixo, vrv);
+                    setPercentValueData({percentual: parseFloat(percent_uf) , taxa: 0}, eixo, vrv);
                 }
                 // setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
             }
         }
         else{
             if(url['deg'] == 0 || deg == 0){
-                setPercentValueData({percentual: percent, taxa: 0}, eixo, vrv);
+                if(url['ocp'] != 3)
+                    setPercentValueData({percentual: percent, taxa: 0}, eixo, vrv);
 
             }
         }
@@ -284,7 +287,6 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
             setIntegerValueData({valor: d.value}, eixo, vrv);
             setPercentValueData({percentual: percent_uf}, eixo, vrv);
         }
-
 
 
     }
@@ -395,11 +397,11 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
             if(url['var'] == 2 && url['ocp'] == 0)
                 dados.valor = dados.value[dados.key.indexOf(url['ano'])]*100;
             setIntegerValueData(dados, eixo, vrv);
-            
-            setTerceiroValueData(eixo, vrv, dados.percentual[index_ano], url['cad']);  
-           
 
         }
+
+        setTerceiroValueData(eixo, vrv, dados.percentual[index_ano], url['cad']);  
+
     }
     else if(eixo == 2){
 
@@ -625,7 +627,8 @@ function configInfoDataBoxBarrasStacked(eixo, vrv, d, soma, deg) {
             d.y = 0;
         }
         setIntegerValueData({valor: d.y}, eixo, vrv);
-        setPercentValueData({percentual: parseFloat(d.y)/soma}, eixo, vrv);
+        if(url['cad'] == 0 && url['ocp'] == 0 || url['ocp'] == 3 && url['cad'] == 0)
+            setPercentValueData({percentual: parseFloat(d.y)/soma}, eixo, vrv);
     }
 }
 
@@ -1399,7 +1402,8 @@ function updateDescComercio(desc, vrv, nomeestado){
 function setTerceiroValueData(eixo, vrv, value, cad){
     if(eixo == 1){
         uf = $(window.parent.document).find(".bread-select[data-id=uf]").val();
-        if(vrv == 1 && cad > 0 && uf > 0){
+        ocp = $(window.parent.document).find(".bread-select[data-id=ocp]").val() == undefined ? 0 : $(window.parent.document).find(".bread-select[data-id=ocp]").val()
+        if(vrv == 1 && (cad > 0 || ocp != 0 && ocp != 3) && uf > 0){
            $(window.parent.document).find(".setor-value").first().find(".number").first().text(formatDecimalLimit(value*100, 2)+'%');
            $(window.parent.document).find(".setor-value").first().css("display", "flex");
 
@@ -2059,6 +2063,7 @@ function setPercentValueData(value, eixo, vrv) {
         }
         else{
             $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.percentual*100, 2)+"%");
+            
         }
         var doc =  $(window.parent.document).find(".percent-value").first().find(".number").first();
         setMaxFontSize(doc);

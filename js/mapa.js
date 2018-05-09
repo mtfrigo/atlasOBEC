@@ -413,6 +413,7 @@ function ready(error, br_states, mapa){
 		})
 		.on("mouseout", tooltipInstance.hideTooltip)
 		.on("click", function(d) {
+            
 			var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/uf=[0-9]*/, "uf="+d.id);
             newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano="+url['ano']);
 
@@ -424,12 +425,11 @@ function ready(error, br_states, mapa){
                 var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/uf=[0-9]*/, "uf="+d.id);
 
 
-            newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad="+url['cad']);
+            newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad="+url['cad']).replace(/ocp=[0-9]/, "ocp="+url['ocp']);
 			$(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
             $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
             $(window.parent.document).find("select[data-id='uf']").val(d.id);
             destacaPais(d.id);
-
             //setIntegerValueData(dict[d.id], eixo, vrv);
            // if(url['cad'] == 0)
                 //setPercentValueData(dict[d.id], eixo, vrv);
@@ -437,12 +437,12 @@ function ready(error, br_states, mapa){
             configInfoDataBoxMapaClick(eixo, vrv, dict[d.id]);
             setStateTitle(d['properties']['name']);
             
-
             updateIframe(url)
             
             //ESSE TRECHO DE CÓDIGO ATUALIZA O TÍTULO DO IFRAME DO SCC 
             
             src = $(window.parent.document).find('iframe[id="view_box_scc"]').attr("src").match(/treemap_scc_box/g);
+
             if(src != null){
                 var title_scc = $(window.parent.document).find('iframe[id="view_box_scc"]')
                                     .parent()

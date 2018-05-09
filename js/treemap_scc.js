@@ -118,7 +118,6 @@ var treemap = d3.treemap()
 
 var config = "?var="+vrv+"&uf="+uf+"&atc="+atc+"&prt="+prt+"&ocp="+ocp+"&sex="+sex+"&typ="+typ+"&prc="+prc+"&slc="+slc+"&fax="+fax+"&esc="+esc+"&deg="+deg+"&cor="+cor+"&frm="+frm+"&prv="+prv+"&snd="+snd+"&mec="+mec+"&mod="+mod+"&pfj="+pfj+"&ano="+ano+"&eixo="+eixo;
 
-
 $.get("./db/json_treemap_scc.php"+config, function(data) {
     // console.log(data);
 });
@@ -164,7 +163,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
 
 	var colorsRange = d3.scaleOrdinal()
 	.domain(colors.domain)
-	.range(colors.range);
+    .range(colors.range);
 
 	/*==========================*/
 	/* *** nodes & tooltips *** */
@@ -212,7 +211,6 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         // else{
                         //     cad_percent_uf = getSoma(d.data.colorId);
                         // }
-
                         configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, cad_valor, cad_percent, cad_percent_uf);
                         if(deg  == 0) $(window.parent.document).find(".cad-title").first().html(d.data.name);
                         // else $(window.parent.document).find(".cad-title").first().html(d.parent.data.name+" - "+d.data.name);
@@ -730,7 +728,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
             vrv,
             $('svg').find('rect[data-legend="'+cad+'"]').attr("data-value"),
             $('svg').find('rect[data-legend="'+cad+'"]').attr("data-percent"),
-            data_percent_uf,
+            $('svg').find('rect[data-legend="'+url['cad']+'"]').attr("data-percent-uf"),
             url,
             $('svg').find('rect[data-legend="'+cad+'"]').attr("data-deg"),
             $('svg').find('rect[data-legend="'+cad+'"]').attr("data-deg"),

@@ -759,9 +759,12 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
         else
             $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, data[dados.key[0]].uf));
         $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, data[dados.key[0]].uf));
-        if(vrv == 1)
+        if(vrv == 1){
+            
             $(window.parent.document).find(".setor-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_setorial, data[dados.key[0]].uf));
         
+        }
+            
 
 
         if(url['slc'] == 1){
@@ -1015,7 +1018,6 @@ else {
             aux = []
             selectDesag();
             Object.keys(data).forEach(function (key) {
-                alert("eite")
                 soma = 0;
                 cont = 0;
                 Object.keys(data[key]).forEach(function (chave) {
@@ -1149,7 +1151,7 @@ else {
                     newMapaSrc = newMapaSrc.replace(/uf=[0-9]*/, "uf=" + url['uf']);
 
                     var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + d.x.getFullYear());
-                    newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']+"&chg=1");
+                    newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']+"&chg=1").replace(/ocp=[0-9]/, "ocp="+ocp);
 
 
 
@@ -1172,6 +1174,7 @@ else {
         dado = dado_anos.filter(function(obj){
             return obj.x.getFullYear() == url['ano']
         })[0]
+        
         configInfoDataBoxBarrasStacked(eixo, vrv, dado, getSoma(dado.x), deg);
         
         
