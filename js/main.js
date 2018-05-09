@@ -1223,61 +1223,42 @@ $(document).ready(function(){
 	$(document).on('click', ".scc", function(){
 	    var eixoAtual = getEixo(window.location.hash.substring(1));
 
-        if(eixoAtual == 1 && (url['var'] == 4 || url['var'] == 5 || url['var'] == 6)){
+        if((eixoAtual == 0 && url['var'] < 10) || (eixoAtual == 1 && url['var'] < 12) ||  (eixoAtual == 3) ){
             var setor = $(this).attr('data-id');
 
-            var newSCCSrc = $("#view_box_scc").attr("src");
-            var change = newSCCSrc.match(/uf=([0-9]*)/);
-            
-            //url['cad'] = setor;
+            if(setor != url['cad']) {
 
+                var newSCCSrc = $("#view_box_scc").attr("src");
+                var change = newSCCSrc.match(/uf=([0-9]*)/);
 
-            updateIframe(url);
+                url['cad'] = setor;
+                url['uf'] = change[1];
+                if (setor == 0) {
+                    url['prt'] = 0;
+                    url['deg'] = 0;
+                    url['sex'] = 0;
+                    url['frm'] = 0;
+                    url['snd'] = 0;
+                    url['prv'] = 0;
+                    url['fax'] = 0;
+                    url['esc'] = 0;
+                    url['cor'] = 0;
+                }
 
-            //enableDesag(getEixo(window.location.hash.substring(1)), url['var'], setor, false, url['slc'], url);
+                updateIframe(url);
 
-            d3.json('data/pt-br.json', function(error, data) {
-                if (error) throw error;
+                enableDesag(getEixo(window.location.hash.substring(1)), url['var'], setor, false, url['slc'], url);
 
-                textJSON = data;
-                $(".cad-title").first().html(textJSON.select.cad[setor].name);
+                d3.json('data/pt-br.json', function (error, data) {
+                    if (error) throw error;
 
-            });
+                    textJSON = data;
+                    $(".cad-title").first().html(textJSON.select.cad[setor].name);
 
-            $(".bread-select[data-id='cad']").val($(this).attr("data-id"));
-        }
-        else if((eixoAtual == 0 && url['var'] < 10) || (eixoAtual == 1 && url['var'] < 12) ||  (eixoAtual == 3) ){
-            var setor = $(this).attr('data-id');
-            var newSCCSrc = $("#view_box_scc").attr("src");
-            var change = newSCCSrc.match(/uf=([0-9]*)/);
+                });
 
-            url['cad'] = setor;
-            url['uf'] = change[1];
-            if(setor == 0) {
-                url['prt'] = 0;
-                url['deg'] = 0;
-                url['sex'] = 0;
-                url['frm'] = 0;
-                url['snd'] = 0;
-                url['prv'] = 0;
-                url['fax'] = 0;
-                url['esc'] = 0;
-                url['cor'] = 0;
+                $(".bread-select[data-id='cad']").val($(this).attr("data-id"));
             }
-
-            updateIframe(url);
-
-            enableDesag(getEixo(window.location.hash.substring(1)), url['var'], setor, false, url['slc'], url);
-
-            d3.json('data/pt-br.json', function(error, data) {
-                if (error) throw error;
-
-                textJSON = data;
-                $(".cad-title").first().html(textJSON.select.cad[setor].name);
-
-            });
-
-            $(".bread-select[data-id='cad']").val($(this).attr("data-id"));
         }
         else if(eixo == 2 && url['var'] < 15){
             var setor = $(this).attr('data-id');
