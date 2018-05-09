@@ -1233,7 +1233,7 @@ $(document).ready(function(){
 
                 url['cad'] = setor;
                 url['uf'] = change[1];
-                if (setor == 0) {
+                if (setor == 0 && url['var'] > 7) {
                     url['prt'] = 0;
                     url['deg'] = 0;
                     url['sex'] = 0;
@@ -1247,7 +1247,7 @@ $(document).ready(function(){
 
                 updateIframe(url);
 
-                enableDesag(getEixo(window.location.hash.substring(1)), url['var'], setor, false, url['slc'], url);
+                //enableDesag(getEixo(window.location.hash.substring(1)), url['var'], setor, false, url['slc'], url);
 
                 d3.json('data/pt-br.json', function (error, data) {
                     if (error) throw error;
@@ -1256,7 +1256,7 @@ $(document).ready(function(){
                     $(".cad-title").first().html(textJSON.select.cad[setor].name);
 
                 });
-
+                alert("oi")
                 $(".bread-select[data-id='cad']").val($(this).attr("data-id"));
             }
         }
@@ -1686,7 +1686,8 @@ $(document).ready(function(){
             
             
             if($(this).attr("data-id") === "cad") {
-                if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
+
+                //if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
 
                 url['cad'] = ($(this).val())

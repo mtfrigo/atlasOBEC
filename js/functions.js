@@ -87,8 +87,8 @@ function getNomeUF(idUF){
         case 42: return "Santa Catarina";
         case 43: return "Rio Grande do Sul";
         case 50: return "Mato Grosso do Sul";
-        case 52: return "Mato Grosso";
-        case 53: return "Goiás";
+        case 51: return "Mato Grosso";
+        case 52: return "Goiás";
         case 54: return "Distrito Federal";
     }
 }
@@ -381,8 +381,13 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
 
             }
         }
-        else if(url['uf'] == 0 && url['cad'] == 0 && url['ocp'] == 0){
-            setPercentValueData({percentual:1 , taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
+        else if(url['uf'] == 0 && (url['cad'] == 0 || url['ocp'] == 3)){
+            ocp_real = 3
+            if(url['ocp'] > 0){
+                ocp_real = $(window.parent.document).find('.bread-select[data-id=ocp]').val()
+            }
+            if(ocp_real == 3)
+                setPercentValueData({percentual:1 , taxa: dados.taxa[url['ano']-2007]}, eixo, vrv);
             dados.valor = dados.value[dados.key.indexOf(url['ano'])];
 
             if(url['var'] == 2 && url['ocp'] == 0)
@@ -686,7 +691,6 @@ function appendDesags(iframe, ocp){
 
         if(iframe) select = $(window.parent.document).find("select[data-id='deg']")
         else select = $("select[data-id='deg']")
-
 
         desag_groups.forEach(function(option){
             group = data.data[option];
@@ -997,7 +1001,7 @@ function enableDesag(eixo, vrv, setor, iframe, slc, url){
 	}
 	else if(eixo == 1) {
         if(slc == 0) {
-
+            removeDesags(iframe, true)
             removeDesags(iframe, true);
             switch(parseInt(vrv)){
                 case 1:
@@ -1011,6 +1015,7 @@ function enableDesag(eixo, vrv, setor, iframe, slc, url){
             }
         }
         else {
+            removeDesags(iframe, true)
             removeDesags(iframe, false);
             switch(parseInt(vrv)){
                 case 1:
