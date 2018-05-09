@@ -792,29 +792,6 @@
 				}
 			},
 			{
-				"id":"10",
-				"desc_int":"RAZÃO DE VARIAÇÃO NO NÍVEL DE OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS",
-				"title":"Razão entre a variação na ocupação e a variação do Valor Adicionado",
-				"desc_percent": "",
-				"sufixo_valor":"",
-				"fontes":"Elaboração do NECCULT com base na RAIS.",
-				"prefixo_valor":"",
-				"desc_var_mapa": "A variável estima a relação entre as mudanças no nível de ocupação nos setores culturais e criativos e as variações no nível valor adicionado pelos setores culturais e criativos. Trata-se de uma medida indireta da escala produtiva relacionada ao emprego de pessoal nesses setores",
-				"desc":"Esse indicador demonstra o quão concentrada é a distribuição do Total de Empresas a partir do somatório dos quadrados das participações relativas de cada categoria observada. Quanto mais próximo de um for o valor do índice mais concentrado é o item.",
-				"type":[
-					{"name":"Mapa", "id":"mapa"},
-					{"name":"Ano a Ano", "id":"barras"}
-				],
-				"mapa":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Ano","id":"ano"}
-				],
-				"barras":[
-					{"name":"UF","id":"uf"},
-					{"name":"Setor","id":"cad"}
-				]
-			},
-			{
 				"id":"11",
 				"desc_int":" DE INCIDÊNCIA DOS SALÁRIOS SOBRE OS CUSTOS DOS EMPREENDIMENTOS [cad] [uf]",
 				"title":"Razão entre os Salários Pagos e o Custo Total",
@@ -976,7 +953,7 @@
 				"desc_var_mapa": "Quantidade de trabalhadores possuidores do cartão Vale-Cultura e quantidade de empresas cadastradas para receber compras realizadas com o cartão.",
 				"desc":"",
 				"sufixo_valor":" ",
-				"prefixo_valor":" ",
+				"prefixo_valor":"R$ ",
 				"type":[
 					{"name":"Barras", "id":"barras"}
 				],

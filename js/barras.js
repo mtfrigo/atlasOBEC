@@ -392,7 +392,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
         *  no select dos anos a fim de não criar visualizações impossíveis.
         */
 
-        if(!((eixo == 2 && (vrv == 17 || vrv == 18 || vrv == 19) ) || (eixo == 1 && vrv == 6 && uos == 1))){
+        if(!((eixo == 2 && (vrv == 17) ) || (eixo == 1 && vrv == 6 && uos == 1))){
             $(window.parent.document).find('select[data-id=ano]').each(function(){
                 selectOp = this;
                 $(this.options).each(function(){
