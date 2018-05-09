@@ -2042,7 +2042,7 @@ function setPercentValueData(value, eixo, vrv) {
             }
         }
         else if(vrv >= 10 && vrv <= 13){
-            $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.valor, 2));
+            $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.valor, 4));
         }
 
         var doc =  $(window.parent.document).find(".percent-value").first().find(".number").first();
@@ -2158,6 +2158,8 @@ function formatTextVrv(value, eixo, vrv){
             if(eixo == 1 && url['var'] == 2)
                 string = prefixo+formatDecimalLimit(valor, 4)+sufixo;
             else if(eixo == 1 && url['var'] == 9)
+                string = prefixo+formatDecimalLimit(valor, 4)+sufixo;
+            else if(eixo == 0 && url['var'] > 9)
                 string = prefixo+formatDecimalLimit(valor, 4)+sufixo;
             else
                 string = prefixo+formatDecimalLimit(valor, 2)+sufixo;
