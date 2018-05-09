@@ -529,18 +529,32 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
                 newMapaSrc = newMapaSrc.replace(/uf=[0-9]*/, "uf="+url['uf']);
                 newMapaSrc = newMapaSrc.replace(/prc=[0-9]*/, "prc=" + url['prc']);
 
-                if(eixo == 2 && url['var'] == 10){
-                    if(url['mec'] == 1) {
+                if((eixo == 1 && url['var'] > 11) ||
+                    (eixo == 0 && url['var'] > 9) ||
+                    eixo == 2 && (url['var'] == 15 || url['var'] == 16)){
+                    if(url['uos'] == 0) {
                         var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
                         newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
                         $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
                     }
                     else {
-                        var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                        var newSCCSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
                         newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
-                        $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
+                        $(window.parent.document).find("#view_box").attr("src", newSCCSrc);
                     }
                 }
+                else if(eixo == 2 && url['var'] == 10){
+                        if(url['mec'] == 0) {
+                            var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                            newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
+                            $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
+                        }
+                        else {
+                            var newSCCSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                            newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
+                            $(window.parent.document).find("#view_box").attr("src", newSCCSrc);
+                        }
+                    }
                 else if(eixo == 2 && url['var'] == 17){
                     var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src");
                     newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano="+url['ano']);
