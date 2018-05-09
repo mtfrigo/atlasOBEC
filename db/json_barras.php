@@ -373,7 +373,7 @@ else if($eixo == 1) {
             $nomeDesag = getNameDesag($desag, $tupla);
 
             $barras[intval($id-2007)]['year'] = $tupla->Ano;
-            if($barras[intval($id-2007)][$nomeDesag] == null)
+            if(!isset($barras[intval($id-2007)][$nomeDesag]))
                 $barras[intval($id-2007)][$nomeDesag] = 0;
 
             $barras[intval($id-2007)][$nomeDesag] += (double)$tupla->Valor;

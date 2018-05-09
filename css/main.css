@@ -303,16 +303,25 @@ button.opt:hover, button.opt.active{
 	font-size: 14px;
 	letter-spacing: 1px;
 	font-family: Lato Regular;
+	padding-top: 15%
 }
 
 .integer-value {
 	float: left;
-	width: 48%;
+	width: 100%;
 	padding-right: 10px;
 	margin-bottom: 20px;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+}
+
+.setor-value {
+	float: left;
+	width: 100%;
+	padding-right: 10px;
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
 }
 
 .number {
@@ -333,8 +342,8 @@ button.opt:hover, button.opt.active{
 	margin-bottom: 20px;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
 	height: 70%;
+	width: 100%;
 }
 
 .percent-value .box-dados{

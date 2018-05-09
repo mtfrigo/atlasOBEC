@@ -424,8 +424,8 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     <div class="cad-title" style="display:none">
                         TODOS SETORES
                     </div>
-                    <div class="data-values">
-                        <div class="integer-value" style="padding-top: 15%; padding-left: 15px;">
+                    <div class="data-values" style="display:flex">
+                        <div class="integer-value" style="padding-left: 15px;">
                             <span class="number"></span>
                             <span class="description-number"></span>
                         </div>
@@ -447,10 +447,12 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                             </div>
 
                         </div>
+
                         <div class ="setor-value" style="display:none;">
                             <span class="number"></span>
                             <span class="description-number"></span>
                         </div>
+                        
                     </div>
                     <div class="value-info-title">
 

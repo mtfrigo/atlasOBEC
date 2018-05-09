@@ -565,6 +565,8 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
 
 
             setIntegerValueData(dados, eixo, vrv);
+            
+            setTerceiroValueData(eixo, vrv, dados.percentual[i], url['cad']);  
             //setPercentValueData({percentual: dados.percentual[i]}, eixo, vrv);
         }
     }
@@ -1194,10 +1196,15 @@ function mapPronome(string, array_pron, array_new_pron){
 function descIntBySelectedParameters(desc, ocp, uf, cad, deg){
     nome_uf = getNomeUF(uf)
     desc_uf = getPrepos(nome_uf)+" "+nome_uf;
-    var deg_nome = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").parent().text();
+    if(deg == 0)
+        var deg_nome = "ESCOLHER"
+    else
+        var deg_nome = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").parent().text();
     var tipo_deg = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").text();
-    var cad_nome = $(window.parent.document).find(".bread-select[data-id=cad]").text()
-
+    if(ocp == 0)
+        var cad_nome = $(window.parent.document).find(".bread-select[data-id=cad]").find("option:selected").text()
+    else
+        var cad_nome = $(window.parent.document).find(".bread-select[data-id=ocp]").find("option:selected").text()
     if(ocp == 0){
         if(cad == 0)
             desc = desc.replace("[cad]", "DOS SETORES CULTURAIS E CRIATIVOS")
@@ -1217,22 +1224,33 @@ function descIntBySelectedParameters(desc, ocp, uf, cad, deg){
         if(deg != 0){
             desc_uf = mapPronome(desc_uf, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
             switch(deg){
-                case 1:
+                case '1':
                     desc = desc.replace("[deg]", "DE EMPRESAS DE PORTE "+tipo_deg); break;
-                case 2:
+                case '2':
                     desc = desc.replace("[deg]", "DO SEXO "+tipo_deg); break;
-                case 3:
+                case '3':
                     desc = desc.replace("[deg]", "DE IDADE ENTRE "+tipo_deg); break;
-                case 4:
+                case '4':
                     desc = desc.replace("[deg]", "DE ESCOLARIDADE "+tipo_deg); break;
+                case '5': 
+                    desc = desc.replace("[deg]", "DE ETINIA "+tipo_deg); break; 
+                case '6': 
+                    tipo_deg = mapPronome(tipo_deg, ["Sim", "Não"], ["COM", "SEM"] )
+                    desc = desc.replace("[deg]", tipo_deg+" FORMALIDADE"); break;
+                case '7': 
+                    tipo_deg = mapPronome(tipo_deg, ["Sim", "Não"], ["COM", "SEM"] )
+                    desc = desc.replace("[deg]", tipo_deg+" PREVIDÊNCIA"); break;
+                case '8': 
+                    tipo_deg = mapPronome(tipo_deg, ["Sim", "Não"], ["COM", "SEM"] )
+                    desc = desc.replace("[deg]", tipo_deg+" SINDICATO"); break;
             }
             return desc.replace("[cad]", "DO SETOR "+cad_nome)
-                       .replace("[name_ocp]", "NA OCUPAÇÃO"+cad_nome)
+                       .replace("[name_ocp]", "NA OCUPAÇÃO "+cad_nome)
                        .replace("[uf]", desc_uf)
         } else {
             desc_uf = mapPronome(desc_uf, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
             desc = desc.replace("[deg]", "")
-            return desc.replace("[name_ocp]", "NA OCUPAÇÃO"+cad_nome)
+            return desc.replace("[name_ocp]", "NA OCUPAÇÃO "+cad_nome)
                        .replace("[cad]", "DO SETOR "+cad_nome)
                        .replace("[uf]", desc_uf)
         }
@@ -1240,15 +1258,19 @@ function descIntBySelectedParameters(desc, ocp, uf, cad, deg){
 }
 
 function updateDescMercado(desc, vrv, ocp){
-    var cad = $(window.parent.document).find(".bread-select[data-id=cad]").val()
-    var deg = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").parent().attr("value");
+    if(ocp == 0)
+        var cad = $(window.parent.document).find(".bread-select[data-id=cad]").val()
+    else
+        var cad = $(window.parent.document).find(".bread-select[data-id=ocp]").val()
+    if($(window.parent.document).find(".bread-select[data-id=deg]").first().val() == 0)
+        var deg = 0
+    else
+        var deg = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").parent().attr("value");
     var uf = $(window.parent.document).find(".bread-select[data-id=uf]").val()
     var cad_text = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
     
-    switch(vrv){
-        case 1: 
-            description = descIntBySelectedParameters(desc, ocp, uf, cad, deg)
-    }
+    description = descIntBySelectedParameters(desc, ocp, uf, cad, deg)
+
 
     $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(description)
     //$(window.parent.document).find(".percent-value").first().find(".description-number").first().html(description)
@@ -1378,8 +1400,9 @@ function setTerceiroValueData(eixo, vrv, value, cad){
     if(eixo == 1){
         uf = $(window.parent.document).find(".bread-select[data-id=uf]").val();
         if(vrv == 1 && cad > 0 && uf > 0){
-           $(window.parent.document).find(".setor-value").first().find(".number").first().text(formatDecimalLimit(value, 2));
+           $(window.parent.document).find(".setor-value").first().find(".number").first().text(formatDecimalLimit(value*100, 2)+'%');
            $(window.parent.document).find(".setor-value").first().css("display", "flex");
+
            doc = $(window.parent.document).find(".setor-value").first().find(".number").first();
            setMaxFontSize(doc);
         } 
@@ -1518,7 +1541,8 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         "SERGIPE":"DE",
         "TOCANTINS": "DO"
     }
-
+    nomeestado = getNomeUF($(window.parent.document).find(".bread-select[data-id=uf]").val())
+    console.log(nomeestado)
     if(nomeestado != undefined)
         nomeestado = nomeestado.toUpperCase()
 
@@ -1578,8 +1602,11 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         }
         else if(url['var'] == 1){
             if(tipo == "percent" ){
-                if(prepos[nomeestado] && url['cad'] != 0){
+                console.log(prepos[nomeestado])
+                if(prepos[nomeestado] != undefined && url['cad'] != 0){
+
                     nomeestado = prepos[nomeestado] + ' ' +nomeestado
+
                 }
                 else{
                     nomeestado = "DO BRASIL"
@@ -1857,7 +1884,6 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     if(desc == undefined){
         return ;
     }
-
     if(desc.includes('{}')){
         desc =  descByUF(eixo, tipo, desc, nomeestado, '{}')
     }
@@ -2034,7 +2060,6 @@ function setPercentValueData(value, eixo, vrv) {
         else{
             $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.percentual*100, 2)+"%");
         }
-
         var doc =  $(window.parent.document).find(".percent-value").first().find(".number").first();
         setMaxFontSize(doc);
     }
