@@ -90,9 +90,14 @@ if(!isset($text[$view])) $view = $text['type'][0]['id'];
 $descView = $json_text[$view];			   /*== descrição da visualização ==*/
 ?>
 <?php endif; ?>
+
 <article class="results-article fadeInPage">
 	<div class="results-content">
 		<div class="container">
+
+            <div id="menuvariaveis"></div>
+
+
             <div class="col-md-12 col-xs-12">
                 <div class="desc-chart text-center">
 
@@ -336,7 +341,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
             <!--==== jquery load menu ===-->
 			<div class="row" id="view-boxes">
 				<!-- MAPA -->
-				<div class="col-md-5 col-xs-12" style="height: 452px">
+				<div id='containerMapa' class="col-md-5 col-xs-12" style="height: 452px">
                     <div class="view-title">
                         MAPA DO BRASIL
                         <i class="plus"></i>
@@ -376,7 +381,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     </div>
 				</div>
                 <!--=============== DADOS! ================-->
-                <div class="col-md-5 col-xs-12 iframe-dados" style="height: 330px;">
+                <div id='containerDados' class="col-md-5 col-xs-12 iframe-dados" style="height: 330px;">
                     <div class="view-title" style="margin-top: 5px" >
                         DADOS
                     </div>
@@ -460,7 +465,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     </div>
                 </div>
                 <!--============= opções gráfico! ============-->
-				<div class="col-md-12 col-xs-12 opts-result" style="display: none; height: 330px; ">
+				<div id='containerOpts' class="col-md-12 col-xs-12 opts-result" style="display: none; height: 330px; ">
                     <div id="menu-view">
                         <div class="view-title">
                             MENU
@@ -688,7 +693,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     <?php } ?>
 				</div>
                 <!--=============== BARRAS! ================-->
-                <div class="col-md-5 col-xs-12" style="height: 330px;">
+                <div id='containerBarra' class="col-md-5 col-xs-12" style="height: 330px;">
                     <div class="view-title">
                         SÉRIE HISTÓRICA
                         <i class="plus"></i>
@@ -696,7 +701,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     <iframe id="view_box_barras" src="barras_box.php" style="border: none; width: 100%; height: 275px;" scrolling="no"></iframe>
                 </div>
                 <!--=============== DESCRICAO! ================-->
-                <div id="descricao" class="col-md-5 col-xs-12" style="height: 210px; top: -220px; overflow: auto;">
+                <div id='containerDesc' id="descricao" class="col-md-5 col-xs-12" style="height: 210px; top: -220px; overflow: auto;">
                     <div class="view-title">
                         DESCRIÇÃO DAS VARIÁVEIS
                     </div>
@@ -705,7 +710,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     </div>
                 </div>
                 <!--=============== TREEMAP! ================-->
-                <div class="col-md-10 col-xs-12"  style="height: 452px; top: -220px">
+                <div id='containerTree' class="col-md-10 col-xs-12"  style="height: 452px; top: -220px">
                     <div class="view-title">
                         <div style="float: left; width: 90%;">TREEMAP - SETORES CULTURAIS CRIATIVOS</div>
                         <i class="plus"></i>
@@ -759,7 +764,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                 </script>
                 <span class="col-md-4 col-xs-12 contexto" style="top:-220px"></span>
 
-                <span class="col-md-4 col-xs-12 contexto" style="top:-220px">
+                <span id="containerDownload" class="col-md-4 col-xs-12 contexto" style="top:-220px">
                     <div class="row">
                         <div class="col-md-12 opt-title text-center">DOWNLOAD</div>
                         <div class="col-xs-4 col-btn"><button class="opt select" id="pdf">PDF</button></div>

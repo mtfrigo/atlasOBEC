@@ -1317,6 +1317,31 @@ body.contraste{
 
 	}
 
+	.bread-select, .bread-eixo{
+			float: left;
+		background-color: #f0f0f0;
+		background-size: 10px;
+		padding: 2px 10px 2px 5px;
+		color: #5b5b5f;
+		outline: none;
+		width: 100%;
+		font-size: 16px;
+		border-radius: 5px;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		appearance: none;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		margin: 0px;
+		background-image: url(../images/arrow.png);
+		border: 1px #e7e7e7 solid;
+		display: block;
+	}
+
+	#menuvariaveis .row {
+		padding-left: 0px;
+	}
+
 	#resultado{
 		margin-top: 0;
 	}
