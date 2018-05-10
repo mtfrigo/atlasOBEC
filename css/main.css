@@ -1564,22 +1564,46 @@ body.contraste{
 		flex-direction: column;
 		justify-content: space-around;
 		height: 70%;
-		padding: 3%;
+		width: 100%;
+	}
+
+	.container-flex {
+		width: 90%;
 	}
 
 	.percent-value {
 		margin-bottom: 20px;
+		text-align: center;
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		justify-content: space-around;
 		height: 70%;
-		padding: 3%;
+		width: 100%;
 
 	}
 
-	.number, .description-number{
+	.number{
 		font-size: 4vw;
 		text-align: center;
+		margin-bottom: 10px;
+		justify-content: center;
+
+	}
+
+	.description-number{
+		font-size: 4vw;
+		text-align: center;
+		justify-content: space-around;
+
+	}
+
+	.percent-value .number, .percent-value .description-number{
+		font-size: 3vw;
+		text-align: center;
+		align-items: center;
+
+
+
 	}
 
 	#containerDados .view-title{
