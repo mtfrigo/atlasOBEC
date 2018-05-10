@@ -1464,21 +1464,26 @@ $(document).ready(function(){
         }
         else if($(this).attr("id") == "recebedora" || $(this).attr("id") == "trabalhador"){
 
-            updateUrl();
             if($(this).attr("id") === "recebedora") {
-                url['mec'] = 0;
-                $(this).addClass("active");
-                $('#trabalhadora').removeClass("active");
-                //url['ano'] = anos_default[url['var']][0]
+                if(url['mec'] != 0){
+                    updateUrl();
 
+                    url['mec'] = 0;
+                    $(this).addClass("active");
+                    $('#trabalhadora').removeClass("active");
+                    updateIframe(url); /* altera gráfico */
+
+                }
             }
             else {
-                url['mec'] = 1;
-                $(this).addClass("active");
-                $('#recebedora').removeClass("active");
-                //url['ano'] = anos_default[url['var']][0]
+                if(url['mec'] != 1){
+                    updateUrl();
+                    url['mec'] = 1;
+                    $(this).addClass("active");
+                    $('#recebedora').removeClass("active");
+                    updateIframe(url); /* altera gráfico */
+                }
             }
-            updateIframe(url); /* altera gráfico */
         }
         else {
             updateUrl();
