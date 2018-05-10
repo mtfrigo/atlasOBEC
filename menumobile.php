@@ -337,10 +337,6 @@ switch($eixo) {
                 console.log('out of view');
             }
 
-            window.onscroll = function() {myFunction()};
 
-            function myFunction() {
-                console.log("oioi")
-            }
 
         </script>
