@@ -1393,7 +1393,7 @@ body.contraste{
 		width:100%;
 		background-color:#fff;
 		position:fixed!important;
-		z-index:1;
+		z-index:500;
 		overflow:auto;
 		opacity: 0.95;
 		padding-bottom: 10px;

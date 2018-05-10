@@ -69,7 +69,7 @@ switch($eixo) {
 }
 
 ?>
-        <div class="w3-sidebar w3-bar-block w3-dark-grey w3-animate-left" style="display:none" id="mySidebar">
+        <div class="w3-sidebar w3-bar-block w3-dark-grey w3-animate-left" aberto="0" style="display:none" id="mySidebar">
             <button class="fechar w3-bar-item w3-button w3-large" onclick="w3_close()">Fechar &times;</button>
 
 
@@ -247,7 +247,7 @@ switch($eixo) {
 
         <div class="row" id="barra-menu">
             <div class="col-md-12">
-                 <button class="w3-button w3-white w3-xxlarge" onclick="w3_open()">&#9776; </button><span class="menu-title">Menu</span>
+                 <button class="w3-button w3-white w3-xxlarge" onclick="hamburguer_click()">&#9776; </button><span class="menu-title">Menu</span>
             </div>
         </div>
 
@@ -291,12 +291,37 @@ switch($eixo) {
                 tdiv1.addClass("replaced");
             }
 
+            function hamburguer_click() {
+
+                if($("#mySidebar").attr("aberto") == 1){
+                    w3_close();
+
+                }
+                else{
+                    w3_open();
+                }
+
+            }
+
+            $("#view-boxes").on('click', function(){
+                if($("#mySidebar").attr("aberto") == 1)
+                    w3_close();
+                });
+
+
             function w3_open() {
+
                 document.getElementById("mySidebar").style.display = "block";
+                $("#mySidebar").attr("aberto", 1);
+
             }
             function w3_close() {
                 document.getElementById("mySidebar").style.display = "none";
+                $("#mySidebar").attr("aberto", 0);
+
             }
+
+
 
 
                 // var docViewTop = $(window).scrollTop();
