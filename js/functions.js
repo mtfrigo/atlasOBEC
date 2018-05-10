@@ -1089,6 +1089,44 @@ function getPrepos(uf){
     return prepos[uf];
 }
 
+function updateDescEmpreendimentos(desc, vrv){
+    var uf = $(window.parent.document).find(".bread-select[data-id=uf]").val()
+    var uf_text = $(window.parent.document).find(".bread-select[data-id=uf] option:selected").text()
+    var cad_text = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
+    var cad = $(window.parent.document).find(".bread-select[data-id=cad]").val();
+    var prt = $(window.parent.document).find(".bread-select[data-id=deg]").val();
+    var prt_text = $(window.parent.document).find(".bread-select[data-id=deg] option:selected").text();
+
+    array_variaveis = [1, 4, 5, 6, 7, 8, 9]
+    if(array_variaveis.includes(parseInt(vrv))){
+        if(prt == 0){
+            if(uf == 0 && cad == 0){
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "").replace("[uf]", "")
+            } else if(cad == 0){
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "").replace("[uf]", "")
+            } else if(cad > 0){
+                uf_text = getPrepos(uf_text) +' '+ uf_text
+                uf_text = mapPronome(uf_text, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
+                description = desc.replace("[cad]", "DO SETOR "+cad_text).replace("[prt]", "").replace("[uf]", uf_text)
+            }
+        } else{
+            if(uf == 0 && cad == 0){
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+port_text).replace("[uf]", "")
+            } else if(cad == 0){
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+port_text).replace("[uf]", "")
+            } else if(cad > 0){
+                uf_text = getPrepos(uf_text) +' '+ uf_text
+                uf_text = mapPronome(uf_text, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
+                description = desc.replace("[cad]", "DO SETOR "+cad_text).replace("[prt]", "DE "+port_text).replace("[uf]", uf_text)
+            }
+        }
+        
+    }
+
+
+    $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(description)
+}
+
 function updateDescPercentComercio(desc, vrv, nomeestado){
     
 
@@ -1160,7 +1198,6 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
     }
 }
 function mapPronome(string, array_pron, array_new_pron){
-
     array_pron.forEach(function(d, i){
         string = string.replace(array_pron[i], array_new_pron[i])
     })

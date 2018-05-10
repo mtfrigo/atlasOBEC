@@ -34,8 +34,9 @@
 			{
 				"id":"1",
 				"title":"Número Total de Empresas",
-				"desc_int": "Empresas [cad] [prt]",
+				"desc_int": "Empresas [cad] [prt] [uf]",
 				"desc_percent": "DO TOTAL DE EMPRESAS DOS SETORES CULTURAIS E CRIATIVAS [uf].",
+				"desc_setorial": "DO TOTAL DE EMPRESAS [cad] do Brasil",
 				"sufixo_valor":"",
 				"prefixo_valor":"",
 				"desc":"Esse indicador demonstra o total de empresas culturais. Uma elevação deste número pode indicar um aumento tanto em termos de oferta, quanto de demanda por bens e serviços culturais, assim como uma diminuição pode indicar um arrefecimento da demanda por bens e serviços culturais.",
