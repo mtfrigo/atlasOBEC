@@ -356,6 +356,8 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
                 setPercentValueData({percentual: dados.percentual[index_ano]}, eixo, vrv)
         }
 
+        setTerceiroValueData(eixo, vrv, dados.percentual[index_ano], url['cad']);  
+
     }
     else if(eixo == 1){
         // first_year = Number(dados.key[0]);
@@ -540,6 +542,8 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
                 setPercentValueData(dados, eixo, vrv);
             }
         }
+
+        setTerceiroValueData(eixo, vrv, dados.percentual[i], url['cad']);  
 
 
     }
@@ -1370,8 +1374,22 @@ function updateDescComercio(desc, vrv, nomeestado){
         return
 }
 function setTerceiroValueData(eixo, vrv, value, cad){
+
+    uf = $(window.parent.document).find(".bread-select[data-id=uf]").val();
+    if(eixo == 0){
+        array_variaveis = [1, 4, 5, 6, 7, 8, 9]
+        if(array_variaveis.includes(parseInt(vrv)) && uf > 0 && cad > 0){
+            $(window.parent.document).find(".setor-value").first().find(".number").first().text(formatDecimalLimit(value*100, 2)+'%');
+            $(window.parent.document).find(".setor-value").first().css("display", "flex");
+
+            doc = $(window.parent.document).find(".setor-value").first().find(".number").first();
+            setMaxFontSize(doc);
+        }
+        else{
+            $(window.parent.document).find(".setor-value").first().css("display", "none");
+        }
+    }
     if(eixo == 1){
-        uf = $(window.parent.document).find(".bread-select[data-id=uf]").val();
         ocp = $(window.parent.document).find(".bread-select[data-id=ocp]").val() == undefined ? 0 : $(window.parent.document).find(".bread-select[data-id=ocp]").val()
         if(vrv == 1 && (cad > 0 || ocp != 0 && ocp != 3) && uf > 0){
            $(window.parent.document).find(".setor-value").first().find(".number").first().text(formatDecimalLimit(value*100, 2)+'%');
