@@ -1323,7 +1323,7 @@ body.contraste{
 	background-color: black;
 }
 
-@media (max-width: 479px) {
+@media (max-width: 1499px) {
 
 	.mob-bread{
 		font-size: 24px;
@@ -1459,6 +1459,8 @@ body.contraste{
 		position: relative;
 		right:0;
 		top:0;
+		width: 100%;
+		text-align: right;
 
 	}
 	.w3-button:hover{color:#000!important;background-color:#ccc!important}
@@ -1478,7 +1480,7 @@ body.contraste{
 	}
 
 	#barra-menu{
-		background-color: black;
+		background-color: #616161	;
 		height: 50px;
 		padding-top: 10px;
 		position: absolute;
@@ -1555,6 +1557,15 @@ body.contraste{
 	.number, .description-number{
 		font-size: 4vw;
 		text-align: center;
+	}
+
+	#containerDados .view-title{
+		margin-top: 18px;
+		font-size: 18px;
+	}
+
+	.content-btn-mapa{
+		width: 100%;
 	}
 
 

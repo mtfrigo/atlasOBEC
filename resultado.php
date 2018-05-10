@@ -370,10 +370,10 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                     ?>
                     <iframe id="view_box" src="<?php if($view != "") echo $view; else echo "mapa"; ?>_box.php" style="border: none; width: 100%; height: 350px;" scrolling="no"></iframe>
                     <!--=== views gráfico ===-->
-                    <div class="content-btn-mapa">
+                    <div class="content-btn-mapa ">
                     <?php foreach($text['type'] as $key => $value):?>
                         <?php if($value['id'] === "mapa" || $value['id'] == "treemap_region"): ?>
-                        <div class="btn-mapa">
+                        <div class="btn-mapa col-xs-6">
                             <button data-desc="<?= $json_text[$value['id']] ?>" class="opt view <?php if($value['id']==$view) echo 'active';?>" id="<?php echo $value['id'];?>"><?php echo $value['name'];?></button>
                         </div>
                         <?php endif; ?>
@@ -382,7 +382,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
 				</div>
                 <!--=============== DADOS! ================-->
                 <div id='containerDados' class="col-md-5 col-xs-12 iframe-dados" style="height: 330px;">
-                    <div class="view-title" style="margin-top: 5px" >
+                    <div class="view-title">
                         DADOS
                     </div>
 
