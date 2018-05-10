@@ -1539,6 +1539,7 @@ body.contraste{
 		justify-content: space-around;
 		font-family: Lato Regular;
 		height: 270px;
+		padding-bottom: 20px;
 	}
 
 	.integer-value {
