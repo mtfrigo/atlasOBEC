@@ -830,7 +830,7 @@ function updateBreadUF(eixo, vrv){
 }
 
 function updateSelectTipo(options){
-    names = {"1": "Exportação", "2": "Importação", "3": "Saldo Comercial", "4": "Valor Transacionado"};
+    names = {"1": "Exportação", "2": "Importação", "3": "Saldo Comercial", "4": "Corrente de Comércio"};
     for(var key in names){
         if($("select[data-id=typ]").find("option[value='"+key+"']").length != 0)
             $("select[data-id='typ']").find("option[value='"+key+"']").remove()
@@ -1110,7 +1110,7 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
                 return desc.replace('{}', nomeestado).replace('<>', typ);
             case 'Saldo Comercial': 
                 return ''
-            case 'Valor Transacionado': 
+            case 'Corrente de Comércio': 
                 prc = $(window.parent.document).find(".opt-select[data-id=prc] option:selected").text();
                 cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
                 typ = "TRANSACIONADO";
@@ -1142,7 +1142,7 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
                 return desc.replace('{}', nomeestado).replace('<>', typ);
             case 'Saldo Comercial': 
                 return ''
-            case 'Valor Transacionado': 
+            case 'Corrente de Comércio': 
                 prc = $(window.parent.document).find(".opt-select[data-id=prc] option:selected").text();
                 cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
                 typ = "TRANSACIONADO";
@@ -1350,11 +1350,11 @@ function updateDescComercio(desc, vrv, nomeestado){
             $(window.parent.document).find(".state-title").first().text("ENTRE "+nomeestado.split(" ")[1])
             $(window.parent.document).find(".prc-title").first().text("E "+prc.split(" ")[1])
             break;
-        case 'Valor Transacionado':
+        case 'Corrente de Comércio':
             if(vrv >= 1 && vrv <= 3)
-                typ = "VALOR TRANSACIONADO" 
+                typ = "Corrente de Comércio" 
             else if(vrv == 13){
-                typ = "DE VALOR TRANSACIONADO"
+                typ = "DE Corrente de Comércio"
             }
             $(window.parent.document).find(".state-title").first().text("ENTRE "+ nomeestado.split(" ")[1])
             $(window.parent.document).find(".prc-title").first().text("E "+prc.split(" ")[1])
