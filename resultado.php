@@ -386,7 +386,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         DADOS
                     </div>
 
-                    <div id="btn-opt" class="btn-opt" style="width: 48%; margin-top: 10px; margin-bottom: 10px;">
+                    <div id="btn-opt" class="btn-opt" style=" margin-top: 10px; margin-bottom: 10px;">
                         <?php
                         if($eixo == "mercado") {
                             ?>

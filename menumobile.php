@@ -1,5 +1,4 @@
 
-
 <?php
 
 $uf     =   isset($_GET["uf"])    ?   $_GET["uf"]   :   0;	   /*== uf ==*/
@@ -70,123 +69,125 @@ switch($eixo) {
 }
 
 ?>
+        <div class="w3-sidebar w3-bar-block w3-dark-grey w3-animate-left" style="display:none" id="mySidebar">
+            <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Fechar &times;</button>
 
 
-        <div class="row">
-            <div class="col-md-12">
-                <select class="bread-select" data-id="eixo">
-                    <?php
-                    foreach ($json_text['select']['eixo'] as $bread_eixo) {
+            <div class="rotulo-bread w3-bar-item">Eixo</div>
 
-                            echo "<option value='" . $bread_eixo['value'] . "'>" . $bread_eixo['name'] . "</option>";
+            <select class="w3-bar-item bread-select" data-id="eixo">
+                <?php
+                foreach ($json_text['select']['eixo'] as $bread_eixo) {
 
-                    }
-                    ?>
-                </select>
-            </div>
+                    echo "<option value='" . $bread_eixo['value'] . "'>" . $bread_eixo['name'] . "</option>";
+
+                }
+                ?>
+            </select>
+
+            <div class="rotulo-bread w3-bar-item">Variável</div>
 
 
+            <select class="w3-bar-item bread-select bread-select-var" data-id="var">
+                <?php
+                foreach ($json_text['var'][$eixo_num] as $variavel) {
+                    echo "<option value='" . $variavel['id'] . "'>" . $variavel['title'] . "</option>";
+                }
+                ?>
+            </select>
 
-            <div class="col-md-12">
-                <select class="bread-select bread-select-var" data-id="var">
-                    <?php
-                    foreach ($json_text['var'][$eixo_num] as $variavel) {
-                        echo "<option value='" . $variavel['id'] . "'>" . $variavel['title'] . "</option>";
-                    }
-                    ?>
-                </select>
-            </div>
 
             <?php if($eixo_num == 3) {?>
 
-                <div class="col-md-12">
+                <div class="rotulo-bread w3-bar-item">Parceiro</div>
 
-                    <select class="bread-select" id="bread-select-prc" data-id="prc">
-                        <?php
-                        foreach ($json_text['select']['prc'] as $option) {
-                            echo "<option value='" . $option['value'] . "'>" . $option['name'] . "</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
+            <select class="bread-select" id="bread-select-prc" data-id="prc">
+                <?php
+                foreach ($json_text['select']['prc'] as $option) {
+                    echo "<option value='" . $option['value'] . "'>" . $option['name'] . "</option>";
+                }
+                ?>
+            </select>
 
 
             <?php } ?>
 
-            <div class="col-md-12">
-                <select class="bread-select bread-uf" data-id="uf">
-                    <?php
-                    foreach ($json_text['select']['uf'] as $bread_uf) {
-                        echo "<option value='" . $bread_uf['value'] . "'>" . $bread_uf['name'] . "</option>";
-                    }
-                    ?>
-                </select>
-            </div>
+            <div class="rotulo-bread w3-bar-item">UF</div>
 
-            <div class="col-md-12">
-                <select class="bread-select" data-id="ano">
-                    <?php
-                    foreach ($json_text['select']['ano'] as $option) {
-                        echo "<option value='" . $option['value'] . "'>" . $option['name'] . "</option>";
-                    }
-                    ?>
-                </select>
-            </div>
 
-            <div class="col-md-12">
-                <select class="bread-select" id="bread-select-cad" data-id="cad">
-                    <?php
-                    foreach ($json_text['select']['cad'] as $bread_cad) {
-                        echo "<option value='" . $bread_cad['value'] . "'>" . $bread_cad['name'] . "</option>";
-                    }
-                    ?>
-                </select>
-            </div>
+            <select class="bread-select bread-uf" data-id="uf">
+                <?php
+                foreach ($json_text['select']['uf'] as $bread_uf) {
+                    echo "<option value='" . $bread_uf['value'] . "'>" . $bread_uf['name'] . "</option>";
+                }
+                ?>
+            </select>
+
+            <div class="rotulo-bread w3-bar-item">Ano</div>
+
+
+            <select class="bread-select" data-id="ano">
+                <?php
+                foreach ($json_text['select']['ano'] as $option) {
+                    echo "<option value='" . $option['value'] . "'>" . $option['name'] . "</option>";
+                }
+                ?>
+            </select>
+
+            <div class="rotulo-bread w3-bar-item">Setor</div>
+
+            <select class="bread-select" id="bread-select-cad" data-id="cad">
+                <?php
+                foreach ($json_text['select']['cad'] as $bread_cad) {
+                    echo "<option value='" . $bread_cad['value'] . "'>" . $bread_cad['name'] . "</option>";
+                }
+                ?>
+            </select>
 
             <?php if($eixo_num == 0){?>
 
-                <div class="col-md-12">
-                    <select class="bread-select" id="bread-select-deg   " data-id="deg">
-                        <option value="0">Escolher</option>
+            <div class="rotulo-bread w3-bar-item">Desagregação</div>
 
-                        <?php foreach ($select['deg'] as $option): ?>
+            <select class="bread-select" id="bread-select-deg   " data-id="deg">
+                <option value="0">Escolher</option>
 
-                            <?php if($option['value'] >= 9 && $option['value'] <= 12):?>
-                                <option value="<?php echo $option['value'] ?>"><?php echo $option['name'] ?></option>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+                <?php foreach ($select['deg'] as $option): ?>
+
+                    <?php if($option['value'] >= 9 && $option['value'] <= 12):?>
+                        <option value="<?php echo $option['value'] ?>"><?php echo $option['name'] ?></option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </select>
 
             <?php } ?>
 
             <?php if($eixo_num == 1){?>
 
+            <div class="rotulo-bread w3-bar-item">Desagregação</div>
 
-                <div class="col-md-12">
 
-                    <select class="bread-select" id="bread-select-deg" data-id="deg">
-                        <option value="0">Escolher</option>
+            <select class="bread-select" id="bread-select-deg" data-id="deg">
+                <option value="0">Escolher</option>
 
-                        <?php foreach ($select['deg'] as $option): ?>
-                            <?php if($option['value'] >= 1 && $option['value'] <= 4):?>
-                                <optgroup value="<?php echo $option['value'] ?>" label="<?php echo $option['name'] ?>">
-                                    <?php foreach ($option['desags'] as $key=>$desag): ?>
-                                        <option value="<?php echo $key+1 ?>"><?php echo $desag ?></option>
-                                    <?php endforeach; ?>
-                                </optgroup>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+                <?php foreach ($select['deg'] as $option): ?>
+                    <?php if($option['value'] >= 1 && $option['value'] <= 4):?>
+                        <optgroup value="<?php echo $option['value'] ?>" label="<?php echo $option['name'] ?>">
+                            <?php foreach ($option['desags'] as $key=>$desag): ?>
+                                <option value="<?php echo $key+1 ?>"><?php echo $desag ?></option>
+                            <?php endforeach; ?>
+                        </optgroup>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </select>
 
             <?php } ?>
 
             <?php if($eixo_num == 2){?>
 
-                <div class="col-md-12">
+                <div class="rotulo-bread w3-bar-item">Mecanismo</div>
 
-                    <select class="bread-select" id="bread-select-mec" data-id="mec">
+
+                <select class="bread-select" id="bread-select-mec" data-id="mec">
                         <option value="0">Todos</option>
 
                         <?php foreach ($select['mec'] as $option): ?>
@@ -196,12 +197,10 @@ switch($eixo) {
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </select>
-                </div>
 
+                <div class="rotulo-bread w3-bar-item">Modalidade</div>
 
-
-                <div class="col-md-12">
-                    <select class="bread-select" id="bread-select-mod" data-id="mod">
+                <select class="bread-select" id="bread-select-mod" data-id="mod">
                         <option value="0">Todos</option>
 
                         <?php foreach ($select['mod'] as $option): ?>
@@ -211,12 +210,10 @@ switch($eixo) {
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </select>
-                </div>
 
+                <div class="rotulo-bread w3-bar-item">Pessoa</div>
 
-                <div class="col-md-12">
-
-                    <select class="bread-select" id="bread-select-mec" data-id="pfj">
+                <select class="bread-select" id="bread-select-mec" data-id="pfj">
                         <option value="0">Todos</option>
 
                         <?php foreach ($select['pfj'] as $option): ?>
@@ -227,28 +224,34 @@ switch($eixo) {
                         <?php endforeach; ?>
                     </select>
 
-                </div>
-
             <?php } ?>
 
             <?php if($eixo_num == 3){?>
 
+                <div class="rotulo-bread w3-bar-item">Tipo</div>
 
 
-                <div class="col-md-12">
+                <select class="bread-select" id="bread-select-typ" data-id="typ">
 
-                    <select class="bread-select" id="bread-select-typ" data-id="typ">
+                <?php foreach ($select['typ'] as $option): ?>
 
-                        <?php foreach ($select['typ'] as $option): ?>
-
-                            <?php if($option['value'] >= 1 && $option['value'] <= 4):?>
-                                <option value="<?php echo $option['value'] ?>"><?php echo $option['name'] ?></option>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+                    <?php if($option['value'] >= 1 && $option['value'] <= 4):?>
+                        <option value="<?php echo $option['value'] ?>"><?php echo $option['name'] ?></option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </select>
 
             <?php } ?>
+
+        </div>
+
+        <div class="row" id="barra-menu">
+            <div class="col-md-12">
+                 <button class="w3-button w3-white w3-xxlarge" onclick="w3_open()">&#9776; </button><span class="menu-title">Menu</span>
+            </div>
+        </div>
+
+
 
         </div>
         <script>
@@ -257,6 +260,7 @@ switch($eixo) {
                 $(".bread-select[data-id='eixo']").val(window.location.hash.substring(1));
             });
 
+            $('#containerDesc').css("height", "auto");
             $('#containerDesc').css("top", "0");
             $('#containerTree').css("top", "0");
              $('#containerDownload').css("display", "none");
@@ -272,6 +276,26 @@ switch($eixo) {
                 div2.replaceWith(tdiv1);
 
                 tdiv1.addClass("replaced");
+            }
+
+            div1 = $('#containerBarra');
+            div2 = $('#containerDesc');
+
+            tdiv1 = div1.clone();
+            tdiv2 = div2.clone();
+
+            if(!div2.is(':empty')){
+                div1.replaceWith(tdiv2);
+                div2.replaceWith(tdiv1);
+
+                tdiv1.addClass("replaced");
+            }
+
+            function w3_open() {
+                document.getElementById("mySidebar").style.display = "block";
+            }
+            function w3_close() {
+                document.getElementById("mySidebar").style.display = "none";
             }
 
         </script>
