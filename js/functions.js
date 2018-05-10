@@ -1,52 +1,43 @@
-function changeDownloadURL(url){
+function changeDownloadURL(url, eixo){
     newURL = $('#select-pdf input').attr("value").replace(/download.php?.*/, "download.php?"+ url);
     $('#select-pdf input').attr("value", newURL)
     vrv = parseInt(url.match(/var=[0-9]+/)[0].replace("var=", ''))
-    switch(vrv) {
-        case 1:
-            name_url = "total_empresas";
-            break;
-        case 2:
-            name_url = "peso_empresas";
-            break;
-        case 3:
-            name_url = "variacao_total_empresas";
-            break;
-        case 4:
-            name_url = "receita_total";
-            break;
-        case 5:
-            name_url = "receita_liquida";
-            break;
-        case 6:
-            name_url = "custo";
-            break;
-        case 7:
-            name_url = "lucro";
-            break;
-        case 8:
-            name_url = "valor_adicionado";
-            break;
-        case 9:
-            name_url = "va_pib";
-            break;
-        case 10:
-            name_url = "ihh_empresas";
-            break;
-        case 11:
-            name_url = "ihh_valor_adicionado";
-            break;
-        case 12:
-            name_url = "C4_empresas";
-            break;
-        case 13:
-            name_url = "C4_valor_adicionado";
-            break;
-        default:
-            name_url = "total_empresas";
+    ocp = url.match(/ocp=[0-9]+/)[0].replace("ocp=", '')
+
+    diretorio = ''
+
+
+    if(eixo == "comercio"){
+        slc = url.match(/slc=[0-9]+/)[0].replace("slc=", '')
+        switch(slc){
+            case '0': diretorio = 'bens/'; break;
+            case '1': diretorio = 'servicos/'; break;
+        }
     }
-    newURL = $('#select-csv input').attr("value").replace(/csv\/.*/, "csv/"+name_url+".ods")
-    $('#select-csv input').attr("value", newURL)
+    if(eixo == "mercado"){
+        switch(ocp){
+            case '0': diretorio = 'setorial/'; break;
+            case '1': diretorio = 'atividades_relacionadas/'; break;
+            case '2': diretorio = 'cultura/'; break;
+            case '3': diretorio = "atividades_relacionadas/"; break;
+        }
+    
+    }
+    
+    $.get('./data/csv_files.json', function(data){
+        var name_url;
+        console.log(diretorio)
+        if(diretorio != '')
+            dados = data[eixo][diretorio]
+        else
+            dados = data[eixo]
+        name_url = dados.filter(function( obj ) {
+            return obj.id == vrv;
+        })[0].file_name;
+
+        newURL = $('#select-csv input').attr("value").replace(/csv\/.*/, "csv/"+eixo+"/"+diretorio+name_url)
+        $('#select-csv input').attr("value", newURL)
+    })
 }
 
 function ajustaAnos(keys) {
@@ -1095,36 +1086,7 @@ function getPrepos(uf){
 }
 
 function updateDescPercentComercio(desc, vrv, nomeestado){
-    prepos = {
-        "ACRE":"DO",
-        "ALAGOAS":"DE",
-        "AMAPÁ":"DO",
-        "AMAZONAS":"DO",
-        "BAHIA":"DA",
-        "CEARÁ":"DO",
-        "DISTRITO FEDERAL":"DO",
-        "ESPÍRITO SANTO":"DO",
-        "GOIÁS":"DE",
-        "MARANHÃO":"DO",
-        "MATO GROSSO":"DE",
-        "MATO GROSSO DO SUL":"DE",
-        "MINAS GERAIS":"DE",
-        "PARÁ":"DO",
-        "PARAÍBA":"DA",
-        "PARANÁ":"DO",
-        "PERNAMBUCO":"DE",
-        "PIAUÍ":"DO",
-        "RIO DE JANEIRO":"DO",
-        "RIO GRANDE DO NORTE":"DO",
-        "RIO GRANDE DO SUL":"DO",
-        "RONDÔNIA":"DE",
-        "RORAIMA":"DE",
-        "SANTA CATARINA":"DE",
-        "SÃO PAULO":"DE",
-        "SERGIPE":"DE",
-        "TOCANTINS": "DO"        
-    }
-    nomeestado = nomeestado.toUpperCase()
+    
 
     typ = $(window.parent.document).find(".opt-select[data-id=typ] option:selected").text();
     
@@ -1132,8 +1094,8 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
         switch(typ){
             case 'Exportação': 
                 typ = "EXPORTADO";
-                if(prepos[nomeestado]){
-                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                if(getPrepos(nomeestado)){
+                    nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
                 }
                 else{
                     nomeestado = "DO BRASIL"
@@ -1164,8 +1126,8 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
         switch(typ){
             case 'Exportação': 
                 typ = "EXPORTADOS";
-                if(prepos[nomeestado]){
-                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                if(getPrepos(nomeestado)){
+                    nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
                 }
                 else{
                     nomeestado = "DO BRASIL"
@@ -1204,6 +1166,7 @@ function mapPronome(string, array_pron, array_new_pron){
 function descIntBySelectedParameters(desc, ocp, uf, cad, deg){
     nome_uf = getNomeUF(uf)
     desc_uf = getPrepos(nome_uf)+" "+nome_uf;
+    vrv = parseInt($(window.parent.document).find("iframe").attr("src").match(/var=[0-9]+/)[0].replace("var=", ''))
     if(deg == 0)
         var deg_nome = "ESCOLHER"
     else
@@ -1214,8 +1177,10 @@ function descIntBySelectedParameters(desc, ocp, uf, cad, deg){
     else
         var cad_nome = $(window.parent.document).find(".bread-select[data-id=ocp]").find("option:selected").text()
     if(ocp == 0){
-        if(cad == 0)
-            desc = desc.replace("[cad]", "DOS SETORES CULTURAIS E CRIATIVOS")
+        if(cad == 0){
+            desc_setores = "DOS SETORES CULTURAIS E CRIATIVOS"
+            desc = desc.replace("[cad]", desc_setores)
+        }
         desc = desc.replace("[ocp]", "TRABALHADORES")
     } else {
         desc = desc.replace("[cad]","[name_ocp]")
@@ -1326,8 +1291,8 @@ function updateDescComercio(desc, vrv, nomeestado){
     nomeestado = $(window.parent.document).find(".bread-select[data-id=uf] option:selected").text();
     nomeestado = nomeestado.toUpperCase()
     
-    if(prepos[nomeestado]){
-        nomeestado = prepos[nomeestado] + ' ' +nomeestado
+    if(getPrepos(nomeestado)){
+        nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
     }
     else{
         nomeestado = "DO BRASIL"
@@ -1557,8 +1522,8 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
 
     if(eixo == 0){
         if(url['var'] == 3 || url['var'] == 9){
-            if(prepos[nomeestado]){
-                nomeestado = prepos[nomeestado] + ' ' +nomeestado
+            if(getPrepos(nomeestado)){
+                nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
             }
             else{
                 nomeestado = "DO BRASIL"
@@ -1566,16 +1531,16 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         }
         else if(url['var'] == 4){
             if(tipo == "integer"){
-                if(prepos[nomeestado]){
-                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                if(getPrepos(nomeestado)){
+                    nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
                 }
                 else{
                     nomeestado = "DO BRASIL"
                 }
             }
             else if(tipo == "percent" ){
-                if(prepos[nomeestado] && url['cad'] != 0){
-                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                if(getPrepos(nomeestado) && url['cad'] != 0){
+                    nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
                 }
                 else{
                     nomeestado = "DO BRASIL"
@@ -1588,9 +1553,9 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
                 if(url['cad'] == 0)
                     nomeestado = "DO BRASIL"
                 else
-                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
-            }else if(prepos[nomeestado]){
-                nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                    nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
+            }else if(getPrepos(nomeestado)){
+                nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
             }
             else{
                 nomeestado = "DO BRASIL"
@@ -1601,8 +1566,8 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
     else if(eixo == 1){
         if(url['var'] == 7){
             if(tipo == "percent" ){
-                if(prepos[nomeestado]){
-                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                if(getPrepos(nomeestado)){
+                    nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
                 }
                 else{
                     nomeestado = "DO BRASIL"
@@ -1611,10 +1576,10 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         }
         else if(url['var'] == 1){
             if(tipo == "percent" ){
-                console.log(prepos[nomeestado])
-                if(prepos[nomeestado] != undefined && url['cad'] != 0){
+                console.log(getPrepos(nomeestado))
+                if(getPrepos(nomeestado) != undefined && url['cad'] != 0){
 
-                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                    nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
 
                 }
                 else{
@@ -1626,12 +1591,12 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
     if(eixo == 2){
         if(url['var'] == 8 || url['var'] == 9) {
 
-            if(prepos[nomeestado] && url['uf'] != 0){
+            if(getPrepos(nomeestado) && url['uf'] != 0){
 
                 if(tag == '{}')
                     nomeestado = ""
                 else
-                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                    nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
 
 
             }
@@ -1643,8 +1608,8 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
             }
         }
         else if(url['var'] == 99 ) {
-            if(prepos[nomeestado]){
-                nomeestado = prepos[nomeestado] + ' ' +nomeestado
+            if(getPrepos(nomeestado)){
+                nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
             }
             else{
                 nomeestado = "DO BRASIL"
@@ -1652,16 +1617,16 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         }
         else if(url['var'] == 3 || url['var'] == 2){
             if(tipo == "integer"){
-                if(prepos[nomeestado]){
-                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                if(getPrepos(nomeestado)){
+                    nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
                 }
                 else{
                     nomeestado = "DO BRASIL"
                 }
             }
             else if(tipo == "percent" ){
-                if(prepos[nomeestado] && url['cad'] != 0){
-                    nomeestado = prepos[nomeestado] + ' ' +nomeestado
+                if(getPrepos(nomeestado) && url['cad'] != 0){
+                    nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
                 }
                 else{
                     nomeestado = "DO BRASIL"
@@ -1670,8 +1635,8 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
 
         }
         else{
-            if(prepos[nomeestado]){
-                nomeestado = prepos[nomeestado] + ' ' +nomeestado
+            if(getPrepos(nomeestado)){
+                nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
             }
             else{
                 nomeestado = "DO BRASIL"

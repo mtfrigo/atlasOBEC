@@ -425,33 +425,38 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         TODOS SETORES
                     </div>
                     <div class="data-values" style="display:flex">
-                        <div class="integer-value" style="padding-left: 15px;">
-                            <span class="number"></span>
-                            <span class="description-number"></span>
-                        </div>
-                        <div class="percent-value">
-
-                            <div class="box-dado">
-                                <span class="number">100%</span>
-                                <span class="description-number" ></span>
+                        <div class="container-flex">
+                            <div class="integer-value" style="padding-left: 15px;">
+                                <span class="number"></span>
+                                <span class="description-number"></span>
                             </div>
-
-                            <div class="box-dado" style="display:none">
-                                <span class="number">100%</span>
-                                <span class="description-number" ></span>
-                            </div>
-
-                            <div class="box-dado" style="display:none">
-                                <span class="number">100%</span>
-                                <span class="description-number" ></span>
-                            </div>
-
                         </div>
+                        <div class="container-flex">
+                            <div class="percent-value">
 
-                        <div class ="setor-value" style="display:none;">
-                            <span class="number"></span>
-                            <span class="description-number"></span>
-                        </div>
+                                <div class="box-dado">
+                                    <span class="number"></span>
+                                    <span class="description-number" ></span>
+                                </div>
+
+                                <div class="box-dado" style="display:none">
+                                    <span class="number">100%</span>
+                                    <span class="description-number" ></span>
+                                </div>
+
+                                <div class="box-dado" style="display:none">
+                                    <span class="number">100%</span>
+                                    <span class="description-number" ></span>
+                                </div>
+
+                                <div class ="setor-value" style="display:none;">
+                                    <span class="number"></span>
+                                    <span class="description-number"></span>
+                                </div>
+
+                            </div>
+                    </div>
+                        
                         
                     </div>
                     <div class="value-info-title">
