@@ -636,7 +636,7 @@
 			},
 			{
 				"id":"4",
-				"desc_int":"DE REMUNERAÇÃO MÉDIA DOS [ocp] [cad] [deg]",
+				"desc_int":"DE REMUNERAÇÃO MÉDIA DOS [ocp] [cad] [deg] [uf]",
 				"title":"Remuneração Média",
 				"desc_percent": "",
 				"sufixo_valor":"",
@@ -664,7 +664,7 @@
 			},
 			{
 				"id":"5",
-				"desc_int":"POR HORA TRABALHADA [cad] [deg]",
+				"desc_int":"POR HORA TRABALHADA [cad] [deg] [uf]",
 				"title":"Remuneração por Hora Trabalhada",
 				"desc_percent": "",
 				"sufixo_valor":"",
@@ -692,7 +692,7 @@
 			},
 			{
 				"id":"6",
-				"desc_int":"horas semanais médias de trabalho [deg] [cad]",
+				"desc_int":"horas semanais médias de trabalho [deg] [cad] [uf]",
 				"title":"Jornada de Trabalho Média",
 				"desc_percent": "",
 				"sufixo_valor":"",
