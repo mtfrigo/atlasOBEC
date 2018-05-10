@@ -430,7 +430,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         TODOS SETORES
                     </div>
                     <div class="data-values">
-                        <div class="integer-value" style="padding-top: 15%; padding-left: 15px;">
+                        <div class="integer-value">
                             <span class="number"></span>
                             <span class="description-number"></span>
                         </div>
@@ -716,8 +716,8 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         <i class="plus"></i>
                     </div>
                     <?php if ($eixo != "comercio") {?>
-                        <iframe id="view_box_scc" src="treemap_scc_box.php" style="border: none; width: 80%; height: 90%; float: left;" scrolling="no"></iframe>
-                        <div id="menu-view" style="float: right; width: 20%">
+                        <iframe id="view_box_scc" src="treemap_scc_box.php" scrolling="no"></iframe>
+                        <div id="menu-view" >
                     <?php } else {?>
                         <iframe id="view_box_scc" src="treemap_scc_box.php" style="border: none; width: 100%; height: 90%; float: left;" scrolling="no"></iframe>
                         <div id="menu-view" style="float: right; width: 20%; display:none">

@@ -70,7 +70,7 @@ switch($eixo) {
 
 ?>
         <div class="w3-sidebar w3-bar-block w3-dark-grey w3-animate-left" style="display:none" id="mySidebar">
-            <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Fechar &times;</button>
+            <button class="fechar w3-bar-item w3-button w3-large" onclick="w3_close()">Fechar &times;</button>
 
 
             <div class="rotulo-bread w3-bar-item">Eixo</div>
