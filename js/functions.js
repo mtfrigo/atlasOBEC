@@ -1515,10 +1515,8 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         "SERGIPE":"DE",
         "TOCANTINS": "DO"
     }
-    nomeestado = getNomeUF($(window.parent.document).find(".bread-select[data-id=uf]").val())
-    console.log(nomeestado)
-    if(nomeestado != undefined)
-        nomeestado = nomeestado.toUpperCase()
+
+     nomeestado = $(window.parent.document).find('.bread-select[data-id=uf]').find("option:selected").text().toUpperCase()
 
     if(eixo == 0){
         if(url['var'] == 3 || url['var'] == 9){
@@ -1632,6 +1630,40 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
                     nomeestado = "DO BRASIL"
                 }
             }
+
+        }
+        else if(url['var'] == 18){
+
+            string = "";
+
+            if(url['mec'] == 0 && tipo == "integer")
+                string = "em lojas ";
+            if(url['mec'] == 1 && tipo == "integer")
+                string = "por trabalhadores cadastrados "
+
+            if(prepos[nomeestado])
+                nomeestado = string + prepos[nomeestado] + ' ' +nomeestado
+            else
+                nomeestado = string + "DO BRASIL"
+
+        }
+        else if(url['var'] == 19){
+
+            string = "";
+
+            if(url['mec'] == 0 && tipo == "integer")
+                string = "Empresas cadastradas ";
+            else if(url['mec'] == 0 && tipo == "percent")
+                string = "Empresas cadastradas desde o início do programa (2013-2017) ";
+            else if(url['mec'] == 1 && tipo == "integer")
+                string = "Trabalhadores cadastrados ";
+            else if(url['mec'] == 1 && tipo == "percent")
+                string = "Trabalhadores cadastrados desde o início do programa (2013-2017) ";
+
+            if(prepos[nomeestado])
+                nomeestado = string + prepos[nomeestado] + ' ' +nomeestado
+            else
+                nomeestado = string + "NO BRASIL"
 
         }
         else{
@@ -1762,7 +1794,7 @@ function descByCAD(eixo, desc, tag){
         4: "CULTURA DIGITAL",
         5: "EDITORIAL",
         6: "EDUCAÇÃO E CRIAÇÃO EM ARTES",
-        7: "ENTRETERIMENTO",
+        7: "ENTRETENIMENTO",
         8: "MÚSICA",
         9: "PATRIMÔNIO",
         10: "PUBLICIDADE",
@@ -1777,6 +1809,23 @@ function descByCAD(eixo, desc, tag){
             else
                 nome = "PELO SETOR " + prepos[url['cad']] + " " + cads[url['cad']];
         }
+        else if(url['var'] == 18){
+
+            string = "no setor ";
+
+            if(url['mec'] == 1 && tipo == "integer")
+                string = "em lojas do setor "
+
+            nome =  string + prepos[url['cad']] + " " + cads[url['cad']];
+
+        }
+        else if(url['var'] == 19){
+
+            string = "no setor ";
+
+            nome =  string + prepos[url['cad']] + " " + cads[url['cad']];
+
+        }
         else if(eixo == 2 && (url['var'] == 4)){
             nome = "PARA O SETOR " + prepos[url['cad']] + " " + cads[url['cad']];
 
@@ -1786,7 +1835,7 @@ function descByCAD(eixo, desc, tag){
 
     }
     else {
-        if(eixo == 2 && (url['var'] == 5 || url['var'] == 1 ||  url['var'] == 4 ||  url['var'] == 9 || url['var'] == 11 || url['var'] == 12 || url['var'] == 13 || url['var'] == 14))
+        if(eixo == 2 && (url['var'] == 5 || url['var'] == 1 ||  url['var'] == 4 ||  url['var'] == 9 || url['var'] == 11 || url['var'] == 12 || url['var'] == 13 || url['var'] == 14 || url['var'] ==18 || url['var'] ==19 ))
             nome = "";
         else if(eixo == 2 && (url['var'] == 8 || url['var'] == 9))
             if(tag == '[CAD]')
@@ -1852,6 +1901,7 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     // [cad] - cad
     // [prt] - prt
     // [ano] - ano
+
 
     ocp = $(window.parent.document).find("iframe#view_box_barras").attr("src").match(/ocp=[0-9]/)[0].split("=")[1]
 
