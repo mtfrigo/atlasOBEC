@@ -815,17 +815,18 @@ function updateBreadUF(eixo, vrv){
         case 3:
             $('.bread-select[data-id=uf]').prop("disabled", false);
             $('.bread-select[data-id=prc]').prop("disabled", false);
-            $('.bread-select[data-id=prc]').prop("disabled", false);
             $('.bread-select[data-id=cad]').prop("disabled", false);
             if(vrv >= 5 && vrv <= 10){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
-                $('.bread-select[data-id=prc]').prop("disabled", true);
                 $('.bread-select[data-id=cad]').prop("disabled", true);
                 $('.bread-select[data-id=prc]').prop("disabled", true);
 
-            }else if(vrv == 11 || vrv == 12 || vrv == 14){
+            }else if(vrv == 11|| vrv == 12){
                 $('.bread-select[data-id=prc]').prop("disabled", true);
+                $('.bread-select[data-id=uf]').prop("disabled", true);
+            }else if(vrv == 14){
                 $('.bread-select[data-id=prc]').prop("disabled", true);
+                $('.bread-select[data-id=uf]').prop("disabled", true);
                 $('.bread-select[data-id=cad]').prop("disabled", true);
             }
             break;
