@@ -356,6 +356,8 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
                 setPercentValueData({percentual: dados.percentual[index_ano]}, eixo, vrv)
         }
 
+        setTerceiroValueData(eixo, vrv, dados.percentual[index_ano], url['cad']);  
+
     }
     else if(eixo == 1){
         // first_year = Number(dados.key[0]);
@@ -540,6 +542,8 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
                 setPercentValueData(dados, eixo, vrv);
             }
         }
+
+        setTerceiroValueData(eixo, vrv, dados.percentual[i], url['cad']);  
 
 
     }
@@ -830,7 +834,7 @@ function updateBreadUF(eixo, vrv){
 }
 
 function updateSelectTipo(options){
-    names = {"1": "Exportação", "2": "Importação", "3": "Saldo Comercial", "4": "Valor Transacionado"};
+    names = {"1": "Exportação", "2": "Importação", "3": "Saldo Comercial", "4": "Corrente de Comércio"};
     for(var key in names){
         if($("select[data-id=typ]").find("option[value='"+key+"']").length != 0)
             $("select[data-id='typ']").find("option[value='"+key+"']").remove()
@@ -1085,6 +1089,44 @@ function getPrepos(uf){
     return prepos[uf];
 }
 
+function updateDescEmpreendimentos(desc, vrv){
+    var uf = $(window.parent.document).find(".bread-select[data-id=uf]").val()
+    var uf_text = $(window.parent.document).find(".bread-select[data-id=uf] option:selected").text()
+    var cad_text = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
+    var cad = $(window.parent.document).find(".bread-select[data-id=cad]").val();
+    var prt = $(window.parent.document).find(".bread-select[data-id=deg]").val();
+    var prt_text = $(window.parent.document).find(".bread-select[data-id=deg] option:selected").text();
+
+    array_variaveis = [1, 4, 5, 6, 7, 8, 9]
+    if(array_variaveis.includes(parseInt(vrv))){
+        if(prt == 0){
+            if(uf == 0 && cad == 0){
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "").replace("[uf]", "")
+            } else if(cad == 0){
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "").replace("[uf]", "")
+            } else if(cad > 0){
+                uf_text = getPrepos(uf_text) +' '+ uf_text
+                uf_text = mapPronome(uf_text, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
+                description = desc.replace("[cad]", "DO SETOR "+cad_text).replace("[prt]", "").replace("[uf]", uf_text)
+            }
+        } else{
+            if(uf == 0 && cad == 0){
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+port_text).replace("[uf]", "")
+            } else if(cad == 0){
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+port_text).replace("[uf]", "")
+            } else if(cad > 0){
+                uf_text = getPrepos(uf_text) +' '+ uf_text
+                uf_text = mapPronome(uf_text, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
+                description = desc.replace("[cad]", "DO SETOR "+cad_text).replace("[prt]", "DE "+port_text).replace("[uf]", uf_text)
+            }
+        }
+        
+    }
+
+
+    $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(description)
+}
+
 function updateDescPercentComercio(desc, vrv, nomeestado){
     
 
@@ -1110,7 +1152,7 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
                 return desc.replace('{}', nomeestado).replace('<>', typ);
             case 'Saldo Comercial': 
                 return ''
-            case 'Valor Transacionado': 
+            case 'Corrente de Comércio': 
                 prc = $(window.parent.document).find(".opt-select[data-id=prc] option:selected").text();
                 cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
                 typ = "TRANSACIONADO";
@@ -1142,7 +1184,7 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
                 return desc.replace('{}', nomeestado).replace('<>', typ);
             case 'Saldo Comercial': 
                 return ''
-            case 'Valor Transacionado': 
+            case 'Corrente de Comércio': 
                 prc = $(window.parent.document).find(".opt-select[data-id=prc] option:selected").text();
                 cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
                 typ = "TRANSACIONADO";
@@ -1156,7 +1198,6 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
     }
 }
 function mapPronome(string, array_pron, array_new_pron){
-
     array_pron.forEach(function(d, i){
         string = string.replace(array_pron[i], array_new_pron[i])
     })
@@ -1350,11 +1391,11 @@ function updateDescComercio(desc, vrv, nomeestado){
             $(window.parent.document).find(".state-title").first().text("ENTRE "+nomeestado.split(" ")[1])
             $(window.parent.document).find(".prc-title").first().text("E "+prc.split(" ")[1])
             break;
-        case 'Valor Transacionado':
+        case 'Corrente de Comércio':
             if(vrv >= 1 && vrv <= 3)
-                typ = "VALOR TRANSACIONADO" 
+                typ = "Corrente de Comércio" 
             else if(vrv == 13){
-                typ = "DE VALOR TRANSACIONADO"
+                typ = "DE Corrente de Comércio"
             }
             $(window.parent.document).find(".state-title").first().text("ENTRE "+ nomeestado.split(" ")[1])
             $(window.parent.document).find(".prc-title").first().text("E "+prc.split(" ")[1])
@@ -1370,8 +1411,22 @@ function updateDescComercio(desc, vrv, nomeestado){
         return
 }
 function setTerceiroValueData(eixo, vrv, value, cad){
+
+    uf = $(window.parent.document).find(".bread-select[data-id=uf]").val();
+    if(eixo == 0){
+        array_variaveis = [1, 4, 5, 6, 7, 8, 9]
+        if(array_variaveis.includes(parseInt(vrv)) && uf > 0 && cad > 0){
+            $(window.parent.document).find(".setor-value").first().find(".number").first().text(formatDecimalLimit(value*100, 2)+'%');
+            $(window.parent.document).find(".setor-value").first().css("display", "flex");
+
+            doc = $(window.parent.document).find(".setor-value").first().find(".number").first();
+            setMaxFontSize(doc);
+        }
+        else{
+            $(window.parent.document).find(".setor-value").first().css("display", "none");
+        }
+    }
     if(eixo == 1){
-        uf = $(window.parent.document).find(".bread-select[data-id=uf]").val();
         ocp = $(window.parent.document).find(".bread-select[data-id=ocp]").val() == undefined ? 0 : $(window.parent.document).find(".bread-select[data-id=ocp]").val()
         if(vrv == 1 && (cad > 0 || ocp != 0 && ocp != 3) && uf > 0){
            $(window.parent.document).find(".setor-value").first().find(".number").first().text(formatDecimalLimit(value*100, 2)+'%');

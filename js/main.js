@@ -1296,7 +1296,6 @@ $(document).ready(function(){
                     $(".cad-title").first().html(textJSON.select.cad[setor].name);
 
                 });
-                alert("oi")
                 $(".bread-select[data-id='cad']").val($(this).attr("data-id"));
             }
         }

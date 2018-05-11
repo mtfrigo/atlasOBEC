@@ -34,8 +34,9 @@
 			{
 				"id":"1",
 				"title":"Número Total de Empresas",
-				"desc_int": "Empresas [cad] [prt]",
-				"desc_percent": "DO TOTAL DE EMPRESAS DOS SETORES CULTURAIS E CRIATIVOS [uf].",
+				"desc_int": "Empresas [cad] [prt] [uf]",
+				"desc_percent": "DO TOTAL DE EMPRESAS DOS SETORES CULTURAIS E CRIATIVAS [uf].",
+				"desc_setorial": "DO TOTAL DE EMPRESAS [cad] do Brasil",
 				"sufixo_valor":"",
 				"prefixo_valor":"",
 				"desc":"Esse indicador demonstra o total de empresas culturais. Uma elevação deste número pode indicar um aumento tanto em termos de oferta, quanto de demanda por bens e serviços culturais, assim como uma diminuição pode indicar um arrefecimento da demanda por bens e serviços culturais.",
@@ -1356,7 +1357,7 @@
 		[
 			{
 				"id":"1",
-				"title":"Corrente de Comércio",
+				"title":"Comércio Externo",
 				"desc":"Demonstra o valor de absoluto dos setores culturais por estratificação proposta.",
 				"desc_var_mapa": "A variável mostra o valor absoluto transacionado, caracterizando quanto, em termos monetários, os setores culturais e criativos contribuíram para o comércio internacional do Brasil.",
 				"desc_int": "DE <> {} PARA [] ()",
@@ -1782,7 +1783,7 @@
 			{"name":"Exportação","value":"1"},
 			{"name":"Importação","value":"2"},
 			{"name":"Saldo Comercial","value":"3"},
-			{"name":"Valor Transacionado","value":"4"}
+			{"name":"Corrente de Comércio","value":"4"}
 		],
 		"prc":[
 			{"name":"Mundo","value":"0"},

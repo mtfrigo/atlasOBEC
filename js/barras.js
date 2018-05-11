@@ -753,16 +753,19 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
 
         if(!(eixo == 1 && vrv == 6 && uos == 1) && !(eixo == 2 && (vrv == 18 || vrv == 19) && uos == 1))
             configInfoDataBoxBarras(eixo, vrv, dados, valor);
-
-        if(eixo == 1)
+        if(eixo == 0){
+            updateDescEmpreendimentos(getDataVar(textJSON, eixo, vrv).desc_int, vrv)
+        }
+        else if(eixo == 1)
             updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, ocp);
         else
             $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, data[dados.key[0]].uf));
         $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, data[dados.key[0]].uf));
-        if(vrv == 1){
-            
+        if(vrv == 1 && eixo == 1){
             $(window.parent.document).find(".setor-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_setorial, data[dados.key[0]].uf));
-        
+        } else if(eixo == 0){
+            $(window.parent.document).find(".setor-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_setorial, data[dados.key[0]].uf));            
+
         }
             
 
@@ -874,9 +877,9 @@ else {
             if (error) throw error;
 
             textJSON = data;
-            $.get("./db/json_barras.php" + config, function(data){
+            /*$.get("./db/json_barras.php" + config, function(data){
                   console.log(data)
-           })
+           })*/
             d3.queue()
                 .defer(d3.json, "./db/json_barras.php" + config)
                 .await(analyze_eixo1);
@@ -884,11 +887,6 @@ else {
 
     });
     // return matching color value
-
-
-    $.get('./db/json_barras.php' + config, function(dado){
-        // console.log(dado)
-    })
 
     function color_eixo1() {
         if(ocp == 0) {
@@ -1239,7 +1237,10 @@ else {
         }
         if(eixo == 0) setStateTitle(function(){if(data[dados.key[0]].uf == "Todos") return "Brasil"; else return data[dados.key[0]].uf});
 
-        if(eixo == 1 && dados.key != undefined){
+        if(eixo == 0 && dados.key != undefined){
+            updateDescEmpreendimentos(getDataVar(textJSON, eixo, vrv).desc_int, vrv)
+        }
+        else if(eixo == 1 && dados.key != undefined){
             updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, ocp);
 
         }
