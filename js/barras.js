@@ -244,7 +244,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
             };
 
             function formatNano(d) {
-                console.log
+                console.log(d)
                 return removeDecimalZeroes(formatInit(d * 1e9)) + "n";
             };
 
