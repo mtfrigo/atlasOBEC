@@ -1466,10 +1466,9 @@ $(document).ready(function(){
             if($(this).attr("id") === "recebedora") {
                 if(url['mec'] != 0){
                     updateUrl();
-
                     url['mec'] = 0;
                     $(this).addClass("active");
-                    $('#trabalhadora').removeClass("active");
+                    $('#trabalhador').removeClass("active");
                     updateIframe(url); /* altera gráfico */
 
                 }
