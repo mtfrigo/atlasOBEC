@@ -223,17 +223,24 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
             var formatInit = d3.format(".2f");
             var format3dc = d3.format(".3f");
 
+
+
             var formatDefault = function (d) {
                 return removeDecimalZeroes(formatInit(d));
             };
             var formatThousands = function (d) {
+                if(d == 0)
+                    return 0;
+
                 if(eixo == 0 && vrv == 8)
                     return removeDecimalZeroes(formatInit(d / 1e3)) + "M";
-
 
                 return removeDecimalZeroes(formatInit(d / 1e3)) + "K";
             };
             var formatMillions = function (d) {
+                if(d == 0)
+                    return 0;
+
                 if(eixo == 0 && vrv == 8)
                     return removeDecimalZeroes(formatInit(d / 1e6)) + "B";
 
@@ -241,11 +248,13 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
             };
 
             var formatBillions = function (d) {
+                if(d == 0)
+                    return 0;
                 return removeDecimalZeroes(formatInit(d / 1e9)) + "B";
             };
 
             function formatNano(d) {
-                console.log(d)
+                
                 return removeDecimalZeroes(formatInit(d * 1e9)) + "n";
             };
 
@@ -286,6 +295,9 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
                 var format = d3.format("." + decimalDigits + "f");
                 // console.log(format(d))
                 dadosCounter++;
+
+                if(d == 0)
+                    return d;
 
 
                 if(eixo == 0 && vrv == 9){
@@ -348,6 +360,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
                 return formatFraction;
 
             var preFormattedIntLength = Math.round(preFormatted).toString().length;
+
             if (preFormattedIntLength <= 3)
                 return formatDefault;
             else if (preFormattedIntLength <= 6)
