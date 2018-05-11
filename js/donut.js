@@ -2,10 +2,10 @@
 });*/
 var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo;
 var tooltipInstance = tooltip.getInstance();
-$.get("./db/json_donut.php"+config, function(data){
-    console.log(data)
+/*$.get("./db/json_donut.php"+config, function(data){
+//    console.log(data)
 
-});
+});*/
 
 $.get("./db/json_donut.php"+config, ready);
 

@@ -1917,16 +1917,17 @@ function descByCAD(eixo, desc, tag){
 
 function descByPRT(eixo, desc){
     portes = {
-        1: "PORTE MICRO",
-        2: "PORTE PEQUENO",
-        3: "PORTE MÉDIO",
-        4: "PORTE GRANDE",
+        9: "PORTE MICRO",
+        10: "PORTE PEQUENO",
+        11: "PORTE MÉDIO",
+        12: "PORTE GRANDE",
     }
 
     str = "DE"
-
-    if(portes[url['prt']] && url['uf'] != 0) {
-        nome = str + " " + portes[url['prt']];
+    prt = $(window.parent.document).find(".bread-select[data-id=deg]").val()
+    uf =   $(window.parent.document).find(".bread-select[data-id=uf]").val()
+    if(portes[prt] && uf != 0) {
+        nome = str + " " + portes[prt];
     }
     else {
         nome = ""
@@ -1964,7 +1965,6 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     // [cad] - cad
     // [prt] - prt
     // [ano] - ano
-
 
     ocp = $(window.parent.document).find("iframe#view_box_barras").attr("src").match(/ocp=[0-9]/)[0].split("=")[1]
 

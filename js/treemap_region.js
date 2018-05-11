@@ -311,7 +311,6 @@ d3.json("./db/json_treemap_region.php"+config, function(error, data) {
                         newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad="+url['cad']);
                         var newMAPASrc = $(window.parent.document).find("#view_box").attr("src").replace(/uf=[0-9]*/, "uf="+ufId(d.data.name));
 						newMAPASrc = newMAPASrc.replace(/cad=[0-9]*/, "cad="+url['cad']);
-						console.log(d)
 						$(window.parent.document).find('.bread-select[data-id=uf]').val(ufId(d.data.name))
 						
 						$(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
