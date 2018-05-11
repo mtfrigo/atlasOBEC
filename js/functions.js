@@ -1675,7 +1675,7 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
                 nomeestado = "DO BRASIL"
             }
         }
-        else if(url['var'] == 3 || url['var'] == 2){
+        else if(url['var'] == 3 || url['var'] == 2 || url['var'] == 1){
             if(tipo == "integer"){
                 if(getPrepos(nomeestado)){
                     nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
@@ -2428,10 +2428,12 @@ function updateMenuSetor(eixo, vrv){
     }
     else if (eixo == 3){
 
+
+
 	    if(vrv >= 1 && vrv <= 8 || vrv == 12){
             d3.selectAll('#menu-view').filter(function(d, i){
                 return i;
-            }).style("display", "none");
+            }).style("display", "block");
             d3.select("#view_box_scc").style("width", "100%");
         }
         else{

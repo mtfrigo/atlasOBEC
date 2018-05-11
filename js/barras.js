@@ -535,6 +535,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
             })
             .on("mouseout", tooltipInstance.hideTooltip)
             .on("click", function(d, i, obj) {
+
                 var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano="+dados.key[i]);
                 newMapaSrc = newMapaSrc.replace(/uf=[0-9]*/, "uf="+url['uf']);
                 newMapaSrc = newMapaSrc.replace(/prc=[0-9]*/, "prc=" + url['prc']);
@@ -580,6 +581,11 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
                       
                   
                  }
+                else if(eixo == 3 && (url['var'] >= 1 && url['var'] != 5 && url['var'] != 8 && url['var'] <= 10 || url['var'] == 12)){
+                    var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                    newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                    $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
+                }
                 else {
                     if(url['uos'] == 1) {
                         var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
