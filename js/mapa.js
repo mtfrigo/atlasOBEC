@@ -14,6 +14,8 @@ var valoresTransform = "translate(10,"+(height-10)+")";
 
 function destacaPais(ufId) {
 
+    alert("oi")
+
 	$("path").each(function() {
         if($(this).attr("data-legend") == ufId) {
             if($(this).attr("class") !== "destacado") {
@@ -721,10 +723,14 @@ function legendaBinario(){
         estadoAtual = dict[url['uf']].uf
     else
         estadoAtual = "BRASIL"
+
+
+
     if(eixo != 3 && eixo != 1 && eixo != 2){
         $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, estadoAtual));
         $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, estadoAtual));
     }
+
     function loadTooltip(d, eixo, vrv){
 
         if(eixo == 0) {

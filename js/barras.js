@@ -1,12 +1,8 @@
 /* tamanho container */
-var chartWidth = $('.chart').width()+25;
+var chartWidth = $('.chart').width();
 var chartHeight = $('.chart').height();
 var minBarHeight = 5;
 var withLabels = false;
-
-
-var fonteTransform = "translate(" + (chartWidth - 120) + "," + (chartHeight - 10) + ")";
-var valoresTransform = "translate(10," + (chartHeight - 10) + ")";
 
 function getSoma(barraId) {
     var soma = 0;
@@ -133,7 +129,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
         if(eixo == 0 && vrv == 3) dados.key = ajustaAnos(dados.key);
         //tamanho do grafico
         // AQUI automatizar map center
-        var margin = {top: 20, right: 20, bottom: 30, left: 25},
+        var margin = {top: 20, right: 20, bottom: 30, left: 35},
             width = chartWidth - margin.left - margin.right,
             height = chartHeight - margin.top - margin.bottom;
 
@@ -248,6 +244,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
             };
 
             function formatNano(d) {
+                console.log
                 return removeDecimalZeroes(formatInit(d * 1e9)) + "n";
             };
 

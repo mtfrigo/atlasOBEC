@@ -501,6 +501,7 @@ function controlFilter(selectvalue, selectid, valueDesag){
     if(eixo == 2)
         return;
 
+
     if(selectid==='var') {
 
         var save_ocp = url['ocp'];
@@ -513,8 +514,10 @@ function controlFilter(selectvalue, selectid, valueDesag){
 
     if(selectid==='cad') {
         var save_deg = url['deg'];
+        var save_uf = url['uf'];
         defaultUrl();
         url['deg'] = save_deg;
+        url['uf'] = save_uf;
     }
 
     if(window.location.hash === "#mercado" && selectid === 'deg') {
@@ -663,15 +666,7 @@ function controlFilter(selectvalue, selectid, valueDesag){
 	}
 
 
-	/*  se não há setor cadastrado,
-		não  é permitido filtro por porte X atuacao
-		(exceto treemap por setores)
 
-	if(url['cad']==0 && url['view']!='treemap_scc'){
-		url['atc'] = 0;
-		url['prt'] = 0;
-	}
-*/
 }
 
 /*-----------------------------------------------------------------------------
@@ -1271,6 +1266,7 @@ $(document).ready(function(){
         if((eixoAtual == 0 && url['var'] < 10) || (eixoAtual == 1 && url['var'] < 12) ||  (eixoAtual == 3) ){
             var setor = $(this).attr('data-id');
 
+
             if(setor != url['cad']) {
 
                 var newSCCSrc = $("#view_box_scc").attr("src");
@@ -1309,9 +1305,8 @@ $(document).ready(function(){
 
             if(setor != url['cad']) {
 
-                // alert(setor)
                 var newSCCSrc = $("#view_box_scc").attr("src");
-                // alert(newSCCSrc)
+
                 var changeUF = newSCCSrc.match(/uf=([0-9]*)/);
                 url['cad'] = setor;
                 url['uf'] = changeUF[1];
@@ -1369,7 +1364,8 @@ $(document).ready(function(){
 
 
 	});
-    if(url['var'] === "" && window.location.pathname.match("page.php")) controlVarPage(1);
+
+	if(url['var'] === "" && window.location.pathname.match("page.php")) controlVarPage(1);
     if(url['var']) controlVar(url['var']);
 
     /* mobile! */
@@ -1535,7 +1531,6 @@ $(document).ready(function(){
 
         openFilter($(this));
 
-
 	});
 
 	/* escolher novo filtro */
@@ -1635,13 +1630,15 @@ $(document).ready(function(){
 
 
             updateUrl();
+
             if($(this).attr("data-id") == "deg" && eixo_atual == 1){
                 if($(this).find('option:selected').parent().attr("value") != undefined)
                     deg_value =  $(this).find('option:selected').parent().attr("value")
                 else
                     deg_value = $(this).val()
                 controlFilter(deg_value, $(this).attr('data-id'), $(this).val());
-            } else{
+            }
+            else{
                 controlFilter($(this).val(), $(this).attr('data-id'), 1);
             }
            
@@ -1732,8 +1729,6 @@ $(document).ready(function(){
             
             if($(this).attr("data-id") === "cad") {
 
-
-
                 //if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
 
@@ -1746,7 +1741,6 @@ $(document).ready(function(){
             }
 
             updateIframe(url);
-            
 
         }
         else {
