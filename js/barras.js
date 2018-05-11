@@ -175,7 +175,6 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
             if (i > 1)
                 colorsRange.push(rgb);
         });
-        console.log(dados.percentual)
         /*==================*/
         /* *** gráfico! *** */
         /*==================*/

@@ -26,7 +26,7 @@ function changeDownloadURL(url, eixo){
     
     $.get('./data/csv_files.json', function(data){
         var name_url;
-        console.log(diretorio)
+        // console.log(diretorio)
         if(diretorio != '')
             dados = data[eixo][diretorio]
         else

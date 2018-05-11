@@ -483,6 +483,7 @@ Saída:
 -----------------------------------------------------------------------------*/
 function controlFilter(selectvalue, selectid, valueDesag){
 
+
     var SCCSrc = $("#view_box_scc").attr("src");
     var BarraSrc = $("#view_box_barras").attr("src");
     if(BarraSrc != undefined && BarraSrc != "no-view.html") var setor = BarraSrc.match(/cad=([0-9]*)/)[1];
@@ -497,7 +498,11 @@ function controlFilter(selectvalue, selectid, valueDesag){
     }
     /* se for PORTE x ATUAÇÃO */
 
+    if(eixo == 2)
+        return;
+
     if(selectid==='var') {
+
         var save_ocp = url['ocp'];
         defaultUrl();
         url['ocp'] = save_ocp;
@@ -1301,30 +1306,28 @@ $(document).ready(function(){
         }
         else if(eixo == 2 && url['var'] < 15){
             var setor = $(this).attr('data-id');
-            // alert(setor)
-            var newSCCSrc = $("#view_box_scc").attr("src");
-            // alert(newSCCSrc)
-            var changeUF = newSCCSrc.match(/uf=([0-9]*)/);
-            url['cad'] = setor;
-            url['uf'] = changeUF[1];
-            if(setor == 0) {
-                url['deg'] = 0;
-                url['mec'] = 0;
-                url['mod'] = 0;
-                url['pfj'] = 0;
-                url['pfj'] = 0;
+
+            if(setor != url['cad']) {
+
+                // alert(setor)
+                var newSCCSrc = $("#view_box_scc").attr("src");
+                // alert(newSCCSrc)
+                var changeUF = newSCCSrc.match(/uf=([0-9]*)/);
+                url['cad'] = setor;
+                url['uf'] = changeUF[1];
+
+                updateIframe(url);
+
+                d3.json('data/pt-br.json', function (error, data) {
+                    if (error) throw error;
+
+                    textJSON = data;
+                    $(".cad-title").first().html(textJSON.select.cad[setor].name);
+
+                });
+
+                $(".bread-select[data-id='cad']").val($(this).attr("data-id"));
             }
-            updateIframe(url);
-
-            d3.json('data/pt-br.json', function(error, data) {
-                if (error) throw error;
-
-                textJSON = data;
-                $(".cad-title").first().html(textJSON.select.cad[setor].name);
-
-            });
-
-            $(".bread-select[data-id='cad']").val($(this).attr("data-id"));
         }
         else if(eixo == 0 && url['var'] < 12){
 
@@ -1728,6 +1731,8 @@ $(document).ready(function(){
             
             
             if($(this).attr("data-id") === "cad") {
+
+
 
                 //if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
