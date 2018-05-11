@@ -79,7 +79,7 @@ function getNomeUF(idUF){
         case 50: return "Mato Grosso do Sul";
         case 51: return "Mato Grosso";
         case 52: return "Goiás";
-        case 54: return "Distrito Federal";
+        case 53: return "Distrito Federal";
     }
 }
 
@@ -1196,6 +1196,7 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
         }
     }
 }
+
 function mapPronome(string, array_pron, array_new_pron){
     array_pron.forEach(function(d, i){
         string = string.replace(array_pron[i], array_new_pron[i])
@@ -1206,34 +1207,42 @@ function mapPronome(string, array_pron, array_new_pron){
 function descIntBySelectedParameters(desc, ocp, uf, cad, deg){
     nome_uf = getNomeUF(uf)
     desc_uf = getPrepos(nome_uf)+" "+nome_uf;
+
     vrv = parseInt($(window.parent.document).find("iframe").attr("src").match(/var=[0-9]+/)[0].replace("var=", ''))
+
     if(deg == 0)
         var deg_nome = "ESCOLHER"
     else
         var deg_nome = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").parent().text();
+
     var tipo_deg = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").text();
+
     if(ocp == 0)
         var cad_nome = $(window.parent.document).find(".bread-select[data-id=cad]").find("option:selected").text()
     else
         var cad_nome = $(window.parent.document).find(".bread-select[data-id=ocp]").find("option:selected").text()
+
     if(ocp == 0){
         if(cad == 0){
             desc_setores = "DOS SETORES CULTURAIS E CRIATIVOS"
             desc = desc.replace("[cad]", desc_setores)
         }
         desc = desc.replace("[ocp]", "TRABALHADORES")
-    } else {
+    }
+    else {
         desc = desc.replace("[cad]","[name_ocp]")
         if(ocp == 3)
             desc = desc.replace("[name_ocp]", "EM ATIVIDADES CULTURAIS E CRIATIVAS")
         desc = desc.replace("[ocp]", "OCUPADOS")
     }
+
     if(cad == 0 || ocp == 3){
         return desc.replace("[cad]", "DOS SETORES CULTURAIS E CRIATIVOS")
                     .replace("[name_ocp]", "NA OCUPAÇÃO "+cad_nome)
                     .replace("[uf]", desc_uf)
                     .replace("[deg]", "")
-    } else {
+    }
+    else {
         if(deg != 0){
             desc_uf = mapPronome(desc_uf, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
             switch(deg){
