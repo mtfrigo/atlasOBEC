@@ -2439,13 +2439,18 @@ function updateMenuSetor(eixo, vrv){
     }
     else if (eixo == 3){
 
-
-
-	    if(vrv >= 1 && vrv <= 8 || vrv == 12){
+	    if(vrv == 5 || vrv == 8 || vrv == 11 || vrv == 13 || vrv == 14 ){
             d3.selectAll('#menu-view').filter(function(d, i){
                 return i;
-            }).style("display", "block");
-            d3.select("#view_box_scc").style("width", "100%");
+            }).style("display", "none");
+            d3.select("#view_box_barras").style("width", "100%");
+        }
+	    else if(vrv >= 1 && vrv <= 8 || vrv == 12){
+            d3.selectAll('#menu-view').filter(function(d, i){
+                return i;
+            }).style("display", "inline-block");
+            d3.select("#view_box_barras").style("width", "65%");
+
         }
         else{
             d3.select("#view_box_scc").style("width", "80%");
