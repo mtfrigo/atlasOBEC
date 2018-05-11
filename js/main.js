@@ -1125,6 +1125,8 @@ function updateUrl() {
 }
 
 function switchToSetores() {
+
+
     $(".view-title-leg[data-id='scc&ocp']").html("SETORES");
     $("#title-view-leg-scc").empty();
     //console.log(getEixo(window.location.hash.substring(1)));
@@ -1186,6 +1188,15 @@ function switchToSetores() {
         })
 
         updateBreadcrumbSetores(cads);
+
+    }
+    else if(getEixo(window.location.hash.substring(1)) == 3 && (url['var'] >= 1 && url['var'] != 5 && url['var'] != 8 && url['var'] <= 10 || url['var'] == 12)){
+        $(".view-title-leg[data-id='scc&ocp']").html("");
+
+        $("#title-view-leg-scc").append("" +
+        "        <span data-id=\"1\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(7, 19, 66)\"></i> Exportação<br></span>\n" +
+        "        <span data-id=\"2\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(109, 191, 201)\"></i> Importação<br></span>");
+
 
     }
     else{
