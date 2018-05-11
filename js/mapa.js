@@ -14,8 +14,6 @@ var valoresTransform = "translate(10,"+(height-10)+")";
 
 function destacaPais(ufId) {
 
-    alert("oi")
-
 	$("path").each(function() {
         if($(this).attr("data-legend") == ufId) {
             if($(this).attr("class") !== "destacado") {
