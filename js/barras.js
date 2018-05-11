@@ -75,9 +75,9 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
     var colorJSON;
     var textJSON;
     var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo + "&deg=" +deg + "&ano=" +ano;
-
-    $.get('./db/json_barras.php' + config, function(dado){
-        // console.log(dado)
+    var brasil_setor = []
+    $.get('./db/total_setor.php' + "?var=" + vrv+"&cad="+cad+"&eixo="+eixo, function(dado){
+        brasil_setor = JSON.parse(dado)
     })
     d3.json('data/colors.json', function (error, data) {
         if (error) throw error;
@@ -109,9 +109,10 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
             console.log(error);
         }
 
-        var dados = {key: [], value: [], percentual: [], taxa: []};
+        var dados = {key: [], value: [], percentual: [], taxa: [], percentual_setor: []};
 
         Object.keys(data).forEach(function (key) {
+            dados.percentual_setor.push(data[key].valor/brasil_setor[key])
             if ((vrv === 3) && data[key].ano === 2007) {
             } else {
                 dados.key.push(data[key].ano);
@@ -175,7 +176,6 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
             if (i > 1)
                 colorsRange.push(rgb);
         });
-        console.log(dados.percentual)
         /*==================*/
         /* *** gráfico! *** */
         /*==================*/

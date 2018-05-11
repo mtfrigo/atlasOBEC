@@ -26,7 +26,6 @@ function changeDownloadURL(url, eixo){
     
     $.get('./data/csv_files.json', function(data){
         var name_url;
-        console.log(diretorio)
         if(diretorio != '')
             dados = data[eixo][diretorio]
         else
@@ -356,7 +355,7 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
                 setPercentValueData({percentual: dados.percentual[index_ano]}, eixo, vrv)
         }
 
-        setTerceiroValueData(eixo, vrv, dados.percentual[index_ano], url['cad']);  
+        setTerceiroValueData(eixo, vrv, dados.percentual_setor[index_ano], url['cad']);  
 
     }
     else if(eixo == 1){
@@ -543,7 +542,7 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
             }
         }
 
-        setTerceiroValueData(eixo, vrv, dados.percentual[i], url['cad']);  
+        setTerceiroValueData(eixo, vrv, dados.percentual_setor[i], url['cad']);  
 
 
     }
@@ -1629,7 +1628,6 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         }
         else if(url['var'] == 1){
             if(tipo == "percent" ){
-                console.log(getPrepos(nomeestado))
                 if(getPrepos(nomeestado) != undefined && url['cad'] != 0){
 
                     nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
