@@ -1110,13 +1110,13 @@ function updateDescEmpreendimentos(desc, vrv){
             }
         } else{
             if(uf == 0 && cad == 0){
-                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+port_text).replace("[uf]", "")
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+prt_text).replace("[uf]", "")
             } else if(cad == 0){
-                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+port_text).replace("[uf]", "")
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+prt_text).replace("[uf]", "")
             } else if(cad > 0){
                 uf_text = getPrepos(uf_text) +' '+ uf_text
                 uf_text = mapPronome(uf_text, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
-                description = desc.replace("[cad]", "DO SETOR "+cad_text).replace("[prt]", "DE "+port_text).replace("[uf]", uf_text)
+                description = desc.replace("[cad]", "DO SETOR "+cad_text).replace("[prt]", "DE "+prt_text).replace("[uf]", uf_text)
             }
         }
         
@@ -1422,8 +1422,9 @@ function setTerceiroValueData(eixo, vrv, value, cad){
 
     uf = $(window.parent.document).find(".bread-select[data-id=uf]").val();
     if(eixo == 0){
+        prt =  $(window.parent.document).find(".bread-select[data-id=deg]").val()
         array_variaveis = [1, 4, 5, 6, 7, 8]
-        if(array_variaveis.includes(parseInt(vrv)) && uf > 0 && cad > 0){
+        if(array_variaveis.includes(parseInt(vrv)) && uf > 0 && ( prt > 0 ||cad > 0)){
             $(window.parent.document).find(".setor-value").first().find(".number").first().text(formatDecimalLimit(value*100, 2)+'%');
             $(window.parent.document).find(".setor-value").first().css("display", "flex");
 
