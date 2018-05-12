@@ -224,7 +224,7 @@ function updateIframe(url){
                 $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "none")
                 if(url['var'] == 8)
                     $('iframe[id="view_box"]').parent().find(".view-title").html("IHH VALOR ABSOLUTO POR SETORES");
-                else(url['var'] == 5)
+                else if(url['var'] == 5)
                     $('iframe[id="view_box"]').parent().find(".view-title").html("C4 VALOR ABSOLUTO POR SETORES");
 
             }
@@ -309,7 +309,7 @@ function updateIframe(url){
                 $('iframe[id="view_box_barras"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 if(url['var'] == 8)
                     $('iframe[id="view_box_barras"]').parent().find(".view-title").html("IHH VALOR ABSOLUTO POR PARCEIROS");
-                else(url['var'] == 5)
+                else if(url['var'] == 5)
                     $('iframe[id="view_box_barras"]').parent().find(".view-title").html("C2 VALOR ABSOLUTO POR PARCEIROS");
             }
             
@@ -429,10 +429,12 @@ function updateIframe(url){
             if(url['var'] == 5 || url['var'] == 8){
                 newUrl = newUrl.replace(/cad=[0-9]*/, "cad=2");
                 $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                if(url['var'] == 8)
+                if(url['var'] == 8){
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("IHH VALOR ABSOLUTO POR UF");
-                else(url['var'] == 5)
+                }
+                else if(url['var'] == 5){
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("C4 VALOR ABSOLUTO POR UF");
+                }
             }
 
             else if(url['var'] >= 1 && url['var'] != 5 && url['var'] != 8 && url['var'] <= 10 || url['var'] == 12 ){

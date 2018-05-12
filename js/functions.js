@@ -1257,7 +1257,19 @@ function descIntBySelectedParameters(desc, ocp, uf, cad, deg){
                     else
                         desc = desc.replace("[deg]", "E QUE POSSUEM ESCOLARIDADE DE NÍVEL "+tipo_deg); break;
                 case '5': 
-                    desc = desc.replace("[deg]", "DE ETINIA "+tipo_deg); break; 
+                    switch(tipo_deg){
+                        case "Indígena":
+                            tipo_deg = "DOS DECLARADOS INDÍGENAS"; break;
+                        case "Branca":
+                            tipo_deg = "DOS DECLARADOS BRANCOS"; break;
+                        case "Preta":
+                            tipo_deg = "DOS DECLARADOS PRETOS"; break;
+                        case "Amarela":
+                            tipo_deg = "DOS DECLARADOS AMARELOS"; break;
+                        case "Parda":
+                            tipo_deg = "DOS DECLARADOS PARDOS"; break;
+                    }
+                    desc = desc.replace("[deg]", tipo_deg); break; 
                 case '6': 
                     tipo_deg = mapPronome(tipo_deg, ["Sim", "Não"], ["COM", "SEM"] )
                     desc = desc.replace("[deg]", tipo_deg+" FORMALIDADE"); break;
