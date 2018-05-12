@@ -1120,11 +1120,30 @@ function updateDescEmpreendimentos(desc, vrv){
                 description = desc.replace("[cad]", "DO SETOR "+cad_text).replace("[prt]", "DE "+prt_text).replace("[uf]", uf_text)
             }
         }
-        
+
+    }
+    else{
+        var vrv = url['var'];
+
+        if(vrv == 9){
+            console.log(uf)
+            if(cad == 0 && uf == 0){
+                uf_text = getPrepos(uf_text) +' '+ uf_text
+                description = desc.replace("[cad]", " CULTURAIS E CRIATIVAS").replace("[uf]", "DO "+ uf_text).replace("{uf}", "DO "+ uf_text)
+            }
+            else if(cad == 0 && uf != 0){
+                uf_text = getPrepos(uf_text) +' '+ uf_text
+                description = desc.replace("[cad]", " CULTURAIS E CRIATIVAS").replace("[uf]", uf_text).replace("{uf}", uf_text)
+            }
+            else{
+                description = desc.replace("[cad]", "DO SETOR " + cad_text).replace("[uf]", uf_text).replace("{uf}", uf_text)
+            }
+        }
     }
 
-
     $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(description)
+
+
 }
 
 function updateDescPercentComercio(desc, vrv, nomeestado){
@@ -1954,6 +1973,9 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     }
     if(desc.includes('{}')){
         desc =  descByUF(eixo, tipo, desc, nomeestado, '{}')
+    }
+    if(desc.includes('{uf}')){
+        desc =  descByUF(eixo, tipo, desc, nomeestado, '{uf}')
     }
     if(desc.includes('[uf]')){
         desc =  descByUF(eixo, tipo, desc, nomeestado, '[uf]')
