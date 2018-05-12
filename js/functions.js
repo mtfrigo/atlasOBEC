@@ -794,10 +794,13 @@ function updateBreadUF(eixo, vrv){
                 $('.bread-select[data-id=uf]').prop("disabled", false);
                 $('.bread-select[data-id=cad]').prop("disabled", false);
                 $('.bread-select[data-id=deg]').prop("disabled", false);
-            if(vrv >= 12){
+            if(vrv == 9 || vrv == 11){
+                $('.bread-select[data-id=deg]').prop("disabled", true);
+            }
+            else if(vrv >= 12){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
                 $('.bread-select[data-id=cad]').prop("disabled", true);
-
+                $('.bread-select[data-id=deg]').prop("disabled", true);
             } else if(vrv == 2){
                 //$('.bread-select[data-id=deg]').prop("disabled", true);
             }

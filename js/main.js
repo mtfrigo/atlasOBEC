@@ -1139,7 +1139,9 @@ function switchToSetores() {
 
     if(eixo == 0 && url['var'] > 9){
         $(".view-title-leg[data-id='scc&ocp']").html("");
-
+        cads = [
+                {id: 0, nome: " Todos"}
+        ]
 
         $("#title-view-leg-scc").html("" +
             "        <span data-id=\"1\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(7, 19, 66)\"></i> Setor<br></span>\n" +
@@ -1150,6 +1152,9 @@ function switchToSetores() {
 
     }
     else if(eixo == 1 && url['var'] > 11){
+        cads = [
+                {id: 0, nome: " Todos"}
+        ]
         $(".view-title-leg[data-id='scc&ocp']").html("");
 
 
