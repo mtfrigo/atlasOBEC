@@ -2397,17 +2397,38 @@ function updateMenuSetor(eixo, vrv){
 
         if(vrv == 15 || vrv == 16 || vrv == 10){
 
+            d3.selectAll('#menu-view').filter(function(d, i){
+                return i;
+            }).style("display", "inline-block");
+            $("#menu-view-donut").css("display", "none")
+            d3.select("#view_box_barras").style("width", "100%");
+            d3.select("#view_box_scc").style("width", "80%");
+            $("#menu-view").css("display", "inline-block");
+
+
         }
-        else if(vrv == 17){
+        else if(vrv == 17 || vrv == 18 || vrv == 19){
             d3.selectAll('#menu-view').filter(function(d, i){
                 return i;
             }).style("display", "none");
+
+
+            $("#menu-view").css("display", "none")
+            d3.select("#view_box_barras").style("width", "65%");
+            $("#menu-view-donut").css("display", "inline-block")
             d3.select("#view_box_scc").style("width", "100%");
         }
+
         else{
             d3.selectAll('#menu-view').filter(function(d, i){
                 return i;
-            }).style("display", "inline");
+            }).style("display", "inline-block");
+
+            $("#menu-view-donut").css("display", "none")
+            d3.select("#view_box_scc").style("width", "80%");
+            $("#menu-view").css("display", "inline-block");
+            d3.select("#view_box_barras").style("width", "100%");
+
         }
     }
     else if (eixo == 3){

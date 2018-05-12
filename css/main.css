@@ -558,7 +558,7 @@ video::-webkit-media-controls {
 	letter-spacing: 2px;
 }
 
-#title-view-scc, #title-view-leg-scc {
+#title-view-scc, #title-view-leg-scc , #title-view-leg-scc-donut {
 	display: flex;
 	flex-flow: column;
 	justify-content: center;
@@ -567,12 +567,22 @@ video::-webkit-media-controls {
 	text-align: left;
 	font-size: 8px;
 	width: 85%;
+	padding-top: 40%
 	margin: auto;
 	text-transform: uppercase;
 	font-weight: bold;
 	margin-top: 20px;
 	letter-spacing: 2px;
 }
+
+#title-view-leg-scc-donut{
+	padding-top: 0;
+	margin-top: 0;
+	display: flex;
+	justify-content: space-around;
+}
+
+
 
 #title-view-scc span, #title-view-leg-scc span {
 	cursor: pointer;
@@ -772,7 +782,7 @@ article.results-article div.results-content{
 
 
 
-#menu-view {
+#menu-view, #menu-view-donut {
 	float: left;
 	width: 50%;
 	margin-bottom: 16px;

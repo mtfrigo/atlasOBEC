@@ -364,7 +364,11 @@ function analyze(error, data) {
             }
         })
         .on("click", function (dados) {
-            click(dados, (this));
+            if(!(eixo == 0 && vrv >= 10 ||
+            eixo == 1 && vrv > 11 ||
+            eixo == 2 && (vrv == 15 || vrv == 16 || vrv == 10)))
+
+                click(dados, (this));
         })
         .on("mouseout", function () {
             tooltipInstance.hideTooltip();
