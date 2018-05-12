@@ -229,8 +229,8 @@ function updateIframe(url){
 
             }
             else if(url['var'] > 5 && url['var'] < 13 || url['var'] == 14 ){
-
-                $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "block")
+     
+                $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "none")
                //$('iframe[id="view_box"]').attr('src', 'line_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                $('iframe[id="view_box"]').attr('src', 'no-view.html');
                
