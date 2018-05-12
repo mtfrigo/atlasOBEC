@@ -1132,7 +1132,7 @@ function updateDescEmpreendimentos(desc, vrv){
             console.log(uf)
             if(cad == 0 && uf == 0){
                 uf_text = getPrepos(uf_text) +' '+ uf_text
-                description = desc.replace("[cad]", " CULTURAIS E CRIATIVAS").replace("[uf]", "DO "+ uf_text).replace("{uf}", "DO "+ uf_text)
+                description = desc.replace("[cad]", " CULTURAIS E CRIATIVAS").replace("[uf]", uf_text).replace("{uf}", uf_text)
             }
             else if(cad == 0 && uf != 0){
                 uf_text = getPrepos(uf_text) +' '+ uf_text
@@ -1740,6 +1740,9 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
                 nomeestado = "DO BRASIL"
             }
         }
+
+        nomeestado = mapPronome(nomeestado, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
+       
     }
 
     if(desc != undefined)
