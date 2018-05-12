@@ -143,10 +143,19 @@ class EixoTres {
             if($pf != 99 && $pf != NULL) {
 			    $query .= " AND ex.PessoaFisica = ".$pf;
             }
+            else{
+                $query .= " AND ex.PessoaFisica IS NULL";
+
+            }
             if(!is_null($mod)) {
 			    $query .= " AND ex.Modalidade = ".$mod;
             }
+            else{
+                $query .= " AND ex.Modalidade IS NULL";
+
+            }
             $query .= " AND ex.Ano = ".$anos;
+
 
 			$result = mysqli_query(self::$conn, $query);
 			$obj = mysqli_fetch_object($result, 'EixoTres');
