@@ -365,8 +365,8 @@ function analyze(error, data) {
         })
         .on("click", function (dados) {
             if(!(eixo == 0 && vrv >= 10 ||
-            eixo == 1 && vrv > 11 ||
-            eixo == 2 && (vrv == 15 || vrv == 16 || vrv == 10)))
+                 eixo == 1 && vrv > 11 ||
+                 eixo == 2 && (vrv == 15 || vrv == 16 || vrv == 10)))
 
                 click(dados, (this));
         })
@@ -479,9 +479,10 @@ function analyze(error, data) {
     }
     function click(d, path) {
 
+
         if(!($(path).hasClass("domain")) ) {
 
-            if(eixo == 1 && (vrv == 4)){
+            if(eixo == 1 && vrv == 4 && deg != 0){
                 desagId = (getDesagId(deg, $(path).attr("scc")));
                 desagName = updateUrlDesag(deg, desagId)
 

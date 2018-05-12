@@ -4,7 +4,6 @@ var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad
 var tooltipInstance = tooltip.getInstance();
 $.get("./db/json_donut.php"+config, function(data){
     console.log(data)
-
 });
 
 $.get("./db/json_donut.php"+config, ready);
