@@ -2364,11 +2364,9 @@ function updateDataDescUoS(){
 function updateMenuSetor(eixo, vrv){
 	if(eixo == 0){
 		if(vrv > 9){
-			d3.selectAll('#menu-view').filter(function(d, i){
-				return i;
-			}).style("display", "none");
 
 			var sel = document.getElementById("bread-select-cad");
+
 			for(i = 1; i <  sel.options.length; i++){
                 sel.options[i].style.display = "none"
 			}
@@ -2386,9 +2384,9 @@ function updateMenuSetor(eixo, vrv){
 	}
 	else if (eixo == 1){
 		if(vrv > 11){
-            d3.selectAll('#menu-view').filter(function(d, i){
-                return i;
-            }).style("display", "none");
+            // d3.selectAll('#menu-view').filter(function(d, i){
+            //     return i;
+            // }).style("display", "none");
 		} else{
             d3.selectAll('#menu-view').filter(function(d, i){
                 return i;
@@ -2397,10 +2395,14 @@ function updateMenuSetor(eixo, vrv){
 	}
 	else if (eixo == 2){
 
-	    if(vrv == 15 || vrv == 16 || vrv == 10 || vrv == 17){
+        if(vrv == 15 || vrv == 16 || vrv == 10){
+
+        }
+        else if(vrv == 17){
             d3.selectAll('#menu-view').filter(function(d, i){
                 return i;
             }).style("display", "none");
+            d3.select("#view_box_scc").style("width", "100%");
         }
         else{
             d3.selectAll('#menu-view').filter(function(d, i){

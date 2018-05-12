@@ -559,13 +559,15 @@ video::-webkit-media-controls {
 }
 
 #title-view-scc, #title-view-leg-scc {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
 	overflow: auto;
 	height: 200px;
 	text-align: left;
 	font-size: 8px;
 	width: 85%;
 	margin: auto;
-	padding-left: 10px;
 	text-transform: uppercase;
 	font-weight: bold;
 	margin-top: 20px;
@@ -762,6 +764,10 @@ article.results-article div.results-content{
 	font-size: 14px;
 	letter-spacing: 1px;
 	font-family: Lato Regular;
+}
+
+.view-title-leg{
+	padding: 20px 0 0 20px;
 }
 
 
