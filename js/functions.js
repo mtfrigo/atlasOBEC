@@ -1533,7 +1533,7 @@ function setIntegerValueData(value, eixo, vrv) {
             literal = formatDecimalLimit(valor, 4);
         }
         else if(eixo == 3)
-            literal = formatDecimalLimit(valor, 6);
+            literal = formatDecimalLimit(valor, 2);
 
         // console.log(value)
 
