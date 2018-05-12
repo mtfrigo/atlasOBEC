@@ -193,6 +193,12 @@ function updateIframe(url){
                 $('iframe[id="view_box"]').parent().find(".view-title").html("SÉRIE ÍNDICE HERFINDAHL-HIRSCHMAN PARA CONCENTRAÇÃO DOS PROJETOS FOMENTADOS POR UF");
 
             }
+            else if(url['var'] == 15){
+                newUrl = newUrl.replace(/uos=[0-9]/, "uos=0");
+                $('iframe[id="view_box"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                $('iframe[id="view_box"]').parent().find(".view-title").html("SÉRIE HISTÓRICA FINANCIAMENTO ESTATAL / RECEITA EXECUTIVO POR UF");
+
+            }
             else if (url['var'] > 14 || url['var'] == 10) {
                 newUrl = newUrl.replace(/mec=[0-9]/, "mec=0");
                 $('iframe[id="view_box"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
@@ -279,12 +285,10 @@ function updateIframe(url){
             $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
 
             if (url ['var'] == 15) {
-                if(url['uos'] == 0) {
-                    $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR UF");
-                }
-                else {
-                    $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
-                }
+                newUrl = newUrl.replace(/uos=[0-9]/, "uos=1");
+                $('iframe[id="view_box_barras"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA FINANCIAMENTO ESTATAL / RECEITA EXECUTIVO POR SETOR");
+
             }
             else if(url['var'] == 16){
                 newUrl = newUrl.replace(/uos=[0-9]/, "uos=1");
