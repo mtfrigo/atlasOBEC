@@ -1589,6 +1589,8 @@ $(document).ready(function(){
                 $('#ocupacao').removeClass("active");
 
                 url['ano'] = anos_default[url['var']][0];
+
+                $(window.document).find(".bread-select[data-id=cad]").parent().find("span").text("Setor")
             }
 		    else {
                 enableDesag(getEixo(window.location.hash.substring(1)), url['var'], url['cad'], false, 1, url);
@@ -1614,6 +1616,8 @@ $(document).ready(function(){
                 $('#setor').removeClass("active");
                 
                 url['ano'] = anos_default[url['var']][1];
+                //troca o nome do select de setor
+                $(window.document).find(".bread-select[data-id=ocp]").parent().find("span").text("Ocupação")
             }
             updateIframe(url); /* altera gráfico */
         }

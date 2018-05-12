@@ -1721,6 +1721,9 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
                 nomeestado = "DO BRASIL"
             }
         }
+
+        nomeestado = mapPronome(nomeestado, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
+       
     }
 
     if(desc != undefined)
