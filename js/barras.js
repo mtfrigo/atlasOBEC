@@ -775,8 +775,8 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
         else if(eixo == 1)
             updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, ocp);
         else
-            $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, data[dados.key[0]].uf));
-        $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, data[dados.key[0]].uf));
+            $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, data[dados.key[0]].uf));
+        $(window.parent.document).find(".percent-value").first().find(".description-number").first().html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, data[dados.key[0]].uf));
         if(vrv == 1 && eixo == 1){
             $(window.parent.document).find(".setor-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_setorial, data[dados.key[0]].uf));
         } else if(eixo == 0){

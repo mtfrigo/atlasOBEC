@@ -2391,8 +2391,8 @@ function updateDataDescUoS(){
         var desc_int = $(window.parent.document).find(".integer-value").first().find(".description-number").html().replace("POR UF", "POR ATIVIDADES RELACIONADAS");
         var desc_perc = $(window.parent.document).find(".percent-value").first().find(".description-number").html().replace("POR SETOR", "POR ATIVIDADES CULTURAIS");
 
-        $(window.parent.document).find(".integer-value").first().find(".description-number").html(desc_int);
-        $(window.parent.document).find(".percent-value").first().find(".description-number").html(desc_perc);
+        $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(desc_int);
+        $(window.parent.document).find(".percent-value").first().find(".description-number").first().html(desc_perc);
 	}
 
 }
