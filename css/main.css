@@ -561,17 +561,16 @@ video::-webkit-media-controls {
 #title-view-scc, #title-view-leg-scc , #title-view-leg-scc-donut {
 	display: flex;
 	flex-flow: column;
-	justify-content: center;
 	overflow: auto;
-	height: 200px;
 	text-align: left;
 	font-size: 8px;
 	width: 85%;
-	padding-top: 40%
+	height: 60%;
+	padding-top: 5%;
 	margin: auto;
+	justify-content: space-around;
 	text-transform: uppercase;
 	font-weight: bold;
-	margin-top: 20px;
 	letter-spacing: 2px;
 }
 
