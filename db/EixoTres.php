@@ -216,9 +216,11 @@ class EixoTres {
             $query = "SELECT * FROM " . self::$table . " AS ex"
                 . " JOIN UF AS uf ON uf.idUF =  ex.idUF"
                 . " JOIN Mecanismo AS mec ON mec.idMecanismo = ex.idMecanismo AND mec.idMecanismo = ".$mec
+                . " JOIN Cadeia AS cad ON cad.idCadeia = ex.idCadeia AND cad.idCadeia = ".$cad
                 . " WHERE ex.Numero = " . $var;
 
             $query .= ($anos > 0) ? " AND ex.Ano = " . $anos : "";
+
 
             $result = mysqli_query(self::$conn, $query);
             $allObjects = array();
@@ -317,13 +319,9 @@ class EixoTres {
                 $query = "SELECT * FROM ".self::$table." AS ex"
                     ." WHERE ex.Numero = ".$var . " AND idMecanismo = ".$mec . " AND idUF = ".$ufs;
 
-                if($uos == 0)
                     $query .=  " AND Ano > 0" ;
-                else{
-                    $query .=  " AND Ano = 0" ;
-                    $query .=  " AND idCadeia > 0" ;
+                    $query .=  " AND idCadeia = ".$cad ;
 
-                }
 
 
                 $result = mysqli_query(self::$conn, $query);
