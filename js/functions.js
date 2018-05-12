@@ -140,7 +140,7 @@ function configInfoDataBoxMapaClick(eixo, vrv, dados) {
     else if(eixo == 2){
 
         setIntegerValueData(dados, eixo, vrv);
-        if(url['cad'] == 0){
+        if(url['cad'] == 0 && (vrv < 18)){
             setPercentValueData(dados, eixo, vrv);
         }
 

@@ -483,13 +483,15 @@ class EixoTres {
                 $query .=  " AND idMecanismo = ".$mec ;
                 $query .=  " AND Ano = 0" ;
                 $query .=  " AND idUF = ".$ufs ;
-                $query .=  " AND idCadeia > 0" ;
+                if(!($var == 19 && $mec == 1))
+                    $query .=  " AND idCadeia > 0" ;
         }
         else
             $query .= ($ano > 0) ? " AND Ano = ".$ano : "" ;
 
         $result = mysqli_query(self::$conn, $query);
         $allObjects = array();
+
 
         while($obj = mysqli_fetch_object($result, 'EixoTres')){
             $allObjects[] = $obj;
