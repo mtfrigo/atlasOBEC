@@ -1583,7 +1583,7 @@
 				"desc_int": "índice de preços do valor absoluto das <>",
 				"desc_percent":"",
 				"desc":"Demonstra se há ou não vantagem comparativa nas exportações do comércio exterior nacional cultural por estratificação proposta.",
-				"desc_var_mapa": "A variável calcula o comércio cultural externo desagregado em termos de preços. Variável apresentada apenas para bens.",
+				"desc_var_mapa": "A variável mostra a relação entre o índice de preços das exportações, corrigido pela taxa de câmbio, e uma aproximação do índice de custos das exportações setoriais estimado pela FUNCEX. Variável apresentada apenas para bens, sendo 2009 o ano base (índice = 100).",
 				"fontes":"Elaboração do NECCULT com base no MDIC.",
 				"sufixo_valor":"",
 				"prefixo_valor":"",
