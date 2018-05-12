@@ -384,10 +384,10 @@
 			{
 				"id":"9",
 				"title":"Valor Adicionado / Produto Interno Bruto (PIB)",
-				"desc_int": "de valor adicionado/PIB [uf] pelas empresas [cad] [prt] [uf]",
+				"desc_int": "de valor adicionado/PIB {uf} pelas empresas [cad] [uf]",
 				"desc_percent": "",
 				"sufixo_valor":"%",
-				"prefixo_valor":"",
+				"prefixo_valor"	:"",
 				"desc":"Esse indicador demonstra a razão entre o Valor Adicionado e o PIB, elucidando e contabilizando a contribuição da cultura na geração de riqueza. Um aumento desta razão indica que a cultura está contribuindo mais para  a geração de renda e produto na economia.",
 				"desc_var_mapa":"A variável calcula a participação do valor adicionado pelas empresas culturais e criativas formais no valor adicionado total ou PIB da economia brasileira (em nível nacional ou regional).",
 				"desc_var_treemap_scc": "",
