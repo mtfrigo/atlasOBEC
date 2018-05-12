@@ -1653,7 +1653,7 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         }
         else if(url['var'] == 1){
             if(tipo == "percent" ){
-                if(getPrepos(nomeestado) != undefined && url['cad'] != 0){
+                if(getPrepos(nomeestado) != undefined && (url['cad'] != 0 || url['ocp'] == 1 || url['ocp'] == 2)){
 
                     nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
 
@@ -1989,6 +1989,13 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     if(desc == undefined){
         return ;
     }
+
+    if(desc.includes('[setores]')){
+        if(ocp == 0)
+            desc = desc.replace("[setores]", "DOS SETORES CULTURAIS E CRIATIVOS")
+        else
+            desc = desc.replace("[setores]", "EM ATIVIDADES CULTURAIS E CRIATIVAS")
+    }
     if(desc.includes('{}')){
         desc =  descByUF(eixo, tipo, desc, nomeestado, '{}')
     }
@@ -2033,13 +2040,6 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
             desc = desc.replace("[ocp]", "OCUPADOS")
         else
             desc = desc.replace("[ocp]", "TRABALHADORES")
-    }
-
-    if(desc.includes('[setores]')){
-        if(ocp == 0)
-            desc = desc.replace("[setores]", "DOS SETORES CULTURAIS E CRIATIVOS")
-        else
-            desc = desc.replace("[setores]", "EM ATIVIDADES CULTURAIS E CRIATIVAS")
     }
 
 

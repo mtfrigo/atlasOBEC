@@ -498,7 +498,7 @@
 			{
 				"id":"1",
 				"desc_int":"[ocp] [cad] [deg] [uf]",
-				"desc_percent": "Do total de [ocp] [cad] [uf]",
+				"desc_percent": "Do total de [ocp] [setores] [uf]",
 				"desc_setorial": "do total de [ocp] [setores] do Brasil",
 				"title":"Total de Ocupados",
 				"sufixo_valor" :"",
