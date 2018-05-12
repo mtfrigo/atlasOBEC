@@ -725,8 +725,8 @@ function legendaBinario(){
 
 
     if(eixo != 3 && eixo != 1 && eixo != 2){
-        $(window.parent.document).find(".integer-value").first().find(".description-number").html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, estadoAtual));
-        $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, estadoAtual));
+        $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, estadoAtual));
+        $(window.parent.document).find(".percent-value").first().find(".description-number").first().html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, estadoAtual));
     }
 
     function loadTooltip(d, eixo, vrv){

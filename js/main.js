@@ -229,8 +229,8 @@ function updateIframe(url){
 
             }
             else if(url['var'] > 5 && url['var'] < 13 || url['var'] == 14 ){
-
-                $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "block")
+     
+                $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "none")
                //$('iframe[id="view_box"]').attr('src', 'line_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                $('iframe[id="view_box"]').attr('src', 'no-view.html');
                
@@ -1368,6 +1368,20 @@ function switchToSetores() {
 
     }
     else if(eixo == 2 && (url['var'] == 15 || url['var'] == 16)){
+        cads = 
+            [
+                {id: 0, nome: " Todos"},
+                {id: 1, nome: " Arquitetura e Design"},
+                {id: 2, nome: " Artes Cênicas e Espetáculos"},
+                {id: 3, nome: " Audiovisual"},
+                {id: 4, nome: " Cultura Digital"},
+                {id: 5, nome: " Editorial"},
+                {id: 6, nome: " Educação e Criação em Artes"},
+                {id: 7, nome: " Entretenimento"},
+                {id: 8, nome: " Música"},
+                {id: 9, nome: " Patrimônio"},
+                {id: 10, nome: " Publicidade"}
+            ]
         $(".view-title-leg[data-id='scc&ocp']").html("");
 
         $("#title-view-leg-scc").html("" +
@@ -1378,6 +1392,21 @@ function switchToSetores() {
 
     }
     else if(eixo == 2 && (url['var'] == 10)){
+        cads = 
+            [
+                {id: 0, nome: " Todos"},
+                {id: 1, nome: " Arquitetura e Design"},
+                {id: 2, nome: " Artes Cênicas e Espetáculos"},
+                {id: 3, nome: " Audiovisual"},
+                {id: 4, nome: " Cultura Digital"},
+                {id: 5, nome: " Editorial"},
+                {id: 6, nome: " Educação e Criação em Artes"},
+                {id: 7, nome: " Entretenimento"},
+                {id: 8, nome: " Música"},
+                {id: 9, nome: " Patrimônio"},
+                {id: 10, nome: " Publicidade"}
+            ]
+
         $(".view-title-leg[data-id='scc&ocp']").html("");
 
         $("#title-view-leg-scc").html("" +
@@ -1388,6 +1417,20 @@ function switchToSetores() {
 
     }
     else if(eixo == 2 && (url['var'] == 17)){
+        cads = 
+            [
+                {id: 0, nome: " Todos"},
+                {id: 1, nome: " Arquitetura e Design"},
+                {id: 2, nome: " Artes Cênicas e Espetáculos"},
+                {id: 3, nome: " Audiovisual"},
+                {id: 4, nome: " Cultura Digital"},
+                {id: 5, nome: " Editorial"},
+                {id: 6, nome: " Educação e Criação em Artes"},
+                {id: 7, nome: " Entretenimento"},
+                {id: 8, nome: " Música"},
+                {id: 9, nome: " Patrimônio"},
+                {id: 10, nome: " Publicidade"}
+            ]
         $("#menu-view-donut").find(".view-title-leg-donut[data-id='scc&ocp']").html("");
 
         $("#menu-view-donut").find("#title-view-leg-scc-donut").html("" +
@@ -1399,6 +1442,19 @@ function switchToSetores() {
 
     }
     else if(eixo == 3 && (url['var'] >= 1 && url['var'] != 5 && url['var'] != 8 && url['var'] <= 10 || url['var'] == 12)){
+        cads = 
+            [
+                {id: 0, nome: " Todos"},
+                {id: 1, nome: " Arquitetura e Design"},
+                {id: 2, nome: " Artes Cênicas e Espetáculos"},
+                {id: 3, nome: " Audiovisual"},
+                {id: 4, nome: " Cultura Digital"},
+                {id: 5, nome: " Editorial"},
+                {id: 6, nome: " Educação e Criação em Artes"},
+                {id: 7, nome: " Entretenimento"},
+                {id: 8, nome: " Música"},
+                {id: 9, nome: " Patrimônio"}
+            ]
         $(".view-title-leg[data-id='scc&ocp']").html("");
 
 
