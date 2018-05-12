@@ -384,7 +384,7 @@
 			{
 				"id":"9",
 				"title":"Valor Adicionado / Produto Interno Bruto (PIB)",
-				"desc_int": "de valor adicionado/PIB pelas empresas [cad] [prt] [uf]",
+				"desc_int": "de valor adicionado/PIB [uf] pelas empresas [cad] [prt] [uf]",
 				"desc_percent": "",
 				"sufixo_valor":"%",
 				"prefixo_valor":"",
