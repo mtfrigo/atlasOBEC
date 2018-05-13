@@ -1676,7 +1676,7 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
     else if(eixo == 1){
         if(url['var'] == 7){
             if(tipo == "percent" ){
-                if(getPrepos(nomeestado)){
+                if(getPrepos(nomeestado)!= undefined && (url['deg'] > 0 || url['cad'] != 0 || url['ocp'] == 1 || url['ocp'] == 2)){
                     nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
                 }
                 else{
@@ -1693,7 +1693,7 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
                     nomeestado = mapPronome(nomeestado, ["DE", "DO", "DA"], ["EM", "NO", "NA"])
                 }
                 else{
-                    nomeestado = "NO BRASIL"
+                    nomeestado = "DO BRASIL"
                 }
             }
         }
