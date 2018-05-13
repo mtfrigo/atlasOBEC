@@ -105,6 +105,10 @@ function ready(json){
             tooltipInstance.hideTooltip()
         })
         .on("click", function(d){
+
+            if(window.parent.innerWidth <= 800)
+                return;
+
             if(eixo == 2 && vrv >= 18){
                 cad = d.data.cad;
 

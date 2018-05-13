@@ -414,6 +414,9 @@ function ready(error, br_states, mapa){
 		})
 		.on("mouseout", tooltipInstance.hideTooltip)
 		.on("click", function(d) {
+
+            if(window.parent.innerWidth <= 800)
+                return;
             
 			var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/uf=[0-9]*/, "uf="+d.id);
             newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano="+url['ano']);
