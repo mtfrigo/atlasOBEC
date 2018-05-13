@@ -482,7 +482,6 @@ button.opt:hover, button.opt.active{
 }
 
 #menuvariaveis {
-	margin-top:		50px;
 	margin-bottom:	20px;
 }
 
@@ -1519,13 +1518,35 @@ body.contraste{
 	}
 
 	#barra-menu{
-		background-color: #616161	;
+
+	}
+
+	.header{
+		color: #f1f1f1;
 		height: 50px;
-		padding-top: 10px;
-		position: absolute;
+		background-color: #616161	;
+		padding-top: 2%;
 		top: 0;
 		width: 100%;
+
 	}
+
+	.sticky {
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		z-index: 999;
+		width: 100%;
+		height: 50px;
+		background-color: red;
+		-webkit-backface-visibility: hidden;
+	}
+
+
+	.menu-fixo {
+
+	}
+
 
 	.rotulo-bread{
 		text-align: left;
@@ -1637,12 +1658,33 @@ body.contraste{
 	.content-btn-mapa{
 		width: 100%;
 	}
+	.desc-chart .title{
+		font-family: "Lato Regular";
+	}
 
+	article.results-article{
+		padding-top: 0;
+	}
 
 
 
 	/*** SELECT ***/
 
+
+
+}
+
+@media (max-width: 1199px) {
+
+
+	.description-number{
+		font-size: 2.5vw;
+	}
+
+	.percent-value .description-number{
+		font-size: 2.5vw;
+		line-height: 20px;
+	}
 
 
 }
