@@ -135,6 +135,9 @@ $.get("./db/json_mapa.php"+config, function(data) {
             },
             onRegionClick: function(e, el, code){
 
+                if(window.parent.innerWidth <= 800)
+                    return;
+
                 var newBarraSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/prc=[0-9]*/, "prc="+convertCode(el));
                 newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano="+url['ano']);
                 var newDonutSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/prc=[0-9]*/, "prc="+convertCode(el));

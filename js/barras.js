@@ -537,6 +537,9 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
             .on("mouseout", tooltipInstance.hideTooltip)
             .on("click", function(d, i, obj) {
 
+                if(window.parent.innerWidth <= 800)
+                    return;
+
                 if(eixo == 1 && vrv == 6 && uos == 1)
                     return
 
@@ -1187,6 +1190,9 @@ else {
             })
             .on("mouseout", tooltipInstance.hideTooltip)
             .on("click", function(d, i, obj) {
+
+                if(window.parent.innerWidth <= 800)
+                    return;
 
                 if(d.x.getFullYear() != url['ano']) {
                     url['ano'] = d.x.getFullYear();

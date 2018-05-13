@@ -364,6 +364,10 @@ function analyze(error, data) {
             }
         })
         .on("click", function (dados) {
+
+            if(window.parent.innerWidth <= 800)
+                return;
+
             if(!(eixo == 0 && vrv >= 10 ||
                  eixo == 1 && vrv > 11 ||
                  eixo == 2 && (vrv == 15 || vrv == 16 || vrv == 10)))

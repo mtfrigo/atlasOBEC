@@ -192,6 +192,9 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
 				.on("mouseout", tooltipInstance.hideTooltip)
 				.on("click", function(d) {
 
+                    if(window.parent.innerWidth <= 800)
+                        return;
+
 				    if(url['ocp'] == 0) {
                         var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/cad=[0-9]*/, "cad=" + d.data.colorId);
                         newMapaSrc = newMapaSrc.replace(/uf=[0-9]*/, "uf=" + url['uf']);
