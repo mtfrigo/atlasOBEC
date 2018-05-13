@@ -536,7 +536,7 @@ function controlFilter(selectvalue, selectid, valueDesag){
     if(selectid==='cad') {
         var save_deg = url['deg'];
         var save_uf = url['uf'];
-        defaultUrl();
+        //defaultUrl();
         url['deg'] = save_deg;
         url['uf'] = save_uf;
     }
