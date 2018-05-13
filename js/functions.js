@@ -1185,15 +1185,12 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
     nomeestado = $(window.parent.document).find(".bread-select[data-id=uf] option:selected").text();
     prc = $(window.parent.document).find(".bread-select[data-id=prc] option:selected").text();
     typ = $(window.parent.document).find(".opt-select[data-id=typ] option:selected").text();
+    desc = desc.replace("()", '[cad]')
     if(getPrepos(nomeestado)){
         nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
     }
     else{
         nomeestado = "DO BRASIL"
-    }
-
-    if(getPrepos(prc)){
-        prc = getPrepos(prc) + ' ' +prc
     }
 
     if(vrv == 1){
@@ -1203,9 +1200,9 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
         switch(typ){
             case 'Exportação':
                 typ = "EXPORTADO";
-                prc = mapPronome(prc, ["DE", "DA", "DO"], ["PARA", "PARA A", "PARA O"]);
+                prc = mapPronome(getPrepos(prc) + ' ' +prc, ["DE", "DA", "DO"], ["PARA", "PARA A", "PARA O"]);
                 if(url['cad'] == 0)
-                    return desc.replace('[uf]', "DO BRASIL").replace('<>', typ).replace('[]', "PARA O MUNDO").replace('[cad]', "PELOS SETORES CULTURAIS");
+                    return desc.replace('[uf]', "DO BRASIL").replace('<>', typ).replace('[]', "PARA O MUNDO").replace('[cad]', "PELOS SETORES CULTURAIS E CRIATIVOS");
                 else
                     return desc.replace('[uf]', "DO BRASIL").replace('<>', typ).replace('[]', prc).replace('[cad]', "PELO SETOR DE "+ cad);
 
@@ -1218,7 +1215,8 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
             case 'Saldo Comercial':
                 return ''
             case 'Corrente de Comércio':
-                prc = $(window.parent.document).find(".bread-select[data-id=prc] option:selected").text();
+
+                prc = mapPronome(getPrepos(prc) + ' ' +prc, ["DE", "DA", "DO"], ["COM", "COM A", "COM O"])
                 cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
                 desc = desc.replace("DO VALOR <>", "DA CORRENTE DE COMÉRCIO")
                 if(cad == "TODOS" || " TODOS"){
@@ -1226,14 +1224,14 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
                 } else {
                     cad = "PELO SETOR DE" + cad;
                 }
-                return desc.replace('[uf]', nomeestado).replace('<>', typ).replace('[]', prc).replace('()', cad);
+                return desc.replace('[uf]', nomeestado).replace('<>', typ).replace('[]', prc).replace('[cad]', cad);
         }
     }
     else if(vrv == 13){
         switch(typ){
             case 'Exportação':
                 typ = "EXPORTADO";
-                prc = mapPronome(prc, ["DE", "DA", "DO"], ["PARA", "PARA A", "PARA O"]);
+                prc = mapPronome(getPrepos(prc) + ' ' +prc, ["DE", "DA", "DO"], ["PARA", "PARA A", "PARA O"]);
                 return desc.replace('[uf]', "DO BRASIL").replace('<>', typ).replace('[]', prc);
             case 'Importação':
                 typ = "IMPORTADO";
@@ -1241,7 +1239,6 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
             case 'Saldo Comercial':
                 return ''
             case 'Corrente de Comércio':
-                prc = $(window.parent.document).find(".bread-select[data-id=prc] option:selected").text();
                 cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
                 desc = desc.replace("DO VALOR <>", "DA CORRENTE DE COMÉRCIO")
                 if(cad == "TODOS" || " TODOS"){
@@ -1249,7 +1246,8 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
                 } else {
                     cad = "PELO SETOR DE" + cad;
                 }
-                return desc.replace('[uf]', nomeestado).replace('<>', typ).replace('[]', prc).replace('()', cad);
+                prc = mapPronome(getPrepos(prc) + ' ' +prc, ["DE", "DA", "DO"], ["COM", "COM A", "COM O"])
+                return desc.replace('[uf]', nomeestado).replace('<>', typ).replace('[]', prc).replace('[cad]', cad);
         }
     }
 }
@@ -1434,9 +1432,7 @@ function updateDescComercio(desc, vrv, nomeestado){
     cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
     
     prc = prc.toUpperCase()
-    if(prepos[prc]){
-        prc = prepos[prc] + ' ' + prc
-    }
+    
 
     if(cad.toUpperCase() == "TODOS" || cad.toUpperCase() == " TODOS"){
         if(vrv == 14)
@@ -1459,8 +1455,10 @@ function updateDescComercio(desc, vrv, nomeestado){
             } else if(vrv == 13){
                 typ = "EXPORTADOS"
             }
-            
-            prc = mapPronome(prc, ["DE", "DO", "DA"], ["PARA", "PARA O", "PARA A"])
+            if(prepos[prc]){
+                prepos_prc = mapPronome(prepos[prc], ["DE", "DO", "DA"], ["PARA", "PARA O", "PARA A"])
+                prc = prepos_prc + ' ' + prc
+            }
             break;
         case 'Importação': 
             if(vrv >= 1 && vrv <= 3)
@@ -1471,6 +1469,9 @@ function updateDescComercio(desc, vrv, nomeestado){
                 typ = "IMPORTADOS"
             }
             nomeestado = mapPronome(nomeestado, ["DE", "DO", "DA"], ["PARA", "PARA O", "PARA A"])
+            if(prepos[prc]){
+                prc = prepos[prc] + ' ' + prc
+            }
             desc = desc.replace('[]', nomeestado).replace('[uf]', prc)
             break;
         case 'Saldo Comercial': 
@@ -1480,7 +1481,10 @@ function updateDescComercio(desc, vrv, nomeestado){
                 typ = "DE SALDO COMERCIAL"
             }
             nomeestado = mapPronome(nomeestado, ["DE", "DO", "DA"], ["ENTRE", "ENTRE O", "ENTRE A"])
-            prc = mapPronome(prc, ["DE", "DO", "DA"], ["E ", "E O", "E A"])
+            if(prepos[prc]){
+                prepos_prc = mapPronome(prepos[prc], ["DE", "DO", "DA"], ["E ", "E O", "E A"])
+                prc = prepos_prc + ' ' + prc
+            }
             break;
         case 'Corrente de Comércio':
             if(vrv >= 1 && vrv <= 3)
@@ -1488,14 +1492,13 @@ function updateDescComercio(desc, vrv, nomeestado){
             else if(vrv == 13){
                 typ = "DE Corrente de Comércio"
             }
-            nomeestado = mapPronome(nomeestado, ["DE", "DO", "DA"], ["ENTRE", "ENTRE O", "ENTRE A"])
-            prc = mapPronome(prc, ["DE", "DO", "DA"], ["E ", "E O", "E A"])
+            if(prepos[prc]){
+                prepos_prc = mapPronome(prepos[prc], ["DE", "DO", "DA"], ["COM ", "COM O", "COM A"])
+                prc = prepos_prc + ' ' + prc
+            }
             break;
     }
-    if(vrv <= 3 || vrv >= 13)
-        $(window.parent.document).find(".integer-value").first().find(".description-number").first().css("font-size", "0.5vw")
-    else
-        $(window.parent.document).find(".integer-value").first().find(".description-number").first().css("font-size", "14px")
+    $(window.parent.document).find(".integer-value").first().find(".description-number").first().css("font-size", "14px")
 
     if(desc != undefined)
         return desc.replace('[uf]', nomeestado).replace('<>', typ).replace('[]', prc).replace('()', cad);
