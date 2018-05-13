@@ -75,6 +75,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
     $.get('./db/total_setor.php' + "?var=" + vrv+"&cad="+cad+"&eixo="+eixo+"&prt="+prt, function(dado){
         brasil_setor = JSON.parse(dado)
     })
+   
     d3.json('data/colors.json', function (error, data) {
         if (error) throw error;
         colorJSON = data;
