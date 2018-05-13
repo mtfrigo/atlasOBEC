@@ -1116,21 +1116,27 @@ function updateDescEmpreendimentos(desc, vrv){
     if(array_variaveis.includes(parseInt(vrv))){
         if(prt == 0){
             if(uf == 0 && cad == 0){
-                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "").replace("[uf]", "")
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "").replace("[uf]", "NO BRASIL")
             } else if(cad == 0){
-                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "").replace("[uf]", "")
+                uf_text = getPrepos(uf_text) +' '+ uf_text
+                uf_text = mapPronome(uf_text, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "").replace("[uf]", uf_text)
             } else if(cad > 0){
                 uf_text = getPrepos(uf_text) +' '+ uf_text
                 uf_text = mapPronome(uf_text, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
                 description = desc.replace("[cad]", "DO SETOR "+cad_text).replace("[prt]", "").replace("[uf]", uf_text)
             }
         } else{
+            uf_text = getPrepos(uf_text) +' '+ uf_text
             if(uf == 0 && cad == 0){
                 description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+prt_text).replace("[uf]", "")
             } else if(cad == 0){
-                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+prt_text).replace("[uf]", "")
+                if(vrv >= 4 && vrv <= 7){
+                    description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+prt_text).replace("[uf]", uf_text)   
+                } else {
+                    description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+prt_text).replace("[uf]", "")
+                }
             } else if(cad > 0){
-                uf_text = getPrepos(uf_text) +' '+ uf_text
                 uf_text = mapPronome(uf_text, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
                 description = desc.replace("[cad]", "DO SETOR "+cad_text).replace("[prt]", "DE "+prt_text).replace("[uf]", uf_text)
             }
