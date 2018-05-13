@@ -105,23 +105,38 @@ function ready(json){
             tooltipInstance.hideTooltip()
         })
         .on("click", function(d){
-            tipo = d.data.tipo
-            $(parent.document).find(".opt-select[data-id=typ]").first().val(indexTipos(tipo))
+            if(eixo == 2 && vrv >= 18){
+                cad = d.data.cad;
 
-            srcMapa = $(parent.document).find("iframe#view_box").first().attr("src");
-            srcMapa = srcMapa.replace(/typ=[0-9]/, "typ="+indexTipos(tipo));
-            $(parent.document).find("iframe#view_box").first().attr("src", srcMapa)
+                srcMapa = $(parent.document).find("iframe#view_box").first().attr("src");
+                srcMapa = srcMapa.replace(/cad=[0-9]/, "cad="+cad);
+                $(parent.document).find("iframe#view_box").first().attr("src", srcMapa);
 
-             if(eixo == 3 && (vrv >= 1 && vrv != 5 && vrv != 8 && vrv <= 10 || vrv == 12)){
-                 srcBarras = $(parent.document).find("iframe#view_box_scc").first().attr("src");
-                 srcBarras = srcBarras.replace(/typ=[0-9]/, "typ="+indexTipos(tipo));
-                 $(parent.document).find("iframe#view_box_scc").first().attr("src", srcBarras)
-             }
-             else{
-                 srcBarras = $(parent.document).find("iframe#view_box_barras").first().attr("src");
-                 srcBarras = srcBarras.replace(/typ=[0-9]/, "typ="+indexTipos(tipo));
-                 $(parent.document).find("iframe#view_box_barras").first().attr("src", srcBarras)
+                srcBarras = $(parent.document).find("iframe#view_box_scc").first().attr("src");
+                srcBarras = srcBarras.replace(/cad=[0-9]/, "cad="+cad);
+                $(parent.document).find("iframe#view_box_scc").first().attr("src", srcBarras)
+
             }
+            else  if(eixo == 3){
+                tipo = d.data.tipo
+                $(parent.document).find(".opt-select[data-id=typ]").first().val(indexTipos(tipo))
+
+                srcMapa = $(parent.document).find("iframe#view_box").first().attr("src");
+                srcMapa = srcMapa.replace(/typ=[0-9]/, "typ="+indexTipos(tipo));
+                $(parent.document).find("iframe#view_box").first().attr("src", srcMapa)
+
+                if(eixo == 3 && (vrv >= 1 && vrv != 5 && vrv != 8 && vrv <= 10 || vrv == 12)){
+                    srcBarras = $(parent.document).find("iframe#view_box_scc").first().attr("src");
+                    srcBarras = srcBarras.replace(/typ=[0-9]/, "typ="+indexTipos(tipo));
+                    $(parent.document).find("iframe#view_box_scc").first().attr("src", srcBarras)
+                }
+                else{
+                    srcBarras = $(parent.document).find("iframe#view_box_barras").first().attr("src");
+                    srcBarras = srcBarras.replace(/typ=[0-9]/, "typ="+indexTipos(tipo));
+                    $(parent.document).find("iframe#view_box_barras").first().attr("src", srcBarras)
+                }
+            }
+
 
 
 

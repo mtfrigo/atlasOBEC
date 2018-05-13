@@ -584,7 +584,7 @@ video::-webkit-media-controls {
 
 
 
-#title-view-scc span, #title-view-leg-scc span {
+#title-view-scc span, #title-view-leg-scc span , #title-view-leg-scc-donut span {
 	cursor: pointer;
 }
 

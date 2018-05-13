@@ -1584,9 +1584,10 @@ $(document).ready(function(){
 	/*=== selecionar variável ===*/
 
 	$(document).on('click', ".scc", function(){
+
 	    var eixoAtual = getEixo(window.location.hash.substring(1));
 
-        if((eixoAtual == 0 && url['var'] < 10) || (eixoAtual == 1 && url['var'] < 12) ||  (eixoAtual == 3) ){
+        if((eixoAtual == 0 && url['var'] < 10) || (eixoAtual == 1 && url['var'] < 12) || (eixoAtual == 2 && url['var'] >= 18) || eixoAtual == 3 ){
             var setor = $(this).attr('data-id');
 
 
