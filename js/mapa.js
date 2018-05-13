@@ -231,11 +231,13 @@ var path = d3.geoPath()
 
 // import colors.json file
 var colorJSON;
+$.ajaxSetup({async: false});
 d3.json('data/colors.json', function(error, data) {
   if(error) throw error;
 
   colorJSON = data;
 });
+$.ajaxSetup({async: true});
 
 // import pt-br.json file for get the title
 var textJSON;

@@ -1,3 +1,5 @@
+
+
 function changeDownloadURL(url, eixo){
     newURL = $('#select-pdf input').attr("value").replace(/download.php?.*/, "download.php?"+ url);
     $('#select-pdf input').attr("value", newURL)
@@ -1114,21 +1116,27 @@ function updateDescEmpreendimentos(desc, vrv){
     if(array_variaveis.includes(parseInt(vrv))){
         if(prt == 0){
             if(uf == 0 && cad == 0){
-                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "").replace("[uf]", "")
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "").replace("[uf]", "NO BRASIL")
             } else if(cad == 0){
-                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "").replace("[uf]", "")
+                uf_text = getPrepos(uf_text) +' '+ uf_text
+                uf_text = mapPronome(uf_text, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
+                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "").replace("[uf]", uf_text)
             } else if(cad > 0){
                 uf_text = getPrepos(uf_text) +' '+ uf_text
                 uf_text = mapPronome(uf_text, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
                 description = desc.replace("[cad]", "DO SETOR "+cad_text).replace("[prt]", "").replace("[uf]", uf_text)
             }
         } else{
+            uf_text = getPrepos(uf_text) +' '+ uf_text
             if(uf == 0 && cad == 0){
                 description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+prt_text).replace("[uf]", "")
             } else if(cad == 0){
-                description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+prt_text).replace("[uf]", "")
+                if(vrv >= 4 && vrv <= 7){
+                    description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+prt_text).replace("[uf]", uf_text)   
+                } else {
+                    description = desc.replace("[cad]", "CULTURAIS E CRIATIVAS").replace("[prt]", "DE "+prt_text).replace("[uf]", "")
+                }
             } else if(cad > 0){
-                uf_text = getPrepos(uf_text) +' '+ uf_text
                 uf_text = mapPronome(uf_text, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
                 description = desc.replace("[cad]", "DO SETOR "+cad_text).replace("[prt]", "DE "+prt_text).replace("[uf]", uf_text)
             }
@@ -1137,7 +1145,17 @@ function updateDescEmpreendimentos(desc, vrv){
     }
     else{
         var vrv = url['var'];
-
+        if(vrv == 2 || vrv == 3){   
+            desc = descByANO(0, desc)
+            desc = descByPRT(0, desc)
+            if(cad == 0)
+                desc = desc.replace("[cad]", "CULTURAIS E CRIATIVAS")
+            else
+                desc = desc.replace("[cad]", "DO SETOR "+cad_text)
+            desc = descByPRT(0, desc)
+            uf_text = getPrepos(uf_text) +' '+ uf_text
+            description = desc.replace("[uf]", uf_text)
+        }
         if(vrv == 9){
             console.log(uf)
             if(cad == 0 && uf == 0){
@@ -1149,8 +1167,12 @@ function updateDescEmpreendimentos(desc, vrv){
                 description = desc.replace("[cad]", " CULTURAIS E CRIATIVAS").replace("[uf]", uf_text).replace("{uf}", uf_text)
             }
             else{
+
+                uf_text = getPrepos(uf_text) +' '+ uf_text
                 description = desc.replace("[cad]", "DO SETOR " + cad_text).replace("[uf]", uf_text).replace("{uf}", uf_text)
             }
+        } else {
+            description = desc
         }
     }
 
@@ -1239,6 +1261,51 @@ function mapPronome(string, array_pron, array_new_pron){
     return string
 }
 
+function descDesag(desc, deg){
+    var tipo_deg = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").text();
+    
+    switch(deg)
+    {
+        case '1':
+            desc = desc.replace("[deg]", "DE EMPRESAS DE PORTE "+tipo_deg); break;
+        case '2':
+            desc = desc.replace("[deg]", "DO SEXO "+tipo_deg); break;
+        case '3':
+            desc = desc.replace("[deg]", "COM IDADE ENTRE "+tipo_deg); break;
+        case '4':
+            if(tipo_deg == "Sem Instrução")
+                desc = desc.replace("[deg]", "E QUE NÃO POSSUEM INSTRUÇÃO")
+            else
+                desc = desc.replace("[deg]", "E QUE POSSUEM ESCOLARIDADE DE NÍVEL "+tipo_deg); break;
+        case '5': 
+            switch(tipo_deg){
+                case "Indígena":
+                    tipo_deg = "DOS DECLARADOS INDÍGENAS"; break;
+                case "Branca":
+                    tipo_deg = "DOS DECLARADOS BRANCOS"; break;
+                case "Preta":
+                    tipo_deg = "DOS DECLARADOS PRETOS"; break;
+                case "Amarela":
+                    tipo_deg = "DOS DECLARADOS AMARELOS"; break;
+                case "Parda":
+                    tipo_deg = "DOS DECLARADOS PARDOS"; break;
+            }
+            desc = desc.replace("[deg]", tipo_deg); break; 
+        case '6': 
+            tipo_deg = mapPronome(tipo_deg, ["Sim", "Não"], ["COM", "SEM"] )
+            desc = desc.replace("[deg]", tipo_deg+" FORMALIDADE"); break;
+        case '7': 
+            tipo_deg = mapPronome(tipo_deg, ["Sim", "Não"], ["COM", "SEM"] )
+            desc = desc.replace("[deg]", tipo_deg+" PREVIDÊNCIA"); break;
+        case '8': 
+            tipo_deg = mapPronome(tipo_deg, ["Sim", "Não"], ["COM", "SEM"] )
+            desc = desc.replace("[deg]", tipo_deg+" SINDICATO"); break;
+        default:
+            desc = desc.replace("[deg]", "")
+    }
+    return desc;
+}
+
 function descIntBySelectedParameters(desc, ocp, uf, cad, deg){
     nome_uf = getNomeUF(uf)
     desc_uf = getPrepos(nome_uf)+" "+nome_uf;
@@ -1280,61 +1347,17 @@ function descIntBySelectedParameters(desc, ocp, uf, cad, deg){
     }
 
     if(cad == 0 || ocp == 3){
+        desc = descDesag(desc, deg)
         return desc.replace("[cad]", "NOS SETORES CULTURAIS E CRIATIVOS")
                     .replace("[name_ocp]", cad_nome)
                     .replace("[uf]", desc_uf)
-                    .replace("[deg]", "")
     }
     else {
-        if(deg != 0){
             desc_uf = mapPronome(desc_uf, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
-            switch(deg){
-                case '1':
-                    desc = desc.replace("[deg]", "DE EMPRESAS DE PORTE "+tipo_deg); break;
-                case '2':
-                    desc = desc.replace("[deg]", "DO SEXO "+tipo_deg); break;
-                case '3':
-                    desc = desc.replace("[deg]", "COM IDADE ENTRE "+tipo_deg); break;
-                case '4':
-                    if(tipo_deg == "Sem Instrução")
-                        desc = desc.replace("[deg]", "E QUE NÃO POSSUEM INSTRUÇÃO")
-                    else
-                        desc = desc.replace("[deg]", "E QUE POSSUEM ESCOLARIDADE DE NÍVEL "+tipo_deg); break;
-                case '5': 
-                    switch(tipo_deg){
-                        case "Indígena":
-                            tipo_deg = "DOS DECLARADOS INDÍGENAS"; break;
-                        case "Branca":
-                            tipo_deg = "DOS DECLARADOS BRANCOS"; break;
-                        case "Preta":
-                            tipo_deg = "DOS DECLARADOS PRETOS"; break;
-                        case "Amarela":
-                            tipo_deg = "DOS DECLARADOS AMARELOS"; break;
-                        case "Parda":
-                            tipo_deg = "DOS DECLARADOS PARDOS"; break;
-                    }
-                    desc = desc.replace("[deg]", tipo_deg); break; 
-                case '6': 
-                    tipo_deg = mapPronome(tipo_deg, ["Sim", "Não"], ["COM", "SEM"] )
-                    desc = desc.replace("[deg]", tipo_deg+" FORMALIDADE"); break;
-                case '7': 
-                    tipo_deg = mapPronome(tipo_deg, ["Sim", "Não"], ["COM", "SEM"] )
-                    desc = desc.replace("[deg]", tipo_deg+" PREVIDÊNCIA"); break;
-                case '8': 
-                    tipo_deg = mapPronome(tipo_deg, ["Sim", "Não"], ["COM", "SEM"] )
-                    desc = desc.replace("[deg]", tipo_deg+" SINDICATO"); break;
-            }
-            return desc.replace("[cad]", "NO SETOR "+cad_nome)
-                       .replace("[name_ocp]", cad_nome)
-                       .replace("[uf]", desc_uf)
-        }
-        else {
-            desc_uf = mapPronome(desc_uf, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
-            desc = desc.replace("[deg]", "")
+            desc = descDesag(desc, deg)
             return desc.replace("[name_ocp]", cad_nome)
                        .replace("[cad]", "NO SETOR "+cad_nome)
                        .replace("[uf]", desc_uf)
-        }
     }
 }
 
@@ -2002,7 +2025,7 @@ function descByPRT(eixo, desc){
     str = "DE"
     prt = $(window.parent.document).find(".bread-select[data-id=deg]").val()
     uf =   $(window.parent.document).find(".bread-select[data-id=uf]").val()
-    if(portes[prt] && uf != 0) {
+    if(portes[prt]) {
         nome = str + " " + portes[prt];
     }
     else {
