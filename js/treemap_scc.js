@@ -69,11 +69,8 @@ function nodeHeight(d){ return d.y1 - d.y0; }
 /*==================*/
 
 /* importa arquivo de cores */
-var colorJSON;
-d3.json('data/colors.json', function(error, data) {
-	if(error) throw error;
-	colorJSON = data;
-});
+
+
 
 
 // import pt-br.json file for get the title
@@ -84,6 +81,14 @@ d3.json('data/pt-br.json', function(error, data) {
     textJSON = data;
 
 });
+
+$.ajaxSetup({async: false});
+var colorJSON;
+d3.json('data/colors.json', function(error, data) {
+    if(error) throw error;
+    colorJSON = data;
+});
+$.ajaxSetup({async: true});
 
 var fader = function(color) { return d3.interpolateRgb(color, "#fff")(0.2); },
 	format = d3.format(",d");
@@ -117,10 +122,10 @@ var treemap = d3.treemap()
     .paddingInner(1);
 
 var config = "?var="+vrv+"&uf="+uf+"&atc="+atc+"&prt="+prt+"&ocp="+ocp+"&sex="+sex+"&typ="+typ+"&prc="+prc+"&slc="+slc+"&fax="+fax+"&esc="+esc+"&deg="+deg+"&cor="+cor+"&frm="+frm+"&prv="+prv+"&snd="+snd+"&mec="+mec+"&mod="+mod+"&pfj="+pfj+"&ano="+ano+"&eixo="+eixo;
-
+/*
 $.get("./db/json_treemap_scc.php"+config, function(data) {
     // console.log(data);
-});
+});*/
 
 d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
     $('#loading').fadeOut('fast');
