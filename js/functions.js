@@ -1,3 +1,5 @@
+
+
 function changeDownloadURL(url, eixo){
     newURL = $('#select-pdf input').attr("value").replace(/download.php?.*/, "download.php?"+ url);
     $('#select-pdf input').attr("value", newURL)
@@ -1126,7 +1128,17 @@ function updateDescEmpreendimentos(desc, vrv){
     }
     else{
         var vrv = url['var'];
-
+        if(vrv == 2 || vrv == 3){   
+            desc = descByANO(0, desc)
+            desc = descByPRT(0, desc)
+            if(cad == 0)
+                desc = desc.replace("[cad]", "CULTURAIS E CRIATIVAS")
+            else
+                desc = desc.replace("[cad]", "DO SETOR "+cad_text)
+            desc = descByPRT(0, desc)
+            uf_text = getPrepos(uf_text) +' '+ uf_text
+            description = desc.replace("[uf]", uf_text)
+        }
         if(vrv == 9){
             console.log(uf)
             if(cad == 0 && uf == 0){
@@ -1138,6 +1150,8 @@ function updateDescEmpreendimentos(desc, vrv){
                 description = desc.replace("[cad]", " CULTURAIS E CRIATIVAS").replace("[uf]", uf_text).replace("{uf}", uf_text)
             }
             else{
+
+                uf_text = getPrepos(uf_text) +' '+ uf_text
                 description = desc.replace("[cad]", "DO SETOR " + cad_text).replace("[uf]", uf_text).replace("{uf}", uf_text)
             }
         }
@@ -1991,7 +2005,7 @@ function descByPRT(eixo, desc){
     str = "DE"
     prt = $(window.parent.document).find(".bread-select[data-id=deg]").val()
     uf =   $(window.parent.document).find(".bread-select[data-id=uf]").val()
-    if(portes[prt] && uf != 0) {
+    if(portes[prt]) {
         nome = str + " " + portes[prt];
     }
     else {
