@@ -1691,10 +1691,10 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
                 if(getPrepos(nomeestado) != undefined && (url['cad'] != 0 || url['ocp'] == 1 || url['ocp'] == 2)){
 
                     nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
-
+                    nomeestado = mapPronome(nomeestado, ["DE", "DO", "DA"], ["EM", "NO", "NA"])
                 }
                 else{
-                    nomeestado = "DO BRASIL"
+                    nomeestado = "NO BRASIL"
                 }
             }
         }
@@ -2053,8 +2053,21 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     if(desc.includes('[cad]')){
         if(ocp == 0)
             desc =  descByCAD(eixo, desc, '[cad]')
-        else
-            desc = desc.replace("[cad]", "EM ATIVIDADES CULTURAIS E CRIATIVAS")
+        else{
+            if(ocp == 1){
+                desc = desc.replace("[cad]", "EM ATIVIDADES RELACIONADAS À CULTURA")
+        
+            }
+            if(ocp == 2){
+                desc = desc.replace("[cad]", "EM ATIVIDADES CULTURAIS")
+        
+            }
+            if(ocp == 3){
+                desc = desc.replace("[cad]", "EM ATIVIDADES CULTURAIS E CRIATIVAS")
+        
+            }
+        }
+            
     }
     if(desc.includes('[CAD]')){
         if(ocp == 0)
