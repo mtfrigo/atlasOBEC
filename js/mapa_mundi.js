@@ -49,11 +49,16 @@ function destacaPrc(prcID) {
 }
 // import colors.json file
 var colorJSON;
+
+$.ajaxSetup({async: false});
 d3.json('data/colors.json', function(error, data) {
     if(error) throw error;
 
     colorJSON = data;
 });
+
+$.ajaxSetup({async: true});
+
 
 var config = "?var="+vrv+"&uf="+uf+"&atc="+atc+"&cad="+cad+"&prt="+prt+"&ocp="+ocp+"&mec="+mec+"&typ="+typ+"&prc="+prc+"&pfj="+pfj+"&ano="+ano+"&eixo="+eixo+"&slc="+slc;
 var gdpData;
