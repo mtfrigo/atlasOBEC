@@ -1246,6 +1246,16 @@ function updateLegendByDeg(deg){
 
 }
 
+function getCadsByMenuDonut(){
+    var cads = [];
+    $("#title-view-leg-scc-donut").find(".scc").each(function(){
+        cad = {id: $(this).attr("data-id"), nome: $(this).text()}
+        cads.push(cad)
+    });
+
+    return cads;
+}
+
 function switchToSetores() {
 
 
@@ -1765,6 +1775,12 @@ $(document).ready(function(){
 
             if($(this).attr("id") === "recebedora") {
                 if(url['mec'] != 0){
+                    if(url['var'] == 19){
+                        var cads = getCadsByMenuDonut();
+
+                        updateBreadcrumbSetores(cads)
+                    }
+
                     updateUrl();
                     url['mec'] = 0;
                     $(this).addClass("active");
@@ -1775,6 +1791,9 @@ $(document).ready(function(){
             }
             else {
                 if(url['mec'] != 1){
+                    if(url['var'] == 19)
+                        updateBreadcrumbSetores([{id: 0, nome: "Todos"}])
+
                     updateUrl();
                     url['mec'] = 1;
                     $(this).addClass("active");
