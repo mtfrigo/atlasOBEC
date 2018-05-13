@@ -245,7 +245,9 @@ d3.json('data/pt-br.json', function(error, data) {
 });
 
 var config = "?var="+vrv+"&atc="+atc+"&cad="+cad+"&prt="+prt+"&ocp="+ocp+"&mec="+mec+"&typ="+typ+"&prc="+prc+"&pfj="+pfj+"&mod="+mod+"&ano="+ano+"&eixo="+eixo+"&mundo="+mundo+"&slc="+slc;
-
+$.get('./db/json_mapa.php' + config, function(dado){
+    // console.log(dado)
+})
 //pre-load arquivos
 d3.queue()
 	.defer(d3.json, "./data/br-min.json")
