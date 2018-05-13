@@ -541,26 +541,23 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
                     return
 
 
-                var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano="+dados.key[i]);
-                newMapaSrc = newMapaSrc.replace(/uf=[0-9]*/, "uf="+url['uf']);
-                newMapaSrc = newMapaSrc.replace(/prc=[0-9]*/, "prc=" + url['prc']);
+
 
                 if((eixo == 1 && url['var'] > 11) ||
                     (eixo == 0 && url['var'] > 9) ||
                     eixo == 2 && (url['var'] == 15 || url['var'] == 16)){
-                    if(url['uos'] == 0) {
-                        var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
-                        newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
-                        $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
+                    if(eixo == 1 && url['slc'] == 1){
+                        if(url['ocp'] == 1) {
+                            var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                            $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
+                        }
+                        else {
+                            var newSCCSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                            $(window.parent.document).find("#view_box").attr("src", newSCCSrc);
+                        }
                     }
                     else {
-                        var newSCCSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
-                        newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
-                        $(window.parent.document).find("#view_box").attr("src", newSCCSrc);
-                    }
-                }
-                else if(eixo == 2 && url['var'] == 10){
-                        if(url['mec'] == 0) {
+                        if(url['uos'] == 0) {
                             var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
                             newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
                             $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
@@ -571,44 +568,65 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
                             $(window.parent.document).find("#view_box").attr("src", newSCCSrc);
                         }
                     }
-                else if(eixo == 2 && url['var'] == 17){
-                    var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src");
-                    newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano="+url['ano']);
-                    $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
-
-                }
-                else if(eixo == 2 && (url['var'] == 18 || url['var'] == 19)){
-                    var newDonutSrc = $(window.parent.document).find("#view_box_barras").attr("src");
-                    newDonutSrc = newDonutSrc.replace(/ano=[0-9]*/, "ano="+url['ano']);
-                    $(window.parent.document).find("#view_box_barras").attr("src", newDonutSrc);
-
-                }
-                else if(eixo == 3 && (url['var'] == 5 || url['var'] == 8)){
-                    var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
-                    $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
-                    newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
-                    $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
-                    newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
-                      
-                  
-                 }
-                else if(eixo == 3 && (url['var'] >= 1 && url['var'] != 5 && url['var'] != 8 && url['var'] <= 10 || url['var'] == 12)){
-                    var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
-                    newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
-                    $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
                 }
                 else {
-                    if(url['uos'] == 1) {
+
+                    var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano="+dados.key[i]);
+                    newMapaSrc = newMapaSrc.replace(/uf=[0-9]*/, "uf="+url['uf']);
+                    newMapaSrc = newMapaSrc.replace(/prc=[0-9]*/, "prc=" + url['prc']);
+
+                    if (eixo == 2 && url['var'] == 10) {
+                        if (url['mec'] == 0) {
+                            var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                            newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
+                            $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
+                        }
+                        else {
+                            var newSCCSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                            newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
+                            $(window.parent.document).find("#view_box").attr("src", newSCCSrc);
+                        }
+                    }
+                    else if (eixo == 2 && url['var'] == 17) {
+                        var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src");
+                        newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano=" + url['ano']);
+                        $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
+
+                    }
+                    else if (eixo == 2 && (url['var'] == 18 || url['var'] == 19)) {
+                        var newDonutSrc = $(window.parent.document).find("#view_box_barras").attr("src");
+                        newDonutSrc = newDonutSrc.replace(/ano=[0-9]*/, "ano=" + url['ano']);
+                        $(window.parent.document).find("#view_box_barras").attr("src", newDonutSrc);
+
+                    }
+                    else if (eixo == 3 && (url['var'] == 5 || url['var'] == 8)) {
+                        var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                        $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
+                        newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                        $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
+                        newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+
+
+                    }
+                    else if (eixo == 3 && (url['var'] >= 1 && url['var'] != 5 && url['var'] != 8 && url['var'] <= 10 || url['var'] == 12)) {
                         var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
-                        newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
+                        newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
                         $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
                     }
                     else {
-                        var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
-                        newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
-                        $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
+                        if (url['uos'] == 1) {
+                            var newSCCSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                            newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
+                            $(window.parent.document).find("#view_box_barras").attr("src", newSCCSrc);
+                        }
+                        else {
+                            var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/ano=[0-9]*/, "ano=" + dados.key[i]);
+                            newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad=" + url['cad']);
+                            $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
+                        }
                     }
-                } 
+                }
+
 
 
 
