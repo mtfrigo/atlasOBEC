@@ -172,9 +172,18 @@ function updateIframe(url){
         else if(eixoAtual == 1) {
             $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "none")
             if (url['var'] > 11) {
-                newUrl = newUrl.replace(/uos=[0-9]*/, "uos=0");
-                $('iframe[id="view_box"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                $('iframe[id="view_box"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR UF");
+                if(url['slc'] == 0) {
+
+                    newUrl = newUrl.replace(/uos=[0-9]*/, "uos=0");
+                    $('iframe[id="view_box"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                    $('iframe[id="view_box"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR UF");
+                }
+                else{
+                    newUrl = newUrl.replace(/uos=[0-9]*/, "uos=0");
+                    newUrl = newUrl.replace(/ocp=[0-9]*/, "ocp=1");
+                    $('iframe[id="view_box"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                    $('iframe[id="view_box"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR ATIVIDADES RELACIONADAS");
+                }
             } else {
                 $('iframe[id="view_box"]').attr('src', url['view'] + '_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box"]').parent().find(".view-title").html("MAPA DO BRASIL");
@@ -276,8 +285,10 @@ function updateIframe(url){
                     $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
                 }
                 else {
+                    newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
                     newUrl = newUrl.replace(/ocp=[0-9]*/, "ocp=2");
-                    $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR ATIVIDADES RELACIONADAS");
+                    $('iframe[id="view_box_barras"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                    $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR ATIVIDADES CULTURAIS");
                 }
             }
         }
@@ -372,14 +383,15 @@ function updateIframe(url){
             if (url['var'] > 11) {
                 if(url['slc'] == 0) {
 
+                    newUrl = newUrl.replace(/ocp=[0-9]*/, "ocp=0");
 
                     $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
                 }
                 else {
-                    newUrl = newUrl.replace(/ocp=[0-9]*/, "ocp=2");
-                    $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR ATIVIDADES CULTURAIS");
+                    newUrl = newUrl.replace(/ocp=[0-9]*/, "ocp=3");
+                    $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
+                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
                 }
             } else if(url['var'] == 11 ||  url['var'] == 10 || url['var'] == 9 || url['var'] == 8){
                 $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);

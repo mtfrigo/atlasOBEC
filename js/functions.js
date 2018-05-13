@@ -365,12 +365,23 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
         if(vrv > 11){
             if(ano != null) {
                 dados.valor = dados.value[index_ano];
-                if(url['uos'] == 0){
-                    setIntegerValueData(dados, eixo, vrv);
-                } else if(url['uos'] == 1){
+                if(url['slc'] == 0){
+                    if(url['uos'] == 0){
+                        setIntegerValueData(dados, eixo, vrv);
+                    } else if(url['uos'] == 1){
 
-                    setPercentValueData(dados, eixo, vrv);
+                        setPercentValueData(dados, eixo, vrv);
+                    }
                 }
+                else{
+                    if(url['ocp'] == 1){
+                        setIntegerValueData(dados, eixo, vrv);
+                    } else if(url['ocp'] == 2){
+
+                        setPercentValueData(dados, eixo, vrv);
+                    }
+                }
+
 
             }
         }
