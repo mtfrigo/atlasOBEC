@@ -605,7 +605,11 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
             } else if(url['cad'] == 2){
                 setPercentValueData(dados, eixo, vrv);
             }
-       }else{
+       }
+       else if(url['var'] == 1){
+
+        }
+       else{
             dados.valor = dados.value[i];
 
             setIntegerValueData(dados, eixo, vrv);
@@ -1159,19 +1163,29 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
     if(getPrepos(prc)){
         prc = getPrepos(prc) + ' ' +prc
     }
-    
-    if(vrv == 1 || vrv == 13){
+
+    if(vrv == 1){
+
+        cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
+
         switch(typ){
-            case 'Exportação': 
+            case 'Exportação':
                 typ = "EXPORTADO";
                 prc = mapPronome(prc, ["DE", "DA", "DO"], ["PARA", "PARA A", "PARA O"]);
-                return desc.replace('[uf]', "DO BRASIL").replace('<>', typ).replace('[]', prc);
-            case 'Importação': 
+                if(url['cad'] == 0)
+                    return desc.replace('[uf]', "DO BRASIL").replace('<>', typ).replace('[]', "PARA O MUNDO").replace('[cad]', "PELOS SETORES CULTURAIS");
+                else
+                    return desc.replace('[uf]', "DO BRASIL").replace('<>', typ).replace('[]', prc).replace('[cad]', "PELO SETOR DE "+ cad);
+
+            case 'Importação':
                 typ = "IMPORTADO";
-                return desc.replace('[uf]', prc).replace('[]', "PARA O BRASIL").replace('<>', typ);
-            case 'Saldo Comercial': 
+                if(url['cad'] == 0)
+                    return desc.replace('[uf]', "DO MUNDO").replace('[]', "PARA O BRASIL").replace('<>', typ).replace('[cad]', "PELOS SETORES CULTURAIS");
+                else
+                    return desc.replace('[uf]', prc).replace('[]', "PARA O BRASIL").replace('<>', typ).replace('[cad]', "PELO SETOR DE "+ cad);
+            case 'Saldo Comercial':
                 return ''
-            case 'Corrente de Comércio': 
+            case 'Corrente de Comércio':
                 prc = $(window.parent.document).find(".bread-select[data-id=prc] option:selected").text();
                 cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
                 desc = desc.replace("DO VALOR <>", "DA CORRENTE DE COMÉRCIO")
@@ -1182,7 +1196,30 @@ function updateDescPercentComercio(desc, vrv, nomeestado){
                 }
                 return desc.replace('[uf]', nomeestado).replace('<>', typ).replace('[]', prc).replace('()', cad);
         }
-    } 
+    }
+    else if(vrv == 13){
+        switch(typ){
+            case 'Exportação':
+                typ = "EXPORTADO";
+                prc = mapPronome(prc, ["DE", "DA", "DO"], ["PARA", "PARA A", "PARA O"]);
+                return desc.replace('[uf]', "DO BRASIL").replace('<>', typ).replace('[]', prc);
+            case 'Importação':
+                typ = "IMPORTADO";
+                return desc.replace('[uf]', prc).replace('[]', "PARA O BRASIL").replace('<>', typ);
+            case 'Saldo Comercial':
+                return ''
+            case 'Corrente de Comércio':
+                prc = $(window.parent.document).find(".bread-select[data-id=prc] option:selected").text();
+                cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
+                desc = desc.replace("DO VALOR <>", "DA CORRENTE DE COMÉRCIO")
+                if(cad == "TODOS" || " TODOS"){
+                    cad = "PELOS SETORES CULTURAIS E CRIATIVOS"
+                } else {
+                    cad = "PELO SETOR DE" + cad;
+                }
+                return desc.replace('[uf]', nomeestado).replace('<>', typ).replace('[]', prc).replace('()', cad);
+        }
+    }
 }
 
 function mapPronome(string, array_pron, array_new_pron){

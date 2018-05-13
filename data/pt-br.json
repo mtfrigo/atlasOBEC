@@ -1367,7 +1367,7 @@
 				"desc_var_mapa": "A variável mostra o valor transacionado com o resto do mundo, caracterizando quanto, em termos monetários, os setores culturais e criativos contribuíram para o comércio internacional do Brasil. Desagregação para bens e serviços.",
 				"desc_int": "DE <> [uf] [] ()",
 				"fontes": "MDIC. ",
-				"desc_percent":"DO VALOR <> [uf] []",
+				"desc_percent":"DO VALOR <> [uf] [cad] []",
 				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",
 				"type":[

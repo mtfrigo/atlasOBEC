@@ -135,12 +135,12 @@ $.get("./db/json_mapa.php"+config, function(data) {
             },
             onRegionClick: function(e, el, code){
 
-                var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/prc=[0-9]*/, "prc="+convertCode(el));
+                var newBarraSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/prc=[0-9]*/, "prc="+convertCode(el));
                 newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano="+url['ano']);
-                var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/prc=[0-9]*/, "prc="+convertCode(el));
-                newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad="+url['cad']);
-                $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
-                $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
+                var newDonutSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/prc=[0-9]*/, "prc="+convertCode(el));
+                newDonutSrc = newDonutSrc.replace(/ano=[0-9]*/, "ano="+url['ano']);
+                $(window.parent.document).find("#view_box_scc").attr("src", newBarraSrc);
+                $(window.parent.document).find("#view_box_barras").attr("src", newDonutSrc);
 
                 setIntegerValueData(gdpData[convertCode(el)], eixo, vrv);
 
@@ -149,10 +149,14 @@ $.get("./db/json_mapa.php"+config, function(data) {
                 }
 
                 if(url['var'] == 1){
-                    setPercentValueData({percentual: gdpData[convertCode(el)].valor/gdpData[0].valor}, eixo, vrv);
 
+                    if(gdpData[0].valor == 0)
+                        valor = 0
+                    else
+                        valor = gdpData[convertCode(el)].valor/gdpData[0].valor;
+
+                    setPercentValueData({percentual: valor}, eixo, vrv);
                 }
-
 
                 setPrcTitle(gdpData[convertCode(el)].prc)
 
@@ -173,7 +177,14 @@ $.get("./db/json_mapa.php"+config, function(data) {
 
         if(url['prc'] != 0 ){
             destacaPrc(unconvertCode(parseInt(url['prc'])));
+
+            valor = gdpData[url['prc']].valor/gdpData[0].valor;
+            if(valor == "NaN")
+                valor = 0
+            setPercentValueData({percentual: valor}, eixo, vrv);
+
         }
+
 
 
     });
