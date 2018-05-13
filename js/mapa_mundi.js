@@ -142,11 +142,17 @@ $.get("./db/json_mapa.php"+config, function(data) {
                 $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
                 $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
 
-                // console.log(gdpData[convertCode(el)])
                 setIntegerValueData(gdpData[convertCode(el)], eixo, vrv);
+
                 if(cad == 0){
                     setPercentValueData(gdpData[convertCode(el)], eixo, vrv);
                 }
+
+                if(url['var'] == 1){
+                    setPercentValueData({percentual: gdpData[convertCode(el)].valor/gdpData[0].valor}, eixo, vrv);
+
+                }
+
 
                 setPrcTitle(gdpData[convertCode(el)].prc)
 

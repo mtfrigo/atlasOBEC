@@ -465,18 +465,7 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
         if(mundoRegex != null)
             mundo = mundoRegex[0].match(/[0-9]/)[0];
 
-        /*
-        if((mundo == 1 && url['uf'] == 0 && url['cad'] == 0)){
-            setPercentValueData({percentual: 1, taxa: dados.taxa[indexAno]}, eixo, vrv);
-        }
-        else if(mundo == 1 && url['uf'] == 0 && url['cad'] == 0){
-            setPercentValueData({percentual: 1}, eixo, vrv);
-        }
-        else if(url['uf'] == 0 && url['prc'] == 0 && url['cad'] == 0){
-            setPercentValueData({percentual: 1}, eixo, vrv);
 
-        }*/
-        
        if(url['var'] == 5 || url['var'] == 8){
             dados.valor = dados.value[dados.key.indexOf(url['ano'])];
 
@@ -485,13 +474,20 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
             } else if(url['cad'] == 2){
                 setPercentValueData(dados, eixo, vrv);
             } 
-       }else{
-            dados.valor = dados.value[indexAno];
+       }
+       else if(url['var'] == 1){
+           dados.valor = dados.value[indexAno];
 
-            setIntegerValueData(dados, eixo, vrv);
-            setPercentValueData({percentual : dados.percentual[indexAno]}, eixo, vrv);
+           setIntegerValueData(dados, eixo, vrv);
 
        }
+        else{
+                dados.valor = dados.value[indexAno];
+
+                setIntegerValueData(dados, eixo, vrv);
+                setPercentValueData({percentual : dados.percentual[indexAno]}, eixo, vrv);
+
+            }
 
        setTerceiroValueData(eixo, vrv, valor, url['cad']);            
 
@@ -1217,7 +1213,8 @@ function descIntBySelectedParameters(desc, ocp, uf, cad, deg){
 
     if(ocp == 1){
         cad_nome = "EM "+cad_nome+" À CULTURA";
-    } else if(ocp == 2){
+    }
+    else if(ocp == 2){
         cad_nome = "EM OCUPAÇÕES CULTURAIS"
     }
 
@@ -1283,7 +1280,8 @@ function descIntBySelectedParameters(desc, ocp, uf, cad, deg){
             return desc.replace("[cad]", "NO SETOR "+cad_nome)
                        .replace("[name_ocp]", cad_nome)
                        .replace("[uf]", desc_uf)
-        } else {
+        }
+        else {
             desc_uf = mapPronome(desc_uf, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
             desc = desc.replace("[deg]", "")
             return desc.replace("[name_ocp]", cad_nome)
