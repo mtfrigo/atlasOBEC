@@ -178,9 +178,12 @@ $.get("./db/json_mapa.php"+config, function(data) {
         if(url['prc'] != 0 ){
             destacaPrc(unconvertCode(parseInt(url['prc'])));
 
-            valor = gdpData[url['prc']].valor/gdpData[0].valor;
-            if(valor == "NaN")
+
+            if(gdpData[0].valor == 0)
                 valor = 0
+            else
+                valor = gdpData[url['prc']].valor/gdpData[0].valor;
+            
             setPercentValueData({percentual: valor}, eixo, vrv);
 
         }
