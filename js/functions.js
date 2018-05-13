@@ -86,17 +86,16 @@ function getNomeUF(idUF){
 
 function configInfoDataBoxMapa(eixo, vrv, dadosUF) {
 
-
+    deg = $(window.parent.document).find('.bread-select[data-id=deg]').first().val()
     if(eixo == 0) {
 
     }
     else if(eixo == 1){
-
-
         if(url['var'] == 1)
             if(url['cad'] == 0 && url['ocp'] == 0 || (url['cad'] == 0 && url['ocp'] == 3))
                 if(dadosUF != undefined){
-                    setPercentValueData({percentual: dadosUF.percentual}, eixo, vrv);
+                        if(deg == 0)
+                            setPercentValueData({percentual: dadosUF.percentual}, eixo, vrv);
                 }
                     
 
@@ -1634,7 +1633,6 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
 
 
      nomeestado = $(window.parent.document).find('.bread-select[data-id=uf]').find("option:selected").text().toUpperCase()
-
     if(eixo == 0){
         if(url['var'] == 3 || url['var'] == 9){
             if(getPrepos(nomeestado)){
@@ -1681,7 +1679,7 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
     else if(eixo == 1){
         if(url['var'] == 7){
             if(tipo == "percent" ){
-                if(getPrepos(nomeestado)){
+                if(getPrepos(nomeestado)!= undefined && (url['deg'] > 0 || url['cad'] != 0 || url['ocp'] == 1 || url['ocp'] == 2)){
                     nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
                 }
                 else{
@@ -1691,7 +1689,8 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         }
         else if(url['var'] == 1){
             if(tipo == "percent" ){
-                if(getPrepos(nomeestado) != undefined && (url['cad'] != 0 || url['ocp'] == 1 || url['ocp'] == 2)){
+                console.log(url['deg'])
+                if(getPrepos(nomeestado) != undefined && (url['deg'] > 0 || url['cad'] != 0 || url['ocp'] == 1 || url['ocp'] == 2)){
 
                     if(url['cad'] == 0)
                         nomeestado = "NO BRASIL"
@@ -1702,7 +1701,7 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
 
                 }
                 else{
-                    nomeestado = "NO BRASIL"
+                    nomeestado = "DO BRASIL"
                 }
             }
         }
@@ -2037,7 +2036,6 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     if(desc == undefined){
         return ;
     }
-
     if(desc.includes('[setores]')){
         if(ocp == 0)
             desc = desc.replace("[setores]", "DOS SETORES CULTURAIS E CRIATIVOS")

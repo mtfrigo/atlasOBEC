@@ -433,8 +433,8 @@ function ready(error, br_states, mapa){
             //setIntegerValueData(dict[d.id], eixo, vrv);
            // if(url['cad'] == 0)
                 //setPercentValueData(dict[d.id], eixo, vrv);
-
-            configInfoDataBoxMapaClick(eixo, vrv, dict[d.id]);
+            if(url['deg'] == 0)
+                configInfoDataBoxMapaClick(eixo, vrv, dict[d.id]);
             setStateTitle(d['properties']['name']);
             
             updateIframe(url)
@@ -703,13 +703,16 @@ function legendaBinario(){
     }
     else{
         if(url['uf'] != 0) {
-            setPercentValueData(dict[url['uf']], eixo, vrv);
+            if(url['deg'] == 0)
+                setPercentValueData(dict[url['uf']], eixo, vrv);
             setIntegerValueData(dict[url['uf']], eixo, vrv);
         }
 
 
         if(url['cad'] != 0 && url['uf'] != 0) {
-            setIntegerValueData(dict[url['uf']], eixo, vrv);
+
+            if(url['deg'] == 0)
+                setIntegerValueData(dict[url['uf']], eixo, vrv);
             setPercentValueData(dict[url['uf']], eixo, vrv);
         }
     }
