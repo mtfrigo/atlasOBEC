@@ -183,7 +183,7 @@ $.get("./db/json_mapa.php"+config, function(data) {
                 valor = 0
             else
                 valor = gdpData[url['prc']].valor/gdpData[0].valor;
-            
+
             setPercentValueData({percentual: valor}, eixo, vrv);
 
         }

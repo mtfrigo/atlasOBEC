@@ -1385,6 +1385,7 @@ function updateDescComercio(desc, vrv, nomeestado){
         "ÁSIA": "DA"
         
     }
+
     nomeestado = $(window.parent.document).find(".bread-select[data-id=uf] option:selected").text();
     nomeestado = nomeestado.toUpperCase()
     
@@ -1467,6 +1468,7 @@ function updateDescComercio(desc, vrv, nomeestado){
     else
         return
 }
+
 function setTerceiroValueData(eixo, vrv, value, cad){
 
     uf = $(window.parent.document).find(".bread-select[data-id=uf]").val();
@@ -1629,6 +1631,7 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         "TOCANTINS": "DO"
     }
 
+
      nomeestado = $(window.parent.document).find('.bread-select[data-id=uf]').find("option:selected").text().toUpperCase()
     if(eixo == 0){
         if(url['var'] == 3 || url['var'] == 9){
@@ -1689,8 +1692,13 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
                 console.log(url['deg'])
                 if(getPrepos(nomeestado) != undefined && (url['deg'] > 0 || url['cad'] != 0 || url['ocp'] == 1 || url['ocp'] == 2)){
 
-                    nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
-                    nomeestado = mapPronome(nomeestado, ["DE", "DO", "DA"], ["EM", "NO", "NA"])
+                    if(url['cad'] == 0)
+                        nomeestado = "NO BRASIL"
+                    else{
+                        nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
+                        nomeestado = mapPronome(nomeestado, ["DE", "DO", "DA"], ["EM", "NO", "NA"])
+                    }
+
                 }
                 else{
                     nomeestado = "DO BRASIL"
@@ -1698,7 +1706,7 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
             }
         }
     }
-    if(eixo == 2){
+    else if(eixo == 2){
         if(url['var'] == 8 || url['var'] == 9) {
 
             if(getPrepos(nomeestado) && url['uf'] != 0){
@@ -1888,6 +1896,8 @@ function descByMOD(eixo, desc){
 }
 
 function descByCAD(eixo, desc, tag){
+
+
     prepos = {
         1: "DE",
         2: "DE",
@@ -1915,7 +1925,6 @@ function descByCAD(eixo, desc, tag){
         10: "PUBLICIDADE",
     }
 
-    str = "do setor"
 
     if(cads[url['cad']]) {
         if(eixo == 2 && (url['var'] == 8 || url['var'] == 9 || url['var'] == 1)){
@@ -1942,6 +1951,10 @@ function descByCAD(eixo, desc, tag){
 
         }
         else if(eixo == 2 && (url['var'] == 4)){
+            nome = "PARA O SETOR " + prepos[url['cad']] + " " + cads[url['cad']];
+
+        }
+        else if(eixo == 1 && (url['var'] == 1)){
             nome = "PARA O SETOR " + prepos[url['cad']] + " " + cads[url['cad']];
 
         }
