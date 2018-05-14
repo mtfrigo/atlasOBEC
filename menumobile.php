@@ -266,8 +266,11 @@ switch($eixo) {
 
             $('#containerDesc').css("height", "auto");
             $('#containerDesc').css("top", "0");
+            $('#containerDados').css("height", "500px");
             $('#containerTree').css("top", "0");
-            $('#containerDownload').css("display", "none");
+            $('#containerDownload').css("display", "block");
+            $('#containerDownload').css("top", "0");
+            $('#containerDownload').find("row").css("padding-left", "0");
 
             div1 = $('#containerMapa');
             div2 = $('#containerDesc');
@@ -334,9 +337,9 @@ switch($eixo) {
 
             function myFunction() {
 
-                console.log(window.parent.pageYOffset)
+                // console.log(window.parent.pageYOffset)
                 if (window.parent.pageYOffset  >= window.parent.document.getElementById("section0").offsetHeight) {
-                    $("#barra-menu").css("top", window.parent.pageYOffset - $(window.parent).height())
+                    // $("#barra-menu").css("top", window.parent.pageYOffset - $(window.parent).height())
                     menu.classList.add("sticky");
                 } else {
                     menu.classList.remove("sticky");

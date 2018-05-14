@@ -2154,6 +2154,8 @@ function setMaxFontSize(doc){
         return
     }
     var tamanhoMaximo = 40;
+    if(window.parent.innerWidth <= 800)
+        tamanhoMaximo = 32;
     
     var tamanho = tamanhoMaximo;
 

@@ -425,14 +425,14 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         TODOS SETORES
                     </div>
                     <div class="data-values" style="display:flex">
-                        <div class="container-flex">
+                        <div class="container-flex integer-flex">
                             <div class="integer-value" style="padding-left: 15px;">
                                 <span class="number"></span>
                                 <span class="description-number"></span>
                             </div>
                         </div>
                         <div class ="container-flex">
-                            <div class="percent-value">
+                            <div class="percent-value percent-flex">
 
                                 <div class="box-dado">
                                     <span class="number">100%</span>
