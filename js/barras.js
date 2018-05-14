@@ -75,6 +75,10 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
     $.get('./db/total_setor.php' + "?var=" + vrv+"&cad="+cad+"&eixo="+eixo+"&prt="+prt, function(dado){
         brasil_setor = JSON.parse(dado)
     })
+
+    // $.get('./db/json_barras.php' + config, function(dado){
+    //     console.log(dado)
+    // })
    
     d3.json('data/colors.json', function (error, data) {
         if (error) throw error;
@@ -420,6 +424,8 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
             });
         }
 
+        console.log(dados)
+
 
         //Cria barras
         svg.selectAll("rect")
@@ -541,7 +547,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
             .on("mouseout", tooltipInstance.hideTooltip)
             .on("click", function(d, i, obj) {
 
-                if(window.parent.innerWidth <= 800)
+                if(window.parent.innerWidth <= 1199)
                     return;
 
                 if(eixo == 1 && vrv == 6 && uos == 1)

@@ -106,7 +106,7 @@ function ready(json){
         })
         .on("click", function(d){
 
-            if(window.parent.innerWidth <= 800)
+            if(window.parent.innerWidth <= 1199)
                 return;
 
             if(eixo == 2 && vrv >= 18){

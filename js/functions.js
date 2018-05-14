@@ -1730,7 +1730,6 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         }
         else if(url['var'] == 1){
             if(tipo == "percent" ){
-                console.log(url['deg'])
                 if(getPrepos(nomeestado) != undefined && (url['deg'] > 0 || url['cad'] != 0 || url['ocp'] == 1 || url['ocp'] == 2)){
 
                     if(url['cad'] == 0)

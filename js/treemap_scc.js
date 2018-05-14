@@ -194,7 +194,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
 				.on("mouseout", tooltipInstance.hideTooltip)
 				.on("click", function(d) {
 
-                    if(window.parent.innerWidth <= 800)
+                    if(window.parent.innerWidth <= 1199)
                         return;
 
 				    if(url['ocp'] == 0) {
@@ -205,16 +205,13 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano=" + url['ano']);
                         $(window.parent.document).find("#view_box").attr("src", newMapaSrc);
                         $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
-                        $(window.parent.document).find("select[data-id='cad']").val(d.data.colorId);
-                        enableDesag(eixo, vrv, d.data.colorId, true, slc, url);
+                        // $(window.parent.document).find("select[data-id='cad']").val(d.data.colorId);
+                        // enableDesag(eixo, vrv, d.data.colorId, true, slc, url);
                         destacaSetor(d.data.colorId);
 
                         cad_percent = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent");
                         cad_valor = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-value");
                         cad_percent_uf = ($('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent-uf"))
-
-
-
 
 
                         configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, cad_valor, cad_percent, cad_percent_uf);
