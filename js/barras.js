@@ -510,8 +510,12 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
                 return barHeight;
             })
             .attr("fill", function (d,i ) {
-                if((eixo == 1 && vrv == 6 && uos == 1) || (eixo == 2 && (vrv == 18 || vrv == 19) && uos == 1))
-                    return color(dados.key[i])
+                if((eixo == 1 && vrv == 6 && uos == 1) || (eixo == 2 && (vrv == 18 || vrv == 19) && uos == 1)){
+                    if(deg == 0)
+                        return color(dados.key[i])
+                    else
+                        return color(cad)
+                }
                 else if(eixo == 3 && (vrv == 5 || vrv == 8))
                     return color(0);
                 else

@@ -707,17 +707,20 @@ function legendaBinario(){
     }
     else{
         if(url['uf'] != 0) {
-            if(url['deg'] == 0)
+            if(url['deg'] == 0){
                 setPercentValueData(dict[url['uf']], eixo, vrv);
-            setIntegerValueData(dict[url['uf']], eixo, vrv);
+                setIntegerValueData(dict[url['uf']], eixo, vrv);
+            }
         }
 
 
         if(url['cad'] != 0 && url['uf'] != 0) {
 
-            if(url['deg'] == 0)
+            if(url['deg'] == 0){
                 setIntegerValueData(dict[url['uf']], eixo, vrv);
-            setPercentValueData(dict[url['uf']], eixo, vrv);
+                setPercentValueData(dict[url['uf']], eixo, vrv);
+            }
+                
         }
     }
 
