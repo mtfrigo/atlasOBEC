@@ -213,12 +213,15 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         cad_valor = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-value");
                         cad_percent_uf = ($('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent-uf"))
 
+
                         if(deg !=0){
                             // cad_percent_uf = (d.data.size/d.parent.parent.parent.value)
                             cad_percent_uf = (d.data.size/d.parent.parent.value)
                             $(window.parent.document).find(".bread-select[data-id=deg]").find("optgroup[value="+deg+"]").find("option[value="+(d.data.desagreg)+"]").prop('selected', true)//.val(obj+1)
                         }
-
+                        else{
+                            $(window.parent.document).find(".bread-select[data-id=cad]").val(d.data.colorId)
+                        }
 
                         configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, cad_valor, cad_percent, cad_percent_uf);
                         if(deg  == 0)
@@ -226,6 +229,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         // else $(window.parent.document).find(".cad-title").first().html(d.parent.data.name+" - "+d.data.name);
                         else
                             $(window.parent.document).find(".cad-title").first().html(d.parent.data.name);
+
 				    }
                     else {
                         var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ocp=[0-9]*/, "ocp=" + d.data.colorId);
@@ -235,9 +239,8 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         $(window.parent.document).find("#view_box").attr("src", newMapaSrc);
                         $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
                         $(window.parent.document).find("select[data-id='ocp']").val(d.data.colorId);
-                        // enableDesag(eixo, vrv, d.data.colorId, true, slc, url);
+                        enableDesag(eixo, vrv, d.data.colorId, true, slc, url);
                         destacaSetor(d.data.colorId);
-
 
                         cad_valor = d.data.size;
 
@@ -252,7 +255,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                             cad_percent_uf = getSoma(d.data.colorId);
                         }
 
-                        configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg, cad_valor, cad_percent, cad_percent_uf, 100 );
+                        configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg, cad_valor, cad_percent, cad_percent_uf );
                          if(d.parent.data.name.match("Atividades")) $(window.parent.document).find(".cad-title").first().html("Atividades Relacionadas - "+d.data.name);
                          else if(d.parent.data.name.match("Cultura")) $(window.parent.document).find(".cad-title").first().html("Cultura - "+d.data.name);
                     }
@@ -421,7 +424,6 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                 .attr("fill", function(d) { return color(d.data.colorId)[8-d.data.desagreg]; });
         }
         else {
-
 
             cell.append("rect")
                 .attr("data-legend", function(d) { return d.data.colorId; })
@@ -735,19 +737,23 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
 
         var cad = 0;
 
+
+
         if(url['ocp'] == 0)
             cad = url['cad'];
         else
-            if(url['var'] == 1)
-                cad = parseInt(url['ocp']);
+        if(url['var'] == 1)
+            cad = parseInt(url['ocp'])+1;
+        else
+            cad = parseInt(url['cad'])+1;
 
-       configInfoDataBoxTreemapSCC(eixo,
+        configInfoDataBoxTreemapSCC(eixo,
             vrv,
             $('svg').find('rect[data-legend="'+cad+'"]').attr("data-value"),
             $('svg').find('rect[data-legend="'+cad+'"]').attr("data-percent"),
-            $('svg').find('rect[data-legend="'+cad+'"]').attr("data-percent-uf"),
+            $('svg').find('rect[data-legend="'+url['cad']+'"]').attr("data-percent-uf"),
             url,
-            $('svg').find('rect[data-legend="'+cad+'"][id-subdeg="'+$(window.parent.document).find(".bread-select[data-id=deg]").val()+'"]').attr("data-percent-uf"),
+            $('svg').find('rect[data-legend="'+url['cad']+'"][id-subdeg="'+$(window.parent.document).find(".bread-select[data-id=deg]").val()+'"]').attr("data-percent-uf"),
             $('svg').find('rect[data-legend="'+cad+'"]').attr("data-deg"),
             chg);
     }
