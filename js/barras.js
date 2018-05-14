@@ -1080,6 +1080,7 @@ else {
             data = aux;
         }
 
+
         setTimeout(function () {
         }, 500);
 
