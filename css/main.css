@@ -1739,4 +1739,19 @@ body.contraste{
 
 }
 
+@media (max-width: 1499px) {
+
+
+	.description-number{
+		font-size: 1vw;
+	}
+
+	.percent-value .description-number{
+		font-size: 1vw;
+		line-height: 20px;
+	}
+
+
+}
+
 

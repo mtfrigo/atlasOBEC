@@ -141,7 +141,7 @@ $.get("./db/json_mapa.php"+config, function(data) {
             },
             onRegionClick: function(e, el, code){
 
-                if(window.parent.innerWidth <= 800)
+                if(window.parent.innerWidth <= 1199)
                     return;
 
                 var newBarraSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/prc=[0-9]*/, "prc="+convertCode(el));
