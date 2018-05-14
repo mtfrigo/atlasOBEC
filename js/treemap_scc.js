@@ -739,19 +739,15 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
             cad = url['cad'];
         else
             if(url['var'] == 1)
-                cad = parseInt(url['ocp'])+1;
-            else
-                cad = parseInt(url['cad'])+1;
+                cad = parseInt(url['ocp']);
 
-        console.log($('svg').find('rect[data-legend="'+url['cad']+'"][id-subdeg="'+$(window.parent.document).find(".bread-select[data-id=deg]").val()+'"]').attr("data-percent-uf"));
-
-        configInfoDataBoxTreemapSCC(eixo,
+       configInfoDataBoxTreemapSCC(eixo,
             vrv,
             $('svg').find('rect[data-legend="'+cad+'"]').attr("data-value"),
             $('svg').find('rect[data-legend="'+cad+'"]').attr("data-percent"),
-            $('svg').find('rect[data-legend="'+url['cad']+'"]').attr("data-percent-uf"),
+            $('svg').find('rect[data-legend="'+cad+'"]').attr("data-percent-uf"),
             url,
-            $('svg').find('rect[data-legend="'+url['cad']+'"][id-subdeg="'+$(window.parent.document).find(".bread-select[data-id=deg]").val()+'"]').attr("data-percent-uf"),
+            $('svg').find('rect[data-legend="'+cad+'"][id-subdeg="'+$(window.parent.document).find(".bread-select[data-id=deg]").val()+'"]').attr("data-percent-uf"),
             $('svg').find('rect[data-legend="'+cad+'"]').attr("data-deg"),
             chg);
     }

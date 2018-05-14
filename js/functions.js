@@ -248,8 +248,6 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, valor,  percent, percent_uf, url
 
 
     }
-    alert("opi")
-
     if(deg != 0)
         setTerceiroValueData(eixo, vrv, deg_cad, url['cad']);
 
