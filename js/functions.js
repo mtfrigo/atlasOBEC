@@ -648,6 +648,8 @@ function configInfoDataBoxBarrasStacked(eixo, vrv, d, soma, deg) {
         }
         setIntegerValueData({valor: d.y}, eixo, vrv);
         setPercentValueData({percentual: parseFloat(d.y)/soma}, eixo, vrv);
+        if(url['cad'] >0)
+            setTerceiroValueData(eixo, vrv, dados.percentual[index_ano], url['cad']);  
     }
 }
 
@@ -1581,6 +1583,7 @@ function setTerceiroValueData(eixo, vrv, value, cad){
     if(eixo == 1){
         ocp = $(window.parent.document).find(".bread-select[data-id=ocp]").val() == undefined ? 0 : $(window.parent.document).find(".bread-select[data-id=ocp]").val()
         if(vrv == 1 && (cad > 0 || ocp != 0 && ocp != 3) && uf > 0){
+            
            $(window.parent.document).find(".setor-value").first().find(".number").first().text(formatDecimalLimit(value*100, 2)+'%');
            $(window.parent.document).find(".setor-value").first().css("display", "flex");
 
