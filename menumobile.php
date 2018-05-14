@@ -245,15 +245,17 @@ switch($eixo) {
 
         </div>
 
+
+
+        <div class="header" id="barra-menu">
+             <button class="w3-button w3-white w3-xxlarge" onclick="hamburguer_click()">&#9776; </button><span class="menu-title">Menu</span>
+        </div>
+
         <div id="menu-mob-eixo">
             <div class="eixo-mob" id="empreendimentos"><img id="empreendimentos" src="./images/empreendimentos-icon.png"></div>
             <div class="eixo-mob" id="mercado"><img id="mercado" src="./images/mercado-icon.png"></div>
             <div class="eixo-mob" id="politicas"><img id="politicas" src="./images/politicas-icon.png"></div>
             <div class="eixo-mob" id="comercio"><img id="comercio" src="./images/comercio-icon.png"></div>
-        </div>
-
-        <div class="header" id="barra-menu">
-             <button class="w3-button w3-white w3-xxlarge" onclick="hamburguer_click()">&#9776; </button><span class="menu-title">Menu</span>
         </div>
 
         <script>
@@ -332,11 +334,11 @@ switch($eixo) {
 
             function myFunction() {
 
-                if (window.parent.pageYOffset >= window.parent.document.getElementById("section0").offsetHeight) {
-                    // $("#barra-menu").addClass("menu-fixo")
+                console.log(window.parent.pageYOffset)
+                if (window.parent.pageYOffset  >= window.parent.document.getElementById("section0").offsetHeight) {
+                    $("#barra-menu").css("top", window.parent.pageYOffset - $(window.parent).height())
                     menu.classList.add("sticky");
                 } else {
-                    // $("#barra-menu").removeClass("menu-fixo")
                     menu.classList.remove("sticky");
                 }
             }

@@ -369,7 +369,7 @@ class EixoDois {
         if($ocp == 0){
             if($var > 11)
                 $query .= " AND idCadeia = ".$uos;
-            else if($desag != 0 && $cad == 0)
+            else if($desag != 0 && $cad == 0 && $uos == 1)
                 $query .= " AND idCadeia != 0";
             else
                 if($uos == 1 && $var == 6 && $desag == 0)
