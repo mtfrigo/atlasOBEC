@@ -110,15 +110,30 @@ function ready(json){
                 return;
 
             if(eixo == 2 && vrv >= 18){
-                cad = d.data.cad;
 
-                srcMapa = $(parent.document).find("iframe#view_box").first().attr("src");
-                srcMapa = srcMapa.replace(/cad=[0-9]/, "cad="+cad);
-                $(parent.document).find("iframe#view_box").first().attr("src", srcMapa);
+                cadClick = d.data.cad;
 
-                srcBarras = $(parent.document).find("iframe#view_box_scc").first().attr("src");
-                srcBarras = srcBarras.replace(/cad=[0-9]/, "cad="+cad);
-                $(parent.document).find("iframe#view_box_scc").first().attr("src", srcBarras)
+                return;
+
+                if(cadClick != cad){
+
+                    console.log(cad)
+
+                    srcMapa = $(parent.document).find("iframe#view_box").first().attr("src");
+                    srcMapa = srcMapa.replace(/cad=[0-9]/, "cad="+cadClick);
+                    $(parent.document).find("iframe#view_box").first().attr("src", srcMapa);
+
+                    srcBarras = $(parent.document).find("iframe#view_box_scc").first().attr("src");
+                    srcBarras = srcBarras.replace(/cad=[0-9]/, "cad="+cadClick);
+                    $(parent.document).find("iframe#view_box_scc").first().attr("src", srcBarras)
+
+
+                    cad = cadClick
+
+                    $("#bread-select-cad").val(2)
+
+                }
+
 
             }
             else  if(eixo == 3){

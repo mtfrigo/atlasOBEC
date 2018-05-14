@@ -210,21 +210,19 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         destacaSetor(d.data.colorId);
 
                         cad_percent = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent");
-                        cad_valor = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-valor");
-
-
+                        cad_valor = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-value");
                         cad_percent_uf = ($('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent-uf"))
 
-                        // if(url['deg'] == 0){
-                        //     cad_percent_uf = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent-uf");
-                        // }
-                        // else{
-                        //     cad_percent_uf = getSoma(d.data.colorId);
-                        // }
+
+
+
+
                         configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, cad_valor, cad_percent, cad_percent_uf);
-                        if(deg  == 0) $(window.parent.document).find(".cad-title").first().html(d.data.name);
+                        if(deg  == 0)
+                            $(window.parent.document).find(".cad-title").first().html(d.data.name);
                         // else $(window.parent.document).find(".cad-title").first().html(d.parent.data.name+" - "+d.data.name);
-                        else $(window.parent.document).find(".cad-title").first().html(d.parent.data.name);
+                        else
+                            $(window.parent.document).find(".cad-title").first().html(d.parent.data.name);
 				    }
                     else {
                         var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/ocp=[0-9]*/, "ocp=" + d.data.colorId);

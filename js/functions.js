@@ -492,10 +492,14 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
             } 
        }
        else if(url['var'] == 1){
-            console.log(dados)
+
            dados.valor = dados.value[indexAno];
+           dados.percentual = dados.percentual[indexAno];
 
            setIntegerValueData(dados, eixo, vrv);
+           if(mundo == 1)
+            setPercentValueData({percentual: dados.percentual}, eixo, vrv);
+
 
        }
         else{

@@ -120,6 +120,8 @@ $.get("./db/json_mapa.php"+config, function(data) {
         arrayColors = $.map(colorJSON["cadeias"][cad]["gradient"], function(value, index) {
             return [value];
         });
+        console.log(maxValue)
+
         $('#corpo-mundi').vectorMap({
             map: 'continents_mill',
             backgroundColor:  "#f0f0f0",
@@ -127,7 +129,6 @@ $.get("./db/json_mapa.php"+config, function(data) {
                 regions: [{
                     values: gdpAux,
                     scale: arrayColors,
-                    normalizeFunction: 'polynomial'
                 }]
             },
             onRegionTipShow: function(e, el, code){
@@ -156,7 +157,7 @@ $.get("./db/json_mapa.php"+config, function(data) {
                     setPercentValueData(gdpData[convertCode(el)], eixo, vrv);
                 }
 
-                if(url['var'] == 1){
+                if(url['var'] == 1  ){
 
                     if(gdpData[0].valor == 0)
                         valor = 0
@@ -176,7 +177,7 @@ $.get("./db/json_mapa.php"+config, function(data) {
 
 
         dom.forEach(function(dominio, i) {
-            // console.log(arrayColors);
+            console.log(arrayColors[i]);
             if(i == 0) $("#corpo-mundi").append("<div style='position: relative; display: block; float:left; width: 150px; font-size: 10px; color: white;'><div style='margin-right: 5px; display: inline-block; width: 15px; height: 15px; background-color: "+arrayColors[i]+"'></div>Menor que: "+dom[i].toFixed(4)+"</div>");
             else if(i == 8) $("#corpo-mundi").append("<div style='position: relative; display: block; float:left; width: 150px; font-size: 10px; color: white;'><div style='margin-right: 5px; display: inline-block; width: 15px; height: 15px; background-color: "+arrayColors[i]+"'></div>Maior que: "+dom[i].toFixed(4)+"</div>");
             else $("#corpo-mundi").append("<div style='position: relative; display: block; float:left; width: 150px; font-size: 10px; color: white;'><div style='margin-right: 5px; display: inline-block; width: 15px; height: 15px; background-color: "+arrayColors[i]+"'></div>Entre: "+dom[i-1].toFixed(4)+" e "+dom[i].toFixed(4)+"</div>");

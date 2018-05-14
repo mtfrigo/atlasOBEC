@@ -251,7 +251,7 @@ switch($eixo) {
              <button class="w3-button w3-white w3-xxlarge" onclick="hamburguer_click()">&#9776; </button><span class="menu-title">Menu</span>
         </div>
 
-        <div id="menu-mob-eixo">
+        <div id="menu-mob-eixo" style="display: none">
             <div class="eixo-mob" id="empreendimentos"><img id="empreendimentos" src="./images/empreendimentos-icon.png"></div>
             <div class="eixo-mob" id="mercado"><img id="mercado" src="./images/mercado-icon.png"></div>
             <div class="eixo-mob" id="politicas"><img id="politicas" src="./images/politicas-icon.png"></div>
