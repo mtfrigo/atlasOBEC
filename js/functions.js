@@ -130,14 +130,15 @@ function configInfoDataBoxMapa(eixo, vrv, dadosUF) {
 }
 
 function configInfoDataBoxMapaClick(eixo, vrv, dados) {
-
+    deg = $(window.parent.document).find('.bread-select[data-id=deg]').first().val()
     if(eixo == 0) {
 
     }
     else if(eixo == 1){
 
         if(url['cad'] == 0 && url['ocp'] == 0 || (url['cad'] == 0 && url['ocp'] == 3)){
-            setPercentValueData(dados, eixo, vrv);
+            if(deg == 0)
+                setPercentValueData(dados, eixo, vrv);
         }
 
     }
@@ -642,8 +643,7 @@ function configInfoDataBoxBarrasStacked(eixo, vrv, d, soma, deg) {
             d.y = 0;
         }
         setIntegerValueData({valor: d.y}, eixo, vrv);
-        if(url['cad'] == 0 && url['ocp'] == 0 || url['ocp'] == 3 && url['cad'] == 0)
-            setPercentValueData({percentual: parseFloat(d.y)/soma}, eixo, vrv);
+        setPercentValueData({percentual: parseFloat(d.y)/soma}, eixo, vrv);
     }
 }
 

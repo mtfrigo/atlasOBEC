@@ -1993,7 +1993,10 @@ $(document).ready(function(){
             else{
                 controlFilter($(this).val(), $(this).attr('data-id'), 1);
             }
-           
+            if( $(".bread-select[data-id=deg]").find('option:selected').parent().attr("value") != undefined)
+                url['deg'] =  $(".bread-select[data-id=deg]").find('option:selected').parent().attr("value")
+            else
+                url['deg'] = $(".bread-select[data-id=deg]").val()
             /* controla relações entre filtros */
             
             /* muda o select das opções para o mesmo do bread */
@@ -2086,7 +2089,7 @@ $(document).ready(function(){
 
                 //if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
-
+                
                 url['cad'] = ($(this).val())
 
             }
