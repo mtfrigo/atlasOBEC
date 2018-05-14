@@ -491,7 +491,7 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
                 setPercentValueData(dados, eixo, vrv);
             } 
        }
-       else if(url['var'] == 1){
+       else if(url['var'] == 1 || url['var'] == 13){
 
            dados.valor = dados.value[indexAno];
            dados.percentual = dados.percentual[indexAno];
@@ -1404,22 +1404,30 @@ function updateDescPercentEmpreendimentos(desc, vrv, tipo){
 function updateDescPercentMercado(desc, vrv, tipo, ocp){
     nomeestado = $(window.parent.document).find(".bread-select[data-id=uf] option:selected").text();
     if(ocp == 0){
-        cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
+        cad_nome = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
         cad_val = $(window.parent.document).find(".bread-select[data-id=cad]").val();
-    } else{
-        cad = $(window.parent.document).find(".bread-select[data-id=ocp] option:selected").text();
-        cad_val = $(window.parent.document).find(".bread-select[data-id=ocp]").val();
-    }
+    } 
     deg = $(window.parent.document).find(".bread-select[data-id=deg]").val();
-    if(ocp == 0)
+    if(ocp == 0){
         desc = desc.replace("[ocp]", "TRABALHADORES")
-    else
+        cad_nome = "DOS SETORES CULTURAIS E CRIATIVOS"
+        
+    }else{
         desc = desc.replace("[ocp]", 'OCUPADOS')
+        if(ocp == 1){
+            cad_nome = "EM ATIVIDADES RELACIONADAS À CULTURA";
+        }
+        else if(ocp == 2){
+            cad_nome = "EM ATIVIDADES CULTURAIS"
+        } else if(ocp == 3){
+            cad_nome = "EM ATIVIDADES CULTURAIS E CRIATIVAS";
+        }
+    }
+    
     if(tipo == "setorial"){
-        description = desc.replace("[uf]", getPrepos(nomeestado)+' '+nomeestado)
-
+        desc = descDesag(desc, deg)
+        description = desc.replace("[uf]", "DO BRASIL").replace("[cad]", cad_nome)
         $(window.parent.document).find(".setor-value").first().find(".description-number").text(description)
-
     } else if( tipo == "percent"){
 
     }

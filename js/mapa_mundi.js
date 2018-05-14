@@ -157,7 +157,7 @@ $.get("./db/json_mapa.php"+config, function(data) {
                     setPercentValueData(gdpData[convertCode(el)], eixo, vrv);
                 }
 
-                if(url['var'] == 1  ){
+                if(url['var'] == 1  || url['var'] == 13){
 
                     if(gdpData[0].valor == 0)
                         valor = 0
@@ -183,19 +183,20 @@ $.get("./db/json_mapa.php"+config, function(data) {
             else $("#corpo-mundi").append("<div style='position: relative; display: block; float:left; width: 150px; font-size: 10px; color: white;'><div style='margin-right: 5px; display: inline-block; width: 15px; height: 15px; background-color: "+arrayColors[i]+"'></div>Entre: "+dom[i-1].toFixed(4)+" e "+dom[i].toFixed(4)+"</div>");
             $("#corpo-mundi").children().first().css("margin-bottom", "35px");
         });
+        
+        //setPercentValueData({percentual: 1}, eixo, vrv);
+        //if(url['prc'] != 0 ){
+        destacaPrc(unconvertCode(parseInt(url['prc'])));
 
-        if(url['prc'] != 0 ){
-            destacaPrc(unconvertCode(parseInt(url['prc'])));
 
+        if(gdpData[0].valor == 0)
+            valor = 0
+        else
+            valor = gdpData[url['prc']].valor/gdpData[0].valor;
 
-            if(gdpData[0].valor == 0)
-                valor = 0
-            else
-                valor = gdpData[url['prc']].valor/gdpData[0].valor;
+        setPercentValueData({percentual: valor}, eixo, vrv);
 
-            setPercentValueData({percentual: valor}, eixo, vrv);
-
-        }
+        //}
 
 
 
