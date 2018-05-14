@@ -183,7 +183,7 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, valor,  percent, percent_uf, url
                 else{
 
                     setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
-                    setPercentValueData({percentual: parseFloat(percent_uf) , taxa: 0}, eixo, vrv);
+                    //setPercentValueData({percentual: parseFloat(percent_uf) , taxa: 0}, eixo, vrv);
                     setTerceiroValueData(eixo, vrv, deg_cad, url['cad']);
 
                 }

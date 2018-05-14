@@ -1545,9 +1545,6 @@ function switchToSetores() {
 
 function switchToOcupations() {
 
-
-    alert("oi")
-
     $(".view-title-leg[data-id='scc&ocp']").html("OCUPAÇÕES");
     $("#title-view-leg-scc").empty();
     $("#title-view-leg-scc").append("<span class=\"ocp\" data-id=\"1\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #87A8CA\"></i> Atividades Relacionadas<br></span>");
@@ -2007,6 +2004,9 @@ $(document).ready(function(){
             //quando muda a variável, é preciso trocar a UF para 'Brasil'
             
             if($(this).attr('data-id') =='var'){
+
+                console.log($('.percent-value').find(".box-dado").find('.number').first())
+                $('.percent-value').find(".box-dado").find('.number').first().text("")
                 changeDescVar();
                 cleanDesagsUrl();
                 getAnoDefault(eixo_atual);

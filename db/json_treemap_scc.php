@@ -137,9 +137,9 @@ function getNamePorte($id) {
 
 function getNameSexo($id) {
     switch ($id) {
-        case 0:
-            return "Masculino";
         case 1:
+            return "Masculino";
+        case 0:
             return "Feminino";
     }
 }
@@ -229,7 +229,7 @@ function getNameSindical($id) {
 
 //Trata o sexo
 switch($sex) {
-    case "0":
+    case 0:
         $sex = NULL;
         break;
     case "1":
@@ -345,7 +345,7 @@ else if($eixo == 1) {
                         }
                         if($tupla->Sexo == 0) {
                             $treemap .= '{"name": "Feminino",';
-                            $index = 2;
+                            $index = 0;
                         }
                         
                     }
@@ -376,7 +376,7 @@ else if($eixo == 1) {
                     }
                     if($tupla->Sexo == 0) {
                         $treemap .= '{"name": "Feminino",';
-                        $index = 2;
+                        $index = 0;
                     }
                 }
                 else $treemap .= '{"name": "' . getNameCadeia($tupla->idCadeia) . '",'; 
