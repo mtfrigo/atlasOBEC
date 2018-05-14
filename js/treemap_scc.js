@@ -212,18 +212,21 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         cad_percent = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent");
                         cad_valor = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-value");
                         cad_percent_uf = ($('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent-uf"))
+                        percent_deg = 0
 
 
                         if(deg !=0){
                             // cad_percent_uf = (d.data.size/d.parent.parent.parent.value)
+                            console.log(d)
                             cad_percent_uf = (d.data.size/d.parent.parent.value)
+                            percent_deg = (d.data.size/d.parent.parent.parent.value)
                             $(window.parent.document).find(".bread-select[data-id=deg]").find("optgroup[value="+deg+"]").find("option[value="+(d.data.desagreg)+"]").prop('selected', true)//.val(obj+1)
                         }
                         else{
                             $(window.parent.document).find(".bread-select[data-id=cad]").val(d.data.colorId)
                         }
 
-                        configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, cad_valor, cad_percent, cad_percent_uf);
+                        configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, cad_valor, cad_percent, cad_percent_uf, percent_deg);
                         if(deg  == 0)
                             $(window.parent.document).find(".cad-title").first().html(d.data.name);
                         // else $(window.parent.document).find(".cad-title").first().html(d.parent.data.name+" - "+d.data.name);
