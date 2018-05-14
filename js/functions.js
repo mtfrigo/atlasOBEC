@@ -1774,15 +1774,10 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         }
         else if(url['var'] == 1){
             if(tipo == "percent" ){
-<<<<<<< HEAD
-                if(getPrepos(nomeestado) != undefined && (url['deg'] > 0 || url['cad'] != 0 || url['ocp'] == 1 || url['ocp'] == 2)){
-
-=======
                 if(url['deg'] > 0 ){
                     console.log(nomeestado)
                     nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
                 } else if(getPrepos(nomeestado) != undefined && (url['cad'] != 0 || url['ocp'] == 1 || url['ocp'] == 2)){
->>>>>>> df116ffe68fdad8e0ce6f4c7a1f6d75e446c33b9
                     if(url['cad'] == 0)
                         nomeestado = "NO BRASIL"
                     else{
