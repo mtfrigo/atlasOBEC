@@ -248,6 +248,11 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, valor,  percent, percent_uf, url
 
 
     }
+    alert("opi")
+
+    if(deg != 0)
+        setTerceiroValueData(eixo, vrv, deg_cad, url['cad']);
+
 
 }
 
@@ -289,9 +294,16 @@ function configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, valor, percen
         setIntegerValueData({valor: d.value}, eixo, vrv);
         setPercentValueData({percentual: d.data.size / root.value}, eixo, vrv);
     }
+
+
+    if(deg != 0)
+        setTerceiroValueData(eixo, vrv, deg_cad, url['cad']);
+
+    // setTerceiroValueData(eixo, vrv, percent_uf, url['cad']);
+
 }
 
-function configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg, valor, percent, percent_uf) {
+function configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg, valor, percent, percent_uf, deg_cad) {
     if(eixo == 1) {
         destacaSetor(d.data.colorId);
 
@@ -306,6 +318,11 @@ function configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg, valor, pe
         }
         // setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
     }
+
+    console.log(deg_cad)
+    if(deg != 0)
+        setTerceiroValueData(eixo, vrv, deg_cad, url['cad']);
+
 }
 
 function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
@@ -360,7 +377,6 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
                 setPercentValueData({percentual: dados.percentual[index_ano]}, eixo, vrv)
         }
 
-        setTerceiroValueData(eixo, vrv, dados.percentual_setor[index_ano], url['cad']);  
 
     }
     else if(eixo == 1){
@@ -510,7 +526,7 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
 
             }
 
-       setTerceiroValueData(eixo, vrv, valor, url['cad']);            
+       // setTerceiroValueData(eixo, vrv, valor, url['cad']);
 
     }
 }
@@ -559,7 +575,7 @@ function configInfoDataBoxBarrasClick(eixo, vrv, dados, i, valor) {
             }
         }
 
-        setTerceiroValueData(eixo, vrv, dados.percentual_setor[i], url['cad']);  
+        // setTerceiroValueData(eixo, vrv, dados.percentual_setor[i], url['cad']);
 
 
     }
