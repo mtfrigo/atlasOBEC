@@ -213,6 +213,11 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         cad_valor = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-value");
                         cad_percent_uf = ($('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent-uf"))
 
+                        if(deg !=0){
+                            console.log(d)
+                            // console.log(d.data.size/d.parent.value)
+                        }
+
 
                         configInfoDataBoxTreemapSCCClick(eixo, vrv, d, root, deg, cad_valor, cad_percent, cad_percent_uf);
                         if(deg  == 0)
