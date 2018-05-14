@@ -1547,6 +1547,26 @@ body.contraste{
 
 	}
 
+	.eixo-mob{
+		height: 60px;
+		width: 25%;
+		padding: 2px;
+
+	}
+
+	.eixo-mob img{
+		width: 100%;
+		height: 100%;
+
+	}
+
+	#menu-mob-eixo{
+		display: flex;
+		flex-direction:  row;
+		width: 100%;
+
+	}
+
 
 	.rotulo-bread{
 		text-align: left;

@@ -245,10 +245,16 @@ switch($eixo) {
 
         </div>
 
+        <div id="menu-mob-eixo">
+            <div class="eixo-mob" id="empreendimentos"><img id="empreendimentos" src="./images/empreendimentos-icon.png"></div>
+            <div class="eixo-mob" id="mercado"><img id="mercado" src="./images/mercado-icon.png"></div>
+            <div class="eixo-mob" id="politicas"><img id="politicas" src="./images/politicas-icon.png"></div>
+            <div class="eixo-mob" id="comercio"><img id="comercio" src="./images/comercio-icon.png"></div>
+        </div>
 
-        <nav class="header" id="barra-menu">
+        <div class="header" id="barra-menu">
              <button class="w3-button w3-white w3-xxlarge" onclick="hamburguer_click()">&#9776; </button><span class="menu-title">Menu</span>
-        </nav>
+        </div>
 
         <script>
 
@@ -334,6 +340,10 @@ switch($eixo) {
                     menu.classList.remove("sticky");
                 }
             }
+
+            $(document).on('click', ".eixo-mob", function(e){
+                parent.window.location = "page.php#"+$(this).attr("id");
+            });
 
 
 

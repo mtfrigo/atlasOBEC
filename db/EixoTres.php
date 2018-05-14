@@ -5,8 +5,8 @@
 define('DB_NOME', 'Atlas');
 define('DB_USUARIO', 'root');
 define('DB_SENHA', 'root');
-//define('DB_HOST', 'localhost');
-define('DB_HOST', '143.54.231.130');
+define('DB_HOST', 'localhost');
+//define('DB_HOST', '143.54.231.130');
 class EixoTres {
 
 ## Atributos ##
@@ -215,9 +215,13 @@ class EixoTres {
         if($var == 17 || $var == 18 || $var == 19){
             $query = "SELECT * FROM " . self::$table . " AS ex"
                 . " JOIN UF AS uf ON uf.idUF =  ex.idUF"
-                . " JOIN Mecanismo AS mec ON mec.idMecanismo = ex.idMecanismo AND mec.idMecanismo = ".$mec
-                . " JOIN Cadeia AS cad ON cad.idCadeia = ex.idCadeia AND cad.idCadeia = ".$cad
-                . " WHERE ex.Numero = " . $var;
+                . " JOIN Mecanismo AS mec ON mec.idMecanismo = ex.idMecanismo AND mec.idMecanismo = ".$mec;
+
+            if($var != 17)
+                $query .= " JOIN Cadeia AS cad ON cad.idCadeia = ex.idCadeia AND cad.idCadeia = ".$cad;
+
+
+            $query .=   " WHERE ex.Numero = " . $var;
 
             $query .= ($anos > 0) ? " AND ex.Ano = " . $anos : "";
 
@@ -290,6 +294,8 @@ class EixoTres {
                 $allObjects = $result_aux;
 
         }
+
+//        echo $query;
 
 
 		self::disconnect();
