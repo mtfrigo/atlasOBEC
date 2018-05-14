@@ -317,9 +317,8 @@ function configInfoDataBoxTreemapSCCOcupation(eixo, vrv, d, root, deg, valor, pe
         // setIntegerValueData({valor: valor, taxa: 0}, eixo, vrv);
     }
 
-    console.log(deg_cad)
-    if(deg != 0)
-        setTerceiroValueData(eixo, vrv, deg_cad, url['cad']);
+    // if(deg != 0)
+    //     setTerceiroValueData(eixo, vrv, percent_uf, url['cad']);
 
 }
 
