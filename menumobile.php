@@ -334,10 +334,9 @@ switch($eixo) {
 
             function myFunction() {
 
+                console.log(window.parent.pageYOffset)
                 if (window.parent.pageYOffset  >= window.parent.document.getElementById("section0").offsetHeight) {
-                    // $("#barra-menu").addClass("menu-fixo")
-                    // $("#barra-menu").css("position", "fixed")
-                    // $("#barra-menu").css("top", "0")
+                    $("#barra-menu").css("top", window.parent.pageYOffset - $(window.parent).height())
                     menu.classList.add("sticky");
                 } else {
                     menu.classList.remove("sticky");
