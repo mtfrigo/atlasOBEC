@@ -1155,8 +1155,7 @@ function updateDescEmpreendimentos(desc, vrv){
             uf_text = getPrepos(uf_text) +' '+ uf_text
             description = desc.replace("[uf]", uf_text)
         }
-        if(vrv == 9){
-            console.log(uf)
+        else if(vrv == 9){
             if(cad == 0 && uf == 0){
                 uf_text = getPrepos(uf_text) +' '+ uf_text
                 description = desc.replace("[cad]", " CULTURAIS E CRIATIVAS").replace("[uf]", uf_text).replace("{uf}", uf_text)
@@ -1376,6 +1375,51 @@ function updateDescMercado(desc, vrv, ocp){
     $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(description)
     //$(window.parent.document).find(".percent-value").first().find(".description-number").first().html(description)
             
+}
+
+function updateDescPercentEmpreendimentos(desc, vrv, tipo){
+    nomeestado = $(window.parent.document).find(".bread-select[data-id=uf] option:selected").text();
+    cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
+
+    cad_val = $(window.parent.document).find(".bread-select[data-id=cad]").val();
+    deg = $(window.parent.document).find(".bread-select[data-id=deg]").val();
+
+    if(tipo == "setorial"){
+        if(cad_val == 0)
+            description = desc.replace("[cad]", "DOS SETORES CULTURAIS E CRIATIVOS")
+        else
+            description = desc.replace("[cad]", "DO SETOR "+cad)
+        description = descByPRT(0, description)
+        $(window.parent.document).find(".setor-value").first().find(".description-number").text(description)
+
+    } else if( tipo == "percent"){
+
+    }
+}
+
+function updateDescPercentMercado(desc, vrv, tipo, ocp){
+    nomeestado = $(window.parent.document).find(".bread-select[data-id=uf] option:selected").text();
+    if(ocp == 0){
+        cad = $(window.parent.document).find(".bread-select[data-id=cad] option:selected").text();
+        cad_val = $(window.parent.document).find(".bread-select[data-id=cad]").val();
+    } else{
+        cad = $(window.parent.document).find(".bread-select[data-id=ocp] option:selected").text();
+        cad_val = $(window.parent.document).find(".bread-select[data-id=ocp]").val();
+    }
+    deg = $(window.parent.document).find(".bread-select[data-id=deg]").val();
+    if(ocp == 0)
+        desc = desc.replace("[ocp]", "TRABALHADORES")
+    else
+        desc = desc.replace("[ocp]", 'OCUPADOS')
+    if(tipo == "setorial"){
+        description = desc.replace("[uf]", getPrepos(nomeestado)+' '+nomeestado)
+
+        $(window.parent.document).find(".setor-value").first().find(".description-number").text(description)
+
+    } else if( tipo == "percent"){
+
+    }
+
 }
 
 function updateDescComercio(desc, vrv, nomeestado){
@@ -1726,9 +1770,10 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         }
         else if(url['var'] == 1){
             if(tipo == "percent" ){
-                console.log(url['deg'])
-                if(getPrepos(nomeestado) != undefined && (url['deg'] > 0 || url['cad'] != 0 || url['ocp'] == 1 || url['ocp'] == 2)){
-
+                if(url['deg'] > 0 ){
+                    console.log(nomeestado)
+                    nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
+                } else if(getPrepos(nomeestado) != undefined && (url['cad'] != 0 || url['ocp'] == 1 || url['ocp'] == 2)){
                     if(url['cad'] == 0)
                         nomeestado = "NO BRASIL"
                     else{
@@ -1992,7 +2037,7 @@ function descByCAD(eixo, desc, tag){
 
         }
         else if(eixo == 1 && (url['var'] == 1)){
-            nome = "PARA O SETOR " + prepos[url['cad']] + " " + cads[url['cad']];
+            nome = "DO SETOR " + prepos[url['cad']] + " " + cads[url['cad']];
 
         }
         else
@@ -2007,6 +2052,13 @@ function descByCAD(eixo, desc, tag){
                 nome = ""
             else
                 nome = "PELOS SETORES CULTURAIS E CRIATIVOS"
+        else if(eixo == 1 && url['deg'] > 0){
+            if(url['cad'] == 0){
+                nome = "DOS SETORES CULTURAIS E CRIATIVOS"
+            } 
+            else 
+                nome = "DO SETOR " + cads[url['cad']];
+        }
         else
             nome = "Culturais e Criativos";
     }
@@ -2097,11 +2149,13 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     if(desc.includes('pfj')){
         desc =  descByPFJ(eixo, desc)
     }
-
     if(desc.includes('[cad]')){
-        if(ocp == 0)
+        if(ocp == 0 && url['prt'] > 0)
             desc =  descByCAD(eixo, desc, '[cad]')
         else{
+            if(ocp == 0){ 
+                desc = desc.replace("[cad]", "DOS SETORES CULTURAIS E CRIATIVOS")
+            }
             if(ocp == 1){
                 desc = desc.replace("[cad]", "EM ATIVIDADES RELACIONADAS À CULTURA")
         
