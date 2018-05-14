@@ -341,9 +341,9 @@ switch($eixo) {
                 // console.log(window.parent.pageYOffset)
                 if (window.parent.pageYOffset  >= window.parent.document.getElementById("section0").offsetHeight) {
                     // $("#barra-menu").css("top", window.parent.pageYOffset - $(window.parent).height())
-                    menu.classList.add("sticky");
+                   // menu.classList.add("sticky");
                 } else {
-                    menu.classList.remove("sticky");
+                    //menu.classList.remove("sticky");
                 }
             }
 

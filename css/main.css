@@ -1666,8 +1666,8 @@ body.contraste{
 		text-align: center;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-around;
-		height: 70%;
+		justify-content: space-between;
+		height: 100%;
 		width: 100%;
 
 	}
