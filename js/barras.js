@@ -822,7 +822,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
         if(vrv == 1 && eixo == 1){
             $(window.parent.document).find(".setor-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_setorial, data[dados.key[0]].uf));
         } else if(eixo == 0){
-            $(window.parent.document).find(".setor-value").first().find(".description-number").html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_setorial, data[dados.key[0]].uf));            
+            updateDescPercentEmpreendimentos(getDataVar(textJSON, eixo, vrv).desc_setorial, vrv, "setorial");            
 
         }
             
