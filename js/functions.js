@@ -1,5 +1,8 @@
+var data_desag;
 
-
+$.get("./data/select-deg.json", function(data){
+    data_desag = data;
+})
 function changeDownloadURL(url, eixo){
     newURL = $('#select-pdf input').attr("value").replace(/download.php?.*/, "download.php?"+ url);
     $('#select-pdf input').attr("value", newURL)
@@ -689,18 +692,16 @@ function appendPorts(iframe){
 * Põe as desagregações no select das desagregações referentes aos setores do eixo 2.
 */
 function appendDesags(iframe, ocp){
-
-    $.get("./data/select-deg.json", function(data){
         if(ocp == true)
-            desag_groups = data.control.mercado.ocupacional;
+            desag_groups = data_desag.control.mercado.ocupacional;
         else
-            desag_groups = data.control.mercado.setorial;
+            desag_groups = data_desag.control.mercado.setorial;
 
         if(iframe) select = $(window.parent.document).find("select[data-id='deg']")
         else select = $("select[data-id='deg']")
 
         desag_groups.forEach(function(option){
-            group = data.data[option];
+            group = data_desag.data[option];
             if(select.find("optgroup[value='"+group.value+"']").length == 0) {
                 select.append("<optgroup value='"+group.value+"' label='"+group.name+"'></option>");
             }
@@ -711,7 +712,6 @@ function appendDesags(iframe, ocp){
             })
                 
         })
-    })
 }
 function removePorts(iframe){
 	if(iframe) {
@@ -732,17 +732,16 @@ function removePorts(iframe){
 	}
 }
 function removeDesags(iframe, ocp){
-    $.get("./data/select-deg.json", function(data){
         if(ocp == true)
-            desag_groups = data.control.mercado.ocupacional;
+            desag_groups = data_desag.control.mercado.ocupacional;
         else
-            desag_groups = data.control.mercado.setorial;
+            desag_groups = data_desag.control.mercado.setorial;
 
         if(iframe) select = $(window.parent.document).find("select[data-id='deg']")
         else select = $("select[data-id='deg']")
         
         desag_groups.forEach(function(option){
-            group = data.data[option];
+            group = data_desag.data[option];
             if(select.find("optgroup[value='"+group.value+"']").length != 0) {
                 group.desags.forEach(function(deg){
                     if(select.find("option[value="+deg.value+"]").length != 0) {
@@ -754,7 +753,6 @@ function removeDesags(iframe, ocp){
                 
             }
         })
-    })
 }
 function appendMecenatoDesags(iframe){
     if(iframe) {
