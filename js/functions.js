@@ -488,6 +488,7 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
             } 
        }
        else if(url['var'] == 1){
+            console.log(dados)
            dados.valor = dados.value[indexAno];
 
            setIntegerValueData(dados, eixo, vrv);

@@ -1152,8 +1152,12 @@ function expandMenuVariaveis(a) {
 }
 
 function updateUrl() {
+    var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
     $('.bread-select').each(function() {
-        url[$(this).attr('data-id')] = $(this).val();
+        if($(this).attr('data-id') == "deg" && eixo_atual == 1)
+            url[$(this).attr('data-id')] = $(this).find("option:selected").parent().val();
+        else
+            url[$(this).attr('data-id')] = $(this).val();
     });
 }
 
@@ -1965,9 +1969,7 @@ $(document).ready(function(){
         if($(this).attr("data-id") !== "eixo") {
             var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
 
-
             updateUrl();
-
             
             if($(this).attr("data-id") === "typ") {
                 if($(this).val() == 3 && (url['var'] == 1 || url['var'] == 13) )
@@ -2090,7 +2092,6 @@ $(document).ready(function(){
                 if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
             }
-
             updateIframe(url);
 
         }
