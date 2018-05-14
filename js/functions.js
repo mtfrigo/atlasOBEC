@@ -418,7 +418,7 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
 
         }
 
-        //setTerceiroValueData(eixo, vrv, dados.percentual[index_ano], url['cad']);
+        setTerceiroValueData(eixo, vrv, dados.percentual[index_ano], url['cad']);
 
     }
     else if(eixo == 2){
