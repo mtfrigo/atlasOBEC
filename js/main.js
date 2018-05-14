@@ -384,11 +384,13 @@ function updateIframe(url){
                 if(url['slc'] == 0) {
 
                     newUrl = newUrl.replace(/ocp=[0-9]*/, "ocp=0");
+                    newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
 
                     $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
                 }
                 else {
+                    newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
                     newUrl = newUrl.replace(/ocp=[0-9]*/, "ocp=3");
                     $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
