@@ -214,8 +214,9 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         cad_percent_uf = ($('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent-uf"))
 
                         if(deg !=0){
-                            console.log(d)
-                            // console.log(d.data.size/d.parent.value)
+                            // cad_percent_uf = (d.data.size/d.parent.parent.parent.value)
+                            cad_percent_uf = (d.data.size/d.parent.parent.value)
+                            $(window.parent.document).find(".bread-select[data-id=deg]").find("optgroup[value="+deg+"]").find("option[value="+(d.data.desagreg)+"]").prop('selected', true)//.val(obj+1)
                         }
 
 
@@ -244,6 +245,8 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                             cad_percent = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent")
                         }
                         else{
+                            $(window.parent.document).find(".bread-select[data-id=deg]").find("optgroup[value="+deg+"]").find("option[value="+(d.data.desagreg)+"]").prop('selected', true)//.val(obj+1)
+
                             cad_percent = d.data.percentual;
                             cad_percent_uf = getSoma(d.data.colorId);
                         }

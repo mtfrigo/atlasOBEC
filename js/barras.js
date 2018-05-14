@@ -424,8 +424,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
             });
         }
 
-        console.log(dados)
-
+        // console.log(dados)
 
         //Cria barras
         svg.selectAll("rect")
@@ -1298,8 +1297,8 @@ else {
             else destacaBarra(dataset[0][url['ano']-2008].x, true);
         }
         if(eixo == 0) setStateTitle(function(){if(data[dados.key[0]].uf == "Todos") return "Brasil"; else return data[dados.key[0]].uf});
-        console.log(eixo)
-        console.log(dados)
+        // console.log(eixo)
+        // console.log(dados)
         if(eixo == 0 && dados.key != undefined){
             updateDescEmpreendimentos(getDataVar(textJSON, eixo, vrv).desc_int, vrv)
         }
