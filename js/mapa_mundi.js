@@ -129,7 +129,6 @@ $.get("./db/json_mapa.php"+config, function(data) {
                 regions: [{
                     values: gdpAux,
                     scale: arrayColors,
-                    normalizeFunction: 'polynomial'
                 }]
             },
             onRegionTipShow: function(e, el, code){
