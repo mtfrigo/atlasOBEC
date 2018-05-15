@@ -311,6 +311,9 @@ function updateIframe(url){
                 $('iframe[id="view_box_barras"]').parent().find(".view-title").html("PROPORÇÃO SIM-NÃO");
                 $('iframe[id="view_box_barras"]').attr('src', 'donut.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
             }
+            else if (url['var'] ==  19 && url ['mec'] == 1) {
+                $('iframe[id="view_box_barras"]').parent().find(".view-title").html("PROPORÇÃO ACUMULADO POR SETOR");
+                $('iframe[id="view_box_barras"]').attr('src', 'no-view.html')}
             else if (url['var'] ==  18 || url ['var'] == 19) {
                 $('iframe[id="view_box_barras"]').parent().find(".view-title").html("PROPORÇÃO ACUMULADO POR SETOR");
                 $('iframe[id="view_box_barras"]').attr('src', 'donut.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
@@ -1387,23 +1390,26 @@ function switchToSetores() {
 
     }
     else if(eixo == 2 && url['var'] == 19){
-        $("#menu-view-donut").find(".view-title-leg-donut[data-id='scc&ocp']").html("");
 
-        $("#menu-view-donut").find("#title-view-leg-scc-donut").html("" +
-            "<span class=\"scc\" data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #071342\"></i> Todos<br></span>\n" +
-            "<span class=\"scc\" data-id=\"2\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #077DDD\"></i> Artes Cênicas e Espetáculos<br></span>\n" +
-            "<span class=\"scc\" data-id=\"3\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #0F4B67\"></i> Audiovisual<br></span>\n" +
-            "<span class=\"scc\" data-id=\"5\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #F6D5AB\"></i> Editorial<br></span>\n" +
-            "<span class=\"scc\" data-id=\"8\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #6A474D\"></i> Música<br></span>\n" +
-            "<span class=\"scc\" data-id=\"11\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #B2510F\"></i> Outros<br></span>");
+            $("#menu-view-donut").find(".view-title-leg-donut[data-id='scc&ocp']").html("");
 
-        var cads = [];
-        $("#title-view-leg-scc-donut").find(".scc").each(function(){
-            cad = {id: $(this).attr("data-id"), nome: $(this).text()}
-            cads.push(cad)
-        })
+            $("#menu-view-donut").find("#title-view-leg-scc-donut").html("" +
+                "<span class=\"scc\" data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #071342\"></i> Todos<br></span>\n" +
+                "<span class=\"scc\" data-id=\"2\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #077DDD\"></i> Artes Cênicas e Espetáculos<br></span>\n" +
+                "<span class=\"scc\" data-id=\"3\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #0F4B67\"></i> Audiovisual<br></span>\n" +
+                "<span class=\"scc\" data-id=\"5\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #F6D5AB\"></i> Editorial<br></span>\n" +
+                "<span class=\"scc\" data-id=\"8\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #6A474D\"></i> Música<br></span>\n" +
+                "<span class=\"scc\" data-id=\"11\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: #B2510F\"></i> Outros<br></span>");
 
-        updateBreadcrumbSetores(cads);
+            var cads = [];
+            $("#title-view-leg-scc-donut").find(".scc").each(function(){
+                cad = {id: $(this).attr("data-id"), nome: $(this).text()}
+                cads.push(cad)
+            })
+
+            updateBreadcrumbSetores(cads);
+
+
 
     }
     else if(eixo == 2 && (url['var'] == 15 || url['var'] == 16)){
@@ -1799,6 +1805,9 @@ $(document).ready(function(){
                         updateBreadcrumbSetores(cads)
                     }
 
+                    $('#menu-view-donut').css('display', 'block')
+
+
                     updateUrl();
                     url['mec'] = 0;
                     $(this).addClass("active");
@@ -1811,6 +1820,8 @@ $(document).ready(function(){
                 if(url['mec'] != 1){
                     if(url['var'] == 19)
                         updateBreadcrumbSetores([{id: 0, nome: "Todos"}])
+
+                    $('#menu-view-donut').css('display', 'none')
 
                     updateUrl();
                     url['mec'] = 1;
