@@ -242,6 +242,7 @@ switch($sex) {
         $sex = NULL;
 }
 
+
 //Trata a modalidade
 switch($mod) {
     case "0":
@@ -338,16 +339,15 @@ else if($eixo == 1) {
                         $treemap .= '{"name": "' . getNameIdade($tupla->idIdade) . '",';
                         $index = $tupla->idIdade;
                     }
-                    else if($sex != NULL) {
+                    else if($sex !== NULL) {
                         if($tupla->Sexo == 1) {
                             $treemap .= '{"name": "Masculino",';
                             $index = 1;
                         }
                         if($tupla->Sexo == 0) {
                             $treemap .= '{"name": "Feminino",';
-                            $index = 0;
+                            $index = 2;
                         }
-                        
                     }
                     else $treemap .= '{"name": "' . getNameCadeia($tupla->idCadeia) . '",'; 
                     $treemap .= '"estado": "' . getNameUF($tupla->idUF) . '",  
@@ -369,17 +369,18 @@ else if($eixo == 1) {
                     $treemap .= '{"name": "' . getNameIdade($tupla->idIdade) . '",';
                     $index = $tupla->idIdade;
                 }
-                else if($sex != NULL) {
+                else if($sex !== NULL) {
                     if($tupla->Sexo == 1) {
                         $treemap .= '{"name": "Masculino",';
                         $index = 1;
                     }
                     if($tupla->Sexo == 0) {
                         $treemap .= '{"name": "Feminino",';
-                        $index = 0;
+                        $index = 2;
                     }
                 }
                 else $treemap .= '{"name": "' . getNameCadeia($tupla->idCadeia) . '",'; 
+                
                 $treemap .= '"estado": "' . getNameUF($tupla->idUF) . '",  
                 "percentual": "' . $tupla->Percentual . '",
                 "taxa": "' . $tupla->Taxa . '", 
