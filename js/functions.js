@@ -191,10 +191,14 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, valor,  percent, percent_uf, url
             }
         }
         else{
-            if(url['deg'] == 0 || deg == 0){
-                if(url['ocp'] != 3)
-                    setPercentValueData({percentual: percent, taxa: 0}, eixo, vrv);
 
+            if(url['deg'] == 0 || deg == 0){
+                if(url['ocp'] != 3){
+                    // console.log(percent)
+                    // console.log(percent_uf)
+                    // console.log(deg_cad)
+                    setPercentValueData({percentual: percent, taxa: 0}, eixo, vrv);
+                }
             }
         }
 
@@ -435,6 +439,19 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
                 
         }
         else if(vrv == 17){
+
+        }
+        else if(vrv == 19 && url['mec'] == 1){
+
+            var soma = 0;
+
+            for(var key in dados.value){
+                if(key != "remove")
+                    soma += dados.value[key];
+            }
+
+            setPercentValueData({valor: formatTextVrv(soma, eixo, vrv)}, eixo, vrv)
+
 
         }
         else if(vrv == 10){
@@ -2105,7 +2122,6 @@ function descByCAD(eixo, desc, tag, tipo){
         }
         else if(url['var'] == 19){
 
-            console.log(cads[url['cad']])
 
             if(url['mec'] == 0){
                 if(tipo == "integer"){
@@ -2255,7 +2271,9 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     // [ano] - ano
 
 
-    ocp = $(window.parent.document).find("iframe#view_box_barras").attr("src").match(/ocp=[0-9]/)[0].split("=")[1]
+    if(eixo == 1){
+        ocp = $(window.parent.document).find("iframe#view_box_scc").attr("src").match(/ocp=[0-9]/)[0].split("=")[1]
+    }
 
     if(desc == undefined){
         return ;

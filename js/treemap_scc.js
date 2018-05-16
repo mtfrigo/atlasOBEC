@@ -217,7 +217,6 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
 
                         if(deg !=0){
                             // cad_percent_uf = (d.data.size/d.parent.parent.parent.value)
-                            console.log(d)
                             cad_percent_uf = (d.data.size/d.parent.parent.value)
                             percent_deg = (d.data.size/d.parent.parent.parent.value)
                             $(window.parent.document).find(".bread-select[data-id=deg]").find("optgroup[value="+deg+"]").find("option[value="+(d.data.desagreg)+"]").prop('selected', true)//.val(obj+1)
@@ -745,10 +744,11 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
         if(url['ocp'] == 0)
             cad = url['cad'];
         else
-        if(url['var'] == 1)
+        if(url['var'] == 1 || url['var'] == 7)
             cad = parseInt(url['ocp']);
         else
             cad = parseInt(url['cad']);
+
 
         configInfoDataBoxTreemapSCC(eixo,
             vrv,
@@ -761,7 +761,6 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
             chg);
     }
     else if(eixo == 2){
-
 
         configInfoDataBoxTreemapSCC(eixo,
             vrv,
