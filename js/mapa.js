@@ -620,14 +620,14 @@ function legendaBinario(){
             .attr("x", sim_barra+width_barra*1.2)
             .attr("y", y_barra-height_barra/2)
             .attr("fill", fontColor)
-            .text("Sim");
+            .text("Possui");
 
 
         svg.append("text")
             .attr("x", nao_barra+width_barra*1.2)
             .attr("y", y_barra+height_barra/5*4)
             .attr("fill", fontColor)
-            .text("Não");
+            .text("Não Possui");
 
 
     }
@@ -708,6 +708,7 @@ function legendaBinario(){
     else{
         if(url['uf'] != 0) {
             if(url['deg'] == 0){
+                console.log(setPercentValueData(dict[url['uf']]))
                 setPercentValueData(dict[url['uf']], eixo, vrv);
                 setIntegerValueData(dict[url['uf']], eixo, vrv);
             }
@@ -854,11 +855,11 @@ function legendaBinario(){
 
 
                 if(dict[d.id].SouN == 0){
-                    SouN = "Não";
+                    SouN = "Não Possui";
                     valor =  "";
                 }
                 else{
-                    SouN = "Sim";
+                    SouN = "Possui";
                     if(dict[d.id].valor > 0)
                         valor = formatTextVrv(dict[d.id].valor, eixo, vrv) ;
                     else
