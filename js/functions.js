@@ -191,10 +191,14 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, valor,  percent, percent_uf, url
             }
         }
         else{
-            if(url['deg'] == 0 || deg == 0){
-                if(url['ocp'] != 3)
-                    setPercentValueData({percentual: percent, taxa: 0}, eixo, vrv);
 
+            if(url['deg'] == 0 || deg == 0){
+                if(url['ocp'] != 3){
+                    // console.log(percent)
+                    // console.log(percent_uf)
+                    // console.log(deg_cad)
+                    setPercentValueData({percentual: percent, taxa: 0}, eixo, vrv);
+                }
             }
         }
 
@@ -2406,6 +2410,8 @@ function setPercentValueData(value, eixo, vrv) {
     if(value.percentual == "NaN"){
         value.percentual = 0;
     }
+
+    console.log(value)
 
     if(eixo == 0){
         if(vrv == 2 || vrv == 3 || vrv == 9) {
