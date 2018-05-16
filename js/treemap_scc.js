@@ -5,6 +5,11 @@ var svg = d3.select("#corpo").append("svg");
 
 svg.attr('width',$('.chart').width());
 svg.attr('height', $('.chart').height());
+console.log($('.chart').height())
+
+if(window.parent.innerWidth >= 1199 && window.parent.innerWidth <= 1600){
+    svg.attr('height', 324);
+}
 
 
 svg = d3.select("svg"),
