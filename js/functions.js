@@ -1900,7 +1900,7 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
             }
         }
 
-        nomeestado = mapPronome(nomeestado, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
+        nomeestado = mapPronome(nomeestado, [/^DE/, /^DA/, /^DO/], ["EM", "NA", "NO"])
        
     }
 

@@ -1343,9 +1343,9 @@
 			{
 				"id":"17",
 				"title":"<span>Fomento Público Estadual à Cultura<span>",
-				"desc_int":"",
+				"desc_int":"FINANCIADOS POR MEIO DE MECANISMOS DE MECENATO ESTADUAL [uf]",
 				"desc_percent": "",
-				"desc_var_mapa": "A variável demonstra os estados que possuem fomento a nível estadual em três perspectivas: Editais Estaduais, Mecenato Estadual e Crédito Especial. Dentro dessas perspectivas, a variável ainda demonstra o valor - conforme informado por cada Estado - para o ano selecionado.",
+				"desc_var_mapa": "A variável demonstra os estados que possuem fomento em nível estadual em duas perspectivas: Editais Estaduais e Mecenato Estadual. Dentro dessas perspectivas, a variável ainda demonstra o valor - conforme informado por cada Estado - para o ano selecionado e a soma dos valores das Unidades Federativas disponíveis para cada ano.",
 				"desc":"",
 				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",
