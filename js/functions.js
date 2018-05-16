@@ -1921,8 +1921,7 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
             }
         }
 
-        if(!(eixo == 2 && url['var'] >= 18))
-            nomeestado = mapPronome(nomeestado, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
+        nomeestado = mapPronome(nomeestado, [/^DE/, /^DA/, /^DO/], ["EM", "NA", "NO"])
        
     }
 
