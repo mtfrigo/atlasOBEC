@@ -108,7 +108,7 @@
 					"mapa":["uf"], "treemap_region":["uf"], "treemap_scc":["cad"],"barras":["ano"]
 				},
 				"fontes": "Elaboração do NECCULT com base na RAIS.",
-				"mapa_valores": "Valores em pecentual.",
+				"mapa_valores": "Valores em percentual.",
 				"treemap_scc_valores": "Valores em pecentual.",
 				"barras_valores": "Valores em pecentual."
 			},
@@ -1355,7 +1355,9 @@
 				"barras":[
 					{"name":"UF ou Setores","id":"uos"},
 					{"name":"Ano","id":"ano"}
-				]
+				],
+				"fontes": "",
+				"mapa_valores": "Observação: Valor total referente à soma dos valores enviados pelas Unidades Federativas brasileiras. Algumas Unidades Federativas que possuem esse mecanismo de financiamento não enviaram dados."
 			}
 
 		],

@@ -2008,8 +2008,13 @@ $(document).ready(function(){
             //quando muda a variável, é preciso trocar a UF para 'Brasil'
             
             if($(this).attr('data-id') =='var'){
-
-                console.log($('.percent-value').find(".box-dado").find('.number').first())
+                if(eixo_atual == 2 && url['var'] == 17){
+                    $(".font-title").css("display", "none")
+                    $(".value-info-title").css("display", "block")
+                } else {
+                    $(".font-title").css("display", "block")
+                    $(".value-info-title").css("display", "none")
+                }
                 $('.percent-value').find(".box-dado").find('.number').first().text("")
                 changeDescVar();
                 cleanDesagsUrl();
