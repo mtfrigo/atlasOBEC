@@ -519,6 +519,7 @@ Saída:
 function controlFilter(selectvalue, selectid, valueDesag){
 
 
+
     var SCCSrc = $("#view_box_scc").attr("src");
     var BarraSrc = $("#view_box_barras").attr("src");
     if(BarraSrc != undefined && BarraSrc != "no-view.html") var setor = BarraSrc.match(/cad=([0-9]*)/)[1];
@@ -532,6 +533,7 @@ function controlFilter(selectvalue, selectid, valueDesag){
         var uf = 0;
     }
     /* se for PORTE x ATUAÇÃO */
+
 
     if(eixo == 2)
         return;
@@ -1156,6 +1158,10 @@ function expandMenuVariaveis(a) {
 function updateUrl() {
     var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
     $('.bread-select').each(function() {
+
+        if(eixo_atual == 2 && url['var'] == 18 && $(this).attr('data-id') == 'mec')
+            return;
+
         if($(this).attr('data-id') == "deg" && eixo_atual == 1)
             url[$(this).attr('data-id')] = $(this).find("option:selected").parent().val();
         else
@@ -1968,10 +1974,13 @@ $(document).ready(function(){
 
     $(document).on('change', ".bread-select", function(e){
         if($(this).attr("data-id") !== "eixo") {
+
             var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
 
             updateUrl();
-            
+
+
+
             if($(this).attr("data-id") === "typ") {
                 if($(this).val() == 3 && (url['var'] == 1 || url['var'] == 13) )
                     $(window.document).find(".percent-value").find(".box-dado").first().css("display", "none")
