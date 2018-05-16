@@ -947,6 +947,26 @@ function updateBreadcrumbSetores(cads){
 
 }
 
+function updateDefaultOcupation(){
+    $("select[data-id='ocp'] > option").each(function () {
+        $(this).remove();
+    });
+    if(!(url['var'] == 4 || url['var'] == 5 || url['var'] == 6)){
+        $(".bread-select[data-id='ocp']").append("<option value='3'>Todos</option>");
+        $(".bread-select[data-id='ocp']").append("<option value='1'>Atividades Relacionadas</option>");
+        $(".bread-select[data-id='ocp']").append("<option value='2'>Cultura</option>");
+        $(".bread-select[data-id='ocp']").val(3)
+        url['ocp'] = 3
+
+    } else {
+        url['ocp'] = 1
+
+        $(".bread-select[data-id='ocp']").append("<option value='1'>Atividades Relacionadas</option>");
+        $(".bread-select[data-id='ocp']").append("<option value='2'>Cultura</option>");
+        $(".bread-select[data-id='ocp']").val(1)
+    }
+}
+
 function updateDefaultMec(vrv){
 
 
