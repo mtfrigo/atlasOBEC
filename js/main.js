@@ -2072,6 +2072,9 @@ $(document).ready(function(){
                     $('.opt-select[data-id=deg]').val(0);
                 }
                 if(eixo_atual == 1){
+                    if(url['ocp'] > 0){
+                        updateDefaultOcupation()
+                    }
                     updateOcupacoes($(this).val());
                 }
 
