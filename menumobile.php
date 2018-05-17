@@ -254,6 +254,9 @@ switch($eixo) {
 
         <script>
 
+            $(".bread-select").on('change', function(){
+                // alert("op")
+            })
 
             function hamburguer_click() {
 
