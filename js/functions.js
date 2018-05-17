@@ -194,9 +194,6 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, valor,  percent, percent_uf, url
 
             if(url['deg'] == 0 || deg == 0){
                 if(url['ocp'] != 3){
-                    // console.log(percent)
-                    // console.log(percent_uf)
-                    // console.log(deg_cad)
                     setPercentValueData({percentual: percent, taxa: 0}, eixo, vrv);
                 }
             }
@@ -450,6 +447,9 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
                     soma += dados.value[key];
             }
 
+            dados.valor = dados.value[indexAno]
+
+            setIntegerValueData(dados, eixo, vrv)
             setPercentValueData({valor: formatTextVrv(soma, eixo, vrv)}, eixo, vrv)
 
 
@@ -1962,9 +1962,6 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
        
     }
 
-    console.log(tag)
-    console.log(nomeestado)
-    console.log(desc)
 
 
     if(desc != undefined)
