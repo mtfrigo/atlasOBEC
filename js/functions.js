@@ -949,8 +949,6 @@ function updateMecanismo(url, vrv){
     }
 
 
-    // alert(url['mec'])
-    // $("select[data-id='mec']").val(url['mec'])
 }
 
 function updateBreadcrumbSetores(cads){
@@ -1851,7 +1849,9 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
     else if(eixo == 2){
         if(url['var'] == 8 || url['var'] == 9) {
 
+
             if(getPrepos(nomeestado) && url['uf'] != 0){
+
 
                 if(tag == '{}')
                     nomeestado = ""
@@ -1961,6 +1961,11 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         nomeestado = mapPronome(nomeestado, [/^DE/, /^DA/, /^DO/], ["EM", "NA", "NO"])
        
     }
+
+    console.log(tag)
+    console.log(nomeestado)
+    console.log(desc)
+
 
     if(desc != undefined)
         return desc.replace(tag, nomeestado);
@@ -2278,6 +2283,7 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     if(desc == undefined){
         return ;
     }
+
     if(desc.includes('[setores]')){
         if(ocp == 0)
             desc = desc.replace("[setores]", "DOS SETORES CULTURAIS E CRIATIVOS")
@@ -2304,25 +2310,24 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
     }
     if(desc.includes('[cad]')){
 
-        if(ocp == 0 && url['prt'] > 0 || (eixo == 2 && url['var'] >= 18))
+        if(ocp == 0 && url['deg'] > 0 ||  eixo == 2)
             desc =  descByCAD(eixo, desc, '[cad]', tipo)
         else{
-            if(ocp == 0){
-
-                desc = desc.replace("[cad]", "DOS SETORES CULTURAIS E CRIATIVOS")
+            if(eixo == 1){
+                if(ocp == 0 ){
+                    desc = desc.replace("[cad]", "DOS SETORES CULTURAIS E CRIATIVOS")
+                }
+                if(ocp == 1){
+                    desc = desc.replace("[cad]", "EM ATIVIDADES RELACIONADAS À CULTURA")
+                }
+                if(ocp == 2){
+                    desc = desc.replace("[cad]", "EM ATIVIDADES CULTURAIS")
+                }
+                if(ocp == 3){
+                    desc = desc.replace("[cad]", "EM ATIVIDADES CULTURAIS E CRIATIVAS")
+                }
             }
-            if(ocp == 1){
-                desc = desc.replace("[cad]", "EM ATIVIDADES RELACIONADAS À CULTURA")
 
-            }
-            if(ocp == 2){
-                desc = desc.replace("[cad]", "EM ATIVIDADES CULTURAIS")
-
-            }
-            if(ocp == 3){
-                desc = desc.replace("[cad]", "EM ATIVIDADES CULTURAIS E CRIATIVAS")
-
-            }
         }
             
     }
@@ -2647,7 +2652,6 @@ function formatStringVrv(value, eixo, vrv){
     $.ajaxSetup({async: true});
 
     return string;
-    //alert(string);
 }
 
 /*

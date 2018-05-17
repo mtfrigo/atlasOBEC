@@ -33,25 +33,10 @@ d3.json('data/colors.json', function (error, data) {
 $.get("./db/json_linhas.php"+config, function(data) {
     // console.log(data)
 });
-/*
-function getIdCadeia(nomecadeia){
-    switch(nomecadeia){
-        case "Editorial":
-        case "Cultura Digital":
-        case "Arquitetura e Design":
-        case "Artes Cênicas e Espetáculos":
-        case "Editorial":
-        case "Editorial":
-        case "Editorial":
-        case "Editorial":
-        case "Editorial":
-    }
-}
-*/
+
 
 function getRegexDesag(desag){
 
-    // console.log(desag)
 
     switch (desag){
         case 1:
@@ -617,9 +602,6 @@ function analyze(error, data) {
                 $( this ).css("opacity", "0.2")
         });
     }
-
-
-
 
 }
 

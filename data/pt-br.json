@@ -1098,7 +1098,7 @@
 			{
 				"id":"8",
 				"title":"Participação do financiamento público total no valor adicionado pelas atividades culturais",
-				"desc_int":"RAZÃO ENTRE TOTAL FINANCIADO [uf] [CAD] E VALOR ADICIONADO [cad] [uf]",
+				"desc_int":"RAZÃO ENTRE TOTAL FINANCIADO [uf] [CAD] E VALOR ADICIONADO [cad] {uf}",
 				"desc_percent": "",
 				"desc_var_mapa": "A variável mostra a razão entre o fomento às atividades culturais por meio de financiamento via incentivo fiscal, agregado e desagregado, e o valor adicionado pelos setores culturais e criativos. É um indicador da importância relativa dos recursos financeiros frente à geração de renda nova por esses setores.",
 				"sufixo_valor":"",
@@ -1137,7 +1137,7 @@
 				"id":"9",
 				"title":"Participação do financiamento público total na massa salarial das atividades culturais",
 				"desc":"Retrata a razão entre a despesa total em cultura e a arrecadação total nos estratos referidos.",
-				"desc_int":"RAZÃO ENTRE TOTAL FINANCIADO [uf] [CAD] E MASSA SALARIAL DOS TRABALHADORES CULTURAIS [cad] [uf]",
+				"desc_int":"RAZÃO ENTRE TOTAL FINANCIADO [uf] [CAD] E MASSA SALARIAL DOS TRABALHADORES CULTURAIS [cad] {uf}",
 				"desc_percent": "",
 				"fontes": "Elaborado pelo NECCULT com base no SALICnet.",
 				"desc_var_mapa": "A variável calcula a razão entre o fomento por meio de financiamento via incentivo fiscal , agregado e desagregado, e a massa salarial do(a)s trabalhadore(a)s da cultura. É um indicador da importância relativa dos recursos financeiros frente aos custos trabalhistas do setor.",
