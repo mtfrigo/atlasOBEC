@@ -435,7 +435,7 @@ class EixoDois {
         }
 
 //        if($uos == 1)
-        //echo $query;
+//        echo $query;
 
         //$query .= " ORDER BY `Eixo_2`.`Ano` ASC";
 
