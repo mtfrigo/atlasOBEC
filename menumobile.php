@@ -329,8 +329,11 @@ switch($eixo) {
 
             }
 
-            if(window.parent.innerWidth <= 1199)
+            if(window.parent.innerWidth >= 1199 && window.parent.innerWidth <= 1599)
                 $("#barra-menu").css("display", "none");
+            else
+                $("#barra-menu").css("display", "block");
+
 
             window.parent.onscroll = function() {myFunction()};
 

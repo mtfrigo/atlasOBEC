@@ -1821,8 +1821,9 @@ button.opt.active{
 @media (max-width: 499px) {
 
 
-	.description-number{
+	.integer-value .description-number{
 		font-size: 4vw;
+		line-height: 20px;
 	}
 
 	.percent-value .description-number{
