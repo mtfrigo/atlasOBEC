@@ -1000,6 +1000,57 @@ function loadResult(){
 
 
 }
+/*-----------------------------------------------------------------------------
+Função: loadMobile
+    arruma as ordens das visualizações para mobile (1199px);
+Entrada:
+    void
+Saída:
+    void
+-----------------------------------------------------------------------------*/
+
+function loadMobile(){
+
+    $(function() {
+        $(".bread-select[data-id='eixo']").val(window.location.hash.substring(1));
+    });
+
+    $('#containerDesc').css("height", "auto");
+    $('#containerDesc').css("top", "0");
+    $('#containerDados').css("height", "500px");
+    $('#containerTree').css("height", "500px");
+    $('#containerTree').css("top", "0");
+    $('#containerDownload').css("display", "block");
+    $('#containerDownload').css("top", "0");
+    $('#containerDownload').find("row").css("padding-left", "0");
+
+
+    div1 = $('#containerMapa');
+    div2 = $('#containerDesc');
+
+    tdiv1 = div1.clone();
+    tdiv2 = div2.clone();
+
+    if(!div2.is(':empty')){
+        div1.replaceWith(tdiv2);
+        div2.replaceWith(tdiv1);
+
+        tdiv1.addClass("replaced");
+    }
+
+    div1 = $('#containerBarra');
+    div2 = $('#containerMapa');
+
+    tdiv1 = div1.clone();
+    tdiv2 = div2.clone();
+
+    if(!div2.is(':empty')){
+        div1.replaceWith(tdiv2);
+        div2.replaceWith(tdiv1);
+
+        tdiv1.addClass("replaced");
+    }
+}
 
 /*-----------------------------------------------------------------------------
 Função: loadPage
@@ -1012,9 +1063,17 @@ Saída:
 function loadPage(){
 	newHash = window.location.hash.substring(1);
 	var menuView = 'menudesktop.php?'+newHash+'=1';
-	if(windowWidth<1199)	menuView = 'menumobile.php?'+newHash+'=1';
+	if(windowWidth<1199){
+        menuView = 'menumobile.php?'+newHash+'=1';
+        $('#section0').css("display", "none")
 
-	if($("#menuvariaveis").length != 0) {
+        loadMobile();
+
+
+    }
+
+
+    if($("#menuvariaveis").length != 0) {
 	    $("#menuvariaveis").load(menuView, function(){
             if(url['var']!=='' && pageTitle!==''){
                 loadResult();
@@ -1579,16 +1638,14 @@ function switchToOcupations() {
 /*====== 
 	documento pronto
 ======*/
-$(document).ready(function(){
-    // TODO Verificar se ainda necessário (Novo design não vai ter a principio)
-    //$("#desc-item").html("Passe o mouse por cima de algum filtro para obter informações.");
-	//$(".opt").mouseenter(function() {
-		//$("#desc-item").html($(this).attr("data-desc"));
-	//});
 
-    //$(".opt").mouseleave(function() {
-        //$("#desc-item").html("Passe o mouse por cima de algum filtro para obter informações.");
-    //});
+
+$(document).ready(function(){
+
+   if($(this)){
+        console.log($(this))
+    }
+
 	$(window).on('hashchange', function() {
         loadPage();
         window.location.href = window.location.pathname+window.location.hash;
@@ -1599,7 +1656,8 @@ $(document).ready(function(){
 		//controlPageWidth();
 	});
 
-	/*=== selecionar variável ===*/
+
+        /*=== selecionar variável ===*/
 
 	$(document).on('click', ".scc", function(){
 
@@ -2170,11 +2228,5 @@ $(document).ready(function(){
 
     updateIframe(url);
 
-
-
-    if(typeof(setMaxFontSize) === typeof(Function)){
-        setMaxFontSize($(window.parent.document).find(".integer-value").first().find(".number").first())
-
-    }
 
 });

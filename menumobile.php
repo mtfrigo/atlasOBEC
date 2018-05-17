@@ -1,3 +1,6 @@
+<script src="js/main.js"></script>
+<script src="js/functions.js"></script>
+
 
 <?php
 
@@ -245,65 +248,17 @@ switch($eixo) {
 
         </div>
 
-
-
-        <div class="header" id="barra-menu">
+        <div class="header" id="barra-menu" >
              <button class="w3-button w3-white w3-xxlarge" onclick="hamburguer_click()">&#9776; </button><span class="menu-title">Menu</span>
-        </div>
-
-        <div id="menu-mob-eixo" style="display: none">
-            <div class="eixo-mob" id="empreendimentos"><img id="empreendimentos" src="./images/empreendimentos-icon.png"></div>
-            <div class="eixo-mob" id="mercado"><img id="mercado" src="./images/mercado-icon.png"></div>
-            <div class="eixo-mob" id="politicas"><img id="politicas" src="./images/politicas-icon.png"></div>
-            <div class="eixo-mob" id="comercio"><img id="comercio" src="./images/comercio-icon.png"></div>
         </div>
 
         <script>
 
-            $(function() {
-                $(".bread-select[data-id='eixo']").val(window.location.hash.substring(1));
-            });
-
-            $('#containerDesc').css("height", "auto");
-            $('#containerDesc').css("top", "0");
-            $('#containerDados').css("height", "500px");
-            $('#containerTree').css("height", "500px");
-            $('#containerTree').css("top", "0");
-            $('#containerDownload').css("display", "block");
-            $('#containerDownload').css("top", "0");
-            $('#containerDownload').find("row").css("padding-left", "0");
-
-            div1 = $('#containerMapa');
-            div2 = $('#containerDesc');
-
-            tdiv1 = div1.clone();
-            tdiv2 = div2.clone();
-
-            if(!div2.is(':empty')){
-                div1.replaceWith(tdiv2);
-                div2.replaceWith(tdiv1);
-
-                tdiv1.addClass("replaced");
-            }
-
-            div1 = $('#containerBarra');
-            div2 = $('#containerMapa');
-
-            tdiv1 = div1.clone();
-            tdiv2 = div2.clone();
-
-            if(!div2.is(':empty')){
-                div1.replaceWith(tdiv2);
-                div2.replaceWith(tdiv1);
-
-                tdiv1.addClass("replaced");
-            }
 
             function hamburguer_click() {
 
                 if($("#mySidebar").attr("aberto") == 1){
                     w3_close();
-
                 }
                 else{
                     w3_open();
@@ -334,29 +289,23 @@ switch($eixo) {
             else
                 $("#barra-menu").css("display", "block");
 
-
-            window.parent.onscroll = function() {myFunction()};
-
-
-
-            var menu = document.getElementById("barra-menu");
-            var sticky = menu.offsetTop;
-
-            function myFunction() {
-
-                // console.log(window.parent.pageYOffset)
-                if (window.parent.pageYOffset  >= window.parent.document.getElementById("section0").offsetHeight) {
-                    // $("#barra-menu").css("top", window.parent.pageYOffset - $(window.parent).height())
-                   // menu.classList.add("sticky");
-                } else {
-                    //menu.classList.remove("sticky");
-                }
-            }
-
-            $(document).on('click', ".eixo-mob", function(e){
-                parent.window.location = "page.php#"+$(this).attr("id");
-            });
-
-
+            /// TODO FUNCAO CASO TENHA QUE DEIXAR O MENU FIXO DEPOIS DE CERTO HEIGHT
+            // window.parent.onscroll = function() {myFunction()};
+            //
+            //
+            //
+            // var menu = document.getElementById("barra-menu");
+            // var sticky = menu.offsetTop;
+            //
+            // function myFunction() {
+            //
+            //     // console.log(window.parent.pageYOffset)
+            //     if (window.parent.pageYOffset  >= window.parent.document.getElementById("section0").offsetHeight) {
+            //         // $("#barra-menu").css("top", window.parent.pageYOffset - $(window.parent).height())
+            //        // menu.classList.add("sticky");
+            //     } else {
+            //         //menu.classList.remove("sticky");
+            //     }
+            // }
 
         </script>

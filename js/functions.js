@@ -1962,11 +1962,6 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
        
     }
 
-    console.log(tag)
-    console.log(nomeestado)
-    console.log(desc)
-
-
     if(desc != undefined)
         return desc.replace(tag, nomeestado);
     else
@@ -2363,6 +2358,7 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
  */
 function setMaxFontSize(doc){
 
+
     if(doc == null){
         return
     }
@@ -2375,12 +2371,11 @@ function setMaxFontSize(doc){
     var tamanhoDiv = $(doc).width();
     var texto = $(doc).html();
 
+    console.log(texto)
+
     if(texto == null){
         return
     }
-    // else{
-    //     texto = texto.toUpperCase();
-    // }
 
     $(doc).css('font-size', tamanho+'px');
 
@@ -2392,7 +2387,7 @@ function setMaxFontSize(doc){
 
     $(doc).html("");
 
-    // console.log("tamanhoString: "+tamanhoString+"/ tamanhoDiv: "+tamanhoDiv)
+    console.log("tamanhoString: "+tamanhoString+"/ tamanhoDiv: "+tamanhoDiv)
 
     while(tamanhoString > tamanhoDiv){
 
@@ -2401,10 +2396,10 @@ function setMaxFontSize(doc){
 
         font = $(doc).css("font-weight")+" "+$(doc).css("font-size")+" "+ $(doc).css("font-family");
 
-        tamanhoString  = getTextWidth(texto.toUpperCase(), font) + texto.length * letterSpacing;
+        tamanhoString  = getTextWidth(texto.toUpperCase(), font) + texto.length  * letterSpacing;
 
     }
-   // console.log("tamanhoString: "+tamanhoString+"/ tamanhoDiv: "+tamanhoDiv)
+    console.log("tamanhoString: "+tamanhoString+"/ tamanhoDiv: "+tamanhoDiv)
     $(doc).html(texto);
     return;
 

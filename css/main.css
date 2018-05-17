@@ -330,7 +330,7 @@ button.opt:hover, button.opt.active{
 .number {
 	display: flex;
 	width: 100%;
-	font-size: 12px;
+	font-size: 10px;
 	margin-top: 15px;
 	color: #6DBFC9;
 	margin-bottom: 20px;
@@ -483,10 +483,20 @@ button.opt:hover, button.opt.active{
 
 #menuvariaveis {
 	margin-bottom:	20px;
+
 }
 
 .text-wrapper{
 	position: absolute;
+}
+
+#teste-menu-mob{
+	width: 100%;
+	height: 50px;
+	background-color: #2b542c;
+	position: fixed;
+	top: 0;
+	z-index: 999;
 }
 
 /* video bg */
@@ -1410,7 +1420,7 @@ button.opt.active{
 		padding-left: 0px;
 	}
 
-	.results-content .container{
+	.results-content{
 		padding: 0;
 	}
 
@@ -1495,13 +1505,15 @@ button.opt.active{
 	.w3-btn,.w3-button{
 		border:none;
 		display:inline-block;
-		padding:8px 16px;
+		padding: 0 16px;
 		vertical-align:middle;
 		overflow:hidden;
 		text-decoration:none;
 		color:#f0f0f0;
 		background-color:inherit;
 		cursor:pointer;
+		font-size: 30px;
+		height: 100%;
 		white-space:nowrap
 	}
 
@@ -1514,12 +1526,7 @@ button.opt.active{
 		text-align: right;
 
 	}
-	.w3-button:hover{color:#000!important;}
 
-	.w3-tiny{font-size:10px!important}.w3-small{font-size:12px!important}.w3-medium{font-size:15px!important}.w3-large{font-size:18px!important}
-
-
-	.w3-xlarge{font-size:24px!important}.w3-xxlarge{font-size:36px!important}.w3-xxxlarge{font-size:48px!important}.w3-jumbo{font-size:64px!important}
 
 	.menu-title{
 		float: right;
@@ -1537,10 +1544,12 @@ button.opt.active{
 	.header{
 		color: #f1f1f1;
 		height: 50px;
-		background-color: #616161	;
+		background-color: #616161;
 		padding-top: 2%;
 		top: 0;
 		width: 100%;
+		position: fixed;
+		z-index: 999;
 
 	}
 
@@ -1740,6 +1749,10 @@ button.opt.active{
 
 	.bread-caixas{
 		padding-left: 10%;
+	}
+
+	.container{
+		padding-top: 40px;
 	}
 
 

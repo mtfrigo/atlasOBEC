@@ -96,6 +96,10 @@
 			<!-- se existem informações desta variável -->
 			<?php if(!empty($text)):?>
 				<section id="resultado">
+
+<!--                    <div id="teste-menu-mob"></div>-->
+                    <div id="menuvariaveis" ></div>
+
 					<iframe id="resultado_view" src="resultado.php" style="border: none; width: 100%; height: 1650px;" scrolling="no"></iframe>
                     <script>
                         function result_mobile() {
