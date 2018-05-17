@@ -546,14 +546,14 @@ function controlFilter(selectvalue, selectid, valueDesag){
     /* se for PORTE x ATUAÇÃO */
 
 
-    if(eixo == 2)
-        return;
-
+        
 
     if(selectid==='var') {
 
         var save_ocp = url['ocp'];
+        var save_mec = url['mec'];
         defaultUrl();
+        url['mec'] = save_mec;
         url['ocp'] = save_ocp;
         controlAno($('.opt-select[data-id="ano"]'));
         controlAno($('.bread-select[data-id="ano"]'));
@@ -567,6 +567,8 @@ function controlFilter(selectvalue, selectid, valueDesag){
         url['deg'] = save_deg;
         url['uf'] = save_uf;
     }
+
+
 
     if(window.location.hash === "#mercado" && selectid === 'deg') {
 		if(selectvalue==='0') {
