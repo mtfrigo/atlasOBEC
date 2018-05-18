@@ -47,7 +47,12 @@ function getAnoDefault(eixo_atual){
                 index_ocp = url['ocp']
             url['ano'] = anos_default[url['var']][index_ocp]; break;
 
-        case 2: url['ano'] = anos_default[url['var']][0]; break;
+        case 2: 
+            if(url['var'] != 17) 
+                url['ano'] = anos_default[url['var']][0]; 
+            else
+                url['ano'] = 2017
+            break;
         case 3:
         if(url['var'] >= 11)
             url['slc'] = 0
@@ -546,14 +551,14 @@ function controlFilter(selectvalue, selectid, valueDesag){
     /* se for PORTE x ATUAÇÃO */
 
 
-    if(eixo == 2)
-        return;
-
+        
 
     if(selectid==='var') {
 
         var save_ocp = url['ocp'];
+        var save_mec = url['mec'];
         defaultUrl();
+        url['mec'] = save_mec;
         url['ocp'] = save_ocp;
         controlAno($('.opt-select[data-id="ano"]'));
         controlAno($('.bread-select[data-id="ano"]'));
@@ -567,6 +572,8 @@ function controlFilter(selectvalue, selectid, valueDesag){
         url['deg'] = save_deg;
         url['uf'] = save_uf;
     }
+
+
 
     if(window.location.hash === "#mercado" && selectid === 'deg') {
 		if(selectvalue==='0') {
@@ -1869,6 +1876,7 @@ $(document).ready(function(){
         else if($(this).attr("id") == "recebedora" || $(this).attr("id") == "trabalhador"){
 
             if($(this).attr("id") === "recebedora") {
+
                 if(url['mec'] != 0){
 
                     if(url['var'] == 19){
@@ -1989,6 +1997,9 @@ $(document).ready(function(){
 
                 $('#bens').addClass("active");
                 $('#servicos').removeClass("active");
+
+
+
                 updateMenuSetor(getEixo(window.location.hash.substring(1)), $(this).val())
                 $('.bread-select[data-id=uf]').val(0);
 
@@ -2106,6 +2117,9 @@ $(document).ready(function(){
                 cleanDesagsUrl();
                 getAnoDefault(eixo_atual);
 
+                $('#recebedora').addClass("active");
+                $('#trabalhador').removeClass("active");
+
                 if(url['ocp'] == 0){
                     switchToSetores(); 
                     $('#setor').addClass("active");
@@ -2147,6 +2161,7 @@ $(document).ready(function(){
                     else
                         $("#btn-opt").find(".col-btn").css("display", "none")
 
+
                 }
 
                 if(eixo_atual == 3){
@@ -2187,6 +2202,9 @@ $(document).ready(function(){
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
                 
                 url['cad'] = ($(this).val())
+                /*if(eixo_atual == 2 && (vrv == 18 || vrv == 19)){
+                    updateTitleBox(SETORES)
+                }*/
 
             }
             if($(this).attr("data-id") === "ocp") {

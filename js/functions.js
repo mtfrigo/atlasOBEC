@@ -1,8 +1,48 @@
 var data_desag;
+const SETORES = 1;
+const UFS = 2;
 
 $.get("./data/select-deg.json", function(data){
     data_desag = data;
 })
+
+function updateTitleBox(type){
+    content = $(window.parent.document)
+    var title_scc = content
+                        .find('iframe[id="view_box_scc"]')
+                        .parent()
+                        .find(".view-title").html().split(/DE | DO | DA/)[0]
+                
+    switch(type){
+        case SETORES:
+            cad = content
+                    .find('.bread-select[data-id=cad] option:selected')
+                    .text()
+            if(cad.match(/Todos/) != null){
+                cad = "DOS SETORES CULTURAIS E CRIATIVOS"
+            } else {
+                cad = "DO SETOR "+cad;
+            }
+            content
+                .find('iframe[id="view_box_scc"]')
+                .parent()
+                .find(".view-title")
+                .html(title_scc+ ' ' +cad); 
+        break;
+        case UFS:
+            uf = content
+                    .find('.bread-select[data-id=uf] option:selected')
+                    .text()
+            content
+                .find('iframe[id="view_box_scc"]')
+                .parent()
+                .find(".view-title")
+                .html(title_scc+" "+getPrepos(uf.toUpperCase())+" "+uf.toUpperCase());
+        break;
+    }
+}
+
+
 function changeDownloadURL(url, eixo){
     newURL = $('#select-pdf input').attr("value").replace(/download.php?.*/, "download.php?"+ url);
     $('#select-pdf input').attr("value", newURL)
@@ -194,9 +234,6 @@ function configInfoDataBoxTreemapSCC(eixo, vrv, valor,  percent, percent_uf, url
 
             if(url['deg'] == 0 || deg == 0){
                 if(url['ocp'] != 3){
-                    // console.log(percent)
-                    // console.log(percent_uf)
-                    // console.log(deg_cad)
                     setPercentValueData({percentual: percent, taxa: 0}, eixo, vrv);
                 }
             }
@@ -450,6 +487,9 @@ function configInfoDataBoxBarras(eixo, vrv, dados, valor, cad) {
                     soma += dados.value[key];
             }
 
+            dados.valor = dados.value[indexAno]
+
+            setIntegerValueData(dados, eixo, vrv)
             setPercentValueData({valor: formatTextVrv(soma, eixo, vrv)}, eixo, vrv)
 
 
@@ -1434,6 +1474,10 @@ function updateDescPercentEmpreendimentos(desc, vrv, tipo){
     cad_val = $(window.parent.document).find(".bread-select[data-id=cad]").val();
     deg = $(window.parent.document).find(".bread-select[data-id=deg]").val();
 
+    if(desc == null){
+        return
+    }
+
     if(tipo == "setorial"){
         if(cad_val == 0)
             description = desc.replace("[cad]", "DOS SETORES CULTURAIS E CRIATIVOS")
@@ -1698,7 +1742,7 @@ function setIntegerValueData(value, eixo, vrv) {
             literal = formatDecimalLimit(valor, 2);
         }
         if(eixo == 0 && url['var'] > 9){
-            literal = formatDecimalLimit(valor, 5);
+            literal = formatDecimalLimit(valor, 2);
         }
         if(eixo == 1 && url['var'] == 2){
             literal = formatDecimalLimit(valor, 4);
@@ -2457,7 +2501,7 @@ function setPercentValueData(value, eixo, vrv) {
             }
         }
         else if(vrv >= 10 && vrv <= 13){
-            $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.valor, 4));
+            $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.valor, 2));
         }
 
         var doc =  $(window.parent.document).find(".percent-value").first().find(".number").first();
@@ -2581,7 +2625,7 @@ function formatTextVrv(value, eixo, vrv){
             else if(eixo == 1 && url['var'] == 9)
                 string = prefixo+formatDecimalLimit(valor, 4)+sufixo;
             else if(eixo == 0 && url['var'] > 9)
-                string = prefixo+formatDecimalLimit(valor, 4)+sufixo;
+                string = prefixo+formatDecimalLimit(valor, 2)+sufixo;
             else
                 string = prefixo+formatDecimalLimit(valor, 2)+sufixo;
 

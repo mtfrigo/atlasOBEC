@@ -197,7 +197,7 @@
 				"id":"5",
 				"title":"Receita Operacional Liquida",
 				"desc_int": "de receita operacional líquida das empresas [cad] [prt] [uf] ",
-				"desc_percent": "do total de receita operacional líquida das empresas culturais e criativas [uf]",
+				"desc_percent": "do total de receita operacional líquida das empresas culturais e criativas do Brasil",
 				"desc_setorial": "do total de eceita operacional líquida das empresas [cad] [prt] do Brasil",
 				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",
