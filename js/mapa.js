@@ -247,9 +247,9 @@ d3.json('data/pt-br.json', function(error, data) {
 });
 
 var config = "?var="+vrv+"&atc="+atc+"&cad="+cad+"&prt="+prt+"&ocp="+ocp+"&mec="+mec+"&typ="+typ+"&prc="+prc+"&pfj="+pfj+"&mod="+mod+"&ano="+ano+"&eixo="+eixo+"&mundo="+mundo+"&slc="+slc;
-$.get('./db/json_mapa.php' + config, function(dado){
+/*$.get('./db/json_mapa.php' + config, function(dado){
     // console.log(dado)
-})
+})*/
 //pre-load arquivos
 d3.queue()
 	.defer(d3.json, "./data/br-min.json")
@@ -294,12 +294,15 @@ function ready(error, br_states, mapa){
 	var maxValue = d3.max(info, function(d) {return d.valor; });
 
 	//distribuicao de frequencias
-	var quant = 5;
+	var quant = 10;
 	var range = maxValue - minValue;
 	var amp = minValue < 1 && minValue > -1 ? range / quant : Math.round(range / quant);
-
-	//domino de valores para as cores do mapa
-	var dom = [
+    var dom = []
+    //domino de valores para as cores do mapa
+    for(var j = 1; j < quant; j++){
+        dom.push((minValue + amp*j))
+    }
+	/*var dom = [
 				(minValue+(amp/4)),
 				(minValue+amp),
 				(minValue+(2*amp)),
@@ -310,28 +313,28 @@ function ready(error, br_states, mapa){
 	//ajuste do dominio
 	var i = 0;
 	if(amp > 1){
-		while(i<=5){
-			dom[i] = dom[i] - (dom[i] % 5);
+		while(i<=quant){
+			dom[i] = dom[i] - (dom[i] % quant);
 			i++;
 		}
-	}
+    }*/
 
 	// creates cadeia's color range array from color.json file
 	var colorsRange = [];
 
 	if(colorJSON.cadeias[cad] != undefined){
-        $.each(colorJSON.cadeias[cad].gradient, function(i, rgb){
-            if(i > 1)
-                colorsRange.push(rgb);
-        });
+        colorMax = colorJSON.cadeias[cad].gradient['6']
+        baseLightness = d3.hsl(colorMax).l
+        newHSL = d3.hsl(colorMax)
+        for(var j = 1; j < quant ; j++){
+            newHSL.l = baseLightness + (quant-j)*(1-baseLightness)/quant; 
+            colorsRange.push(d3.hsl(newHSL));
+        }
     }
-
-
 	//coloração do mapa
-	var color = d3.scaleThreshold()
-        .domain(dom)
-        .range(colorsRange);
-
+	var color = d3.scalePow()
+        .domain([minValue, maxValue])
+        .range([colorJSON.cadeias[cad].gradient['2'], colorJSON.cadeias[cad].gradient['6']])
 
 
 	//para funcionar var 17 eixo 3
@@ -400,7 +403,7 @@ function ready(error, br_states, mapa){
                 if(color(dict[d.id]) == undefined)
                     return color(dict);
                 else
-                    return color(dict[d.id].valor)
+                    return color((dict[d.id].valor))
             }
         })
 
@@ -701,7 +704,6 @@ function legendaBinario(){
     else{
         if(url['uf'] != 0) {
             if(url['deg'] == 0){
-                console.log(setPercentValueData(dict[url['uf']]))
                 setPercentValueData(dict[url['uf']], eixo, vrv);
                 setIntegerValueData(dict[url['uf']], eixo, vrv);
             }
