@@ -227,6 +227,8 @@
                 }, 1000);
             });
 
+            /// MENU MOBILE!
+
             function hamburguer_click() {
 
                 var iframe = document.getElementById('resultado_view');
@@ -242,21 +244,20 @@
                 }
             }
 
-            window.parent.onscroll = function() {myFunction()};
-            //
-            //
-            //
-            // var menu = document.getElementById("barra-menu");
-            // var sticky = menu.offsetTop;
-            //
+            window.parent.onscroll = function() {
+                myFunction()
+            };
+
+
             function myFunction() {
                 var iframe = document.getElementById('resultado_view');
                 var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
 
                 if($(innerDoc).find("#mySidebar").attr("aberto") == 1){
-
-                    $(innerDoc).find("#mySidebar").css("top", window.parent.pageYOffset+50);
-
+                    w3_close();
+                    // window.document.addEventListener('touchmove', function(e){ e.preventDefault(); });
+                    // $(window.document).bind('touchmove', function(e){e.preventDefault()})
+                    // $(innerDoc).find("#mySidebar").css("top", window.parent.pageYOffset+50);
                 }
             }
 
@@ -266,7 +267,6 @@
                 var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
                 if($(innerDoc).find("#mySidebar").attr("aberto", 1)){
                     w3_close();
-
                 }
             });
 
