@@ -1057,6 +1057,10 @@ select[disabled].bread-select{
 	-webkit-appearance:none; /* Safari and Chrome */
 	margin: 15px 0px;
 }
+.bread-select option[disabled]{
+	color: #bbb;
+}
+
 select[disabled].opt-select-title{
 	background-image: url('../images/arrow_pb.png');
 	background-color: #d4d4d4;

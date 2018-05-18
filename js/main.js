@@ -7,6 +7,11 @@ $.get("./db/json_ano_default.php?eixo="+getEixo(window.location.hash.substring(1
     anos_default = JSON.parse(data);
 });
 
+//TEMPORARIO enquanto não está funcionando
+if($('.bread-eixo[data-id="eixo"]').prop('selectedIndex') == 3)
+    $('.bread-select[data-id=var]').find("option[value=5]").prop("disabled", true)
+else if($('.bread-eixo[data-id="eixo"]').prop('selectedIndex') == 2)
+    $('.bread-select[data-id=var]').find("option[value=15]").prop("disabled", true)
 //$.ajaxSetup({async: true});
 /*-----------------------------------------------------------------------------
 Função: controlVar
