@@ -332,7 +332,7 @@ function ready(error, br_states, mapa){
         }
     }
 	//coloração do mapa
-	var color = d3.scalePow()
+	var color = d3.scaleLinear()
         .domain([minValue, maxValue])
         .range([colorJSON.cadeias[cad].gradient['2'], colorJSON.cadeias[cad].gradient['6']])
 
@@ -429,10 +429,13 @@ function ready(error, br_states, mapa){
                 var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/uf=[0-9]*/, "uf="+d.id)
                                                                                            .replace(/treemap_scc_box.php\?/, "linhas_box.php?");
             else
-                var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/uf=[0-9]*/, "uf="+d.id);
-
+                var newSCCSrc = $(window.parent.document).find("#view_box_scc")
+                                                         .attr("src")
+                                                        .replace(/uf=[0-9]*/, "uf="+d.id)
+                                                        .replace(/ano=[0-9]*/, "ano="+url['ano'])
 
             newSCCSrc = newSCCSrc.replace(/cad=[0-9]*/, "cad="+url['cad']).replace(/ocp=[0-9]/, "ocp="+url['ocp']);
+            
 			$(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
             $(window.parent.document).find("#view_box_scc").attr("src", newSCCSrc);
             $(window.parent.document).find("select[data-id='uf']").val(d.id);

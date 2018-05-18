@@ -47,7 +47,12 @@ function getAnoDefault(eixo_atual){
                 index_ocp = url['ocp']
             url['ano'] = anos_default[url['var']][index_ocp]; break;
 
-        case 2: url['ano'] = anos_default[url['var']][0]; break;
+        case 2: 
+            if(url['var'] != 17) 
+                url['ano'] = anos_default[url['var']][0]; 
+            else
+                url['ano'] = 2017
+            break;
         case 3:
         if(url['var'] >= 11)
             url['slc'] = 0
@@ -2094,6 +2099,7 @@ $(document).ready(function(){
                         $("#btn-opt").find(".col-btn").css("display", "block")
                     else
                         $("#btn-opt").find(".col-btn").css("display", "none")
+
 
                 }
 
