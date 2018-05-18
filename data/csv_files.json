@@ -32,7 +32,7 @@
                 {"id": "14", "file_name": "NECCULT - 2018 - ATLAS - Eixo 2 - Síntese V12.xlsx"},
                 {"id": "15", "file_name": "NECCULT - 2018 - ATLAS - Eixo 2 - Síntese V13.xlsx"}
             ],
-        "todas_ocupacoes/":
+        "todos/":
         [
             {"id": "1", "file_name": "NECCULT - 2018 - ATLAS - Eixo 2 - Síntese V01.xlsx"},
             {"id": "2", "file_name": "NECCULT - 2018 - ATLAS - Eixo 2 - Síntese V02.xlsx"},
