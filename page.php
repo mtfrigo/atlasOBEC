@@ -211,8 +211,6 @@
                 });
             });
 
-
-
             $(document).ready(function() {
                 $('#fullpage').fullpage({
                     'verticalCentered': false,
@@ -234,15 +232,32 @@
                 var iframe = document.getElementById('resultado_view');
                 var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
 
+
+
                 if($(innerDoc).find("#mySidebar").attr("aberto") == 1){
                     w3_close();
-
                 }
                 else{
                     w3_open();
+                }
+            }
+
+            window.parent.onscroll = function() {myFunction()};
+            //
+            //
+            //
+            // var menu = document.getElementById("barra-menu");
+            // var sticky = menu.offsetTop;
+            //
+            function myFunction() {
+                var iframe = document.getElementById('resultado_view');
+                var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
+
+                if($(innerDoc).find("#mySidebar").attr("aberto") == 1){
+
+                    $(innerDoc).find("#mySidebar").css("top", window.parent.pageYOffset+50);
 
                 }
-
             }
 
             $("#view-boxes").on('click', function(){
@@ -261,6 +276,7 @@
                 var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
 
                 $(innerDoc).find("#mySidebar").css("display", "block");
+                $(innerDoc).find("#mySidebar").css("top", window.parent.pageYOffset+50);
                 $(innerDoc).find("#mySidebar").attr("aberto", 1);
 
             }
@@ -272,7 +288,6 @@
                 $(innerDoc).find("#mySidebar").attr("aberto", 0);
 
             }
-
 
 
         </script>

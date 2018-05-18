@@ -74,16 +74,17 @@ switch($eixo) {
 ?>
         <div class="w3-sidebar w3-bar-block w3-dark-grey w3-animate-left" aberto="0" style="display:none" id="mySidebar">
             <button class="fechar w3-bar-item w3-button w3-large" onclick="w3_close()">Fechar &times;</button>
-
-
             <div class="rotulo-bread w3-bar-item">Eixo</div>
 
             <select class="w3-bar-item bread-select" data-id="eixo">
                 <?php
                 foreach ($json_text['select']['eixo'] as $bread_eixo) {
-
-                    echo "<option value='" . $bread_eixo['value'] . "'>" . $bread_eixo['name'] . "</option>";
-
+                    if($bread_eixo['value'] === $eixo){
+                        echo "<option value='". $bread_eixo['value'] ."' selected>" . $bread_eixo['name'] . "</option>";
+                    }
+                    else{
+                        echo "<option value='" . $bread_eixo['value'] . "'>" . $bread_eixo['name'] . "</option>";
+                    }
                 }
                 ?>
             </select>
@@ -250,7 +251,18 @@ switch($eixo) {
 
         <script>
 
-            
+            function getNomeEixo(eixo){
+                switch(eixo){
+                    case 0: return 'empreendimentos';
+                    case 1: return 'mercado';
+                    case 2: return 'politicas';
+                    case 3: return 'comercio';
+
+                }
+            }
+
+            console.log(getEixo(window.location.hash.substring(1)))
+            $('.bread-select[data-id=eixo]').val("mercado")
 
             $(".bread-select").on('change', function(){
                 // alert("op")
@@ -322,5 +334,6 @@ switch($eixo) {
             //         //menu.classList.remove("sticky");
             //     }
             // }
+
 
         </script>
