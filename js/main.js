@@ -208,7 +208,7 @@ function updateIframe(url){
             else if(url['var'] == 15){
                 newUrl = newUrl.replace(/uos=[0-9]/, "uos=0");
                 $('iframe[id="view_box"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                $('iframe[id="view_box"]').parent().find(".view-title").html("SÉRIE HISTÓRICA FINANCIAMENTO ESTATAL / RECEITA EXECUTIVO POR UF");
+                $('iframe[id="view_box"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR UF");
 
             }
             else if (url['var'] > 14 || url['var'] == 10) {
@@ -303,7 +303,7 @@ function updateIframe(url){
             if (url ['var'] == 15) {
                 newUrl = newUrl.replace(/uos=[0-9]/, "uos=1");
                 $('iframe[id="view_box_barras"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA FINANCIAMENTO ESTATAL / RECEITA EXECUTIVO POR SETOR");
+                $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA POR SETOR");
 
             }
             else if(url['var'] == 16){
