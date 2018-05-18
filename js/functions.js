@@ -7,7 +7,7 @@ $.get("./data/select-deg.json", function(data){
 })
 
 function updateTitleBox(type){
-    content = $(window.parent.document) || $(window.document)
+    content = $(window.parent.document)
     var title_scc = content
                         .find('iframe[id="view_box_scc"]')
                         .parent()

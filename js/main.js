@@ -2135,9 +2135,9 @@ $(document).ready(function(){
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
                 
                 url['cad'] = ($(this).val())
-                if(eixo_atual == 2 && (vrv == 18 || vrv == 19)){
+                /*if(eixo_atual == 2 && (vrv == 18 || vrv == 19)){
                     updateTitleBox(SETORES)
-                }
+                }*/
 
             }
             if($(this).attr("data-id") === "ocp") {
