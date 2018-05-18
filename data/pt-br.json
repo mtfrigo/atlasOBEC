@@ -1616,7 +1616,7 @@
 			{
 				"id":"14",
 				"title":"Índice de rentabilidade das exportações",
-				"desc":"Demonstra se há ou não vantagem comparativa nas exportações do comércio exterior nacional cultural por estratificação proposta.",
+				"desc":"A variável mostra a relação entre o índice de preços das exportações, corrigido pela taxa de câmbio, e uma aproximação do índice de custos das exportações setoriais estimado pela FUNCEX. Variável apresentada apenas para bens, sendo 2009 o ano base (índice = 100).",
 				"desc_int": "DE RENTABILIDADE <> ()",
 				"desc_percent":"",
 				"desc_var_mapa": "A variável estima a relação entre o índice de preços das exportações, corrigido pela taxa de câmbio, e uma aproximação do índice de custos das exportações setoriais estimado pela FUNCEX. Variável apresentada apenas para bens.",

@@ -200,8 +200,8 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
 
                     if(window.parent.innerWidth <= 1199)
                         return;
-
-				    if(url['ocp'] == 0) {
+                    
+                    if(url['ocp'] == 0) {
                         var newMapaSrc = $(window.parent.document).find("#view_box").attr("src").replace(/cad=[0-9]*/, "cad=" + d.data.colorId);
                         newMapaSrc = newMapaSrc.replace(/uf=[0-9]*/, "uf=" + url['uf']);
                         newMapaSrc = newMapaSrc.replace(/prc=[0-9]*/, "prc=" + url['prc']);
@@ -211,6 +211,7 @@ d3.json("./db/json_treemap_scc.php"+config, function(error, data) {
                         $(window.parent.document).find("#view_box_barras").attr("src", newBarraSrc);
                         // $(window.parent.document).find("select[data-id='cad']").val(d.data.colorId);
                         // enableDesag(eixo, vrv, d.data.colorId, true, slc, url);
+                        
                         destacaSetor(d.data.colorId);
 
                         cad_percent = $('svg').find('rect[data-legend="'+d.data.colorId+'"]').attr("data-percent");

@@ -6,40 +6,67 @@ $.get("./data/select-deg.json", function(data){
     data_desag = data;
 })
 
-function updateTitleBox(type){
-    content = $(window.parent.document)
-    var title_scc = content
-                        .find('iframe[id="view_box_scc"]')
-                        .parent()
-                        .find(".view-title").html().split(/DE | DO | DA/)[0]
-                
-    switch(type){
-        case SETORES:
-            cad = content
-                    .find('.bread-select[data-id=cad] option:selected')
-                    .text()
-            if(cad.match(/Todos/) != null){
-                cad = "DOS SETORES CULTURAIS E CRIATIVOS"
-            } else {
-                cad = "DO SETOR "+cad;
-            }
-            content
-                .find('iframe[id="view_box_scc"]')
+
+function updateTitleClickSCC(scc_click){
+
+    scc_anterior = $(window.parent.document).find('.bread-select[data-id=cad] option:selected').text()
+    if(scc_anterior.match(/Todos/) != null)
+        replace_scc = "NOS SETORES CULTURAIS E CRIATIVOS"
+    else
+        replace_scc = 'NO SETOR ' + scc_anterior.toUpperCase()
+
+    scc_click = "NO SETOR "+scc_click.toUpperCase()
+
+    title = $(window.parent.document).find("iframe[id=view_box_barras]").parent().find(".view-title").text()
+    $(window.parent.document).find("iframe[id=view_box_barras]").parent().find(".view-title")
+                            .text(title.replace(replace_scc, scc_click))
+
+}
+
+function updateTitleClickMapa(uf_click){
+
+    uf_anterior = $(window.parent.document).find('.bread-select[data-id=uf] option:selected').text()
+    
+    replace_uf = getPrepos(uf_anterior) + ' ' + uf_anterior.toUpperCase()
+    title = $(window.parent.document).find("iframe[id=view_box_scc]").parent().find(".view-title").text()
+    $(window.parent.document).find("iframe[id=view_box_scc]").parent().find(".view-title")
+                             .text(title.replace(replace_uf, getPrepos(uf_click)+' '+uf_click.toUpperCase()))
+
+    title = $(window.parent.document).find("iframe[id=view_box_barras]").parent().find(".view-title").text()
+    $(window.parent.document).find("iframe[id=view_box_barras]").parent().find(".view-title")
+                            .text(title.replace(replace_uf, getPrepos(uf_click)+' '+uf_click.toUpperCase()))
+
+}
+
+function updateTitleBox(){
+    
+    title_scc = $('iframe[id="view_box_scc"]')
+                    .parent()
+                    .find(".view-title")
+                    .text();
+    title_barras = $('iframe[id="view_box_barras"]')
                 .parent()
                 .find(".view-title")
-                .html(title_scc+ ' ' +cad); 
-        break;
-        case UFS:
-            uf = content
-                    .find('.bread-select[data-id=uf] option:selected')
-                    .text()
-            content
-                .find('iframe[id="view_box_scc"]')
-                .parent()
-                .find(".view-title")
-                .html(title_scc+" "+getPrepos(uf.toUpperCase())+" "+uf.toUpperCase());
-        break;
+                .text();
+    cad = $('.bread-select[data-id=cad] option:selected').text()
+
+    if(cad == ''){
+        cad = $('.bread-select[data-id=ocp] option:selected').text()  
+        cad = ""
+    } else {
+        if(cad.match(/Todos/) != null){
+            cad = "NOS SETORES CULTURAIS E CRIATIVOS"
+        } else {
+            cad = "NO SETOR "+cad.toUpperCase();
+        }
     }
+    uf = $('.bread-select[data-id=uf] option:selected').text()
+
+    if(title_scc != undefined)
+        $('iframe[id="view_box_scc"]').parent().find(".view-title").text(title_scc.replace("[uf]", getPrepos(uf)+' '+uf.toUpperCase()).replace("[cad]", cad));
+    
+    if(title_barras != undefined)
+        $('iframe[id="view_box_barras"]').parent().find(".view-title").text(title_barras.replace("[uf]", getPrepos(uf)+' '+uf.toUpperCase()).replace("[cad]", cad));
 }
 
 

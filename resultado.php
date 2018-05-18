@@ -693,7 +693,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                 <!--=============== BARRAS! ================-->
                 <div id='containerBarra' class="col-md-5 col-sm-12" style="height: 330px;">
                     <div class="view-title">
-                        SÉRIE HISTÓRICA
+                        SÉRIE HISTÓRICA [uf] [cad]
                         <i class="plus"></i>
                     </div>
                     <?php if ($eixo == "comercio") {?>

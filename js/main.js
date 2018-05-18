@@ -276,6 +276,7 @@ function updateIframe(url){
         $('iframe[id="view_box_barras"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
 
         if(eixoAtual == 0) {
+            $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA [uf] [cad]");
             if (url['var'] > 9) {
                 newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
                 $('iframe[id="view_box_barras"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
@@ -283,6 +284,7 @@ function updateIframe(url){
             }
         }
         else if(eixoAtual == 1) {
+            $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA [uf] [cad]");
             if (url['var'] > 11) {
                 if(url['slc'] == 0) {
                     newUrl = newUrl.replace(/uos=[0-9]*/, "uos=1");
@@ -298,7 +300,7 @@ function updateIframe(url){
             }
         }
         else if(eixoAtual == 2){
-            $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
+            $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA [uf] [cad]");
 
             if (url ['var'] == 15) {
                 newUrl = newUrl.replace(/uos=[0-9]/, "uos=1");
@@ -339,7 +341,7 @@ function updateIframe(url){
             }
         }
         else if( eixoAtual == 3){
-            $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
+            $('iframe[id="view_box_barras"]').parent().find(".view-title").html("SÉRIE HISTÓRICA [uf] [cad]");
 
             if(url['var'] >= 1 && url['var'] != 5 && url['var'] != 8 && url['var'] <= 10 || url['var'] == 12){
                 $('iframe[id="view_box_barras"]').css('display', 'block')
@@ -388,9 +390,9 @@ function updateIframe(url){
                     $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
 
                     if(url['uf'] == 0)
-                        $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");
+                        $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS [uf] ");
                     else
-                        $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS DE "+getNomeUF(url['uf']).toUpperCase());
+                        $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS [uf] ");
 
                 }
         }
@@ -433,11 +435,11 @@ function updateIframe(url){
             }
             else {
                 $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");
+                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS [uf] ");
                 if(url['uf'] == 0)
-                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");
+                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS [uf] ");
                 else
-                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS DE "+getNomeUF(url['uf']));
+                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS [uf] ");
             }
         }
         else if(eixoAtual == 2){
@@ -447,7 +449,7 @@ function updateIframe(url){
             }
             else if(url['var'] ==  17){
                 $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
+                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA [uf] [cad]");
             }
 
             else if (url['var'] == 15 || url['var'] == 16 ) {
@@ -457,7 +459,7 @@ function updateIframe(url){
             else if (url['var'] == 18 || url['var'] == 19 ) {
                 newUrl = newUrl.replace(/uos=[0-9]*/, "uos=0");
                 $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
+                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA [uf] [cad]");
             }
             else if(url['var'] == 10){
                 $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
@@ -466,7 +468,7 @@ function updateIframe(url){
             else{
                 $('iframe[id="view_box_scc"]').css('display', 'block')
                 $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
-                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS");
+                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS [uf] ");
             }
 
         }
@@ -484,7 +486,7 @@ function updateIframe(url){
             }
 
             else if(url['var'] >= 1 && url['var'] != 5 && url['var'] != 8 && url['var'] <= 10 || url['var'] == 12 ){
-                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA");
+                $('iframe[id="view_box_scc"]').parent().find(".view-title").html("SÉRIE HISTÓRICA [uf] [cad]");
                 $('iframe[id="view_box_scc"]').attr('src', 'barras_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
 
 
@@ -495,6 +497,8 @@ function updateIframe(url){
 
         }
         changeDownloadURL(newUrl + "&eixo=" +window.location.hash.substring(1) + window.location.hash, window.location.hash.substring(1));
+
+        updateTitleBox();
     }
 }
 
@@ -1639,6 +1643,7 @@ $(document).ready(function(){
                     url['cor'] = 0;
                 }
 
+                $(".bread-select[data-id='cad']").val($(this).attr("data-id"));
                 updateIframe(url);
 
                 //enableDesag(getEixo(window.location.hash.substring(1)), url['var'], setor, false, url['slc'], url);
@@ -1650,7 +1655,6 @@ $(document).ready(function(){
                     $(".cad-title").first().html(textJSON.select.cad[setor].name);
 
                 });
-                $(".bread-select[data-id='cad']").val($(this).attr("data-id"));
             }
         }
         else if(eixo == 2 && url['var'] < 15){
@@ -1664,6 +1668,7 @@ $(document).ready(function(){
                 url['cad'] = setor;
                 url['uf'] = changeUF[1];
 
+                $(".bread-select[data-id='cad']").val($(this).attr("data-id"));
                 updateIframe(url);
 
                 d3.json('data/pt-br.json', function (error, data) {
@@ -1674,7 +1679,6 @@ $(document).ready(function(){
 
                 });
 
-                $(".bread-select[data-id='cad']").val($(this).attr("data-id"));
             }
         }
         else if(eixo == 0 && url['var'] < 12){
@@ -2151,7 +2155,6 @@ $(document).ready(function(){
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
             }
             updateIframe(url);
-
         }
         else {
             parent.window.location = "page.php#"+$(this).val();

@@ -423,7 +423,7 @@ function ready(error, br_states, mapa){
             
 			var newBarraSrc = $(window.parent.document).find("#view_box_barras").attr("src").replace(/uf=[0-9]*/, "uf="+d.id);
             newBarraSrc = newBarraSrc.replace(/ano=[0-9]*/, "ano="+url['ano']);
-
+            updateTitleClickMapa(dict[d.id].uf)
             url['uf'] = d.id;
             if(eixo == 0 && vrv == 9)
                 var newSCCSrc = $(window.parent.document).find("#view_box_scc").attr("src").replace(/uf=[0-9]*/, "uf="+d.id)
@@ -451,11 +451,6 @@ function ready(error, br_states, mapa){
             
             //ESSE TRECHO DE CÓDIGO ATUALIZA O TÍTULO DO IFRAME DO SCC 
             
-            src = $(window.parent.document).find('iframe[id="view_box_scc"]').attr("src").match(/treemap_scc_box || barras_box/g);
-
-            if(src != null){
-               updateTitleBox(UFS);
-            }
         })
 		.style("cursor", "pointer");
 
