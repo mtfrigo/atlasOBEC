@@ -1811,6 +1811,7 @@ $(document).ready(function(){
         else if($(this).attr("id") == "recebedora" || $(this).attr("id") == "trabalhador"){
 
             if($(this).attr("id") === "recebedora") {
+
                 if(url['mec'] != 0){
 
                     if(url['var'] == 19){
@@ -1931,6 +1932,9 @@ $(document).ready(function(){
 
                 $('#bens').addClass("active");
                 $('#servicos').removeClass("active");
+
+
+
                 updateMenuSetor(getEixo(window.location.hash.substring(1)), $(this).val())
                 $('.bread-select[data-id=uf]').val(0);
 
@@ -2046,6 +2050,9 @@ $(document).ready(function(){
                 changeDescVar();
                 cleanDesagsUrl();
                 getAnoDefault(eixo_atual);
+
+                $('#recebedora').addClass("active");
+                $('#trabalhador').removeClass("active");
 
                 if(url['ocp'] == 0){
                     switchToSetores(); 
