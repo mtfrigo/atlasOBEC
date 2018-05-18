@@ -168,8 +168,6 @@ function updateIframe(url){
                 } else{
                     $('iframe[id="view_box"]').parent().find(".content-btn-mapa").css("display", "block")
 
-                    $('#mapa').addClass("active");
-                    $('#treemap_region').removeClass("active");
                 }
                 $('iframe[id="view_box"]').attr('src', url['view']+'_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
             }
@@ -1702,9 +1700,9 @@ $(document).ready(function(){
                     url['esc'] = 0;
                     url['cor'] = 0;
                 }
-
                 $(".bread-select[data-id='cad']").val($(this).attr("data-id"));
                 updateIframe(url);
+
 
                 //enableDesag(getEixo(window.location.hash.substring(1)), url['var'], setor, false, url['slc'], url);
 
@@ -1715,6 +1713,7 @@ $(document).ready(function(){
                     $(".cad-title").first().html(textJSON.select.cad[setor].name);
 
                 });
+
             }
         }
         else if(eixo == 2 && url['var'] < 15){
@@ -1744,6 +1743,7 @@ $(document).ready(function(){
         else if(eixo == 0 && url['var'] < 12){
 
         }
+
     });
 
     $(document).on('click', ".ocp", function(){
@@ -2146,6 +2146,8 @@ $(document).ready(function(){
                 updateBreadUF(eixo_atual, url['var']);
                 
                 if(eixo_atual == 0){
+                    $('#mapa').addClass("active");
+                    $('#treemap_region').removeClass("active");
                     $('.bread-select[data-id=deg]').val(0);
 
                     $('.opt-select[data-id=deg]').val(0);
