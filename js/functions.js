@@ -1501,6 +1501,10 @@ function updateDescPercentEmpreendimentos(desc, vrv, tipo){
     cad_val = $(window.parent.document).find(".bread-select[data-id=cad]").val();
     deg = $(window.parent.document).find(".bread-select[data-id=deg]").val();
 
+    if(desc == null){
+        return
+    }
+
     if(tipo == "setorial"){
         if(cad_val == 0)
             description = desc.replace("[cad]", "DOS SETORES CULTURAIS E CRIATIVOS")
@@ -1765,7 +1769,7 @@ function setIntegerValueData(value, eixo, vrv) {
             literal = formatDecimalLimit(valor, 2);
         }
         if(eixo == 0 && url['var'] > 9){
-            literal = formatDecimalLimit(valor, 5);
+            literal = formatDecimalLimit(valor, 2);
         }
         if(eixo == 1 && url['var'] == 2){
             literal = formatDecimalLimit(valor, 4);
@@ -2028,8 +2032,6 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
         nomeestado = mapPronome(nomeestado, [/^DE/, /^DA/, /^DO/], ["EM", "NA", "NO"])
        
     }
-
-
 
     if(desc != undefined)
         return desc.replace(tag, nomeestado);
@@ -2427,6 +2429,7 @@ function updateDescPercent(eixo, tipo, desc, nomeestado){
  */
 function setMaxFontSize(doc){
 
+
     if(doc == null){
         return
     }
@@ -2439,12 +2442,11 @@ function setMaxFontSize(doc){
     var tamanhoDiv = $(doc).width();
     var texto = $(doc).html();
 
+    // console.log(texto)
+
     if(texto == null){
         return
     }
-    // else{
-    //     texto = texto.toUpperCase();
-    // }
 
     $(doc).css('font-size', tamanho+'px');
 
@@ -2465,10 +2467,10 @@ function setMaxFontSize(doc){
 
         font = $(doc).css("font-weight")+" "+$(doc).css("font-size")+" "+ $(doc).css("font-family");
 
-        tamanhoString  = getTextWidth(texto.toUpperCase(), font) + texto.length * letterSpacing;
+        tamanhoString  = getTextWidth(texto.toUpperCase(), font) + texto.length  * letterSpacing;
 
     }
-   // console.log("tamanhoString: "+tamanhoString+"/ tamanhoDiv: "+tamanhoDiv)
+    // console.log("tamanhoString: "+tamanhoString+"/ tamanhoDiv: "+tamanhoDiv)
     $(doc).html(texto);
     return;
 
@@ -2526,7 +2528,7 @@ function setPercentValueData(value, eixo, vrv) {
             }
         }
         else if(vrv >= 10 && vrv <= 13){
-            $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.valor, 4));
+            $(window.parent.document).find(".percent-value").first().find(".number").first().html(formatDecimalLimit(value.valor, 2));
         }
 
         var doc =  $(window.parent.document).find(".percent-value").first().find(".number").first();
@@ -2650,7 +2652,7 @@ function formatTextVrv(value, eixo, vrv){
             else if(eixo == 1 && url['var'] == 9)
                 string = prefixo+formatDecimalLimit(valor, 4)+sufixo;
             else if(eixo == 0 && url['var'] > 9)
-                string = prefixo+formatDecimalLimit(valor, 4)+sufixo;
+                string = prefixo+formatDecimalLimit(valor, 2)+sufixo;
             else
                 string = prefixo+formatDecimalLimit(valor, 2)+sufixo;
 
