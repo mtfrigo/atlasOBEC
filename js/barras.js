@@ -13,7 +13,7 @@ function getSoma(barraId) {
     });
     return soma;
 }
-
+updateTitleClickSCC()
 function destacaBarra(barraId, stacked = false) {
     i = 0;
     $("rect").each(function() {

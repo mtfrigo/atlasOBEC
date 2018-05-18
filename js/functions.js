@@ -7,19 +7,17 @@ $.get("./data/select-deg.json", function(data){
 })
 
 
-function updateTitleClickSCC(scc_click){
+function updateTitleClickSCC(){
+    scc_click = $(window.parent.document).find('.bread-select[data-id=cad] option:selected').text()
 
-    scc_anterior = $(window.parent.document).find('.bread-select[data-id=cad] option:selected').text()
-    if(scc_anterior.match(/Todos/) != null)
-        replace_scc = "NOS SETORES CULTURAIS E CRIATIVOS"
-    else
-        replace_scc = 'NO SETOR ' + scc_anterior.toUpperCase()
-
-    scc_click = "NO SETOR "+scc_click.toUpperCase()
-
+    if(scc_click.match(/Todos/) != null){
+        scc_click = "NOS SETORES CULTURAIS E CRIATIVOS"
+    } else {
+        scc_click = "NO SETOR "+scc_click.toUpperCase()
+    }
     title = $(window.parent.document).find("iframe[id=view_box_barras]").parent().find(".view-title").text()
     $(window.parent.document).find("iframe[id=view_box_barras]").parent().find(".view-title")
-                            .text(title.replace(replace_scc, scc_click))
+                            .text(title.replace(/NO SETOR .+|NOS SETORES CULTURAIS E CRIATIVOS/, scc_click))
 
 }
 
