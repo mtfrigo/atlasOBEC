@@ -1790,6 +1790,7 @@ function setIntegerValueData(value, eixo, vrv) {
             }
             if(vrv <= 11)
                 updateDescMercado(result.desc_int, vrv, url['ocp']);
+           
         }
         if(eixo == 3){
             $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(updateDescComercio(result.desc_int, vrv, estado))
@@ -2763,15 +2764,15 @@ function updateDataDesc(vrv, uos, valor){
 /*
 * Essa função atualiza a descricao dos valores dados
 */
-function updateDataDescUoS(){
-
-	if($(window.parent.document).find(".integer-value").first().find(".description-number").html() != null){
-        var desc_int = $(window.parent.document).find(".integer-value").first().find(".description-number").html().replace("POR UF", "POR ATIVIDADES RELACIONADAS");
-        var desc_perc = $(window.parent.document).find(".percent-value").first().find(".description-number").html().replace("POR SETOR", "POR ATIVIDADES CULTURAIS");
-
-        $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(desc_int);
-        $(window.parent.document).find(".percent-value").first().find(".description-number").first().html(desc_perc);
-	}
+function updateDataDescUoS(ocp){
+    if(ocp > 0){
+        if($(window.parent.document).find(".integer-value").first().find(".description-number").html() != null){
+            var desc_int = $(window.parent.document).find(".integer-value").first().find(".description-number").first().html().toUpperCase().replace("POR UF", "POR ATIVIDADES RELACIONADAS");
+            var desc_perc = $(window.parent.document).find(".percent-value").first().find(".description-number").first().html().toUpperCase().replace("POR SETOR", "POR ATIVIDADES CULTURAIS");
+            $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(desc_int);
+            $(window.parent.document).find(".percent-value").first().find(".description-number").first().html(desc_perc);
+        }
+    }
 
 }
 

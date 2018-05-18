@@ -834,6 +834,10 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
             updateDataDesc()
         }
 
+        if(vrv >= 11 && eixo == 1){
+            updateDataDescUoS(ocp);
+        }
+
         function loadTooltip(d, i, eixo, vrv){
             if(eixo === 0){
                  if(vrv === 3){
