@@ -2050,11 +2050,6 @@ $(document).ready(function(){
 
     $(document).on('change', ".bread-select", function(e){
 
-        if(windowWidth<1199){
-            changeOnMobile(this);
-        }
-        else
-
         if($(this).attr("data-id") !== "eixo") {
 
             var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
@@ -2206,162 +2201,6 @@ $(document).ready(function(){
         }
     });
 
-    function changeOnMobile(coisa){
-
-        id = $(coisa).attr('data-id')
-
-        console.log(id)
-
-        if($(this).attr("data-id") !== "eixo") {
-
-            var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
-
-            updateUrl();
-
-
-
-            if($(this).attr("data-id") === "typ") {
-                if($(this).val() == 3 && (url['var'] == 1 || url['var'] == 13) )
-                    $(window.document).find(".percent-value").find(".box-dado").first().css("display", "none")
-                else
-                    $(window.document).find(".percent-value").find(".box-dado").first().css("display", "block")
-            }
-
-            if($(this).attr("data-id") == "deg" && eixo_atual == 1){
-                if($(this).find('option:selected').parent().attr("value") != undefined)
-                    deg_value =  $(this).find('option:selected').parent().attr("value")
-                else
-                    deg_value = $(this).val()
-                controlFilter(deg_value, $(this).attr('data-id'), $(this).val());
-
-                if(url['var'] == 4 || url['var'] == 5)
-                    updateLegendByDeg(url['deg'])
-            }
-            else{
-                controlFilter($(this).val(), $(this).attr('data-id'), 1);
-            }
-            if( $(".bread-select[data-id=deg]").find('option:selected').parent().attr("value") != undefined)
-                url['deg'] =  $(".bread-select[data-id=deg]").find('option:selected').parent().attr("value")
-            else
-                url['deg'] = $(".bread-select[data-id=deg]").val()
-            /* controla relações entre filtros */
-
-            /* muda o select das opções para o mesmo do bread */
-            $(".opt-select[data-id="+$(this).attr('data-id')+"]").val($(this).val());
-            if($(this).attr("data-id") == "prc"){
-                document.getElementById('view_box').contentWindow.location.reload(true);
-                $(window.document).find(".prc-title").first().html(this.options[e.target.selectedIndex].text);
-                // updateDataDesc(url['var'], $(this).attr("data-id"), this.options[e.target.selectedIndex].text)
-            }
-            //quando muda a variável, é preciso trocar a UF para 'Brasil'
-
-            if($(this).attr('data-id') =='var'){
-                if(eixo_atual == 2 && url['var'] == 17){
-                    $(".font-title").css("display", "none")
-                    $(".value-info-title").css("display", "block")
-                } else {
-                    $(".font-title").css("display", "block")
-                    $(".value-info-title").css("display", "none")
-                }
-                $('.percent-value').find(".box-dado").find('.number').first().text("")
-                changeDescVar();
-                cleanDesagsUrl();
-                getAnoDefault(eixo_atual);
-
-                if(url['ocp'] == 0){
-                    switchToSetores();
-                    $('#setor').addClass("active");
-                    $('#ocupacao').removeClass("active");
-                }
-                if(url['ocp'] > 0)
-                    enableDesag(getEixo(window.location.hash.substring(1)), $(this).val(), url['cad'], false, 1, url);
-                else
-                    enableDesag(getEixo(window.location.hash.substring(1)), $(this).val(), url['cad'], false, 0, url);
-                $('.bread-select[data-id=uf]').val(0);
-                $('.bread-select[data-id=cad]').val(0);
-
-
-                $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
-                $(window.document).find(".title[data-id='var-title']").first().html($('.bread-select[data-id=var] option:selected').text());
-
-
-
-                updateMenuSetor(getEixo(window.location.hash.substring(1)), $(this).val());
-                updateBreadUF(eixo_atual, url['var']);
-
-                if(eixo_atual == 0){
-                    $('.bread-select[data-id=deg]').val(0);
-
-                    $('.opt-select[data-id=deg]').val(0);
-                }
-                if(eixo_atual == 1){
-                    if(url['ocp'] > 0){
-                        updateDefaultOcupation()
-                    }
-                    updateOcupacoes($(this).val());
-                }
-
-                if(eixo_atual == 2){
-                    updateDefaultMec(url['var']);
-
-                    if(url['var'] == 18 || url['var'] == 19)
-                        $("#btn-opt").find(".col-btn").css("display", "block")
-                    else
-                        $("#btn-opt").find(".col-btn").css("display", "none")
-
-                }
-
-                if(eixo_atual == 3){
-                    if(url['var'] == 1 || url['var'] == 13 || url['var'] == 5 || url['var'] == 8)
-                        $(window.document).find(".percent-value").find(".box-dado").first().css("display", "block")
-                    updateServicos(url['var']);
-                    updateTipo(url['var']);
-                    url['typ'] = 1;
-
-                    $(".opt-select[data-id='typ']").val(1);
-                    $('.bread-select[data-id=typ]').val(1);
-                    if((url['var'] >= 5 && url['var'] <= 12) || url['var'] == 14){
-                        $('.bread-select[data-id=prc]').val(0);
-                        $(".opt-select[data-id='prc']").val(0)
-                        url['prc'] = 0
-                    }
-                    $(window.document).find(".prc-title").first().html($(".bread-select[data-id='prc'] option:selected").text());
-
-                }
-
-            }
-            if($(this).attr('data-id') == 'deg') {
-
-                $(window.document).find(".cad-title").first().html($('.bread-select[data-id=cad] option:selected').text());
-                document.getElementById('view_box_barras').contentWindow.location.reload(true);
-            }
-            if($(this).attr("data-id") == "uf"){
-                document.getElementById('view_box').contentWindow.location.reload(true);
-
-                $(window.document).find(".state-title").first().html(this.options[e.target.selectedIndex].text);
-                updateDataDesc(url['var'], $(this).attr("data-id"), this.options[e.target.selectedIndex].text)
-            }
-
-
-            if($(this).attr("data-id") === "cad") {
-
-                //if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
-                $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
-
-                url['cad'] = ($(this).val())
-
-            }
-            if($(this).attr("data-id") === "ocp") {
-                if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
-                $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
-            }
-            updateIframe(url);
-
-        }
-        else {
-            parent.window.location = "page.php#"+$(this).val();
-        }
-    }
 
     $(document).on('change', ".bread-eixo", function(){
         parent.window.location = "page.php#"+$(this).val();
@@ -2395,3 +2234,5 @@ $(document).ready(function(){
 
 
 });
+
+

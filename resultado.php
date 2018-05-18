@@ -91,7 +91,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
 	<div class="results-content">
 		<div class="container">
 
-<!--            <div id="menuvariaveis" ></div>-->
+            <div id="menuvariaveis" ></div>
 
 
             <div class="col-md-12 col-xs-12">
@@ -905,6 +905,8 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
     url['slc'] = "<?php echo $slc; ?>";
     <?php } ?>
     var pageTitle = "<?php echo strip_tags($text['title'])?>";
+
+
 </script>
 
 <script src="js/d3/d3.min.js"></script>

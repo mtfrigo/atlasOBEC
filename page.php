@@ -97,8 +97,7 @@
 			<?php if(!empty($text)):?>
 				<section id="resultado">
 
-<!--                    <div id="teste-menu-mob"></div>-->
-                    <div id="menuvariaveis" ></div>
+<!--                    <div id="menuvariaveis" ></div>-->
 
 					<iframe id="resultado_view" src="resultado.php" style="border: none; width: 100%; height: 1650px;" scrolling="no"></iframe>
                     <script>
@@ -229,6 +228,51 @@
                     scrollTop: $("#section1").offset().top
                 }, 1000);
             });
+
+            function hamburguer_click() {
+
+                var iframe = document.getElementById('resultado_view');
+                var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
+
+                if($(innerDoc).find("#mySidebar").attr("aberto") == 1){
+                    w3_close();
+
+                }
+                else{
+                    w3_open();
+
+                }
+
+            }
+
+            $("#view-boxes").on('click', function(){
+
+                var iframe = document.getElementById('resultado_view');
+                var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
+                if($(innerDoc).find("#mySidebar").attr("aberto", 1)){
+                    w3_close();
+
+                }
+            });
+
+            function w3_open() {
+
+                var iframe = document.getElementById('resultado_view');
+                var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
+
+                $(innerDoc).find("#mySidebar").css("display", "block");
+                $(innerDoc).find("#mySidebar").attr("aberto", 1);
+
+            }
+            function w3_close() {
+                var iframe = document.getElementById('resultado_view');
+                var innerDoc = (iframe.contentDocument) ? iframe.contentDocument : iframe.contentWindow.document;
+
+                $(innerDoc).find("#mySidebar").css("display", "none");
+                $(innerDoc).find("#mySidebar").attr("aberto", 0);
+
+            }
+
 
 
         </script>

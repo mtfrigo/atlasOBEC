@@ -2371,7 +2371,7 @@ function setMaxFontSize(doc){
     var tamanhoDiv = $(doc).width();
     var texto = $(doc).html();
 
-    console.log(texto)
+    // console.log(texto)
 
     if(texto == null){
         return
@@ -2387,7 +2387,7 @@ function setMaxFontSize(doc){
 
     $(doc).html("");
 
-    console.log("tamanhoString: "+tamanhoString+"/ tamanhoDiv: "+tamanhoDiv)
+    // console.log("tamanhoString: "+tamanhoString+"/ tamanhoDiv: "+tamanhoDiv)
 
     while(tamanhoString > tamanhoDiv){
 
@@ -2399,7 +2399,7 @@ function setMaxFontSize(doc){
         tamanhoString  = getTextWidth(texto.toUpperCase(), font) + texto.length  * letterSpacing;
 
     }
-    console.log("tamanhoString: "+tamanhoString+"/ tamanhoDiv: "+tamanhoDiv)
+    // console.log("tamanhoString: "+tamanhoString+"/ tamanhoDiv: "+tamanhoDiv)
     $(doc).html(texto);
     return;
 

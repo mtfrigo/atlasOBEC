@@ -248,11 +248,9 @@ switch($eixo) {
 
         </div>
 
-        <div class="header" id="barra-menu" >
-             <button class="w3-button w3-white w3-xxlarge" onclick="hamburguer_click()">&#9776; </button><span class="menu-title">Menu</span>
-        </div>
-
         <script>
+
+            
 
             $(".bread-select").on('change', function(){
                 // alert("op")
@@ -291,6 +289,20 @@ switch($eixo) {
                 $("#barra-menu").css("display", "none");
             else
                 $("#barra-menu").css("display", "block");
+
+            var newNode = document.createElement('div');
+            newNode.style.top = 0;
+            newNode.style.height ="50px";
+            newNode.style.left = 0;
+            newNode.style.position = "fixed";
+            newNode.style.right = 0;
+            newNode.style["z-index"] = 100;
+            newNode.style["background-color"] = "yellow";
+            newNode.innerHTML = "<div class=\"header\" id=\"barra-menu\" >\n" +
+                "             <button class=\"w3-button w3-white w3-xxlarge\" onclick=\"hamburguer_click()\">&#9776; </button><span class=\"menu-title\">Menu</span>\n" +
+                "        </div>";
+
+            parent.document.body.appendChild( newNode )
 
             /// TODO FUNCAO CASO TENHA QUE DEIXAR O MENU FIXO DEPOIS DE CERTO HEIGHT
             // window.parent.onscroll = function() {myFunction()};

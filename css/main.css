@@ -1450,6 +1450,7 @@ button.opt.active{
 	.w3-sidebar{
 		height:auto;
 		top: 50px;
+		left: 0px;
 		min-height: 200px;
 		width:100%;
 		background-color:#fff;
@@ -1538,8 +1539,15 @@ button.opt.active{
 	}
 
 	#barra-menu{
-
+		position: fixed;
+		width: 100%;
+		left: 0;
+		top: 0;
 	}
+
+	#resultado_view{
+	}
+
 
 	.header{
 		color: #f1f1f1;
@@ -1553,16 +1561,13 @@ button.opt.active{
 
 	}
 
-	.sticky {
-		float: none;
-
-		position: fixed !important;
-		top: 0px;
-		left: 0px;
-		z-index: 999;
-		width: 100%;
+	.sticky{
+		top: 0;
 		height: 50px;
-		background-color: red;
+		left: 0;
+		position: fixed;
+		right: 0;
+		z-index: 100;
 	}
 
 
