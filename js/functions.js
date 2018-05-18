@@ -1849,7 +1849,7 @@ function descByUF(eixo, tipo, desc, nomeestado, tag){
                 nomeestado = "DO BRASIL"
             }
         }
-        else if(url['var'] == 4){
+        else if(url['var'] >= 4 && url['var'] <= 8){
             if(tipo == "integer"){
                 if(getPrepos(nomeestado)){
                     nomeestado = getPrepos(nomeestado) + ' ' +nomeestado
