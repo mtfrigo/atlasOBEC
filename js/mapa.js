@@ -445,17 +445,10 @@ function ready(error, br_states, mapa){
             
             //ESSE TRECHO DE CÓDIGO ATUALIZA O TÍTULO DO IFRAME DO SCC 
             
-            src = $(window.parent.document).find('iframe[id="view_box_scc"]').attr("src").match(/treemap_scc_box/g);
+            src = $(window.parent.document).find('iframe[id="view_box_scc"]').attr("src").match(/treemap_scc_box || barras_box/g);
 
             if(src != null){
-                var title_scc = $(window.parent.document).find('iframe[id="view_box_scc"]')
-                                    .parent()
-                                    .find(".view-title").html().split(/DE | DO | DA/)[0]
-            
-                $(window.parent.document).find('iframe[id="view_box_scc"]')
-                                        .parent()
-                                        .find(".view-title")
-                                        .html(title_scc+" "+getPrepos(dict[d.id].uf.toUpperCase())+" "+dict[d.id].uf.toUpperCase());
+               updateTitleBox(UFS);
             }
         })
 		.style("cursor", "pointer");
