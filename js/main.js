@@ -319,12 +319,12 @@ function updateIframe(url){
                 $('iframe[id="view_box_barras"]').attr('src', 'donut.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
             }
             else if (url['var'] ==  18) {
-                $('iframe[id="view_box_barras"]').parent().find(".view-title").html("PROPORÇÃO ACUMULADO POR SETOR");
+                $('iframe[id="view_box_barras"]').parent().find(".view-title").html("PROPORÇÃO ACUMULADA POR SETOR");
                 $('iframe[id="view_box_barras"]').attr('src', 'donut.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
             }
             else if (url['var'] ==  19) {
                 if(url['mec'] == 0){
-                    $('iframe[id="view_box_barras"]').parent().find(".view-title").html("PROPORÇÃO ACUMULADO POR SETOR");
+                    $('iframe[id="view_box_barras"]').parent().find(".view-title").html("PROPORÇÃO ACUMULADA POR SETOR");
                     $('iframe[id="view_box_barras"]').attr('src', 'donut.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 }
                 else if(url['mec'] == 1){
