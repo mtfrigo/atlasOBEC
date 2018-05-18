@@ -334,7 +334,7 @@ function ready(error, br_states, mapa){
 	//coloração do mapa
 	var color = d3.scalePow()
         .domain([minValue, maxValue])
-        .range([colorJSON.cadeias[cad].gradient['2'], "#594f68"])
+        .range([colorJSON.cadeias[cad].gradient['2'], colorJSON.cadeias[cad].gradient['6']])
 
 
 	//para funcionar var 17 eixo 3
