@@ -89,7 +89,7 @@ function changeDownloadURL(url, eixo){
             case '0': diretorio = 'setorial/'; break;
             case '1': diretorio = 'atividades_relacionadas/'; break;
             case '2': diretorio = 'cultura/'; break;
-            case '3': diretorio = "todas_ocupacoes/"; break;
+            case '3': diretorio = "todos/"; break;
         }
     
     }
@@ -882,6 +882,7 @@ function updateBreadUF(eixo, vrv){
             $('.bread-select[data-id=uf]').prop("disabled", false);
             $('.bread-select[data-id=cad]').prop("disabled", false);
             $('.bread-select[data-id=deg]').prop("disabled", false);
+            
 
             if(vrv >= 4){
                 $('.bread-select[data-id=deg]').prop("disabled", true);
@@ -895,12 +896,14 @@ function updateBreadUF(eixo, vrv){
                 $('.bread-select[data-id=uf]').prop("disabled", false);
                 $('.bread-select[data-id=cad]').prop("disabled", false);
                 $('.bread-select[data-id=deg]').prop("disabled", false);
+                $('.bread-select[data-id=ocp]').prop("disabled", false);
             if(vrv == 9 || vrv == 11){
                 $('.bread-select[data-id=deg]').prop("disabled", true);
             }
             else if(vrv >= 12){
                 $('.bread-select[data-id=uf]').prop("disabled", true);
                 $('.bread-select[data-id=cad]').prop("disabled", true);
+                $('.bread-select[data-id=ocp]').prop("disabled", true);
                 $('.bread-select[data-id=deg]').prop("disabled", true);
             } else if(vrv == 2){
                 //$('.bread-select[data-id=deg]').prop("disabled", true);
