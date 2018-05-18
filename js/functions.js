@@ -89,7 +89,7 @@ function changeDownloadURL(url, eixo){
             case '0': diretorio = 'setorial/'; break;
             case '1': diretorio = 'atividades_relacionadas/'; break;
             case '2': diretorio = 'cultura/'; break;
-            case '3': diretorio = "atividades_relacionadas/"; break;
+            case '3': diretorio = "todas_ocupacoes/"; break;
         }
     
     }
