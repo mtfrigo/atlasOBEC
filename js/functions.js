@@ -6,6 +6,10 @@ $.get("./data/select-deg.json", function(data){
     data_desag = data;
 })
 
+$.get("./data/descricoes.json", function(data){
+    console.log(data);
+})
+
 
 function updateTitleClickSCC(){
     scc_click = $(window.parent.document).find('.bread-select[data-id=cad] option:selected').text()
@@ -66,7 +70,6 @@ function updateTitleBox(){
     if(title_barras != undefined)
         $('iframe[id="view_box_barras"]').parent().find(".view-title").text(title_barras.replace("[uf]", getPrepos(uf)+' '+uf.toUpperCase()).replace("[cad]", cad));
 }
-
 
 function changeDownloadURL(url, eixo){
     newURL = $('#select-pdf input').attr("value").replace(/download.php?.*/, "download.php?"+ url);
@@ -152,7 +155,6 @@ function getNomeUF(idUF){
         case 53: return "Distrito Federal";
     }
 }
-
 
 function configInfoDataBoxMapa(eixo, vrv, dadosUF) {
 
@@ -747,7 +749,6 @@ function configInfoDataBoxBarrasStackedClick(eixo, vrv, d, soma, deg) {
     }
 }
 
-
 Array.prototype.remove = function() {
     var what, a = arguments, L = a.length, ax;
     while (L && this.length) {
@@ -758,7 +759,6 @@ Array.prototype.remove = function() {
     }
     return this;
 };
-
 
 function appendPorts(iframe){
 	if(iframe) {
@@ -803,6 +803,7 @@ function appendDesags(iframe, ocp){
                 
         })
 }
+
 function removePorts(iframe){
 	if(iframe) {
 		if($(window.parent.document).find("select[data-id='deg']").find("option[value='9']").length != 0) {
@@ -821,6 +822,7 @@ function removePorts(iframe){
         }
 	}
 }
+
 function removeDesags(iframe, ocp){
         if(ocp == true)
             desag_groups = data_desag.control.mercado.ocupacional;
@@ -843,36 +845,6 @@ function removeDesags(iframe, ocp){
                 
             }
         })
-}
-function appendMecenatoDesags(iframe){
-    if(iframe) {
-        if($(window.parent.document).find("select[data-id='deg']").find("option[value='15']").length == 0) {
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='15'>MECENATO ESTADUAL</option>");
-            $(window.parent.document).find("select[data-id='deg']").append("<option value='16'>EDITAIS ESTADUAIS</option>");
-        }
-    }
-    else{
-        if($(window.parent.document).find("option[value='15']").length == 0) {
-            $("select[data-id='deg']").append("<option value='15'>MECENATO ESTADUAL</option>");
-            $("select[data-id='deg']").append("<option value='16'>EDITAIS ESTADUAIS</option>");
-        }
-    }
-}
-function removeMecenatoDesags(iframe){
-    if(iframe) {
-        if($(window.parent.document).find("select[data-id='deg']").find("option[value='15']").length == 0) {
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='15']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='16']").remove();
-            $(window.parent.document).find("select[data-id='deg']").find("option[value='17']").remove();
-        }
-    }
-    else{
-        if($(window.parent.document).find("option[value='15']").length == 0) {
-            $("select[data-id='deg']").find("option[value='15']").remove();
-            $("select[data-id='deg']").find("option[value='16']").remove();
-            $("select[data-id='deg']").find("option[value='17']").remove();
-        }
-    }
 }
 
 function updateBreadUF(eixo, vrv){
