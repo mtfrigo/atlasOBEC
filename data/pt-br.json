@@ -774,7 +774,7 @@
 			},
 			{
 				"id":"9",
-				"desc_int":"DE RAZÃO ENTRE MASSA SALARIAL E VALOR ADICIONADO EM SETORES CULTURAIS E CRIATIVOS",
+				"desc_int":"DE RAZÃO ENTRE MASSA SALARIAL E VALOR ADICIONADO [cad] [uf]",
 				"title":"Razão entre a Massa de Rendimentos do Trabalho e o Valor Adicionado",
 				"desc_percent": "",
 				"sufixo_valor":"",

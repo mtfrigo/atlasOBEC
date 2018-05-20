@@ -146,7 +146,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
         var maxValue = d3.max(dados.value);
         // if(eixo === 0 && (vrv >= 10 && vrv <= 13)) dados.value.push(1);
 
-        console.log(maxValue)
+        // console.log(maxValue)
 
         //distribuicao de frequencias
         var quant = 9;

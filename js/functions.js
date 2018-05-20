@@ -175,8 +175,9 @@ function configInfoDataBoxMapa(eixo, vrv, dadosUF) {
     }
     else if(eixo == 2){
 
-        if(vrv == 17){
-            setPercentValueData ({percentual: 1}, eixo, vrv);
+        if(vrv == 17 && url['uf'] > 0){
+            setIntegerValueData({valor: dadosUF.valor}, eixo, vrv);
+            return
         }
 
 
@@ -210,6 +211,7 @@ function configInfoDataBoxMapaClick(eixo, vrv, dados) {
 
     }
     else if(eixo == 2){
+
 
         setIntegerValueData(dados, eixo, vrv);
         if(url['cad'] == 0 && (vrv < 18)){

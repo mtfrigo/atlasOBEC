@@ -2159,9 +2159,8 @@ $(document).ready(function(){
                 if(eixo_atual == 2){
                     updateDefaultMec(url['var']);
 
-                    var varSemBotaoSLC = [18, 19]
 
-                    if(varSemBotaoSLC.indexOf[url['var']] != -1)
+                    if(url['var'] == 18 || url['var'] == 19)
                         $("#btn-opt").find(".col-btn").css("display", "block")
                     else
                         $("#btn-opt").find(".col-btn").css("display", "none")
