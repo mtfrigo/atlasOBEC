@@ -136,14 +136,26 @@ function getDesagId(deg, nome){
             break;
 
         case 6:
-
+            switch (nome) {
+                case "Formal":
+                    return 2;
+                case "Informal":
+                    return 1;
+            }
+            break;
         case 7:
-
+            switch (nome) {
+                case "Contribuinte":
+                    return 2;
+                case "Não contribuinte":
+                    return 1;
+            }
+            break;
         case 8:
             switch (nome) {
-                case "Sim":
+                case "Membro":
                     return 2;
-                case "Não":
+                case "Não membro":
                     return 1;
             }
             break;
@@ -535,6 +547,15 @@ function analyze(error, data) {
 
             "Sim": "#071342",
             "Não": "rgb(109, 191, 201)",
+
+            "Membro": "#071342",
+            "Não membro": "rgb(109, 191, 201)",
+
+            "Formal": "#071342",
+            "Informal": "rgb(109, 191, 201)",
+
+            "Contribuinte": "#071342",
+            "Não contribuinte": "rgb(109, 191, 201)",
 
             "Branca": "#EC8A91",
             "Parda": "rgb(109, 191, 201)",

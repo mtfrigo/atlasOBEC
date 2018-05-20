@@ -1335,22 +1335,22 @@ function updateLegendByDeg(deg){
     else if(deg == 6){
         $(".view-title-leg[data-id='scc&ocp']").html("FORMALIDADE");
         $("#title-view-leg-scc").html("" +
-            "<span data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(7, 19, 66)\"></i> Sim<br></span>\n" +
-            "<span data-id=\"1\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(109, 191, 201)\"></i> Não<br></span>"
+            "<span data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(7, 19, 66)\"></i> Formal<br></span>\n" +
+            "<span data-id=\"1\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(109, 191, 201)\"></i> Informal<br></span>"
         )
     }
     else if(deg == 7){
         $(".view-title-leg[data-id='scc&ocp']").html("PREVIDÊNCIA");
         $("#title-view-leg-scc").html("" +
-            "<span data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(7, 19, 66)\"></i> Sim<br></span>\n" +
-            "<span data-id=\"1\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(109, 191, 201)\"></i> Não<br></span>"
+            "<span data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(7, 19, 66)\"></i> Contribuinte<br></span>\n" +
+            "<span data-id=\"1\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(109, 191, 201)\"></i> Não contribuinte<br></span>"
         )
     }
     else if(deg == 8){
         $(".view-title-leg[data-id='scc&ocp']").html("SINDICATO");
         $("#title-view-leg-scc").html("" +
-            "<span data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(7, 19, 66)\"></i> Sim<br></span>\n" +
-            "<span data-id=\"1\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(109, 191, 201)\"></i> Não<br></span>"
+            "<span data-id=\"0\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(7, 19, 66)\"></i> Membro <br></span>\n" +
+            "<span data-id=\"1\"><i style=\"display: inline-block; width: 10px; height: 10px; background-color: rgb(109, 191, 201)\"></i> Não membro<br></span>"
         )
     }
 
