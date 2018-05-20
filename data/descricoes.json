@@ -1184,6 +1184,92 @@
 		[
 			{
 				"id":"1",
+				"mundo": [
+					{
+						"slc": [
+							{
+								"primeira":[
+									{"": ""},
+									{"p": ""},
+									{"u": ""},
+									{"s": ""},
+									{"t": ""},
+									{"pu": ""},
+									{"ps": ""},
+									{"pt": ""},
+									{"us": ""},
+									{"ut": ""},
+									{"st": ""},
+									{"pus": ""},
+									{"put": ""},
+									{"ust": ""},
+									{"pust": ""}
+								],
+								"segunda":[
+									{"": ""},
+									{"p": ""},
+									{"u": ""},
+									{"s": ""},
+									{"t": ""},
+									{"pu": ""},
+									{"ps": ""},
+									{"pt": ""},
+									{"us": ""},
+									{"ut": ""},
+									{"st": ""},
+									{"pus": ""},
+									{"put": ""},
+									{"ust": ""},
+									{"pust": ""}
+								]
+							},
+							{
+								"primeira":[
+									{"": ""},
+									{"p": ""},
+									{"u": ""},
+									{"s": ""},
+									{"t": ""},
+									{"pu": ""},
+									{"ps": ""},
+									{"pt": ""},
+									{"us": ""},
+									{"ut": ""},
+									{"st": ""},
+									{"pus": ""},
+									{"put": ""},
+									{"ust": ""},
+									{"pust": ""}
+								],
+								"segunda":[
+									{"": ""},
+									{"p": ""},
+									{"u": ""},
+									{"s": ""},
+									{"t": ""},
+									{"pu": ""},
+									{"ps": ""},
+									{"pt": ""},
+									{"us": ""},
+									{"ut": ""},
+									{"st": ""},
+									{"pus": ""},
+									{"put": ""},
+									{"ust": ""},
+									{"pust": ""}
+							}
+
+						]
+
+					}
+						]
+					}
+
+				]
+
+			},
+			{
+				"id":"1",
 				"title":"Comércio Externo",
 				"desc":"Demonstra o valor de absoluto dos setores culturais por estratificação proposta.",
 				"desc_var_mapa": "A variável mostra o valor transacionado com o resto do mundo, caracterizando quanto, em termos monetários, os setores culturais e criativos contribuíram para o comércio internacional do Brasil. Desagregação para bens e serviços.",

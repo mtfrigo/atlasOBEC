@@ -2104,8 +2104,6 @@ $(document).ready(function(){
                 url['deg'] = $(".bread-select[data-id=deg]").val()
             /* controla relações entre filtros */
             
-            /* muda o select das opções para o mesmo do bread */
-            $(".opt-select[data-id="+$(this).attr('data-id')+"]").val($(this).val());
             if($(this).attr("data-id") == "prc"){
                 document.getElementById('view_box').contentWindow.location.reload(true);
                 $(window.document).find(".prc-title").first().html(this.options[e.target.selectedIndex].text);
@@ -2114,13 +2112,7 @@ $(document).ready(function(){
             //quando muda a variável, é preciso trocar a UF para 'Brasil'
             
             if($(this).attr('data-id') =='var'){
-                if(eixo_atual == 2 && url['var'] == 17){
-                    $(".font-title").css("display", "none")
-                    $(".value-info-title").css("display", "block")
-                } else {
-                    $(".font-title").css("display", "block")
-                    $(".value-info-title").css("display", "none")
-                }
+
                 $('.percent-value').find(".box-dado").find('.number').first().text("")
                 changeDescVar();
                 cleanDesagsUrl();
@@ -2167,7 +2159,9 @@ $(document).ready(function(){
                 if(eixo_atual == 2){
                     updateDefaultMec(url['var']);
 
-                    if(url['var'] == 18 || url['var'] == 19)
+                    var varSemBotaoSLC = [18, 19]
+
+                    if(varSemBotaoSLC.indexOf[url['var']] != -1)
                         $("#btn-opt").find(".col-btn").css("display", "block")
                     else
                         $("#btn-opt").find(".col-btn").css("display", "none")

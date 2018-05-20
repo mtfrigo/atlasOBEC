@@ -2703,8 +2703,9 @@ function updateOcupacoes(vrv){
 		case '8':
 		case '9':
 		case '10':
-		case '11': $('#ocupacao').css('display', 'none'); break;
-		default: $('#ocupacao').css('display', 'inline');
+		case '11': $('#ocupacao').css('display', 'none')
+                   $('#setor').css('display', 'none'); break;
+		default: $('#ocupacao').css('display', 'inline'); $('#setor').css('display', 'inline');
 	}
 }
 
