@@ -940,9 +940,9 @@ else {
             if (error) throw error;
 
             textJSON = data;
-            $.get("./db/json_barras.php" + config, function(data){
-                  console.log(data)
-           })
+           //  $.get("./db/json_barras.php" + config, function(data){
+           //        console.log(data)
+           // })
             d3.queue()
                 .defer(d3.json, "./db/json_barras.php" + config)
                 .await(analyze_eixo1);
@@ -1073,6 +1073,7 @@ else {
         if (error) {
             console.log(error);
         }
+
         desag = selectDesag()
         if((vrv == 6 || vrv == 4) && eixo == 1){
             aux = []
@@ -1114,15 +1115,23 @@ else {
 
         var parse = d3.time.format("%Y").parse;
         var dados = desagregacao_names().map(function (fruit) {
+            console.log(fruit)
             return data.map(function (d) {
+                // console.log(d)
+                // console.log(fruit)
+                // console.log({x: parse(d.year), y: +d[fruit]})
                 return {x: parse(d.year), y: +d[fruit]};
             });
         });
 
         // console.log(data)
+        // console.log(dados)
+
+        // console.log(data)
 
         // Transpose the data into layers
         var dataset = d3.layout.stack()(dados);
+
 
         // console.log(dataset)
 

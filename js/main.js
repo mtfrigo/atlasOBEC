@@ -1067,6 +1067,8 @@ function loadMobile(){
         tdiv1.addClass("replaced");
     }
 
+    $('.bread-eixo[data-id=eixo]').val(window.location.hash.substring(1))
+
 
 }
 
@@ -1244,7 +1246,8 @@ function expandMenuVariaveis(a) {
 }
 
 function updateUrl() {
-    var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
+    var eixo_atual = getEixo(window.location.hash.substring(1))
+
     $('.bread-select').each(function() {
 
         if(eixo_atual == 2 && url['var'] == 18 && $(this).attr('data-id') == 'mec')
@@ -1984,6 +1987,8 @@ $(document).ready(function(){
 
         if($(this).attr("data-id") !== "eixo") {
             var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
+            var eixo_atual = getEixo(window.location.hash.substring(1));
+
             // updateUrl();
                             
 
@@ -2075,13 +2080,13 @@ $(document).ready(function(){
 
     $(document).on('change', ".bread-select", function(e){
 
+
         if($(this).attr("data-id") !== "eixo") {
 
-            var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
+            // var eixo_atual = $('.bread-eixo[data-id="eixo"]').prop('selectedIndex');
+            var eixo_atual = getEixo(window.location.hash.substring(1));
 
             updateUrl();
-
-
 
             if($(this).attr("data-id") === "typ") {
                 if($(this).val() == 3 && (url['var'] == 1 || url['var'] == 13) )
@@ -2090,11 +2095,19 @@ $(document).ready(function(){
                     $(window.document).find(".percent-value").find(".box-dado").first().css("display", "block")
             }
 
+
+
             if($(this).attr("data-id") == "deg" && eixo_atual == 1){
-                if($(this).find('option:selected').parent().attr("value") != undefined)
+                console.log("kakakak")
+
+                if($(this).find('option:selected').parent().attr("value") != undefined){
                     deg_value =  $(this).find('option:selected').parent().attr("value")
-                else
+
+                }
+                else{
                     deg_value = $(this).val()
+
+                }
                 controlFilter(deg_value, $(this).attr('data-id'), $(this).val());
 
                 if(url['var'] == 4 || url['var'] == 5)
