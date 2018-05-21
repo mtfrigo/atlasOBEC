@@ -205,7 +205,7 @@ function updateDescription(descricoes, eixo, vrv, slc){
             var desc_int = ''
             var desc_perc = ''
             var desc_terc = ''
-            console.log(key)
+            
             nomeestado = getPrepos(uf_text)+' '+uf_text
             if("primeira" in desc_var.slc[slc]){
                 desc_var.slc[slc].primeira.forEach(function(d){

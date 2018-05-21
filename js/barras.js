@@ -822,10 +822,12 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
         if(!(eixo == 1 && vrv == 6 && uos == 1) && !(eixo == 2 && (vrv == 18 || vrv == 19) && uos == 1))
             configInfoDataBoxBarras(eixo, vrv, dados, valor);         
 
-        if(eixo != 3)
-            updateDescription(descricoes, eixo, vrv, ocp);
-        else
+        if(eixo == 2 && (vrv == 18 || vrv == 19))
+            updateDescription(descricoes, eixo, vrv, mec);
+        else if(eixo == 3)
             updateDescription(descricoes, eixo, vrv, mundo);
+        else
+            updateDescription(descricoes, eixo, vrv, ocp);
 
         if(url['slc'] == 1){
             updateDataDesc()
@@ -1304,10 +1306,12 @@ else {
         if(eixo == 0) setStateTitle(function(){if(data[dados.key[0]].uf == "Todos") return "Brasil"; else return data[dados.key[0]].uf});
         // console.log(eixo)
         // console.log(dados)
-        if(eixo != 3)
-            updateDescription(descricoes, eixo, vrv, ocp);
-        else
+        if(eixo == 2 && (vrv == 18 || vrv == 19))
+            updateDescription(descricoes, eixo, vrv, mec);
+        else if(eixo == 3)
             updateDescription(descricoes, eixo, vrv, mundo);
+        else
+            updateDescription(descricoes, eixo, vrv, ocp);
 
     }
 
