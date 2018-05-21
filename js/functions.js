@@ -100,11 +100,16 @@ function updateDescription(descricoes, eixo, vrv, slc){
             key += 'm'
         }    
     } else {
+        if(cad > 0){
+            nomecad = "PELO SETOR "+cad_text;
+        } else {
+            nomecad = "PELOS SETORES CULTURAIS E CRIATIVOS"
+        }
         switch(typ){
-            case 1: key = 'e'; break;
-            case 2: key = 'i'; break;
-            case 3: key = 's'; break;
-            case 4: key = 'c'; break;
+            case '1': key = 'e'; break;
+            case '2': key = 'i'; break;
+            case '3': key = 's'; break;
+            case '4': key = 'c'; break;
         }
     }
 
@@ -160,22 +165,22 @@ function updateDescription(descricoes, eixo, vrv, slc){
             nomeestado = getPrepos(uf_text)+' '+uf_text
             var deg = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").parent().attr("value");
 
-            if("primeira" in desc_var.ocp[ocp]){
-                desc_var.ocp[ocp].primeira.forEach(function(d){
+            if("primeira" in desc_var.ocp[slc]){
+                desc_var.ocp[slc].primeira.forEach(function(d){
                     if(key in d){
                         desc_int = d[key]; return;
                     }
                 }) 
             }
-            if("segunda" in desc_var.ocp[ocp]){
-                desc_var.ocp[ocp].segunda.forEach(function(d){
+            if("segunda" in desc_var.ocp[slc]){
+                desc_var.ocp[slc].segunda.forEach(function(d){
                     if(key in d){
                         desc_perc = d[key]; return;
                     }
                 }) 
             }
-            if("terceira" in desc_var.ocp[ocp]){
-                desc_var.ocp[ocp].terceira.forEach(function(d){
+            if("terceira" in desc_var.ocp[slc]){
+                desc_var.ocp[slc].terceira.forEach(function(d){
                     if(key in d){
                         desc_terc = d[key]; return;
                     }
@@ -220,15 +225,54 @@ function updateDescription(descricoes, eixo, vrv, slc){
             }
             
             desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', nomecad)
-            desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[deg]', nomeporte)
-            desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[deg]', nomeporte)
+            desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', nomecad)
+            desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', nomecad)
 
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
             $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
             $(window.parent.document).find('.percent-value').find('.setor-value').first().find('description-number').text(desc_terc) 
             break;
+        case 3:
+            var desc_int = ''
+            var desc_perc = ''
+            var desc_terc = ''
+            alert(key)
+            prc_text = $(window.parent.document).find('.bread-select[data-id=prc] option:selected').first().text()
+            nomeestado = getPrepos(uf_text)+' '+uf_text
+            nomeprc = getPrepos(prc_text)+' '+prc_text
+            
+            if("primeira" in desc_var.slc[slc]){
+                desc_var.slc[slc].primeira.forEach(function(d){
+                    if(key in d){
+                        desc_int = d[key]; return;
+                    }
+                }) 
+            }
+            if("segunda" in desc_var.slc[slc]){
+                desc_var.slc[slc].segunda.forEach(function(d){
+                    if(key in d){
+                        desc_perc = d[key]; return;
+                    }
+                }) 
+            }
+            if("terceira" in desc_var.slc[slc]){
+                desc_var.slc[slc].terceira.forEach(function(d){
+                    if(key in d){
+                        desc_terc = d[key]; return;
+                    }
+                }) 
+            }
+            
+            desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[prc]', nomeprc)
+            desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[prc]', nomeprc)
+            desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[prc]', nomeprc)
+            alert(desc_int)
+
+            $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
+            $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
+            $(window.parent.document).find('.percent-value').find('.setor-value').first().find('description-number').text(desc_terc) 
+            break; 
             break;
-        case 3: break;
     }
 }
 
