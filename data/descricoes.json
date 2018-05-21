@@ -1184,358 +1184,295 @@
 		[
 			{
 				"id":"1",
-				"mundo": [
-					{
-						"slc": [
+				"slc": [
 							{
 								"primeira":[
-									{"": ""},
-									{"p": ""},
-									{"u": ""},
-									{"s": ""},
-									{"t": ""},
-									{"pu": ""},
-									{"ps": ""},
-									{"pt": ""},
-									{"us": ""},
-									{"ut": ""},
-									{"st": ""},
-									{"pus": ""},
-									{"put": ""},
-									{"ust": ""},
-									{"pust": ""}
+									{"e": "de valor exportado [uf] para [prc] [cad]"},
+									{"i": "de valor importado [prc] para [uf] [cad]"},
+									{"s": "de saldo comercial entre [uf] e [prc]"},
+									{"c": "de corrente de comércio [uf] e [prc]"}
 								],
 								"segunda":[
-									{"": ""},
-									{"p": ""},
-									{"u": ""},
+									{"e": "do valor exportado [uf]"},
+									{"i": "do valor importado [uf]"},
 									{"s": ""},
-									{"t": ""},
-									{"pu": ""},
-									{"ps": ""},
-									{"pt": ""},
-									{"us": ""},
-									{"ut": ""},
-									{"st": ""},
-									{"pus": ""},
-									{"put": ""},
-									{"ust": ""},
-									{"pust": ""}
+									{"c": "da corrente de comércio entre [uf] e [prc]"}
 								]
 							},
 							{
 								"primeira":[
-									{"": ""},
-									{"p": ""},
-									{"u": ""},
+									{"e": ""},
+									{"i": ""},
 									{"s": ""},
-									{"t": ""},
-									{"pu": ""},
-									{"ps": ""},
-									{"pt": ""},
-									{"us": ""},
-									{"ut": ""},
-									{"st": ""},
-									{"pus": ""},
-									{"put": ""},
-									{"ust": ""},
-									{"pust": ""}
+									{"c": ""}
 								],
 								"segunda":[
-									{"": ""},
-									{"p": ""},
-									{"u": ""},
+									{"e": ""},
+									{"i": ""},
 									{"s": ""},
-									{"t": ""},
-									{"pu": ""},
-									{"ps": ""},
-									{"pt": ""},
-									{"us": ""},
-									{"ut": ""},
-									{"st": ""},
-									{"pus": ""},
-									{"put": ""},
-									{"ust": ""},
-									{"pust": ""}
+									{"c": ""}
+								]
 							}
 
 						]
 
-					}
-						]
-					}
-
-				]
-
-			},
-			{
-				"id":"1",
-				"title":"Comércio Externo",
-				"desc":"Demonstra o valor de absoluto dos setores culturais por estratificação proposta.",
-				"desc_var_mapa": "A variável mostra o valor transacionado com o resto do mundo, caracterizando quanto, em termos monetários, os setores culturais e criativos contribuíram para o comércio internacional do Brasil. Desagregação para bens e serviços.",
-				"desc_int": "DE <> [uf] [] ()",
-				"fontes": "MDIC. ",
-				"desc_percent":"DO VALOR <> [uf] [] [cad]",
-				"sufixo_valor":"",
-				"prefixo_valor":"R$ ",
-				"type":[
-					{"name":"Mapa", "id":"mapa"},
-					{"name":"Treemap", "id":"treemap_region"},
-					{"name":"Treemap SCC", "id":"treemap_scc"},
-					{"name":"Barras", "id":"barras"}
-				],
-				"mapa":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo", "id": "typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_region":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_scc":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"barras":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"}
-				],
-				"inativos":{
-					"mapa":["prt","uf"], "treemap_region":["uf"], "treemap_scc":["cad"],"barras":["ano"]
-				}
 			},
 			{
 				"id":"2",
-				"title":"Participação no comércio exterior total",
-				"desc":"Demonstra a relação do comércio exterior nacional cultural com o comércio exterior brasileiro por estratificação proposta.",
-				"desc_var_mapa": "A variável calcula a participação das trocas comerciais dos setores culturais e criativos no comércio internacional total do Brasil. Desagregação para bens e serviços. ",
-				"desc_int": "de participação no <> [uf] [] ()",
-				"fontes": "Elaboração do NECCULT com base no MDIC. ",
-				"desc_percent":"",
-				"sufixo_valor":"%",
-				"prefixo_valor":"",
-				"type":[
-					{"name":"Mapa", "id":"mapa"},
-					{"name":"Treemap", "id":"treemap_region"},
-					{"name":"Treemap SCC", "id":"treemap_scc"},
-					{"name":"Barras", "id":"barras"}
-				],
-				"mapa":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo", "id": "typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_region":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_scc":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"barras":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"}
-				],
-				"inativos":{
-					"mapa":["prt","uf"], "treemap_region":["uf"], "treemap_scc":["cad"],"barras":["ano"]
-				}
+				"slc": [
+							{
+								"primeira":[
+									{"e": "de participação no valor exportado [uf] para [prc] [cad]"},
+									{"i": "de participação no valor importado[prc] para [uf] [cad]"},
+									{"c": "de participação na corrente de comércio [uf] com [prc] [cad]"}
+								],
+								"segunda":[
+									{"e": ""},
+									{"i": ""},
+									{"c": ""}
+								]
+							},
+							{
+								"primeira":[
+									{"e": ""},
+									{"i": ""},
+									{"c": ""}
+								],
+								"segunda":[
+									{"e": ""},
+									{"i": ""},
+									{"c": ""}
+								]
+							}
+
+						]
+
 			},
 			{
 				"id":"3",
-				"title":"Relação com o valor adicionado pela cultura",
-				"desc":"Demonstra a relação do comércio exterior nacional cultural com o valor adicionado pela cultura por estratificação proposta.",
-				"desc_var_mapa": "A variável mede a relação entre o comércio exterior dos setores culturais e criativos e o valor adicionado pelas empresas culturais e criativas formais. Desagregação para bens e serviços.",
-				"desc_int": " de participação do <> [uf] [] () no valor adicionado",
-				"desc_percent":"",
-				"sufixo_valor":"%",
-				"prefixo_valor":"",
-				"fontes":"Elaboração do NECCULT com base no MDIC.",
-				"type":[
-					{"name":"Mapa", "id":"mapa"},
-					{"name":"Treemap", "id":"treemap_region"},
-					{"name":"Treemap SCC", "id":"treemap_scc"},
-					{"name":"Barras", "id":"barras"}
-				],
-				"mapa":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo", "id": "typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_region":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_scc":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"barras":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"}
-				],
-				"inativos":{
-					"mapa":["prt","uf"],"barras":["ano"]
-				}
+				"slc": [
+							{
+								"primeira":[
+									{"e": "de participação do valor exportado [prc] para [uf] [cad] no valor adicionado"},
+									{"i": "de participação do valor importado [prc] para [uf] [cad] no valor adicionado"},
+									{"c": "da corrente de comércio [uf] com [prc] [cad] no valor adicionado"}
+								],
+								"segunda":[
+									{"e": ""},
+									{"i": ""},
+									{"c": ""}
+								]
+							},
+							{
+								"primeira":[
+									{"e": "de participação do valor exportado [prc] para [uf] [cad] no valor adicionado"},
+									{"i": "de participação do valor importado [prc] para [uf] [cad] no valor adicionado"},
+									{"c": "da corrente de comércio [uf] com [prc] [cad] no valor adicionado"}
+								],
+								"segunda":[
+									{"e": ""},
+									{"i": ""},
+									{"c": ""}
+								]
+							}
+
+						]
+
 			},
 			{
 				"id":"5",
-				"title":"Razões de concentração (C2/C4) do comércio externo",
-				"desc":"Demonstra a relação do comércio exterior nacional cultural com o comércio global por estratificação proposta.",
-				"desc_var_mapa": "A variável mede o grau de concentração do comércio externo cultural com os dois maiores parceiros comerciais, dos quatro maiores setores culturais e criativos, e das quatro maiores unidades da federação, definidos em termos de participação relativa nas trocas internacionais, em cada período. Por exemplo, para 2017 o C2 das exportações de bens para os dois maiores parceiros foi de 0,77 ou 77%, com a América do Norte participando com cerca de 0,53 ou 53% e a Europa com cerca de 0,23 ou 23%. Em 2016 o C4 das importações de serviços dos quatro maiores setores foi de 0,966 ou 97%, Audiovisual participando com 61,8%, Cultura Digital com 26%, Arquitetura e Design com 6,2% e Editorial com 2,6%. Finalmente, em 2017 o C4 das importações de bens para as quatro maiores Unidades da Federação foi de 0,894 ou 89%. SP participou com 65%, SC com 15%, AM com 6,2% e ES com 3,2%. Houve portanto forte concentração internacional, setorial e regional. Desagregação para bens e serviços e por variável de comércio externo.",
-				"desc_int": "C2 VALOR ABSOLUTO POR PARCEIROS",
-				"desc_percent":"C4 VALOR ABSOLUTO POR UF",
-				"sufixo_valor":"",
-				"prefixo_valor":"",
-				"fontes":"Elaboração do NECCULT com base no MDIC.",
-				"type":[
-					{"name":"Mapa", "id":"mapa"},
-					{"name":"Treemap", "id":"treemap_region"},
-					{"name":"Treemap SCC", "id":"treemap_scc"},
-					{"name":"Barras", "id":"barras"}
-				],
-				"mapa":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo", "id": "typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_region":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_scc":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"barras":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"}
-				],
-				"inativos":{
-					"mapa":["prt","uf","atc"],"treemap_region":["uf","prt"], "treemap_scc":["cad","prt"],"barras":["ano","prt"]
-				}
+				"slc": [
+							{
+								"primeira":[
+									{"e": ""},
+									{"i": ""},
+									{"s": ""},
+									{"c": ""}
+								],
+								"segunda":[
+									{"e": ""},
+									{"i": ""},
+									{"s": ""},
+									{"c": ""}
+								]
+							},
+							{
+								"primeira":[
+									{"e": ""},
+									{"i": ""},
+									{"s": ""},
+									{"c": ""}
+								],
+								"segunda":[
+									{"e": ""},
+									{"i": ""},
+									{"s": ""},
+									{"c": ""}
+								]
+							}
+
+						]
+
 			},
 			{
 				"id":"8",
-				"title":"IHH (Índice Herfindahl-Hirschman) de concentração do comércio externo",
-				"desc":"Demonstra a relação do comércio exterior nacional cultural com o produto interno bruto por estratificação proposta.",
-				"desc_var_mapa": "A variável calcula o grau de concentração do comércio externo cultural em relação aos parceiros comerciais, aos setores culturais e criativos como um todo e às Unidades da Federação. O índice varia entre 0 e 1 e, quanto mais próximo de 1, mais concentradas são as transações internacionais em termos da distribuição geográfica, setorial ou regional das trocas. Por exemplo, se houver poucos parceiros comerciais, setores culturais e criativos ou Unidades da Federação com elevada participação nas transações culturais externas do País, haverá concentração geográfica, setorial ou regional, e o IHH será alto. Desagregação para bens e serviços.",
-				"fontes": "Elaboração NECCULT, com base nos dados do MDIC.",
-				"desc_int": "IHH VALOR ABSOLUTO POR PARCEIROS",
-				"desc_percent":"IHH VALOR ABSOLUTO POR UF",
-				"sufixo_valor":"",
-				"prefixo_valor":"",
-				"type":[
-					{"name":"Mapa", "id":"mapa"},
-					{"name":"Treemap", "id":"treemap_region"},
-					{"name":"Treemap SCC", "id":"treemap_scc"},
-					{"name":"Barras", "id":"barras"}
-				],
-				"mapa":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo", "id": "typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_region":[
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"treemap_scc":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Tipo","id":"typ"},
-					{"name":"Ano","id":"ano"}
-				],
-				"barras":[
-					{"name":"Parceiro","id":"prc"},
-					{"name":"Setor","id":"cad"},
-					{"name":"Tipo","id":"typ"}
-				],
-				"inativos":{
-					"mapa":["prt","uf","atc"],"treemap_region":["uf","prt"], "treemap_scc":["cad","prt"],"barras":["ano","prt"]
-				}
+				"slc": [
+							{
+								"primeira":[
+									{"e": "IHH VALOR ABSOLUTO POR PARCEIROS"},
+									{"i": "IHH VALOR ABSOLUTO POR PARCEIROS"},
+									{"s": "IHH VALOR ABSOLUTO POR PARCEIROS"},
+									{"c": "IHH VALOR ABSOLUTO POR PARCEIROS"}
+								],
+								"segunda":[
+									{"e": "IHH VALOR ABSOLUTO POR UF"},
+									{"i": "IHH VALOR ABSOLUTO POR UF"},
+									{"s": "IHH VALOR ABSOLUTO POR UF"},
+									{"c": "IHH VALOR ABSOLUTO POR UF"}
+								],
+								"terceira":[
+									{"e": "IHH VALOR ABSOLUTO POR SETOR"},
+									{"i": "IHH VALOR ABSOLUTO POR SETOR"},
+									{"s": "IHH VALOR ABSOLUTO POR SETOR"},
+									{"c": "IHH VALOR ABSOLUTO POR SETOR"}
+								]
+							},
+							{
+								"primeira":[
+									{"e": ""},
+									{"i": ""},
+									{"s": ""},
+									{"c": ""}
+								],
+								"segunda":[
+									{"e": ""},
+									{"i": ""},
+									{"s": ""},
+									{"c": ""}
+								],
+								"terceira":[
+									{"e": ""},
+									{"i": ""},
+									{"s": ""},
+									{"c": ""}
+								]
+							}
+
+						]
+
 			},
 			{
 				"id":"11",
-				"title":"Índice de quantum do comércio externo",
-				"desc_int": "Índice de quantum do valor absoluto <>",
-				"desc_percent":"",
-				"desc":"Demonsta o quão concentrado é o comércio exterior nacional cultural por estratificação proposta.",
-				"desc_var_mapa": "A variável mensura o comércio cultural externo desagregado em termos de quantidades. Variável apresentada apenas para bens. ",
-				"fontes":"Elaboração do NECCULT com base no MDIC.",
-				"sufixo_valor":"",
-				"prefixo_valor":"",
-				"type":[
-					{"name":"Barras", "id":"barras"}
-				],
-				"barras":[
-					{"name":"Tipo","id":"typ"}
-				]
+				"slc": [
+							{
+								"primeira":[
+									{"e": "índice de quantum do valor absoluto das exportações"},
+									{"i": "índice de quantum do valor absoluto das importações"}
+								],
+								"segunda":[
+									{"e": ""},
+									{"i": ""}
+								]
+							},
+							{
+								"primeira":[
+									{"e": "índice de quantum do valor absoluto das exportações"},
+									{"i": "índice de quantum do valor absoluto das importações"}
+								],
+								"segunda":[
+									{"e": ""},
+									{"i": ""}
+								]
+							}
+
+						]
+
 			},
 			{
 				"id":"12",
-				"title":"Índice de preços do comércio externo",
-				"desc_int": "índice de preços do valor absoluto das <>",
-				"desc_percent":"",
-				"desc":"Demonstra se há ou não vantagem comparativa nas exportações do comércio exterior nacional cultural por estratificação proposta.",
-				"desc_var_mapa": "A variável mostra a relação entre o índice de preços das exportações, corrigido pela taxa de câmbio, e uma aproximação do índice de custos das exportações setoriais estimado pela FUNCEX. Variável apresentada apenas para bens, sendo 2009 o ano base (índice = 100).",
-				"fontes":"Elaboração do NECCULT com base no MDIC.",
-				"sufixo_valor":"",
-				"prefixo_valor":"",
-				"type":[
-					{"name":"Barras", "id":"barras"}
-				],
-				"barras":[
-					{"name":"Setor","id":"cad"}
-				]
+				"slc": [
+							{
+								"primeira":[
+									{"e": "índice de preços do valor absoluto das exportações"},
+									{"i": "índice de preços do valor absoluto das importações"}
+								],
+								"segunda":[
+									{"e": ""},
+									{"i": ""}
+								]
+							},
+							{
+								"primeira":[
+									{"e": "índice de preços do valor absoluto das exportações"},
+									{"i": "índice de preços do valor absoluto das importações"}
+								],
+								"segunda":[
+									{"e": ""},
+									{"i": ""}
+								]
+							}
+
+						]
+
 			},
 			{
 				"id":"13",
-				"title":"Quantidade física transacionada",
-				"desc_int": "<> [uf] [] ()",
-				"desc_percent":"dos kg <> [uf] []",
-				"desc":"Demonstra se há ou não vantagem comparativa nas exportações do comércio exterior nacional cultural por estratificação proposta.",
-				"desc_var_mapa": "A variável calcula a quantidade física, em kg, transacionada pelos setores culturais e criativos. Variável apresentada apenas para bens.",
-				"fontes":"MDIC.",
-				"sufixo_valor":" kg",
-				"prefixo_valor":"",
-				"type":[
-					{"name":"Barras", "id":"barras"}
-				],
-				"barras":[
-					{"name":"Setor","id":"cad"}
-				]
+				"slc": [
+							{
+								"primeira":[
+									{"e": "exportados [uf] para [prc] [cad]"},
+									{"i": "importados [prc] para [uf] [cad]"},
+									{"s": "de saldo comercial entre [uf] e [prc] [cad]"},
+									{"c": "de corrente de comércio [uf] com [prc] [cad]"}
+								],
+								"segunda":[
+									{"e": "dos kg exportados [uf]"},
+									{"i": "dos kg importados para [uf]"},
+									{"s": ""},
+									{"c": "dos kg transacionados entre [uf] e [prc] [cad]"}
+								]
+							},
+							{
+								"primeira":[
+									{"e": ""},
+									{"i": ""},
+									{"s": ""},
+									{"c": ""}
+								],
+								"segunda":[
+									{"e": ""},
+									{"i": ""},
+									{"s": ""},
+									{"c": ""}
+								]
+							}
+
+						]
+
 			},
 			{
 				"id":"14",
-				"title":"Índice de rentabilidade das exportações",
-				"desc":"A variável mostra a relação entre o índice de preços das exportações, corrigido pela taxa de câmbio, e uma aproximação do índice de custos das exportações setoriais estimado pela FUNCEX. Variável apresentada apenas para bens, sendo 2009 o ano base (índice = 100).",
-				"desc_int": "DE RENTABILIDADE <> ()",
-				"desc_percent":"",
-				"desc_var_mapa": "A variável calcula o comércio cultural externo desagregado em termos de preços. Variável apresentada apenas para bens. Ano de 2007 = 100.",
-				"fontes":"Elaboração do NECCULT com base no MDIC, FUNCEX e BIS.",
-				"sufixo_valor":"",
-				"prefixo_valor":"",
-				"type":[
-					{"name":"Barras", "id":"barras"}
-				],
-				"barras":[
-					{"name":"Setor","id":"cad"}
-				]
-			}
+				"slc": [
+							{
+								"primeira":[
+									{"e": "DE RENTABILIDADE DAS EXPORTAÇÕES [cad]"}
+								],
+								"segunda":[
+									{"e": ""}
+								]
+							},
+							{
+								"primeira":[
+									{"e": "DE RENTABILIDADE DAS EXPORTAÇÕES [cad]"}
+								],
+								"segunda":[
+									{"e": ""}
+								]
+							}
+
+						]
+
+			},
 
 		]
 	]
