@@ -231,11 +231,11 @@ function updateDescription(descricoes, eixo, vrv, slc){
             
             desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', cad_text)
                                .replace('[pfj]', pfj_text).replace('[mod]', mod_text)
-                               .replace('{uf}', nomeestado).replace('[mec]', mec_text)
+                               .replace('{uf}', nomeestado).replace('[mec]', "via "+mec_text)
             desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', cad_text)
                                 .replace('[uf]', nomeestado).replace('[cad]', cad_text)
                                 .replace('[pfj]', pfj_text).replace('[mod]', mod_text)
-                                .replace('{uf}', nomeestado).replace('[mec]', mec_text)
+                                .replace('{uf}', nomeestado).replace('[mec]', "via "+mec_text)
             
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
             $(window.parent.document).find('.percent-value').find('.box-dado').first().find('.description-number').text(desc_perc)
