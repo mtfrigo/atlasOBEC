@@ -3,7 +3,10 @@ var chartWidth = $('.chart').width();
 var chartHeight = $('.chart').height();
 var minBarHeight = 5;
 var withLabels = false;
-
+d3.json('./data/descricoes.json', function (error, desc){
+    if (error) throw error;
+    descricoes = desc;
+})
 function getSoma(barraId) {
     var soma = 0;
     $("rect").each(function() {
@@ -74,10 +77,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
     var textJSON;
     var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo + "&deg=" +deg + "&ano=" +ano;
     var brasil_setor = []
-    d3.json('./data/descricoes.json', function (error, desc){
-        if (error) throw error;
-        descricoes = desc;
-    })
+    
     $.get('./db/total_setor.php' + "?var=" + vrv+"&cad="+cad+"&eixo="+eixo+"&prt="+prt, function(dado){
         brasil_setor = JSON.parse(dado)
     })
@@ -952,7 +952,7 @@ else {
 
     });
     // return matching color value
-
+    
     function color_eixo1() {
         if(ocp == 0) {
             if (colorJSON.cadeias[cad]) {
@@ -1134,8 +1134,7 @@ else {
         // Transpose the data into layers
         var dataset = d3.layout.stack()(dados);
 
-
-        // console.log(dataset)
+        
 
         // Set x, y and colors
         var x_eixo1 = d3.scale.ordinal()
@@ -1321,6 +1320,7 @@ else {
             updateDescription(descricoes, eixo, vrv, mundo);
         else
             updateDescription(descricoes, eixo, vrv, ocp);
+        // console.log(dataset)
 
     }
 
