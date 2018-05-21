@@ -122,7 +122,7 @@
 					{"u": ""},
 					{"s": ""},
 					{"d": ""},
-					{"us": "DO TOTAL DE RECEITA OPERACIONAL LÍQUIDA DAS EMPRESAS DO SETOR CULTURA DIGITAL DO BRASIL"},
+					{"us": "DO TOTAL DE RECEITA OPERACIONAL LÍQUIDA DAS EMPRESAS DO SETOR [cad] DO BRASIL"},
 					{"ud": ""},
 					{"sd": ""},
 					{"usd": ""}
@@ -188,7 +188,7 @@
 					{"u": ""},
 					{"s": ""},
 					{"d": ""},
-					{"us": "DO TOTAL DE LUCRO DAS EMPRESAS [cad] DO BRASIL"},
+					{"us": "DO TOTAL DE LUCRO DAS EMPRESAS DO SETOR [cad] DO BRASIL"},
 					{"ud": ""},
 					{"sd": ""},
 					{"usd": ""}
@@ -385,7 +385,7 @@
 							{"u": "OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS [uf]"},
 							{"s": "OCUPADOS [cad] NO BRASIL"},
 							{"d": "OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS [deg] DO BRASIL"},
-							{"us": "OCUPADOS [cad] [uf"},
+							{"us": "OCUPADOS [cad] [uf]"},
 							{"ud": "OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS [deg] DO BRASIL"},
 							{"sd": "OCUPADOS [cad] [deg] NO BRASIL"},
 							{"usd": "OCUPADOS [cad] [deg] [uf]"}
@@ -398,17 +398,17 @@
 							{"us": "DO TOTAL DE OCUPADOS [cad] NO BRASIL"},
 							{"ud": "DO TOTAL DE OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS DO BRASIL"},
 							{"sd": "DO TOTAL DE OCUPADOS [cad] NO BRASIL"},
-							{"usd": "DO TOTAL DE OCUPADOS [cad] [uf]"}
+							{"usd": "DO TOTAL DE OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS [uf]"}
 						],
 						"terceira":[
 							{"": ""},
 							{"u": ""},
 							{"s": ""},
 							{"d": ""},
-							{"us": "DO TOTAL DE OCUPADOS DOS SETORES CULTURAIS E CRIATIVOS DO BRASIL"},
+							{"us": "DO TOTAL DE OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS DO BRASIL"},
 							{"ud": ""},
 							{"sd": ""},
-							{"usd": ""}
+							{"usd": "DO TOTAL DE OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS DO BRASIL"}
 						]
 					}
 
@@ -459,6 +459,16 @@
 							{"ud": "DE PARTICIPAÇÃO DOS OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS NO MERCADO DE TRABALHO"},
 							{"sd": "DE PARTICIPAÇÃO DOS OCUPADOS [cad] NO MERCADO DE TRABALHO"},
 							{"usd": "DE PARTICIPAÇÃO DOS OCUPADOS [cad] NO MERCADO DE TRABALHO"}
+						],
+						"segunda":[
+							{"": ""},
+							{"u": ""},
+							{"s": ""},
+							{"d": ""},
+							{"us": ""},
+							{"ud": ""},
+							{"sd": ""},
+							{"usd": ""}
 						]
 					}
 
@@ -472,11 +482,21 @@
 							{"": "DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES NOS SETORES CULTURAIS E CRIATIVOS DO BRASIL"},
 							{"u": "DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES NOS SETORES CULTURAIS E CRIATIVOS [uf]"},
 							{"s": "DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES NO SETOR ARTES CÊNICAS E ESPETÁCULOS NO BRASIL"},
-							{"d": "DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES NOS SETORES CULTURAIS E CRIATIVOS [deg] DO BRASIL"},
+							{"d": "DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES [deg] NOS SETORES CULTURAIS E CRIATIVOS DO BRASIL"},
 							{"us": "DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES NO SETOR [cad] [uf]"},
-							{"ud": "DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES NOS SETORES CULTURAIS E CRIATIVOS DE EMPRESAS [deg] [uf]"},
-							{"sd": "DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES NO SETOR [cad] [deg] NO BRASIL"},
-							{"usd": "DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES NO SETOR [cad] [deg] [uf]"}
+							{"ud": "DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES [deg] NOS SETORES CULTURAIS E CRIATIVOS DE EMPRESAS [uf]"},
+							{"sd": "DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES [deg] NO SETOR [cad] NO BRASIL"},
+							{"usd": "DE REMUNERAÇÃO MÉDIA DOS TRABALHADORES [deg] NO SETOR [cad] [uf]"}
+						],
+						"segunda":[
+							{"": ""},
+							{"u": ""},
+							{"s": ""},
+							{"d": ""},
+							{"us": ""},
+							{"ud": ""},
+							{"sd": ""},
+							{"usd": ""}
 						]
 					},
 					{
@@ -484,11 +504,11 @@
 							{"": ""},
 							{"u": ""},
 							{"s": "DE REMUNERAÇÃO MÉDIA DOS OCUPADOS [cad] NO BRASIL"},
-							{"d": ""},
+							{"d": "DE REMUNERAÇÃO MÉDIA DOS OCUPADOS [deg] [cad]  NO BRASIL"},
 							{"us": "DE REMUNERAÇÃO MÉDIA DOS OCUPADOS [cad] [uf]"},
-							{"ud": ""},
-							{"sd": "DE REMUNERAÇÃO MÉDIA DOS OCUPADOS [cad] [deg] NO BRASIL"},
-							{"usd": "DE REMUNERAÇÃO MÉDIA DOS OCUPADOS [cad] [deg] [uf]"}
+							{"ud": "DE REMUNERAÇÃO MÉDIA DOS OCUPADOS [deg] [cad] NO BRASIL"},
+							{"sd": "DE REMUNERAÇÃO MÉDIA DOS OCUPADOS [deg] [cad] NO BRASIL"},
+							{"usd": "DE REMUNERAÇÃO MÉDIA DOS OCUPADOS [deg] [cad] [uf]"}
 						],
 						"segunda":[
 							{"": ""},
@@ -1086,10 +1106,10 @@
 							{"": "RAZÃO ENTRE TOTAL FINANCIADO NO BRASIL E VALOR ADICIONADO PELOS SETORES CULTURAIS E CRIATIVOS NO BRASIL"},
 							{"u": "RAZÃO ENTRE TOTAL FINANCIADO {uf} E VALOR ADICIONADO PELOS SETORES CULTURAIS E CRIATIVOS [uf]"},
 							{"s": "RAZÃO ENTRE TOTAL FINANCIADO NO BRASIL PARA O SETOR  {cad} E VALOR ADICIONADO PELO SETOR [cad] NO BRASIL"},
-							{"m": "RAZÃO ENTRE TOTAL FINANCIADO NO BRASIL E VALOR ADICIONADO PELOS SETORES CULTURAIS E CRIATIVOS NO BRASIL"},
+							{"m": "RAZÃO ENTRE TOTAL FINANCIADO NO BRASIL E VALOR ADICIONADO PELOS SETORES CULTURAIS E CRIATIVOS NO BRASIL [mec]"},
 							{"us": "RAZÃO ENTRE TOTAL FINANCIADO {uf} PARA O SETOR {cad} E VALOR ADICIONADO PELO SETOR [cad] [uf]"},
-							{"um": "RAZÃO ENTRE TOTAL FINANCIADO {uf} E VALOR ADICIONADO PELOS SETORES CULTURAIS E CRIATIVOS [uf]"},
-							{"usm": "RAZÃO ENTRE TOTAL FINANCIADO {uf} PARA O SETOR {cad} E VALOR ADICIONADO PELO SETOR [cad] [uf]"}
+							{"um": "RAZÃO ENTRE TOTAL FINANCIADO {uf} E VALOR ADICIONADO PELOS SETORES CULTURAIS E CRIATIVOS [uf] [mec]"},
+							{"usm": "RAZÃO ENTRE TOTAL FINANCIADO {uf} PARA O SETOR {cad} E VALOR ADICIONADO PELO SETOR [cad] [uf] [mec]"}
 						]
 					}
 				]
@@ -1102,11 +1122,11 @@
 							{"": "RAZÃO ENTRE TOTAL FINANCIADO NO BRASIL E MASSA SALARIAL DOS TRABALHADORES CULTURAIS NO BRASIL"},
 							{"u": "RAZÃO ENTRE TOTAL FINANCIADO {uf} E MASSA SALARIAL DOS TRABALHADORES CULTURAIS [uf]"},
 							{"s": "RAZÃO ENTRE TOTAL FINANCIADO NO BRASIL PARA O SETOR {cad} E MASSA SALARIAL DOS TRABALHADORES CULTURAIS PELO SETOR [cad] NO BRASIL"},
-							{"m": "RAZÃO ENTRE TOTAL FINANCIADO NO BRASIL E MASSA SALARIAL DOS TRABALHADORES CULTURAIS NO BRASIL"},
+							{"m": "RAZÃO ENTRE TOTAL FINANCIADO NO BRASIL E MASSA SALARIAL DOS TRABALHADORES CULTURAIS NO BRASIL [mec]"},
 							{"us": "RAZÃO ENTRE TOTAL FINANCIADO {uf} PARA O SETOR {cad} E MASSA SALARIAL DOS TRABALHADORES CULTURAIS PELO SETOR [cad] [uf]"},
 							{"um": "RAZÃO ENTRE TOTAL FINANCIADO {uf} E MASSA SALARIAL DOS TRABALHADORES CULTURAIS [cad]"},
-							{"sm": "RAZÃO ENTRE TOTAL FINANCIADO NO BRASIL PARA O SETOR {cad} E MASSA SALARIAL DOS TRABALHADORES CULTURAIS PELO SETOR [cad] NO BRASIL"},
-							{"usm": "RAZÃO ENTRE TOTAL FINANCIADO {uf} PARA O SETOR {cad} E MASSA SALARIAL DOS TRABALHADORES CULTURAIS PELO SETOR [cad] [uf]"}
+							{"sm": "RAZÃO ENTRE TOTAL FINANCIADO NO BRASIL PARA O SETOR {cad} E MASSA SALARIAL DOS TRABALHADORES CULTURAIS PELO SETOR [cad] NO BRASIL [mec]"},
+							{"usm": "RAZÃO ENTRE TOTAL FINANCIADO {uf} PARA O SETOR {cad} E MASSA SALARIAL DOS TRABALHADORES CULTURAIS PELO SETOR [cad] [uf] [mec]"}
 						]
 					}
 				]
@@ -1486,8 +1506,8 @@
 							},
 							{
 								"primeira":[
-									{"e": "exportados [uf] para [prc] [cad]"},
-									{"i": "importados [prc] para [uf] [cad]"},
+									{"e": "exportados do Brasil para [prc] [cad]"},
+									{"i": "importados [prc] para o Brasil [cad]"},
 									{"s": "de saldo comercial entre [uf] e [prc] [cad]"},
 									{"c": "de corrente de comércio [uf] com [prc] [cad]"}
 								],

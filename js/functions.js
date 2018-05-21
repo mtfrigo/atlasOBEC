@@ -72,9 +72,15 @@ function updateTitleBox(){
 
 function updateDescription(descricoes, eixo, vrv, slc){
     desc_var = getDataVar(descricoes, eixo, vrv)
+
     key = ''
     cad = $(window.parent.document).find('.bread-select[data-id=cad]').first().val()
     cad_text = $(window.parent.document).find('.bread-select[data-id=cad] option:selected').first().text()
+
+    ocp = $(window.parent.document).find('.bread-select[data-id=ocp]').first().val()
+    ocp_text = $(window.parent.document).find('.bread-select[data-id=ocp] option:selected').first().text()
+
+
 
     uf = $(window.parent.document).find('.bread-select[data-id=uf]').first().val()
     uf_text = $(window.parent.document).find('.bread-select[data-id=uf] option:selected').first().text()
@@ -93,10 +99,13 @@ function updateDescription(descricoes, eixo, vrv, slc){
 
     typ = $(window.parent.document).find('.bread-select[data-id=typ]').first().val()    
     if(eixo != 3){
+
         if(uf > 0){
             key += 'u'
         }
         if(cad > 0){
+            key += 's'
+        } else if( ocp > 0 && ocp != 3){
             key += 's'
         }
 
@@ -109,6 +118,7 @@ function updateDescription(descricoes, eixo, vrv, slc){
         } else if(pfj > 0){
             key += 'p'
         }
+
     } else {
         switch(typ){
             case '1': key = 'e'; break;
@@ -117,7 +127,6 @@ function updateDescription(descricoes, eixo, vrv, slc){
             case '4': key = 'c'; break;
         }
     }
-
 
     switch(eixo){
         case 0:
@@ -165,7 +174,14 @@ function updateDescription(descricoes, eixo, vrv, slc){
             var desc_int = ''
             var desc_perc = ''
             var desc_terc = ''
-
+            if(slc > 0){
+                slc = 1;
+                if(ocp == 1){
+                   cad_text = "EM ATIVIDADES RELACIONADAS À CULTURA"
+                } else if(ocp == 2) {
+                   cad_text = "EM ATIVIDADES CULTURAIS"
+                }
+            }
             nomeestado = getPrepos(uf_text)+' '+uf_text
             var deg = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").parent().attr("value");
 
@@ -190,6 +206,7 @@ function updateDescription(descricoes, eixo, vrv, slc){
                     }
                 }) 
             }
+
             desc_int = descDesag(desc_int, deg)
             desc_perc = descDesag(desc_perc, deg)
             desc_terc = descDesag(desc_terc, deg)
@@ -231,11 +248,11 @@ function updateDescription(descricoes, eixo, vrv, slc){
             
             desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', cad_text)
                                .replace('[pfj]', pfj_text).replace('[mod]', mod_text)
-                               .replace('{uf}', nomeestado).replace('[mec]', mec_text)
+                               .replace('{uf}', nomeestado).replace('[mec]', "VIA "+mec_text)
             desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', cad_text)
                                 .replace('[uf]', nomeestado).replace('[cad]', cad_text)
                                 .replace('[pfj]', pfj_text).replace('[mod]', mod_text)
-                                .replace('{uf}', nomeestado).replace('[mec]', mec_text)
+                                .replace('{uf}', nomeestado).replace('[mec]', "VIA "+mec_text)
             
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
             $(window.parent.document).find('.percent-value').find('.box-dado').first().find('.description-number').text(desc_perc)
