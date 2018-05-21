@@ -526,8 +526,8 @@ function analyze(error, data) {
         colors = {
             "Setor": "#071342",
             "UF": "rgb(109, 191, 201)",
-            "Relacionadas": "#071342",
-            "Culturais": "rgb(109, 191, 201)",
+            "Relacionadas": "#87A8CA",
+            "Culturais": "#077DDD",
             "Despesa Minc / Receita executivo": "#071342",
             "Financiamento Estatal / Receita executivo": "rgb(109, 191, 201)",
 

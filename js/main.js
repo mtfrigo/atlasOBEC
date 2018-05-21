@@ -1281,6 +1281,9 @@ function updateLegendByDeg(deg){
 
             updateBreadcrumbSetores(cads);
         }
+        else{
+            switchToOcupations();
+        }
 
     }
     else if(deg == 1){
