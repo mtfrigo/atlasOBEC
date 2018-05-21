@@ -1773,8 +1773,8 @@
 		],
 		"mod":[
 			{"name":"Todos","value":"0"},
-			{"name":"Direto","value":"1"},
-			{"name":"Indireto","value":"2"}
+			{"name":"Direta","value":"1"},
+			{"name":"Indireta","value":"2"}
 		],
 		"pfj":[
 			{"name":"Todos","value":"0"},
