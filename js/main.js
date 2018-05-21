@@ -1029,6 +1029,8 @@ function loadMobile(){
         $(".bread-select[data-id='eixo']").val(window.location.hash.substring(1));
     });
 
+    $( ".bread-parent" ).remove();
+
     $('#containerDesc').css("height", "auto");
     $('#containerDesc').css("top", "0");
     $('#containerDados').css("height", "500px");

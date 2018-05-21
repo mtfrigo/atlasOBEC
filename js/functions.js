@@ -63,7 +63,6 @@ function updateTitleBox(){
 
     uf = getNomeUF(url['uf'])
 
-
     if(title_scc != undefined)
         $('iframe[id="view_box_scc"]').parent().find(".view-title").text(title_scc.replace("[uf]", getPrepos(uf)+' '+uf.toUpperCase()).replace("[cad]", cad));
     
