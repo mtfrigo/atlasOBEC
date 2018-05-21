@@ -423,9 +423,9 @@
 							{"u": "DE PARTICIPAÇÃO DO EMPREGO NOS SETORES CULTURAIS E CRIATIVOS NO EMPREGO TOTAL"},
 							{"s": "DE PARTICIPAÇÃO DO EMPREGO NO SETOR [cad] NO EMPREGO TOTAL"},
 							{"d": "DE PARTICIPAÇÃO DO EMPREGO NOS SETORES CULTURAIS E CRIATIVOS NO EMPREGO TOTAL"},
-							{"us": "DE PARTICIPAÇÃO DO EMPREGO NO SETORE [cad] NO EMPREGO TOTAL"},
+							{"us": "DE PARTICIPAÇÃO DO EMPREGO NO SETOR [cad] NO EMPREGO TOTAL"},
 							{"ud": "DE PARTICIPAÇÃO DO EMPREGO NOS SETORES CULTURAIS E CRIATIVOS NO EMPREGO TOTAL"},
-							{"sd": "DE PARTICIPAÇÃO DO EMPREGO NO SETORE [cad] NO EMPREGO TOTAL"},
+							{"sd": "DE PARTICIPAÇÃO DO EMPREGO NO SETOR [cad] NO EMPREGO TOTAL"},
 							{"usd": "DE PARTICIPAÇÃO DO EMPREGO NO SETOR [cad] NO EMPREGO TOTAL"}
 						],
 						"segunda":[
@@ -1226,13 +1226,13 @@
 				"slc": [
 					{
 						"primeira":[
-							{"": ""},
+							{"": "IHH DOS PROJETOS FOMENTADOS POR UF"},
 							{"s": ""},
 							{"m": ""},
 							{"sm": ""}
 						],
 						"segunda":[
-							{"": ""},
+							{"": "IHH DOS PROJETOS FOMENTADOS POR SETOR"},
 							{"s": ""},
 							{"m": ""},
 							{"sm": ""}
