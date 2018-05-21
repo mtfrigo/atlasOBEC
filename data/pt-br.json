@@ -249,7 +249,7 @@
 				"sufixo_valor":"",
 				"prefixo_valor":"R$ ",
 				"desc":"Esse indicador demonstra o custo total para o funcionamento das empresas culturais. Indica a participação dos custos na composição do total necessário para as firmas operarem. Indiretamente, retrata o quanto os custos totais das atividades culturais representam em relação aos custos totais do conjunto da indústria, do comércio e dosserviços. Um aumento no dispêndio pode indicar o aumento do preço dos insumos e fatores de produção. Uma diminuição pode indicar a redução dos preços dos insumos, ou da diminuição dos custos via inovação da base técnica e produtiva. ",
-				"desc_var_mapa":"A variável mostra o total de dispêndios monetárias que as empresas culturais e criativas formais incorrem em suas atividades.",
+				"desc_var_mapa":"A variável mostra o total de dispêndios monetários que as empresas culturais e criativas formais incorrem em suas atividades.",
 				"desc_var_treemap_scc": "Os números absolutos indicam o Custo das Empresas dos Setores Culturais Criativos. A porcentagem representa o custo gerado por cada setor em relação ao total do custo dos Setores Culturais e Criativos <span data-id='uf'></span>. ",
 				"desc_var_treemap_region": "Na figura ao lado, os números absolutos correspondem ao custo das empresas <span data-id='setor'></span> em cada UF. A porcentagem representa o custo das empresas <span data-id='setor'></span> em cada UF em relação ao custo das empresas dos setores culturais e criativos em todo país.",
 				"desc_var_barras": "Os números absolutos indicam o Custo das Empresas <span data-id='setor'></span> <span data-id='uf'></span> ano a ano. ",
