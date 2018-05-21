@@ -1304,18 +1304,10 @@ else {
         if(eixo == 0) setStateTitle(function(){if(data[dados.key[0]].uf == "Todos") return "Brasil"; else return data[dados.key[0]].uf});
         // console.log(eixo)
         // console.log(dados)
-        if(eixo == 0 && dados.key != undefined){
-            updateDescEmpreendimentos(getDataVar(textJSON, eixo, vrv).desc_int, vrv)
-        }
-        else if(eixo == 1){
-            nomeestado = $(window.parent.document).find('.bread-select[data-id=uf] option:selected').text()
-            updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, ocp);
-            $(window.parent.document).find(".percent-value").first().find(".description-number").html(updateDescPercent(eixo, "percent",getDataVar(textJSON, eixo, vrv).desc_percent, nomeestado));
-        }
-        else if(eixo != 3 && dados.key != undefined){
-            $(window.parent.document).find(".integer-value").first().find(".description-number").html("integer", updateDescPercent(eixo, getDataVar(textJSON, eixo, vrv).desc_int, data[dados.key[0]].uf));
-            $(window.parent.document).find(".percent-value").first().find(".description-number").html("percent", updateDescPercent(eixo, getDataVar(textJSON, eixo, vrv).desc_percent, data[dados.key[0]].uf));
-        }
+        if(eixo != 3)
+            updateDescription(descricoes, eixo, vrv, ocp);
+        else
+            updateDescription(descricoes, eixo, vrv, mundo);
 
     }
 
