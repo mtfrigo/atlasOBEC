@@ -101,7 +101,7 @@ function updateDescription(descricoes, eixo, vrv, slc){
             key += 's'
         }
 
-        if(deg > 0){
+        if(desag > 0){
             key += 'd'
         } else if(mec > 0){
             key += 'm'
@@ -159,9 +159,8 @@ function updateDescription(descricoes, eixo, vrv, slc){
 
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
             $(window.parent.document).find('.percent-value').find('.box-dado').first().find('.description-number').text(desc_perc)
-            console.log()
             $(window.parent.document).find('.percent-value').find('.setor-value').first().find('.description-number').text(desc_terc)
-
+            
             break;
         case 1:
             var desc_int = ''
