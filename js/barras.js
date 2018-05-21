@@ -1096,7 +1096,7 @@ else {
         setTimeout(function () {
         }, 500);
 
-        var margin = {top: 20, right: 20, bottom: 30, left: 30},
+        var margin = {top: 20, right: 20, bottom: 30, left: 35},
             width = chartWidth - margin.left - margin.right,
             height = chartHeight - margin.top - margin.bottom;
 
