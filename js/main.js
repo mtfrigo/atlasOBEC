@@ -2230,7 +2230,6 @@ $(document).ready(function(){
 
             }
             if($(this).attr("data-id") === "ocp") {
-                if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
             }
             updateIframe(url);
