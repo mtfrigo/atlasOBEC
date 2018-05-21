@@ -223,7 +223,7 @@ function updateDescription(descricoes, eixo, vrv, slc){
             var desc_perc = ''
             var desc_terc = ''
 
-            nomeestado = getPrepos(uf_text)+' '+uf_text
+            nomeestado = mapPronome(getPrepos(uf_text), ["DE", "DO", "DA"], ["EM", "NO", "NA"])+' '+uf_text
             if("primeira" in desc_var.slc[slc]){
                 desc_var.slc[slc].primeira.forEach(function(d){
                     if(key in d){
