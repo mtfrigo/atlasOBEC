@@ -942,9 +942,9 @@ else {
             if (error) throw error;
 
             textJSON = data;
-           //  $.get("./db/json_barras.php" + config, function(data){
-           //        console.log(data)
-           // })
+            $.get("./db/json_barras.php" + config, function(data){
+                  console.log(data)
+           })
             d3.queue()
                 .defer(d3.json, "./db/json_barras.php" + config)
                 .await(analyze_eixo1);

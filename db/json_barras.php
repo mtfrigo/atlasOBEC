@@ -399,7 +399,7 @@ else if($eixo == 1) {
                 }
             }
 
-            if($cad == 0){
+            if($cad == 0 && $ocp == 0){
                 $nomeDesag = getNameDesag($desag, $tupla);
 
                 $barras[intval($id-2007)]['year'] = $tupla->Ano;
