@@ -90,9 +90,6 @@ function updateDescription(descricoes, eixo, vrv, slc){
         }
         if(cad > 0){
             key += 's'
-            nomecad = "PELO SETOR "+cad_text;
-        } else {
-            nomecad = "PELOS SETORES CULTURAIS E CRIATIVOS"
         }
         if(deg > 0){
             key += 'd'
@@ -100,11 +97,6 @@ function updateDescription(descricoes, eixo, vrv, slc){
             key += 'm'
         }    
     } else {
-        if(cad > 0){
-            nomecad = "PELO SETOR "+cad_text;
-        } else {
-            nomecad = "PELOS SETORES CULTURAIS E CRIATIVOS"
-        }
         switch(typ){
             case '1': key = 'e'; break;
             case '2': key = 'i'; break;
@@ -147,10 +139,10 @@ function updateDescription(descricoes, eixo, vrv, slc){
                 }) 
             }
             
-            desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', nomecad)
+            desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', cad_text)
                                .replace('[deg]', nomeporte).replace('[ano]', "DO ANO "+anoanterior+' AO '+nomeano);
-            desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[deg]', nomeporte);
-            desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[deg]', nomeporte);
+            desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', cad_text).replace('[deg]', nomeporte);
+            desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', cad_text).replace('[deg]', nomeporte);
 
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
             $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
@@ -187,9 +179,9 @@ function updateDescription(descricoes, eixo, vrv, slc){
                 }) 
             }
             desc_int = descDesag(desc_int, deg)
-            desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', nomecad)
-            desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[deg]', nomeporte)
-            desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[deg]', nomeporte)
+            desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', cad_text)
+            desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', cad_text).replace('[deg]', nomeporte)
+            desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', cad_text).replace('[deg]', nomeporte)
 
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
             $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
@@ -224,9 +216,9 @@ function updateDescription(descricoes, eixo, vrv, slc){
                 }) 
             }
             
-            desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', nomecad)
-            desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', nomecad)
-            desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', nomecad)
+            desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', cad_text)
+            desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', cad_text)
+            desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', cad_text)
 
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
             $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
@@ -236,11 +228,15 @@ function updateDescription(descricoes, eixo, vrv, slc){
             var desc_int = ''
             var desc_perc = ''
             var desc_terc = ''
-            alert(key)
+            
             prc_text = $(window.parent.document).find('.bread-select[data-id=prc] option:selected').first().text()
             nomeestado = getPrepos(uf_text)+' '+uf_text
             nomeprc = getPrepos(prc_text)+' '+prc_text
-            
+            if(cad > 0){
+                nomecad = "NO SETOR "+cad_text;
+            } else {
+                nomecad = "NOS SETORES CULTURAIS E CRIATIVOS"
+            }
             if("primeira" in desc_var.slc[slc]){
                 desc_var.slc[slc].primeira.forEach(function(d){
                     if(key in d){
