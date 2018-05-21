@@ -148,15 +148,15 @@ function updateDescription(descricoes, eixo, vrv, slc){
                     }
                 }) 
             }
-            
             desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', cad_text)
                                .replace('[deg]', nomeporte).replace('[ano]', "DO ANO "+anoanterior+' AO '+nomeano);
             desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', cad_text).replace('[deg]', nomeporte);
             desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', cad_text).replace('[deg]', nomeporte);
 
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
-            $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
-            $(window.parent.document).find('.percent-value').find('.setor-value').first().find('description-number').text(desc_terc)
+            $(window.parent.document).find('.percent-value').find('.box-dado').first().find('.description-number').text(desc_perc)
+            console.log()
+            $(window.parent.document).find('.percent-value').find('.setor-value').first().find('.description-number').text(desc_terc)
 
             break;
         case 1:
@@ -194,8 +194,8 @@ function updateDescription(descricoes, eixo, vrv, slc){
             desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', cad_text).replace('[deg]', nomeporte)
 
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
-            $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
-            $(window.parent.document).find('.percent-value').find('.setor-value').first().find('description-number').text(desc_terc) 
+            $(window.parent.document).find('.percent-value').find('.box-dado').first().find('.description-number').text(desc_perc)
+            $(window.parent.document).find('.percent-value').find('.setor-value').first().find('.description-number').text(desc_terc) 
             break;
         case 2: 
             var desc_int = ''
@@ -235,8 +235,8 @@ function updateDescription(descricoes, eixo, vrv, slc){
                                 .replace('{uf}', nomeestado).replace('[mec]', mec_text)
 
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
-            $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
-            $(window.parent.document).find('.percent-value').find('.setor-value').first().find('description-number').text(desc_terc) 
+            $(window.parent.document).find('.percent-value').find('.box-dado').first().find('.description-number').text(desc_perc)
+            $(window.parent.document).find('.percent-value').find('.setor-value').first().find('.description-number').text(desc_terc) 
             break;
         case 3:
             var desc_int = ''
@@ -279,8 +279,8 @@ function updateDescription(descricoes, eixo, vrv, slc){
             alert(desc_int)
 
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
-            $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
-            $(window.parent.document).find('.percent-value').find('.setor-value').first().find('description-number').text(desc_terc) 
+            $(window.parent.document).find('.percent-value').find('.box-dado').first().find('.description-number').text(desc_perc)
+            $(window.parent.document).find('.percent-value').find('.setor-value').first().find('.description-number').text(desc_terc) 
             break;
     }
 }
