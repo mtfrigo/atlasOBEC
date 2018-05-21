@@ -46,11 +46,13 @@ function updateTitleBox(){
                 .parent()
                 .find(".view-title")
                 .text();
+
+
     cad = $('.bread-select[data-id=cad] option:selected').text()
 
     if(cad == ''){
         cad = $('.bread-select[data-id=ocp] option:selected').text()  
-        cad = ""
+        cad = "";
     } else {
         if(cad.match(/Todos/) != null){
             cad = "NOS SETORES CULTURAIS E CRIATIVOS"
@@ -58,7 +60,9 @@ function updateTitleBox(){
             cad = "NO SETOR "+cad.toUpperCase();
         }
     }
-    uf = $('.bread-select[data-id=uf] option:selected').text()
+
+    uf = getNomeUF(url['uf'])
+
 
     if(title_scc != undefined)
         $('iframe[id="view_box_scc"]').parent().find(".view-title").text(title_scc.replace("[uf]", getPrepos(uf)+' '+uf.toUpperCase()).replace("[cad]", cad));
