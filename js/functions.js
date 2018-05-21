@@ -197,8 +197,6 @@ function updateDescription(descricoes, eixo, vrv, slc){
             desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', cad_text)
             desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', cad_text)
 
-            alert(desc_terc)
-
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
             $(window.parent.document).find('.percent-value').find('.box-dado').first().find('.description-number').text(desc_perc)
             $(window.parent.document).find('.percent-value').find('.setor-value').first().find('.description-number').text(desc_terc) 
