@@ -205,7 +205,7 @@ function updateDescription(descricoes, eixo, vrv, slc){
             var desc_int = ''
             var desc_perc = ''
             var desc_terc = ''
-            
+
             nomeestado = getPrepos(uf_text)+' '+uf_text
             if("primeira" in desc_var.slc[slc]){
                 desc_var.slc[slc].primeira.forEach(function(d){
@@ -247,8 +247,18 @@ function updateDescription(descricoes, eixo, vrv, slc){
             var desc_terc = ''
             
             prc_text = $(window.parent.document).find('.bread-select[data-id=prc] option:selected').first().text()
-            nomeestado = getPrepos(uf_text)+' '+uf_text
-            nomeprc = getPrepos(prc_text)+' '+prc_text
+            if(key == 'i'){
+                nomeestado = mapPronome(getPrepos(uf_text), ['DE', 'DA', 'DO'], ['', 'A', 'O'])+' '+uf_text
+                nomeprc = getPrepos(prc_text)+' '+prc_text;
+            }
+            if(key == 'e'){
+                nomeestado = getPrepos(uf_text)+' '+uf_text;
+                nomeprc = mapPronome(getPrepos(prc_text), ['DE', 'DA', 'DO'], ['', 'A', 'O'])+' '+prc_text
+            }
+            if(key == 'c'){
+                nomeestado = mapPronome(getPrepos(uf_text), ['DE', 'DA', 'DO'], ['', 'A', 'O'])+' '+uf_text
+                nomeprc = mapPronome(getPrepos(prc_text), ['DE', 'DA', 'DO'], ['', 'A', 'O'])+' '+prc_text
+            }
             if(cad > 0){
                 nomecad = "NO SETOR "+cad_text;
             } else {
@@ -1974,20 +1984,7 @@ function setIntegerValueData(value, eixo, vrv) {
         // console.log(value)
 
         estado = $(window.parent.document).find(".state-title").first().text()
-        if(eixo == 1){
-            if(vrv == 1){
-                $(window.parent.document).find(".setor-value").first().find(".description-number").first().text()
-            }
-            if(vrv <= 11)
-                updateDescMercado(result.desc_int, vrv, url['ocp']);
-           
-        }
-        if(eixo == 3){
-            $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(updateDescComercio(result.desc_int, vrv, estado))
-            $(window.parent.document).find(".percent-value").first().find(".description-number").first().html(updateDescPercentComercio(result.desc_percent, vrv, estado))
-            desc = $(window.parent.document).find(".percent-value").first().find(".description-number").first().text()
-            $(window.parent.document).find(".setor-value").first().find(".description-number").first().text(desc.replace("VALOR ABSOLUTO POR UF", "VALOR ABSOLUTO POR SETOR"));
-        }
+        
 
         $(window.parent.document).find(".integer-value").first().find(".number").first().html(prefixo+literal+sufixo);
         var doc =  $(window.parent.document).find(".integer-value").first().find(".number").first();

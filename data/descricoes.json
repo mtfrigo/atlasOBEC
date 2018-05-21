@@ -1246,23 +1246,23 @@
 								],
 								"segunda":[
 									{"e": "do valor exportado [uf]"},
-									{"i": "do valor importado [uf]"},
+									{"i": "do valor importado para [uf]"},
 									{"s": ""},
 									{"c": "da corrente de comércio entre [uf] e [prc]"}
 								]
 							},
 							{
 								"primeira":[
-									{"e": ""},
-									{"i": ""},
-									{"s": ""},
-									{"c": ""}
+									{"e": "de valor exportado do Brasil para [prc] [cad]"},
+									{"i": "de valor importado [prc] para o Brasil [cad]"},
+									{"s": "de saldo comercial entre [uf] e [prc]"},
+									{"c": "de corrente de comércio [uf] e [prc]"}
 								],
 								"segunda":[
-									{"e": ""},
-									{"i": ""},
+									{"e": "do valor exportado pelo Brasil para [prc]"},
+									{"i": "do valor importado pelo Brasil [prc]"},
 									{"s": ""},
-									{"c": ""}
+									{"c": "da corrente de comércio entre [uf] e [prc]"}
 								]
 							}
 
@@ -1286,9 +1286,9 @@
 							},
 							{
 								"primeira":[
-									{"e": ""},
-									{"i": ""},
-									{"c": ""}
+									{"e": "de participação no valor exportado [uf] para [prc] [cad]"},
+									{"i": "de participação no valor importado[prc] para [uf] [cad]"},
+									{"c": "de participação na corrente de comércio [uf] com [prc] [cad]"}
 								],
 								"segunda":[
 									{"e": ""},
@@ -1391,22 +1391,22 @@
 							},
 							{
 								"primeira":[
-									{"e": ""},
-									{"i": ""},
-									{"s": ""},
-									{"c": ""}
+									{"e": "IHH VALOR ABSOLUTO POR PARCEIROS"},
+									{"i": "IHH VALOR ABSOLUTO POR PARCEIROS"},
+									{"s": "IHH VALOR ABSOLUTO POR PARCEIROS"},
+									{"c": "IHH VALOR ABSOLUTO POR PARCEIROS"}
 								],
 								"segunda":[
-									{"e": ""},
-									{"i": ""},
-									{"s": ""},
-									{"c": ""}
+									{"e": "IHH VALOR ABSOLUTO POR UF"},
+									{"i": "IHH VALOR ABSOLUTO POR UF"},
+									{"s": "IHH VALOR ABSOLUTO POR UF"},
+									{"c": "IHH VALOR ABSOLUTO POR UF"}
 								],
 								"terceira":[
-									{"e": ""},
-									{"i": ""},
-									{"s": ""},
-									{"c": ""}
+									{"e": "IHH VALOR ABSOLUTO POR SETOR"},
+									{"i": "IHH VALOR ABSOLUTO POR SETOR"},
+									{"s": "IHH VALOR ABSOLUTO POR SETOR"},
+									{"c": "IHH VALOR ABSOLUTO POR SETOR"}
 								]
 							}
 
@@ -1486,16 +1486,16 @@
 							},
 							{
 								"primeira":[
-									{"e": ""},
-									{"i": ""},
-									{"s": ""},
-									{"c": ""}
+									{"e": "exportados [uf] para [prc] [cad]"},
+									{"i": "importados [prc] para [uf] [cad]"},
+									{"s": "de saldo comercial entre [uf] e [prc] [cad]"},
+									{"c": "de corrente de comércio [uf] com [prc] [cad]"}
 								],
 								"segunda":[
-									{"e": ""},
-									{"i": ""},
+									{"e": "dos kg exportados [uf]"},
+									{"i": "dos kg importados para [uf]"},
 									{"s": ""},
-									{"c": ""}
+									{"c": "dos kg transacionados entre [uf] e [prc] [cad]"}
 								]
 							}
 
