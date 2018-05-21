@@ -6,10 +6,6 @@ $.get("./data/select-deg.json", function(data){
     data_desag = data;
 })
 
-$.get("./data/descricoes.json", function(data){
-    console.log(data);
-})
-
 
 function updateTitleClickSCC(){
     scc_click = $(window.parent.document).find('.bread-select[data-id=cad] option:selected').text()
@@ -69,6 +65,171 @@ function updateTitleBox(){
     
     if(title_barras != undefined)
         $('iframe[id="view_box_barras"]').parent().find(".view-title").text(title_barras.replace("[uf]", getPrepos(uf)+' '+uf.toUpperCase()).replace("[cad]", cad));
+}
+
+function updateDescription(descricoes, eixo, vrv, slc){
+    desc_var = getDataVar(descricoes, eixo, vrv)
+    key = ''
+    cad = $(window.parent.document).find('.bread-select[data-id=cad]').first().val()
+    cad_text = $(window.parent.document).find('.bread-select[data-id=cad] option:selected').first().text()
+
+    uf = $(window.parent.document).find('.bread-select[data-id=uf]').first().val()
+    uf_text = $(window.parent.document).find('.bread-select[data-id=uf] option:selected').first().text()
+
+    desag = $(window.parent.document).find('.bread-select[data-id=deg]').first().val()
+    desag_text = $(window.parent.document).find('.bread-select[data-id=deg] option:selected').first().text()
+
+    mec = $(window.parent.document).find('.bread-select[data-id=mec]').first().val()
+    mec_text = $(window.parent.document).find('.bread-select[data-id=mec] option:selected').first().text()
+
+
+    typ = $(window.parent.document).find('.bread-select[data-id=typ]').first().val()    
+    if(eixo != 3){
+        if(uf > 0){
+            key += 'u'
+        }
+        if(cad > 0){
+            key += 's'
+            nomecad = "PELO SETOR "+cad_text;
+        } else {
+            nomecad = "PELOS SETORES CULTURAIS E CRIATIVOS"
+        }
+        if(deg > 0){
+            key += 'd'
+        } else if(mec > 0){
+            key += 'm'
+        }    
+    } else {
+        switch(typ){
+            case 1: key = 'e'; break;
+            case 2: key = 'i'; break;
+            case 3: key = 's'; break;
+            case 4: key = 'c'; break;
+        }
+    }
+
+
+    switch(eixo){
+        case 0:
+            var desc_int = ''
+            var desc_perc = ''
+            var desc_terc = ''
+
+            nomeestado = getPrepos(uf_text)+' '+uf_text
+            nomeporte = "DE "+desag_text;
+            nomeano = $(window.parent.document).find('.bread-select[data-id=ano]').first().val()
+            anoanterior = parseInt(nomeano)-1
+            anoanterior = anoanterior.toString()
+            if("primeira" in desc_var){
+                desc_var.primeira.forEach(function(d){
+                    if(key in d){
+                        desc_int = d[key]; return;
+                    }
+                }) 
+            }
+            if("segunda" in desc_var){
+                desc_var.segunda.forEach(function(d){
+                    if(key in d){
+                        desc_perc = d[key]; return;
+                    }
+                }) 
+            }
+            if("terceira" in desc_var){
+                desc_var.terceira.forEach(function(d){
+                    if(key in d){
+                        desc_terc = d[key]; return;
+                    }
+                }) 
+            }
+            
+            desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', nomecad)
+                               .replace('[deg]', nomeporte).replace('[ano]', "DO ANO "+anoanterior+' AO '+nomeano);
+            desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[deg]', nomeporte);
+            desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[deg]', nomeporte);
+
+            $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
+            $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
+            $(window.parent.document).find('.percent-value').find('.setor-value').first().find('description-number').text(desc_terc)
+
+            break;
+        case 1:
+            var desc_int = ''
+            var desc_perc = ''
+            var desc_terc = ''
+
+            nomeestado = getPrepos(uf_text)+' '+uf_text
+            var deg = $(window.parent.document).find(".bread-select[data-id=deg]").first().find("option:selected").parent().attr("value");
+
+            if("primeira" in desc_var.ocp[ocp]){
+                desc_var.ocp[ocp].primeira.forEach(function(d){
+                    if(key in d){
+                        desc_int = d[key]; return;
+                    }
+                }) 
+            }
+            if("segunda" in desc_var.ocp[ocp]){
+                desc_var.ocp[ocp].segunda.forEach(function(d){
+                    if(key in d){
+                        desc_perc = d[key]; return;
+                    }
+                }) 
+            }
+            if("terceira" in desc_var.ocp[ocp]){
+                desc_var.ocp[ocp].terceira.forEach(function(d){
+                    if(key in d){
+                        desc_terc = d[key]; return;
+                    }
+                }) 
+            }
+            desc_int = descDesag(desc_int, deg)
+            desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', nomecad)
+            desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[deg]', nomeporte)
+            desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[deg]', nomeporte)
+
+            $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
+            $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
+            $(window.parent.document).find('.percent-value').find('.setor-value').first().find('description-number').text(desc_terc) 
+            break;
+        case 2: 
+            var desc_int = ''
+            var desc_perc = ''
+            var desc_terc = ''
+
+            nomeestado = getPrepos(uf_text)+' '+uf_text
+            
+            if("primeira" in desc_var){
+                desc_var.primeira.forEach(function(d){
+                    if(key in d){
+                        desc_int = d[key]; return;
+                    }
+                }) 
+            }
+            if("segunda" in desc_var){
+                desc_var.segunda.forEach(function(d){
+                    if(key in d){
+                        desc_perc = d[key]; return;
+                    }
+                }) 
+            }
+            if("terceira" in desc_var){
+                desc_var.terceira.forEach(function(d){
+                    if(key in d){
+                        desc_terc = d[key]; return;
+                    }
+                }) 
+            }
+            
+            desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', nomecad)
+            desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[deg]', nomeporte)
+            desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[deg]', nomeporte)
+
+            $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
+            $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
+            $(window.parent.document).find('.percent-value').find('.setor-value').first().find('description-number').text(desc_terc) 
+            break;
+            break;
+        case 3: break;
+    }
 }
 
 function changeDownloadURL(url, eixo){
@@ -1259,7 +1420,7 @@ function updateDescEmpreendimentos(desc, vrv){
         }
     }
 
-    $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(description)
+    //$(window.parent.document).find(".integer-value").first().find(".description-number").first().html(description)
 
 
 }

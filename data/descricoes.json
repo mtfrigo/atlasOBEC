@@ -1,18 +1,19 @@
 {
 
-	"var":[
+	"var":
+	[	
 		[
 			{
 				"id":"1",
 				"primeira":[
 					{"": "EMPRESAS CULTURAIS E CRIATIVAS NO BRASIL"},
 					{"u": "EMPRESAS CULTURAIS E CRIATIVAS [uf]"},
-					{"s": "EMPRESAS DO SETOR [cad] NO BRASIL"},
+					{"s": "EMPRESAS [cad] NO BRASIL"},
 					{"d": "EMPRESAS CULTURAIS E CRIATIVAS [deg]"},
-					{"us": "EMPRESAS DO SETOR [cad] [uf]"},
+					{"us": "EMPRESAS [cad] [uf]"},
 					{"ud": "EMPRESAS CULTURAIS E CRIATIVAS [deg] [uf]"},
-					{"sd": "EMPRESAS DO SETOR [cad] [deg] NO BRASIL"},
-					{"usd": "EMPRESAS DO SETOR [cad] [deg] [uf]"}
+					{"sd": "EMPRESAS [cad] [deg] NO BRASIL"},
+					{"usd": "EMPRESAS [cad] [deg] [uf]"}
 				],
 				"segunda":[
 					{"": "DO TOTAL DE EMPRESAS DOS SETORES CULTURAIS E CRIATIVOS DO BRASIL"},
@@ -53,12 +54,12 @@
 				"primeira":[
 					{"": "DE VARIAÇÃO NO TOTAL DE EMPRESAS CULTURAIS E CRIATIVAS DO BRASIL [ano]"},
 					{"u": "DE VARIAÇÃO NO TOTAL DE EMPRESAS CULTURAIS E CRIATIVAS [uf] [ano]"},
-					{"s": "DE VARIAÇÃO NO TOTAL DE EMPRESAS DO SETOR [cad] DO BRASIL [ano]"},
+					{"s": "DE VARIAÇÃO NO TOTAL DE EMPRESAS [cad] DO BRASIL [ano]"},
 					{"d": "DE VARIAÇÃO NO TOTAL DE EMPRESAS CULTURAIS E CRIATIVAS [deg] DO BRASIL [ano]"},
-					{"us": "DE VARIAÇÃO NO TOTAL DE EMPRESAS DO SETOR [cad] [uf] [ano]"},
+					{"us": "DE VARIAÇÃO NO TOTAL DE EMPRESAS [cad] [uf] [ano]"},
 					{"ud": "DE VARIAÇÃO NO TOTAL DE EMPRESAS CULTURAIS E CRIATIVAS [deg] [uf] [ano]"},
-					{"sd": "DE VARIAÇÃO NO TOTAL DE EMPRESAS DO SETOR [cad] [deg] DO BRASIL [ano]"},
-					{"usd": "DE VARIAÇÃO NO TOTAL DE EMPRESAS DO SETOR [cad] [deg] [uf] [ano]"}
+					{"sd": "DE VARIAÇÃO NO TOTAL DE EMPRESAS [cad] [deg] DO BRASIL [ano]"},
+					{"usd": "DE VARIAÇÃO NO TOTAL DE EMPRESAS [cad] [deg] [uf] [ano]"}
 				]
 			},
 			{
@@ -66,9 +67,9 @@
 				"primeira":[
 					{"": "DE RECEITA TOTAL BRUTA DAS EMPRESAS CULTURAIS E CRIATIVAS NO BRASIL"},
 					{"u": "DE RECEITA TOTAL BRUTA DAS EMPRESAS CULTURAIS E CRIATIVAS [uf]"},
-					{"s": "DE RECEITA TOTAL BRUTA DAS EMPRESAS DO SETOR [cad] NO BRASIL"},
+					{"s": "DE RECEITA TOTAL BRUTA DAS EMPRESAS [cad] NO BRASIL"},
 					{"d": ""},
-					{"us": "DE RECEITA TOTAL BRUTA DAS EMPRESAS DO SETOR ARQUITETURA E DESIGN NO AMAPÁ"},
+					{"us": "DE RECEITA TOTAL BRUTA DAS EMPRESAS [cad] [uf]"},
 					{"ud": ""},
 					{"sd": ""},
 					{"usd": ""}
@@ -88,7 +89,7 @@
 					{"u": ""},
 					{"s": ""},
 					{"d": ""},
-					{"us": "DO TOTAL DE RECEITA BRUTA DAS EMPRESAS DO SETOR [cad] DO BRASIL"},
+					{"us": "DO TOTAL DE RECEITA BRUTA DAS EMPRESAS [cad] DO BRASIL"},
 					{"ud": ""},
 					{"sd": ""},
 					{"usd": ""}
@@ -99,9 +100,9 @@
 				"primeira":[
 					{"": "DE RECEITA OPERACIONAL LÍQUIDA DAS EMPRESAS CULTURAIS E CRIATIVAS NO BRASIL"},
 					{"u": "DE RECEITA OPERACIONAL LÍQUIDA DAS EMPRESAS CULTURAIS E CRIATIVAS [uf]"},
-					{"s": "DE RECEITA OPERACIONAL LÍQUIDA DAS EMPRESAS DO SETOR [cad] NO BRASIL"},
+					{"s": "DE RECEITA OPERACIONAL LÍQUIDA DAS EMPRESAS [cad] NO BRASIL"},
 					{"d": ""},
-					{"us": "DE RECEITA OPERACIONAL LÍQUIDA DAS EMPRESAS DO SETOR [cad] [uf]"},
+					{"us": "DE RECEITA OPERACIONAL LÍQUIDA DAS EMPRESAS [cad] [uf]"},
 					{"ud": ""},
 					{"sd": ""},
 					{"usd": ""}
@@ -641,7 +642,7 @@
 							{"sd": ""},
 							{"usd": ""}
 						]
-					},
+					}
 				]
 
 			},
@@ -1039,13 +1040,13 @@
 					{"": "FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO PARA EMPRESA ESTATAL NO BRASIL"},
 					{"u": "FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO PARA EMPRESA ESTATAL [uf]"},
 					{"s": "FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO PARA EMPRESA ESTATAL NO BRASIL"},
-					{"us": "FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO PARA EMPRESA ESTATAL NO BRASIL"},
+					{"us": "FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO PARA EMPRESA ESTATAL NO BRASIL"}
 				],
 				"segunda":[
 					{"": "DO TOTAL DO FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO PARA EMPRESA ESTATAL NO BRASIL"},
 					{"u": "DO TOTAL DO FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO PARA EMPRESA ESTATAL [uf]"},
 					{"s": "DO TOTAL DO FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO PARA EMPRESA ESTATAL NO BRASIL"},
-					{"us": "DO TOTAL DO FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO PARA EMPRESA ESTATAL NO BRASIL"},
+					{"us": "DO TOTAL DO FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO PARA EMPRESA ESTATAL NO BRASIL"}
 				]
 			},
 			{
@@ -1054,7 +1055,7 @@
 					{"": "PERCENTUAL DO APOIO PRIVADO NO TOTAL APOIADO VIA MECENATO NO BRASIL."},
 					{"u": "PERCENTUAL DO APOIO PRIVADO NO TOTAL APOIADO VIA MECENATO [uf]"},
 					{"s": "PERCENTUAL DO APOIO PRIVADO NO TOTAL APOIADO VIA MECENATO NO BRASIL."},
-					{"us": "PERCENTUAL DO APOIO PRIVADO NO TOTAL APOIADO VIA MECENATO [uf]"},
+					{"us": "PERCENTUAL DO APOIO PRIVADO NO TOTAL APOIADO VIA MECENATO [uf]"}
 				]
 			},
 			{
@@ -1176,7 +1177,7 @@
 				"id":"17",
 				"primeira":[
 					{"": "FINANCIADOS POR MEIO DE MECANISMOS DE MECENATO ESTADUAL NO BRASIL"},
-					{"u": "FINANCIADOS POR MEIO DE MECANISMOS DE MECENATO ESTADUAL [uf]"},
+					{"u": "FINANCIADOS POR MEIO DE MECANISMOS DE MECENATO ESTADUAL [uf]"}
 				]
 			}
 
@@ -1472,8 +1473,7 @@
 
 						]
 
-			},
-
+			}
 		]
 	]
 

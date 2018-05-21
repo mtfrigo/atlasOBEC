@@ -55,10 +55,12 @@ function destacaBarra(barraId, stacked = false) {
         }
     });
 }
+var descricoes = []
+
 
 var tooltipInstance = tooltip.getInstance();
 if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) {    /*==== Barras JS ====*/
-
+    
     //Variaveis/Objetos
     var dict = {};
 
@@ -72,13 +74,17 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
     var textJSON;
     var config = "?var=" + vrv + "&uf=" + uf + "&atc=" + atc + "&slc=" + slc + "&cad=" + cad + "&uos=" + uos + "&ano=" + ano + "&prt=" + prt + "&ocp=" + ocp + "&sex=" + sex + "&fax=" + fax + "&esc=" + esc + "&cor=" + cor + "&typ=" + typ + "&prc=" + prc + "&frm=" + frm + "&prv=" + prv + "&snd=" + snd + "&mec=" + mec + "&mod=" + mod + "&pfj=" + pfj + "&eixo=" + eixo + "&mundo=" +mundo + "&deg=" +deg + "&ano=" +ano;
     var brasil_setor = []
+    d3.json('./data/descricoes.json', function (error, desc){
+        if (error) throw error;
+        descricoes = desc;
+    })
     $.get('./db/total_setor.php' + "?var=" + vrv+"&cad="+cad+"&eixo="+eixo+"&prt="+prt, function(dado){
         brasil_setor = JSON.parse(dado)
     })
-
+    /*
      $.get('./db/json_barras.php' + config, function(dado){
          // console.log(dado)
-     })
+     })*/
    
     d3.json('data/colors.json', function (error, data) {
         if (error) throw error;
@@ -810,6 +816,8 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
         destacaBarra(url['ano']);
 
         var valor = $('svg').find('rect[data-legend="'+url['ano']+'"]').attr("data-value");
+        
+
 
         if(!(eixo == 1 && vrv == 6 && uos == 1) && !(eixo == 2 && (vrv == 18 || vrv == 19) && uos == 1))
             configInfoDataBoxBarras(eixo, vrv, dados, valor);
@@ -837,6 +845,7 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
         if(vrv >= 11 && eixo == 1){
             updateDataDescUoS(ocp);
         }
+        updateDescription(descricoes, eixo, vrv, ocp);
 
         function loadTooltip(d, i, eixo, vrv){
             if(eixo === 0){
