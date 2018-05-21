@@ -1293,8 +1293,8 @@ function updateModalidade(url, vrv){
     if(vrv == 3){
         $("select[data-id='mod']").parent().css('display', 'block')
 
-        $("select[data-id='mod']").append("<option value='1'>Direto</option>");
-        $("select[data-id='mod']").append("<option value='2'>Indireto</option>");
+        $("select[data-id='mod']").append("<option value='1'>Direta</option>");
+        $("select[data-id='mod']").append("<option value='2'>Indireta</option>");
     }
     else{
         $("select[data-id='mod']").parent().css('display', 'none')
