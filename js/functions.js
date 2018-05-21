@@ -82,6 +82,11 @@ function updateDescription(descricoes, eixo, vrv, slc){
     mec = $(window.parent.document).find('.bread-select[data-id=mec]').first().val()
     mec_text = $(window.parent.document).find('.bread-select[data-id=mec] option:selected').first().text()
 
+    pfj = $(window.parent.document).find('.bread-select[data-id=pfj]').first().val()
+    pfj_text = $(window.parent.document).find('.bread-select[data-id=pfj] option:selected').first().text()
+
+    mod = $(window.parent.document).find('.bread-select[data-id=mod]').first().val()
+    mod_text = $(window.parent.document).find('.bread-select[data-id=mod] option:selected').first().text()
 
     typ = $(window.parent.document).find('.bread-select[data-id=typ]').first().val()    
     if(eixo != 3){
@@ -91,11 +96,16 @@ function updateDescription(descricoes, eixo, vrv, slc){
         if(cad > 0){
             key += 's'
         }
+
         if(deg > 0){
             key += 'd'
         } else if(mec > 0){
             key += 'm'
-        }    
+        } else if(mod > 0){
+            key += 'n'
+        } else if(pfj > 0){
+            key += 'p'
+        }
     } else {
         switch(typ){
             case '1': key = 'e'; break;
@@ -217,8 +227,12 @@ function updateDescription(descricoes, eixo, vrv, slc){
             }
             
             desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', cad_text)
+                               .replace('[pfj]', pfj_text).replace('[mod]', mod_text)
+                               .replace('{uf}', nomeestado).replace('[mec]', mec_text)
             desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', cad_text)
-            desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', cad_text)
+                                .replace('[uf]', nomeestado).replace('[cad]', cad_text)
+                                .replace('[pfj]', pfj_text).replace('[mod]', mod_text)
+                                .replace('{uf}', nomeestado).replace('[mec]', mec_text)
 
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
             $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
@@ -267,7 +281,6 @@ function updateDescription(descricoes, eixo, vrv, slc){
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
             $(window.parent.document).find('.percent-value').find('.box-dado').first().find('description-number').text(desc_perc)
             $(window.parent.document).find('.percent-value').find('.setor-value').first().find('description-number').text(desc_terc) 
-            break; 
             break;
     }
 }

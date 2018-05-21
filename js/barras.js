@@ -820,32 +820,22 @@ if(eixo != 1 || deg == 0 || (eixo == 1 && (vrv == 4 || vrv == 5 || vrv == 6 ))) 
 
 
         if(!(eixo == 1 && vrv == 6 && uos == 1) && !(eixo == 2 && (vrv == 18 || vrv == 19) && uos == 1))
-            configInfoDataBoxBarras(eixo, vrv, dados, valor);
-        if(eixo == 0){
-            updateDescEmpreendimentos(getDataVar(textJSON, eixo, vrv).desc_int, vrv)
-        }
-        else if(eixo == 1)
-            updateDescMercado(getDataVar(textJSON, eixo, vrv).desc_int, vrv, ocp);
+            configInfoDataBoxBarras(eixo, vrv, dados, valor);         
+
+        if(eixo != 3)
+            updateDescription(descricoes, eixo, vrv, ocp);
         else
-            $(window.parent.document).find(".integer-value").first().find(".description-number").first().html(updateDescPercent(eixo, "integer", getDataVar(textJSON, eixo, vrv).desc_int, data[dados.key[0]].uf));
-        $(window.parent.document).find(".percent-value").first().find(".description-number").first().html(updateDescPercent(eixo, "percent", getDataVar(textJSON, eixo, vrv).desc_percent, data[dados.key[0]].uf));
-        if(vrv == 1 && eixo == 1){
-            $(window.parent.document).find(".setor-value").first().find(".description-number").html(updateDescPercentMercado(getDataVar(textJSON, eixo, vrv).desc_setorial, vrv, "setorial", ocp));
-        } else if(eixo == 0){
-            updateDescPercentEmpreendimentos(getDataVar(textJSON, eixo, vrv).desc_setorial, vrv, "setorial");            
-
-        }
-            
-
+            updateDescription(descricoes, eixo, vrv, mundo);
 
         if(url['slc'] == 1){
             updateDataDesc()
         }
 
+
+
         if(vrv >= 11 && eixo == 1){
             updateDataDescUoS(ocp);
         }
-        updateDescription(descricoes, eixo, vrv, ocp);
 
         function loadTooltip(d, i, eixo, vrv){
             if(eixo === 0){
