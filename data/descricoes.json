@@ -385,7 +385,7 @@
 							{"u": "OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS [uf]"},
 							{"s": "OCUPADOS [cad] NO BRASIL"},
 							{"d": "OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS [deg] DO BRASIL"},
-							{"us": "OCUPADOS [cad] [uf"},
+							{"us": "OCUPADOS [cad] [uf]"},
 							{"ud": "OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS [deg] DO BRASIL"},
 							{"sd": "OCUPADOS [cad] [deg] NO BRASIL"},
 							{"usd": "OCUPADOS [cad] [deg] [uf]"}
@@ -398,7 +398,7 @@
 							{"us": "DO TOTAL DE OCUPADOS [cad] NO BRASIL"},
 							{"ud": "DO TOTAL DE OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS DO BRASIL"},
 							{"sd": "DO TOTAL DE OCUPADOS [cad] NO BRASIL"},
-							{"usd": "DO TOTAL DE OCUPADOS [cad] [uf]"}
+							{"usd": "DO TOTAL DE OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS [uf]"}
 						],
 						"terceira":[
 							{"": ""},
@@ -408,7 +408,7 @@
 							{"us": "DO TOTAL DE OCUPADOS DOS SETORES CULTURAIS E CRIATIVOS DO BRASIL"},
 							{"ud": ""},
 							{"sd": ""},
-							{"usd": ""}
+							{"usd": "DO TOTAL DE OCUPADOS DOS SETORES CULTURAIS E CRIATIVOS DO BRASIL"}
 						]
 					}
 
@@ -459,6 +459,16 @@
 							{"ud": "DE PARTICIPAÇÃO DOS OCUPADOS EM ATIVIDADES CULTURAIS E CRIATIVAS NO MERCADO DE TRABALHO"},
 							{"sd": "DE PARTICIPAÇÃO DOS OCUPADOS [cad] NO MERCADO DE TRABALHO"},
 							{"usd": "DE PARTICIPAÇÃO DOS OCUPADOS [cad] NO MERCADO DE TRABALHO"}
+						],
+						"segunda":[
+							{"": ""},
+							{"u": ""},
+							{"s": ""},
+							{"d": ""},
+							{"us": ""},
+							{"ud": ""},
+							{"sd": ""},
+							{"usd": ""}
 						]
 					}
 
@@ -901,7 +911,7 @@
 							{"m": "FINANCIAMENTO À CULTURA [mec] NO BRASIL"},
 							{"us": "FINANCIAMENTO À CULTURA PARA O SETOR [cad] [uf]"},
 							{"um": "FINANCIAMENTO À CULTURA [mec] [uf]"},
-							{"sm": "FINANCIAMENTO À CULTURA VIA FNC PARA O SETOR [cad] NO BRASIL"},
+							{"sm": "FINANCIAMENTO À CULTURA [mec] PARA O SETOR [cad] NO BRASIL"},
 							{"usm": "FINANCIAMENTO À CULTURA [mec] PARA O SETOR [cad] [uf]"}
 						],
 						"segunda":[
