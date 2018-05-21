@@ -160,6 +160,7 @@ function updateDescription(descricoes, eixo, vrv, slc){
                     }
                 }) 
             }
+            mapPronome(uf_text, ["DE", "DA", "DO"], ["EM", "NA", "NO"])
             desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', cad_text)
                                .replace('[deg]', nomeporte).replace('[ano]', "DO ANO "+anoanterior+' AO '+nomeano).replace('{uf}', nomeestado);
             desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', cad_text).replace('[deg]', nomeporte).replace('{uf}', nomeestado);
@@ -1602,7 +1603,7 @@ function descDesag(desc, deg){
         case '2':
             desc = desc.replace("[deg]", "DO SEXO "+tipo_deg); break;
         case '3':
-            desc = desc.replace("[deg]", "COM IDADE ENTRE "+tipo_deg); break;
+            desc = desc.replace("[deg]", "COM IDADE ENTRE "+tipo_deg+" ANOS"); break;
         case '4':
             if(tipo_deg == "Sem Instrução")
                 desc = desc.replace("[deg]", "E QUE NÃO POSSUEM INSTRUÇÃO")
@@ -1623,14 +1624,25 @@ function descDesag(desc, deg){
             }
             desc = desc.replace("[deg]", tipo_deg); break; 
         case '6': 
-            tipo_deg = mapPronome(tipo_deg, ["Sim", "Não"], ["COM", "SEM"] )
-            desc = desc.replace("[deg]", tipo_deg+" FORMALIDADE"); break;
+            if(tipo_deg == "Formal"){
+                desc = desc.replace("[deg]", "COM FORMALIDADE"); break;
+            } else {
+                desc = desc.replace("[deg]", "SEM FORMALIDADE"); break;
+            }
         case '7': 
-            tipo_deg = mapPronome(tipo_deg, ["Sim", "Não"], ["COM", "SEM"] )
-            desc = desc.replace("[deg]", tipo_deg+" PREVIDÊNCIA"); break;
+            if(tipo_deg == "Contribuinte"){
+                desc = desc.replace("[deg]", "COM PREVIDÊNCIA"); break;
+            }
+            else{
+                desc = desc.replace("[deg]", "SEM PREVIDÊNCIA");
+            }
         case '8': 
-            tipo_deg = mapPronome(tipo_deg, ["Sim", "Não"], ["COM", "SEM"] )
-            desc = desc.replace("[deg]", tipo_deg+" SINDICATO"); break;
+            if(tipo_deg == "Membro"){
+                desc = desc.replace("[deg]", "COM SINDICATO"); break;
+            }
+            else{
+                desc = desc.replace("[deg]", "SEM SINDICADO");
+            }
         default:
             desc = desc.replace("[deg]", "")
     }
