@@ -225,7 +225,7 @@ function analyze(error, data) {
 
     //tamanho do grafico
     // AQUI automatizar map center
-    var margin = {top: 20, right: 25, bottom: 40, left: 35},
+    var margin = {top: 20, right: 25, bottom: 40, left: 45},
         width = chartWidth - margin.left - margin.right,
         height = chartHeight - margin.top - margin.bottom;
 
