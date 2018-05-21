@@ -1112,25 +1112,13 @@ else {
 
         var parse = d3.time.format("%Y").parse;
         var dados = desagregacao_names().map(function (fruit) {
-            console.log(fruit)
             return data.map(function (d) {
-                // console.log(d)
-                // console.log(fruit)
-                // console.log({x: parse(d.year), y: +d[fruit]})
                 return {x: parse(d.year), y: +d[fruit]};
             });
         });
 
-        // console.log(data)
-        // console.log(dados)
-
-        // console.log(data)
-
         // Transpose the data into layers
         var dataset = d3.layout.stack()(dados);
-
-
-        // console.log(dataset)
 
         // Set x, y and colors
         var x_eixo1 = d3.scale.ordinal()
