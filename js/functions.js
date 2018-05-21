@@ -1199,7 +1199,7 @@ function updateMecanismo(url, vrv){
 
     } 
     else{
-
+        $("select[data-id='mec']").parent().css('display', 'block')
         $("select[data-id='mec']").append("<option value='0'>Mecenato Estadual</option>");
         $("select[data-id='mec']").append("<option value='1'>Editais Estaduais</option>");
     }

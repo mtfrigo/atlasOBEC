@@ -717,7 +717,7 @@ $descView = $json_text[$view];			   /*== descrição da visualização ==*/
                         </div>
 
                     <?php } else { ?>
-                        <iframe id="view_box_barras" src="barras_box.php" style="border: none; width: 100%; height: 275px;" scrolling="no"></iframe>
+                        <iframe id="view_box_barras" src="barras_box.php" style="border: none; width: 100%; height: 265px;" scrolling="no"></iframe>
 
                     <?php } ?>
 

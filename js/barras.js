@@ -940,9 +940,9 @@ else {
             if (error) throw error;
 
             textJSON = data;
-            /*$.get("./db/json_barras.php" + config, function(data){
-                  console.log(data)
-           })*/
+            // $.get("./db/json_barras.php" + config, function(data){
+            //       console.log(data)
+           // })
             d3.queue()
                 .defer(d3.json, "./db/json_barras.php" + config)
                 .await(analyze_eixo1);
@@ -1004,7 +1004,6 @@ else {
             });
 
         }
-
         if(fax != 0) {
             var array_names = [];
             textJSON.select.fax.forEach(function(d, i) {
@@ -1099,7 +1098,7 @@ else {
         setTimeout(function () {
         }, 500);
 
-        var margin = {top: 20, right: 20, bottom: 30, left: 25},
+        var margin = {top: 20, right: 20, bottom: 30, left: 30},
             width = chartWidth - margin.left - margin.right,
             height = chartHeight - margin.top - margin.bottom;
 
