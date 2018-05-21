@@ -33,7 +33,7 @@
 					{"us": "DO TOTAL DE EMPRESAS DO SETOR [cad] DO BRASIL"},
 					{"ud": "DO TOTAL DE EMPRESAS DOS SETORES CULTURAIS E CRIATIVOS [deg] [uf]"},
 					{"sd": ""},
-					{"usd": "DO TOTAL DE EMPRESAS DOS SETORES CULTURAIS E CRIATIVOS [deg] [uf]"}
+					{"usd": "DO TOTAL DE EMPRESAS DOS SETORES CULTURAIS E CRIATIVOS [uf]"}
 				]
 			},
 			{
@@ -84,7 +84,7 @@
 					{"sd": ""},
 					{"usd": ""}
 				],
-				"terceiro":[
+				"terceira":[
 					{"": ""},
 					{"u": ""},
 					{"s": ""},
@@ -117,7 +117,7 @@
 					{"sd": ""},
 					{"usd": ""}
 				],
-				"terceiro":[
+				"terceira":[
 					{"": ""},
 					{"u": ""},
 					{"s": ""},
@@ -150,7 +150,7 @@
 					{"sd": ""},
 					{"usd": ""}
 				],
-				"terceiro":[
+				"terceira":[
 					{"": ""},
 					{"u": ""},
 					{"s": ""},
@@ -183,7 +183,7 @@
 					{"sd": ""},
 					{"usd": ""}
 				],
-				"terceiro":[
+				"terceira":[
 					{"": ""},
 					{"u": ""},
 					{"s": ""},
@@ -216,7 +216,7 @@
 					{"sd": ""},
 					{"usd": ""}
 				],
-				"terceiro":[
+				"terceira":[
 					{"": ""},
 					{"u": ""},
 					{"s": ""},
