@@ -197,8 +197,6 @@ function updateDescription(descricoes, eixo, vrv, slc){
             desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', cad_text)
             desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', cad_text)
 
-            alert(desc_terc)
-
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
             $(window.parent.document).find('.percent-value').find('.box-dado').first().find('.description-number').text(desc_perc)
             $(window.parent.document).find('.percent-value').find('.setor-value').first().find('.description-number').text(desc_terc) 
@@ -207,25 +205,24 @@ function updateDescription(descricoes, eixo, vrv, slc){
             var desc_int = ''
             var desc_perc = ''
             var desc_terc = ''
-
+            console.log(key)
             nomeestado = getPrepos(uf_text)+' '+uf_text
-            
-            if("primeira" in desc_var){
-                desc_var.primeira.forEach(function(d){
+            if("primeira" in desc_var.slc[slc]){
+                desc_var.slc[slc].primeira.forEach(function(d){
                     if(key in d){
                         desc_int = d[key]; return;
                     }
                 }) 
             }
-            if("segunda" in desc_var){
-                desc_var.segunda.forEach(function(d){
+            if("segunda" in desc_var.slc[slc]){
+                desc_var.slc[slc].segunda.forEach(function(d){
                     if(key in d){
                         desc_perc = d[key]; return;
                     }
                 }) 
             }
-            if("terceira" in desc_var){
-                desc_var.terceira.forEach(function(d){
+            if("terceira" in desc_var.slc[slc]){
+                desc_var.slc[slc].terceira.forEach(function(d){
                     if(key in d){
                         desc_terc = d[key]; return;
                     }
@@ -239,7 +236,7 @@ function updateDescription(descricoes, eixo, vrv, slc){
                                 .replace('[uf]', nomeestado).replace('[cad]', cad_text)
                                 .replace('[pfj]', pfj_text).replace('[mod]', mod_text)
                                 .replace('{uf}', nomeestado).replace('[mec]', mec_text)
-
+            
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
             $(window.parent.document).find('.percent-value').find('.box-dado').first().find('.description-number').text(desc_perc)
             $(window.parent.document).find('.percent-value').find('.setor-value').first().find('.description-number').text(desc_terc) 
@@ -282,7 +279,6 @@ function updateDescription(descricoes, eixo, vrv, slc){
             desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[prc]', nomeprc)
             desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[prc]', nomeprc)
             desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[prc]', nomeprc)
-            alert(desc_int)
 
             $(window.parent.document).find('.integer-value').find('.description-number').first().text(desc_int)
             $(window.parent.document).find('.percent-value').find('.box-dado').first().find('.description-number').text(desc_perc)
