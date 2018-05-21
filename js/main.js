@@ -416,7 +416,8 @@ function updateIframe(url){
                     $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                     $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS");
                 }
-            } else if(url['var'] == 11 ||  url['var'] == 10 || url['var'] == 9 || url['var'] == 8){
+            }
+            else if(url['var'] == 11 ||  url['var'] == 10 || url['var'] == 9 || url['var'] == 8){
                 $('iframe[id="view_box_scc"]').attr('src', 'linhas_box.php?'+newUrl+'&eixo='+window.location.hash.substring(1)+window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("GRÁFICO DE LINHAS")
             }
@@ -439,10 +440,23 @@ function updateIframe(url){
             else {
                 $('iframe[id="view_box_scc"]').attr('src', 'treemap_scc_box.php?' + newUrl + '&eixo=' + window.location.hash.substring(1) + window.location.hash);
                 $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS [uf] ");
-                if(url['uf'] == 0)
-                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS [uf] ");
-                else
-                    $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS [uf] ");
+                if(url['uf'] == 0){
+                    if(url['ocp'] == 0){
+                        $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS [uf] ");
+                    }
+                    else{
+                        $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - OCUPAÇÕES CULTURAIS E CRIATIVAS  [uf] ");
+                    }
+
+                }
+                else{
+                    if(url['ocp'] == 0){
+                        $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - SETORES CULTURAIS CRIATIVOS [uf] ");
+                    }
+                    else{
+                        $('iframe[id="view_box_scc"]').parent().find(".view-title").html("TREEMAP - OCUPAÇÕES CULTURAIS E CRIATIVAS  [uf] ");
+                    }
+                }
             }
         }
         else if(eixoAtual == 2){
@@ -2098,8 +2112,6 @@ $(document).ready(function(){
 
 
             if($(this).attr("data-id") == "deg" && eixo_atual == 1){
-                console.log("kakakak")
-
                 if($(this).find('option:selected').parent().attr("value") != undefined){
                     deg_value =  $(this).find('option:selected').parent().attr("value")
 
@@ -2230,7 +2242,6 @@ $(document).ready(function(){
 
             }
             if($(this).attr("data-id") === "ocp") {
-                if(getEixo(window.location.hash.substring(1)) == 1) cleanDesagsUrl();
                 $(window.document).find(".cad-title").first().html(this.options[e.target.selectedIndex].text);
             }
             updateIframe(url);

@@ -942,9 +942,9 @@ else {
             if (error) throw error;
 
             textJSON = data;
-            $.get("./db/json_barras.php" + config, function(data){
-                  console.log(data)
-           })
+            // $.get("./db/json_barras.php" + config, function(data){
+            //       console.log(data)
+           // })
             d3.queue()
                 .defer(d3.json, "./db/json_barras.php" + config)
                 .await(analyze_eixo1);
@@ -979,13 +979,6 @@ else {
     }
 
     function desagregacao_names() {
-
-        // if(eixo == 1 && (vrv == 6 || vrv == 4)){
-        //     var array_names = [];
-        //
-        //     array_names.push('Média');
-        //     return array_names;
-        // }
 
         if(prt != 0) {
 
@@ -1058,6 +1051,7 @@ else {
         }
         return array_names;
     }
+
     function selectDesag(){
         switch(deg){
             case 1: return prt;
@@ -1070,6 +1064,7 @@ else {
             case 8: return snd;
         }
     }
+
     function analyze_eixo1(error, data) {
         $('#loading').fadeOut('fast');
         if (error) {
@@ -1117,19 +1112,10 @@ else {
 
         var parse = d3.time.format("%Y").parse;
         var dados = desagregacao_names().map(function (fruit) {
-            console.log(fruit)
             return data.map(function (d) {
-                // console.log(d)
-                // console.log(fruit)
-                // console.log({x: parse(d.year), y: +d[fruit]})
                 return {x: parse(d.year), y: +d[fruit]};
             });
         });
-
-        // console.log(data)
-        // console.log(dados)
-
-        // console.log(data)
 
         // Transpose the data into layers
         var dataset = d3.layout.stack()(dados);
