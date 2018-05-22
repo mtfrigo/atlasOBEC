@@ -1291,7 +1291,7 @@
 									{"e": "do valor exportado pelo Brasil para [prc]"},
 									{"i": "do valor importado pelo Brasil [prc]"},
 									{"s": ""},
-									{"c": "da corrente de comércio entre [uf] e [prc]"}
+									{"c": "da corrente de comércio entre Brasil e [prc]"}
 								]
 							}
 
@@ -1522,7 +1522,7 @@
 									{"e": "dos kg exportados [uf]"},
 									{"i": "dos kg importados para [uf]"},
 									{"s": ""},
-									{"c": "dos kg transacionados pelo [uf]"}
+									{"c": "dos kg transacionados entre [uf] e o Mundo"}
 								]
 							},
 							{
@@ -1530,13 +1530,13 @@
 									{"e": "exportados do Brasil para [prc] [cad]"},
 									{"i": "importados [prc] para o Brasil [cad]"},
 									{"s": "de saldo comercial entre [uf] e [prc] [cad]"},
-									{"c": " [uf] com [prc] [cad]"}
+									{"c": "do [uf] com [prc] [cad]"}
 								],
 								"segunda":[
-									{"e": "dos kg exportados [uf]"},
-									{"i": "dos kg importados para [uf]"},
+									{"e": "dos kg exportados pelo Brasil para [prc]"},
+									{"i": "dos kg importados pelo Brasil [prc]"},
 									{"s": ""},
-									{"c": "dos kg transacionados entre [uf] e [prc] [cad]"}
+									{"c": "dos kg transacionados entre Brasil e [prc] [cad]"}
 								]
 							}
 
