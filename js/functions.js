@@ -274,13 +274,26 @@ function updateDescription(descricoes, eixo, vrv, slc){
                 nomeprc = mapPronome(getPrepos(prc_text), ['DE', 'DA', 'DO'], ['', 'A', 'O'])+' '+prc_text
             }
             if(key == 'c'){
+                if(vrv != 13)
+                    nomeestado = mapPronome(getPrepos(uf_text), ['DE', 'DA', 'DO'], ['', 'A', 'O'])+' '+uf_text
+                else
+                    nomeestado = getPrepos(uf_text) + ' '+uf_text;
+                nomeprc = mapPronome(getPrepos(prc_text), ['DE', 'DA', 'DO'], ['', 'A', 'O'])+' '+prc_text
+            }
+            if(key == 's'){
                 nomeestado = mapPronome(getPrepos(uf_text), ['DE', 'DA', 'DO'], ['', 'A', 'O'])+' '+uf_text
                 nomeprc = mapPronome(getPrepos(prc_text), ['DE', 'DA', 'DO'], ['', 'A', 'O'])+' '+prc_text
             }
             if(cad > 0){
-                nomecad = "NO SETOR "+cad_text;
+                if(key == 'e')
+                    nomecad = "PELO SETOR "+cad_text;
+                else 
+                    nomecad = "NO SETOR "+cad_text;
             } else {
-                nomecad = "NOS SETORES CULTURAIS E CRIATIVOS"
+                if(key == 'e')
+                    nomecad = "PELOS SETORES CULTURAIS E CRIATIVOS";
+                else 
+                    nomecad = "NOS SETORES CULTURAIS E CRIATIVOS";
             }
             if("primeira" in desc_var.slc[slc]){
                 desc_var.slc[slc].primeira.forEach(function(d){
@@ -303,7 +316,6 @@ function updateDescription(descricoes, eixo, vrv, slc){
                     }
                 }) 
             }
-            
             desc_int = desc_int.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[prc]', nomeprc)
             desc_perc = desc_perc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[prc]', nomeprc)
             desc_terc = desc_terc.replace('[uf]', nomeestado).replace('[cad]', nomecad).replace('[prc]', nomeprc)
