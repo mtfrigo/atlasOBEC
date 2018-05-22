@@ -1238,6 +1238,7 @@
 							{"sm": ""}
 						]
 					}
+					
 				]
 			},
 			{
@@ -1245,8 +1246,14 @@
 				"slc": [
 					{
 						"primeira":[
-							{"": "FINANCIADOS POR MEIO DE MECANISMOS DE MECENATO ESTADUAL NO BRASIL"},
-							{"u": "FINANCIADOS POR MEIO DE MECANISMOS DE MECENATO ESTADUAL [uf]"}
+							{"": "FINANCIADOS POR MEIO DE MECENATO ESTADUAL NO BRASIL"},
+							{"u": "FINANCIADOS POR MEIO DE MECENATO ESTADUAL [uf]"},
+							{"s": "FINANCIADOS POR MEIO DE MECENATO ESTADUAL NO BRASIL"},
+							{"um": "FINANCIADOS POR MEIO DE EDITAIS ESTADUAIS [uf]"},
+							{"m": "FINANCIADOS POR MEIO DE EDITAIS ESTADUAIS NO BRASIL"},
+							{"sm": "FINANCIADOS POR MEIO DE EDITAIS ESTADUAIS NO BRASIL"},
+							{"us": "FINANCIADOS POR MEIO DE MECENATO ESTADUAL [uf]"},
+							{"usm": "FINANCIADOS POR MEIO DE EDITAIS ESTADUAIS [uf]"}
 						]
 					}
 				]
@@ -1262,7 +1269,7 @@
 									{"e": "de valor exportado [uf] para [prc] [cad]"},
 									{"i": "de valor importado [prc] para [uf] [cad]"},
 									{"s": "de saldo comercial entre [uf] e [prc]"},
-									{"c": "de corrente de comércio [uf] e [prc]"}
+									{"c": "de corrente de comércio entre [uf] e [prc]"}
 								],
 								"segunda":[
 									{"e": "do valor exportado [uf]"},
@@ -1296,7 +1303,7 @@
 								"primeira":[
 									{"e": "de participação no valor exportado [uf] para [prc] [cad]"},
 									{"i": "de participação no valor importado [prc] para [uf] [cad]"},
-									{"c": "de participação na corrente de comércio [uf] com [prc] [cad]"}
+									{"c": "de participação na corrente de comércio entre [uf] e [prc] [cad]"}
 								],
 								"segunda":[
 									{"e": ""},
@@ -1308,7 +1315,7 @@
 								"primeira":[
 									{"e": "de participação no valor exportado [uf] para [prc] [cad]"},
 									{"i": "de participação no valor importado[prc] para [uf] [cad]"},
-									{"c": "de participação na corrente de comércio [uf] com [prc] [cad]"}
+									{"c": "de participação na corrente de comércio entre [uf] e [prc] [cad]"}
 								],
 								"segunda":[
 									{"e": ""},
@@ -1327,7 +1334,7 @@
 								"primeira":[
 									{"e": "de participação do valor exportado [prc] para [uf] [cad] no valor adicionado"},
 									{"i": "de participação do valor importado [prc] para [uf] [cad] no valor adicionado"},
-									{"c": "da corrente de comércio [uf] com [prc] [cad] no valor adicionado"}
+									{"c": "da corrente de comércio entre [uf] e [prc] [cad] no valor adicionado"}
 								],
 								"segunda":[
 									{"e": ""},
@@ -1339,7 +1346,7 @@
 								"primeira":[
 									{"e": "de participação do valor exportado [prc] para [uf] [cad] no valor adicionado"},
 									{"i": "de participação do valor importado [prc] para [uf] [cad] no valor adicionado"},
-									{"c": "da corrente de comércio [uf] com [prc] [cad] no valor adicionado"}
+									{"c": "da corrente de comércio entre [uf] e [prc] [cad] no valor adicionado"}
 								],
 								"segunda":[
 									{"e": ""},
@@ -1356,16 +1363,22 @@
 				"slc": [
 							{
 								"primeira":[
-									{"e": ""},
-									{"i": ""},
-									{"s": ""},
-									{"c": ""}
+									{"e": "C2 VALOR ABSOLUTO POR PARCEIROS"},
+									{"i": "C2 VALOR ABSOLUTO POR PARCEIROS"},
+									{"s": "C2 VALOR ABSOLUTO POR PARCEIROS"},
+									{"c": "C2 VALOR ABSOLUTO POR PARCEIROS"}
 								],
 								"segunda":[
-									{"e": ""},
-									{"i": ""},
-									{"s": ""},
-									{"c": ""}
+									{"e": "C4 VALOR ABSOLUTO POR UF"},
+									{"i": "C4 VALOR ABSOLUTO POR UF"},
+									{"s": "C4 VALOR ABSOLUTO POR UF"},
+									{"c": "C4 VALOR ABSOLUTO POR UF"}
+								],
+								"terceira":[
+									{"e": "C4 VALOR ABSOLUTO POR SETORES"},
+									{"i": "C4 VALOR ABSOLUTO POR SETORES"},
+									{"s": "C4 VALOR ABSOLUTO POR SETORES"},
+									{"c": "C4 VALOR ABSOLUTO POR SETORES"}
 								]
 							},
 							{
@@ -1376,6 +1389,12 @@
 									{"c": ""}
 								],
 								"segunda":[
+									{"e": ""},
+									{"i": ""},
+									{"s": ""},
+									{"c": ""}
+								],
+								"terceira":[
 									{"e": ""},
 									{"i": ""},
 									{"s": ""},
@@ -1495,7 +1514,7 @@
 									{"e": "exportados [uf] para [prc] [cad]"},
 									{"i": "importados [prc] para [uf] [cad]"},
 									{"s": "de saldo comercial entre [uf] e [prc] [cad]"},
-									{"c": "de corrente de comércio [uf] com [prc] [cad]"}
+									{"c": "do [uf] e [prc] [cad]"}
 								],
 								"segunda":[
 									{"e": "dos kg exportados [uf]"},
@@ -1509,7 +1528,7 @@
 									{"e": "exportados do Brasil para [prc] [cad]"},
 									{"i": "importados [prc] para o Brasil [cad]"},
 									{"s": "de saldo comercial entre [uf] e [prc] [cad]"},
-									{"c": "de corrente de comércio [uf] com [prc] [cad]"}
+									{"c": " [uf] com [prc] [cad]"}
 								],
 								"segunda":[
 									{"e": "dos kg exportados [uf]"},
