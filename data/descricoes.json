@@ -558,7 +558,7 @@
 							{"d": ""},
 							{"us": "POR HORA TRABALHADA [cad] [uf]"},
 							{"ud": "POR HORA TRABALHADA [cad] [deg] NO BRASIL"},
-							{"sd": ""},
+							{"sd": "POR HORA TRABALHADA [cad] [deg] NO BRASIL"},
 							{"usd": "POR HORA TRABALHADA [cad] [deg] [uf]"}
 						]
 					}
