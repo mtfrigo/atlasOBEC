@@ -1503,7 +1503,7 @@
 									{"e": "dos kg exportados [uf]"},
 									{"i": "dos kg importados para [uf]"},
 									{"s": ""},
-									{"c": "dos kg transacionados entre [uf] e [prc] [cad]"}
+									{"c": "dos kg transacionados pelo [uf]"}
 								]
 							},
 							{
