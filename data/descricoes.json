@@ -1264,7 +1264,7 @@
 									{"e": "de valor exportado [uf] para [prc] [cad]"},
 									{"i": "de valor importado [prc] para [uf] [cad]"},
 									{"s": "de saldo comercial entre [uf] e [prc]"},
-									{"c": "de corrente de comércio [uf] e [prc]"}
+									{"c": "de corrente de comércio entre [uf] e [prc]"}
 								],
 								"segunda":[
 									{"e": "do valor exportado [uf]"},
