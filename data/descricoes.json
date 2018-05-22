@@ -1048,11 +1048,11 @@
 						"primeira":[
 							{"": "FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO DA ESFERA PRIVADA NO BRASIL"},
 							{"u": "FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO DA ESFERA PRIVADA [uf]"},
-							{"s": "FINANCIAMENTO AO SETOR [cad] VIA MECENATO ADVINDO DA ESFERA PRIVADA PARA O SETOR [cad] NO BRASIL"},
+							{"s": "FINANCIAMENTO AO SETOR [cad] VIA MECENATO ADVINDO DA ESFERA PRIVADA NO BRASIL"},
 							{"p": "FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO DE [pfj] NO BRASIL"},
-							{"us": "FINANCIAMENTO AO SETOR [cad] VIA MECENATO ADVINDO DA ESFERA PRIVADA PARA O SETOR [cad] [uf]"},
+							{"us": "FINANCIAMENTO AO SETOR [cad] VIA MECENATO ADVINDO DA ESFERA PRIVADA [uf]"},
 							{"up": "FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO DE [pfj] [uf]"},
-							{"usp": "FINANCIAMENTO AO SETOR [cad] VIA MECENATO ADVINDO DE [pfj] PARA O SETOR [cad] [uf]"}
+							{"usp": "FINANCIAMENTO AO SETOR [cad] VIA MECENATO ADVINDO DE [pfj] [uf]"}
 						],
 						"segunda":[
 							{"": "DO TOTAL DO FINANCIAMENTO À CULTURA VIA MECENATO ADVINDO DA ESFERA PRIVADA NO BRASIL"},
@@ -1516,11 +1516,7 @@
 									{"e": "exportados [uf] para [prc] [cad]"},
 									{"i": "importados [prc] para [uf] [cad]"},
 									{"s": "de saldo comercial entre [uf] e [prc] [cad]"},
-<<<<<<< HEAD
 									{"c": "do [uf] e [prc] [cad]"}
-=======
-									{"c": "de corrente de comércio entre [uf] e [prc] [cad]"}
->>>>>>> 67811bc943034f548454b52a44d8ac05a435210e
 								],
 								"segunda":[
 									{"e": "dos kg exportados [uf]"},
