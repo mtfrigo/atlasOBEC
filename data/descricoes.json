@@ -1282,7 +1282,7 @@
 							},
 							{
 								"primeira":[
-									{"e": "de valor exportado do Brasil para [prc] [cad]"},
+									{"e": "de valor exportado [uf] para [prc] [cad]"},
 									{"i": "de valor importado [prc] para o Brasil [cad]"},
 									{"s": "de saldo comercial entre [uf] e [prc]"},
 									{"c": "de corrente de comércio [uf] e [prc]"}
