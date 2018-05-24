@@ -1773,6 +1773,10 @@ button.opt.active{
 		padding-left: 5%;
 		padding-right: 5%;
 	}
+
+	#view-boxes>div {
+		margin:	0;
+	}
 	.bread-select, .bread-eixo{
 		font-size: 13px;
 	}

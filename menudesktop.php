@@ -117,6 +117,15 @@
         $("#containerDownload").removeClass("col-md-10")
         $("#containerDownload").addClass("col-md-12")
 
+        $('#containerMapa').css("right", "5px");
+        $('#containerDados').css("left", "5px");
+        $('#containerDesc').css("right", "5px");
+        $('#containerDesc').css("height", "205px");
+        $('#containerDesc').css("margin-top", "5px");
+        $('#containerBarra').css("left", "5px");
+        $('#containerBarra').css("margin-top", "10px");
+        $('#containerTree').css("margin-top", "10px");
+
     }
 
 </script>
