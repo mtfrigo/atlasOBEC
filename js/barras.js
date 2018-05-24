@@ -3,10 +3,12 @@ var chartWidth = $('.chart').width();
 var chartHeight = $('.chart').height();
 var minBarHeight = 5;
 var withLabels = false;
+
 d3.json('./data/descricoes.json', function (error, desc){
     if (error) throw error;
     descricoes = desc;
 })
+
 function getSoma(barraId) {
     var soma = 0;
     $("rect").each(function() {

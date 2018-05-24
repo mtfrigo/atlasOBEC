@@ -119,8 +119,6 @@ function updateDescription(descricoes, eixo, vrv, slc){
             key += 'p'
         }
 
-        console.log(key)
-
     } else {
         switch(typ){
             case '1': key = 'e'; break;

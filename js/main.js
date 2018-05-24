@@ -1039,8 +1039,6 @@ Saída:
 
 function loadMobile(){
 
-    console.log("oi")
-
     $(function() {
         $(".bread-select[data-id='eixo']").val(window.location.hash.substring(1));
     });
@@ -1685,9 +1683,6 @@ function switchToOcupations() {
 
 $(document).ready(function(){
 
-   // if($(this).find("#resultado_view")[0]){
-   //      console.log(url)
-   //  }
 
 	$(window).on('hashchange', function() {
         loadPage();
